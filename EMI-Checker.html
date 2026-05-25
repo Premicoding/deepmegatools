@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="description" content="Free online EMI Calculator for home loan, car loan, or personal loan. Calculate monthly EMI, total interest payable, and total payment instantly with accurate results.">
+<meta name="keywords" content="EMI calculator, loan EMI calculator, monthly EMI, interest calculator, home loan EMI, car loan EMI, personal loan EMI, finance tool, India EMI">
+<meta name="author" content="PremBabu Kashyap">
+<meta name="robots" content="index, follow">
+<meta charset="UTF-8">
+<meta content='width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5' name='viewport'/>
+    <title>EMI Calculator | Accessible & Fixed</title>
+    <style>
+        /* ===== BASE STYLES (PRESERVED LAYOUT & FIXED CONTRAST) ===== */
+        /* Main landmark styling - now using <main> instead of div */
+    
+
+        #ADSSK .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width:clamp(300px, 40%, 800px);
+            text-align: center;
+            margin:40px auto;
+            box-shadow: 0 0 4px 4px olive;
+        }
+
+        /* FIXED CONTRAST: heading - dark blue for excellent contrast (white bg) */
+        #ADSSK .container h2 {
+            margin-bottom: 20px;
+            color: #0a3b5c;         /* deep navy, contrast ratio > 9:1 on white */
+            font-weight: 900;
+            font-size: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.08);
+            letter-spacing: 0.5px;
+        }
+
+        /* input group labels - fixed contrast: rich maroon/pink with WCAG AA compliance */
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            color: #b42d5e;          /* deep rose, contrast ~6.8:1 on white */
+            margin-bottom: 4px;
+            font-size: 1rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px 0 8px 4px;
+            caret-color: #0077b6;
+            margin-top: 5px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: #fff;
+            transition: 0.15s;
+        }
+
+        .input-group input:focus {
+            border-color: #0a3b5c;
+            outline: 2px solid #0a3b5c80;
+            outline-offset: 1px;
+        }
+
+        /* button retains original style but hover improves */
+        #ADSSK .container button {
+            background: #1f4b8a;      /* deeper blue for better visual & contrast */
+            color: white;
+            border: none;
+            font-weight: 900;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 18px;
+            transition: background 0.2s;
+        }
+
+        #ADSSK .container button:hover {
+            background: #0f6b2f;      /* fresh green on hover, but still accessible */
+        }
+
+        /* RESULTS SECTION - FIXED CONTRAST: dark slate for readability */
+        #ADSSK .container .result {
+            margin-top: 20px;
+            color: #1e2f3f;           /* deep charcoal-blue, contrast > 12:1 on white */
+            background: #fef9e8;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: inset 0 0 0 1px #ffe2b5, 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .result h3 {
+            margin-bottom: 10px;
+            color: #15455e;
+            font-weight: 700;
+        }
+
+        .result p {
+            margin: 8px 0;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .result strong {
+            color: #0f3b2c;
+        }
+
+        /* additional polish to preserve original spacing */
+        #ADSSK .container .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        /* ensure no external dependencies cause console errors */
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+        }
+        #SSR{position:relative;top:0;left:5px;}
+        table{border:1px solid blue;border-collapse:collapse;}
+        th,td{border:2px solid black;}
+    </style>
+</head>
+<body>
+    <!-- MAIN LANDMARK FIX: replaced <div> with <main> for semantic landmark -->
+    <main id="ADSSK">
+        <div class="container">
+            <h2>EMI Calculator</h2>
+            <div class="input-group">
+                <label for="loanAmount">Loan Amount (₹)</label>
+                <input type="number" id="loanAmount" placeholder="Enter loan amount" step="any">
+            </div>
+            <div class="input-group">
+                <label for="interestRate">Annual Interest Rate (%)</label>
+                <input type="number" id="interestRate" placeholder="Enter interest rate" step="any">
+            </div>
+            <div class="input-group">
+                <label for="loanTenure">Loan Tenure (Years)</label>
+                <input type="number" id="loanTenure" placeholder="Enter loan tenure" step="any">
+            </div>
+            <button onclick="calculateEMI()">Calculate EMI</button>
+
+            <div class="result">
+                <h3>Results:</h3>
+                <p><strong>Monthly EMI:</strong> ₹<span id="emiAmount">0</span></p>
+                <p><strong>Total Interest Payable:</strong> ₹<span id="totalInterest">0</span></p>
+                <p><strong>Total Payment:</strong> ₹<span id="totalPayment">0</span></p>
+            </div>
+        </div>
+        <div id="SSR">
+        <h1>Best EMI Calculator Tool Online – Calculate Loan EMI Instantly</h1>
+
+<p>A <strong>Loan EMI Calculator</strong> is an essential financial tool that helps users calculate their monthly EMI payments quickly and accurately. Whether you are planning to take a <strong>home loan, personal loan, education loan, or car loan</strong>, an EMI calculator makes financial planning easier.</p>
+
+<div>
+<h2>What is EMI?</h2>
+
+<p><strong>EMI</strong> stands for <strong>Equated Monthly Installment</strong>. It is the fixed amount a borrower pays every month to repay a loan within a specific period.</p>
+
+<p>The EMI amount includes:</p>
+
+<ul>
+<li>Principal Loan Amount</li>
+<li>Interest Amount</li>
+<li>Loan Tenure</li>
+</ul>
+</div>
+
+<div>
+<h2>Why Use an EMI Calculator?</h2>
+
+<p>Using an online EMI Calculator offers several benefits:</p>
+
+<ul>
+<li>Instant EMI Calculation</li>
+<li>Easy Financial Planning</li>
+<li>Accurate Loan Estimates</li>
+<li>Saves Time</li>
+<li>Helps Compare Different Loans</li>
+<li>User-Friendly Interface</li>
+</ul>
+</div>
+
+<div>
+<h2>EMI Calculation Formula</h2>
+
+<p>The standard EMI calculation formula is:</p>
+
+<div>
+EMI = [P × R × (1+R)^N] / [(1+R)^N – 1]
+</div>
+
+<table>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+<tr>
+<td>P</td>
+<td>Loan Amount</td>
+</tr>
+<tr>
+<td>R</td>
+<td>Monthly Interest Rate</td>
+</tr>
+<tr>
+<td>N</td>
+<td>Loan Tenure in Months</td>
+</tr>
+</table>
+</div>
+
+<div>
+<h2>Types of Loan EMI Calculators</h2>
+
+<ul>
+<li><strong>Home Loan EMI Calculator</strong></li>
+<li><strong>Car Loan EMI Calculator</strong></li>
+<li><strong>Bike Loan EMI Calculator</strong></li>
+<li><strong>Education Loan EMI Calculator</strong></li>
+<li><strong>Personal Loan EMI Calculator</strong></li>
+<li><strong>Business Loan EMI Calculator</strong></li>
+</ul>
+</div>
+
+<div>
+<h2>How to Use EMI Calculator?</h2>
+
+<ol>
+<li>Enter your loan amount.</li>
+<li>Select the interest rate.</li>
+<li>Choose the loan tenure.</li>
+<li>Click on Calculate EMI button.</li>
+<li>Get instant monthly EMI results.</li>
+</ol>
+</div>
+
+<div>
+<h2>Advantages of Online EMI Calculator</h2>
+
+<table>
+<tr>
+<th>Feature</th>
+<th>Benefit</th>
+</tr>
+<tr>
+<td>Fast Calculation</td>
+<td>Instant EMI Results</td>
+</tr>
+<tr>
+<td>100% Accurate</td>
+<td>Reliable Loan Planning</td>
+</tr>
+<tr>
+<td>Free Tool</td>
+<td>No Charges</td>
+</tr>
+<tr>
+<td>Mobile Friendly</td>
+<td>Easy to Use Anywhere</td>
+</tr>
+</table>
+</div>
+
+<div>
+<h2>SEO Keywords for EMI Calculator</h2>
+
+<p>Below are some highly searched keywords related to EMI Calculator:</p>
+
+<ul>
+<li>Best EMI Calculator Online</li>
+<li>Loan EMI Calculator Free</li>
+<li>Home Loan EMI Calculator</li>
+<li>Car Loan EMI Tool</li>
+<li>Personal Loan EMI Calculator</li>
+<li>Monthly EMI Calculation Tool</li>
+<li>Interest Rate EMI Calculator</li>
+</ul>
+</div>
+<h2>Conclusion</h2>
+
+<p>An <strong>EMI Calculator Tool</strong> is one of the most useful financial tools for borrowers. It helps users estimate monthly installments, compare loans, and manage finances smartly. If you want quick and accurate EMI calculations, using an online EMI calculator is the best option.</p>
+</div>
+    </main>
+
+    <script>
+        // Clean EMI calculation function (no external script dependency -> NO console errors)
+        function calculateEMI() {
+            // Get DOM elements
+            let loanAmount = parseFloat(document.getElementById("loanAmount").value);
+            let interestRate = parseFloat(document.getElementById("interestRate").value);
+            let loanTenure = parseFloat(document.getElementById("loanTenure").value);
+
+            // Validation: positive numbers and not empty
+            if (isNaN(loanAmount) || isNaN(interestRate) || isNaN(loanTenure) || 
+                loanAmount <= 0 || interestRate <= 0 || loanTenure <= 0) {
+                alert("Please enter valid positive numbers for all fields.");
+                return;
+            }
+
+            // EMI formula: monthly interest and total months
+            let monthlyInterestRate = (interestRate / 100) / 12;
+            let numberOfMonths = loanTenure * 12;
+
+            // EMI calculation using standard formula
+            let emi;
+            if (monthlyInterestRate === 0) {
+                emi = loanAmount / numberOfMonths;   // safeguard, though interestRate > 0 prevents zero.
+            } else {
+                let factor = Math.pow(1 + monthlyInterestRate, numberOfMonths);
+                emi = (loanAmount * monthlyInterestRate * factor) / (factor - 1);
+            }
+
+            let totalPayment = emi * numberOfMonths;
+            let totalInterest = totalPayment - loanAmount;
+
+            // Update DOM with formatted results (2 decimals)
+            document.getElementById("emiAmount").innerText = emi.toFixed(2);
+            document.getElementById("totalInterest").innerText = totalInterest.toFixed(2);
+            document.getElementById("totalPayment").innerText = totalPayment.toFixed(2);
+        }
+
+        // (Optional) small UX: allow pressing 'Enter' to trigger calculation on any field
+        const inputs = document.querySelectorAll('#ADSSK input');
+        inputs.forEach(input => {
+            input.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    calculateEMI();
+                }
+            });
+        });
+    </script>
+   
+</body>
+</html>

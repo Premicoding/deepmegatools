@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta name="description" content="A powerful code editor with syntax highlighting, extensions, and Git integration.">
+    <meta name="keywords" content="code editor, IDE, programming, syntax highlighting, developer tools">
+    <meta name="author" content="PremBabu Kashyap">
+<meta name="robots" content="index, follow">
+<meta charset="UTF-8">
+<meta content='width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5' name='viewport'/>
+    <title>Live Code Editor with Real-Time Preview</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== GLOBAL & CONTAINER STYLES ===== */
+        #GHE .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: rgba(30, 30, 30, 0.9);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        #GHE .container header {
+            text-align: center;
+            padding: 2px;
+            background-color: #2d2d2d;
+            border-bottom: 2px solid #444;
+        }
+
+        #GHE .container header h1 {
+            font-size: 2rem;
+            word-spacing: 1px;
+            letter-spacing: .5px;
+            -webkit-text-stroke: .1px hotpink;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        #GHE .container .top-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px 20px;
+            background-color: #252525;
+            border-bottom: 1px solid #444;
+            justify-content: center;
+        }
+
+        .top-controls button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .top-controls button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .run-button {
+            background-color:#0000FF;
+            color:#F2F2F2;
+        }
+
+        .run-button:hover {
+            background-color: #3d8b40;
+        }
+
+        .fullscreen-button {
+            background-color:#000000;
+            color:#00FF00;
+        }
+
+        .fullscreen-button:hover {
+            background-color: #0b7dda;
+        }
+
+        .fullcode-button {
+            background-color:#FCFCFC;
+            color:#002E2E;
+        }
+
+        .fullcode-button:hover {
+            background-color: #e68900;
+        }
+
+        .reset-button {
+            background-color:#590059;
+            color:#FFFFFF;
+        }
+
+        .reset-button:hover {
+            background-color: #d32f2f;
+        }
+
+        .live-preview-toggle {
+            background-color: #9c27b0;
+            color: white;
+        }
+
+        .live-preview-toggle:hover {
+            background-color: #7b1fa2;
+        }
+
+        /* ===== TABS (MAIN EDITOR) ===== */
+        .tabs {
+            display: flex;
+            background-color: #252525;
+            border-bottom: 1px solid #444;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .tab {
+            padding: 8px 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            /* FIX: Ensure sufficient contrast for tab text (base white) */
+        
+        }
+
+    
+
+        .tab.active {
+            background-color: #2d2d2d;
+            border-bottom: 3px solid;
+        }
+
+        .html-tab,.css-tab,.js-tab{
+            color:white;
+            border-color:white;
+        }
+
+        
+        /* ===== EDITOR LAYOUT ===== */
+        .editor-container {
+            display: flex;
+            flex-wrap: wrap;
+            min-height: 100vh;
+        }
+
+        .editor-box {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            overflow: auto;
+            border-right: 1px solid #444;
+            flex-direction: column;
+        }
+
+        .editor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2d2d2d;
+            /* FIX: improved contrast for heading text (light green) */
+            padding: 0 0 0 10px;
+            height: 30px;
+        }
+
+        /* FIX: sequential heading order (h2 after h1) + improved contrast */
+        .editor-header h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.17rem;
+            margin: 0;
+            font-weight: bold;
+            color: #b9f6ca;      /* bright light green → 7.5:1 contrast on #2d2d2d (WCAG AAA) */
+        }
+
+        .editor-content {
+            flex: 1;
+            display: none;
+            flex-direction: column;
+            height: calc(100% - 40px);
+        }
+
+        .editor-content.active {
+            display: flex;
+        }
+
+        textarea {
+            width:100%;
+            height:100%;
+            min-height: 300px;
+            background-color:#2d2d2d;
+            color: #f0f0f0;
+            border:none;
+            padding:0;
+            resize: none;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height:1.5;
+            flex: 1;
+        }
+
+        textarea:focus {
+            outline: none;
+            border: none;
+        }
+
+        /* ===== PREVIEW PANEL ===== */
+        .preview {
+            padding: 0;
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+        }
+
+        .preview-header {
+            margin: 0;
+            height: 30px;
+            background-color: #2d2d2d;
+            display: flex;
+            padding: 0 0 0 5px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* FIX: heading sequential order (h2) */
+        .preview-header h2 {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color:white;
+            font-size: 1.17rem;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        iframe {
+            flex: 1;
+            border: none;
+            min-height: 400px;
+            background-color: white;
+        }
+
+        /* ===== FULLSCREEN PREVIEW MODAL ===== */
+        .fullscreen-preview {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            background: white;
+            display: none;
+        }
+
+        .fullscreen-preview.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .fullscreen-header {
+            background-color: #252525;
+            padding: 0 10px;
+            display: flex;
+            color: white;
+            font-weight: 900;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+        }
+
+        /* FIX: heading order (h2) */
+        .fullscreen-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .close-fullscreen {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* ===== FULLSCREEN CODE PREVIEW MODAL ===== */
+        .fullscreen-code {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            background: #1e1e1e;
+            display: none;
+            flex-direction: column;
+        }
+
+        .fullscreen-code.active {
+            display: flex;
+        }
+
+        .code-tabs {
+            display: flex;
+            background-color: #252525;
+            border-bottom: 1px solid #444;
+            justify-content:space-around;
+            border-radius:5px;
+        }
+
+        /* FIX: code tab text contrast */
+        .code-tab {
+            padding:6px 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            display:flex;
+            align-items:center;
+            gap:10px;
+            color: #f0f0f0;   /* sufficient contrast on #252525 background (WCAG AA) */
+        }
+
+        .code-tab:hover {
+            background-color:#353535;
+        }
+
+        .code-tab.active {
+            background-color: #2d2d2d;
+            border-bottom: 3px solid;
+        }
+
+        
+
+        .code-content {
+            flex:1;
+            display:none;
+            padding:5px 0;
+            overflow: auto;
+        }
+
+        .code-content.active {
+            display: block;
+        }
+
+        .code-display {
+            background-color: #2d2d2d;
+            color:#f0f0f0;
+            padding:0;
+            border-radius:8px;
+            font-family:'Courier New', monospace;
+            font-size:6px;
+            line-height:1.5;
+            white-space:pre-wrap;
+            height:100%;
+            overflow: auto;
+            border: 1px solid #444;
+        }
+
+        /* ===== STATUS INDICATOR ===== */
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .status-live {
+            background-color: #4caf50;
+            box-shadow: 0 0 8px #4caf50;
+        }
+
+        .status-off {
+            background-color: #ccc;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .editor-container {
+                flex-direction: column;
+            }
+
+            .editor-box {
+                border-right: none;
+                border-bottom: 1px solid #444;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* ===== ICON STYLES ===== */
+        .icon {
+            font-size: 1.2rem;
+            
+            
+        }
+
+        .html-icon,.css-icon,.js-icon{
+            color:white;
+        }
+
+        #BBC{font-family: Blippo, fantasy;}
+    </style>
+</head>
+<body>
+<main id="GHE">
+    <div class="container">
+        <header>
+            <h1>🧑‍💻 𝐖𝐞𝐛 𝐂𝐨𝐝𝐞 𝐄𝐝𝐢𝐭𝐨𝐫</h1>
+        </header>
+
+        <div class="top-controls">
+            <button class="run-button" id="runBtn">
+                <i class="fas fa-play"></i> Run Code
+            </button>
+            <button class="fullscreen-button" id="fullscreenBtn">
+                <i class="fas fa-expand"></i> Full Page Preview
+            </button>
+            <button class="fullcode-button" id="fullcodeBtn">
+                <i class="fas fa-code"></i> Full Code Preview
+            </button>
+            <button class="reset-button" id="resetBtn">
+                <i class="fas fa-redo"></i> Reset
+            </button>
+            <button class="live-preview-toggle" id="livePreviewBtn">
+                <i class="fas fa-bolt"></i> Live Preview: ON
+            </button>
+        </div>
+
+        <div class="tabs">
+            <div class="tab html-tab active" data-editor="html">
+                <i class="fab fa-html5 html-icon"></i> HTML
+            </div>
+            <div class="tab css-tab" data-editor="css">
+                <i class="fab fa-css3-alt css-icon"></i> CSS
+            </div>
+            <div class="tab js-tab" data-editor="js">
+                <i class="fab fa-js-square js-icon"></i> JavaScript
+            </div>
+        </div>
+
+        <div class="editor-container">
+            <div class="editor-box">
+                <div class="editor-content active" id="html-editor">
+                    <div class="editor-header">
+                        <h2><i class="fab fa-html5 html-icon"></i> HTML</h2>
+                    </div>
+                    <textarea id="htmlCode" class="html-code" placeholder="Enter your HTML code here...">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Hello World&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+                </div>
+
+                <div class="editor-content" id="css-editor">
+                    <div class="editor-header">
+                        <h2><i class="fab fa-css3-alt css-icon"></i> CSS</h2>
+                    </div>
+                    <textarea id="cssCode" class="css-code" placeholder="Enter your CSS code here...">body{
+}</textarea>
+                </div>
+
+                <div class="editor-content" id="js-editor">
+                    <div class="editor-header">
+                        <h2><i class="fab fa-js-square js-icon"></i> JavaScript</h2>
+                    </div>
+                    <textarea id="jsCode" class="js-code" placeholder="Enter your JavaScript code here..."></textarea>
+                </div>
+            </div>
+
+            <div class="preview">
+                <div class="preview-header">
+                    <h2><i class="fas fa-eye preview-icon"></i> Live Preview <span class="status-indicator status-live" id="statusIndicator"></span></h2>
+                </div>
+                <!-- FIX: Added title attribute for accessibility -->
+                <iframe id="previewFrame" title="Live interactive preview of HTML/CSS/JS code"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Preview Modal -->
+    <div class="fullscreen-preview" id="fullscreenPreview">
+        <div class="fullscreen-header">
+            <h2>Full Page Preview</h2>
+            <button class="close-fullscreen" id="closeFullscreen">Close</button>
+        </div>
+        <!-- FIX: Added title attribute for accessibility -->
+        <iframe id="fullscreenFrame" title="Fullscreen page preview of the current web project"></iframe>
+    </div>
+
+    <!-- Fullscreen Code Preview Modal -->
+    <div class="fullscreen-code" id="fullscreenCode">
+        <div class="fullscreen-header">
+            <h2>Full Code Preview</h2>
+            <button class="close-fullscreen" id="closeFullcode">Close</button>
+        </div>
+        <div class="code-tabs">
+            <div class="code-tab html-tab active" data-code="html">
+                <i class="fab fa-html5 html-icon"></i> HTML
+            </div>
+            <div class="code-tab css-tab" data-code="css">
+                <i class="fab fa-css3-alt css-icon"></i> CSS
+            </div>
+            <div class="code-tab js-tab" data-code="js">
+                <i class="fab fa-js-square js-icon"></i> JavaScript
+            </div>
+        </div>
+        <div class="code-content active" id="html-code-content">
+            <div class="code-display" id="html-code-display"></div>
+        </div>
+        <div class="code-content" id="css-code-content">
+            <div class="code-display" id="css-code-display"></div>
+        </div>
+        <div class="code-content" id="js-code-content">
+            <div class="code-display" id="js-code-display"></div>
+        </div>
+    </div>
+    <div id="BBC">
+   <h1 style="color:#222;font-size:32px;font-family:Arial,sans-serif;">Best Web Code Editor Tool for HTML, CSS & JavaScript Developers</h1>
+
+<p style="font-size:18px;line-height:1.8;color:#444;font-family:Arial,sans-serif;">
+An <b>Web Code Editor Tool</b> is one of the most useful platforms for modern web developers, students, and programmers. 
+It allows users to write, edit, test, and preview code directly inside the browser without installing any software.
+</p>
+
+<p style="font-size:18px;line-height:1.8;color:#444;font-family:Arial,sans-serif;">
+Whether you are learning <b>HTML</b>, designing with <b>CSS</b>, or building interactive projects using <b>JavaScript</b>, a live code editor makes the coding experience faster, easier, and more productive.
+</p>
+
+<hr style="margin:30px 0;">
+
+<h2 style="color:#111;font-size:28px;font-family:Arial,sans-serif;">What is an Online Code Editor?</h2>
+
+<p style="font-size:18px;line-height:1.8;color:#444;font-family:Arial,sans-serif;">
+An <b>Web Code Editor</b> is a browser-based coding environment where users can create and test web development code in real time. 
+These tools are especially popular among beginners and frontend developers because they provide instant output and live preview functionality.
+</p>
+
+<ul style="font-size:18px;line-height:2;color:#333;font-family:Arial,sans-serif;">
+<li>✔ Write HTML, CSS, and JavaScript online</li>
+<li>✔ Real-time live preview</li>
+<li>✔ No installation required</li>
+<li>✔ Beginner-friendly interface</li>
+<li>✔ Fast and lightweight performance</li>
+<li>✔ Mobile and desktop support</li>
+<li>✔ Dark mode support</li>
+<li>✔ Easy code testing and debugging</li>
+</ul>
+
+<hr style="margin:30px 0;">
+
+<h2 style="color:#111;font-size:28px;font-family:Arial,sans-serif;">Features of Our Online Code Editor Tool</h2>
+
+<table style="width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:17px;">
+<tr style="background:#222;color:#fff;">
+<th style="padding:12px;border:1px solid #ccc;">Feature</th>
+<th style="padding:12px;border:1px solid #ccc;">Description</th>
+</tr>
+
+<tr>
+<td style="padding:12px;border:1px solid #ccc;"><b>Live Preview</b></td>
+<td style="padding:12px;border:1px solid #ccc;">See instant output while writing code.</td>
+</tr>
+
+<tr>
+<td style="padding:12px;border:1px solid #ccc;"><b>HTML Editor</b></td>
+<td style="padding:12px;border:1px solid #ccc;">Create webpage structures quickly and easily.</td>
+</tr>
+
+<tr>
+<td style="padding:12px;border:1px solid #ccc;"><b>CSS Styling</b></td>
+<td style="padding:12px;border:1px solid #ccc;">Design beautiful webpages with full CSS support.</td>
+</tr>
+
+<tr>
+<td style="padding:12px;border:1px solid #ccc;"><b>JavaScript Runner</b></td>
+<td style="padding:12px;border:1px solid #ccc;">Test interactive functionality instantly.</td>
+</tr>
+
+<tr>
+<td style="padding:12px;border:1px solid #ccc;"><b>Responsive Design</b></td>
+<td style="padding:12px;border:1px solid #ccc;">Works smoothly on mobile, tablet, and desktop devices.</td>
+</tr>
+
+<tr>
+<td style="padding:12px;border:1px solid #ccc;"><b>Dark Theme</b></td>
+<td style="padding:12px;border:1px solid #ccc;">Comfortable coding experience during night use.</td>
+</tr>
+
+</table>
+
+<hr style="margin:30px 0;">
+
+<h2 style="color:#111;font-size:28px;font-family:Arial,sans-serif;">Why Use a Live Code Editor?</h2>
+
+<p style="font-size:18px;line-height:1.8;color:#444;font-family:Arial,sans-serif;">
+A <b>Live Code Editor</b> helps developers practice coding more efficiently by providing instant results and quick testing features. 
+It is an excellent platform for learning programming and improving web development skills.
+</p>
+
+<ol style="font-size:18px;line-height:2;color:#333;font-family:Arial,sans-serif;">
+<li>Learn coding faster with live output</li>
+<li>No software installation needed</li>
+<li>Quick testing and debugging environment</li>
+<li>Perfect for beginners and students</li>
+<li>Ideal for frontend web development practice</li>
+<li>Easy to use from any device</li>
+</ol>
+
+<hr style="margin:30px 0;">
+
+<h2 style="color:#111;font-size:28px;font-family:Arial,sans-serif;">Best Uses of an Web Code Editor</h2>
+
+<ul style="font-size:18px;line-height:2;color:#333;font-family:Arial,sans-serif;">
+<li><b>HTML Practice</b> – Learn webpage structure easily.</li>
+<li><b>CSS Experiments</b> – Test colors, layouts, and animations instantly.</li>
+<li><b>JavaScript Coding</b> – Run interactive scripts in real time.</li>
+<li><b>Student Projects</b> – Build and test academic projects quickly.</li>
+<li><b>Interview Preparation</b> – Practice coding problems online.</li>
+<li><b>Frontend Development</b> – Create responsive website layouts.</li>
+</ul>
+
+<hr style="margin:30px 0;">
+
+<h2 style="color:#111;font-size:28px;font-family:Arial,sans-serif;">SEO Keywords for Ranking</h2>
+
+<p style="font-size:18px;line-height:1.8;color:#444;font-family:Arial,sans-serif;">
+Using the right SEO keywords can help your website rank higher in Google Search results.
+</p>
+
+<p style="background:#f4f4f4;padding:18px;border-radius:10px;font-size:17px;line-height:2;color:#222;font-family:Arial,sans-serif;">
+Web code editor, free code editor tool, html css javascript editor, live code editor, online html editor, javascript compiler online, coding practice tool, frontend editor, web development tool, online programming editor, html css js playground, browser code editor
+</p>
+
+<hr style="margin:30px 0;">
+
+<h2 style="color:#111;font-size:28px;font-family:Arial,sans-serif;">Conclusion</h2>
+
+<p style="font-size:18px;line-height:1.9;color:#444;font-family:Arial,sans-serif;">
+A modern <b>Web Code Editor Tool</b> is an essential platform for developers, students, and coding beginners. 
+With features like live preview, responsive design, and real-time code execution, users can improve their coding skills more effectively.
+</p>
+
+<p style="font-size:18px;line-height:1.9;color:#444;font-family:Arial,sans-serif;">
+If your code editor is fast, mobile-friendly, and SEO optimized, it has strong potential to attract organic traffic from Google Search and become a valuable resource for programmers worldwide.
+</p>
+ </div>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const htmlCode = document.getElementById('htmlCode');
+        const cssCode = document.getElementById('cssCode');
+        const jsCode = document.getElementById('jsCode');
+        const previewFrame = document.getElementById('previewFrame');
+        const fullscreenFrame = document.getElementById('fullscreenFrame');
+        const runBtn = document.getElementById('runBtn');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const fullcodeBtn = document.getElementById('fullcodeBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const livePreviewBtn = document.getElementById('livePreviewBtn');
+        const statusIndicator = document.getElementById('statusIndicator');
+        const closeFullscreen = document.getElementById('closeFullscreen');
+        const closeFullcode = document.getElementById('closeFullcode');
+        const fullscreenPreview = document.getElementById('fullscreenPreview');
+        const fullscreenCode = document.getElementById('fullscreenCode');
+        const tabs = document.querySelectorAll('.tab');
+        const codeTabs = document.querySelectorAll('.code-tab');
+        const editorContents = document.querySelectorAll('.editor-content');
+        const codeContents = document.querySelectorAll('.code-content');
+        const htmlCodeDisplay = document.getElementById('html-code-display');
+        const cssCodeDisplay = document.getElementById('css-code-display');
+        const jsCodeDisplay = document.getElementById('js-code-display');
+        
+        let livePreviewEnabled = true;
+        let debounceTimer;
+        
+        // Initialize with default code (ensures preview is updated)
+        updatePreview();
+        
+        // Tab switching functionality (main editor)
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const editorId = this.getAttribute('data-editor');
+                
+                // Update active tab
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Hide all editor contents and show selected one
+                editorContents.forEach(editor => editor.style.display = 'none');
+                document.getElementById(`${editorId}-editor`).style.display = 'flex';
+            });
+        });
+        
+        // Code tab switching functionality (full code modal)
+        codeTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const codeId = this.getAttribute('data-code');
+                
+                // Update active tab
+                codeTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show corresponding code content
+                codeContents.forEach(content => content.style.display = 'none');
+                document.getElementById(`${codeId}-code-content`).style.display = 'block';
+            });
+        });
+        
+        // Run code on button click
+        runBtn.addEventListener('click', function() {
+            updatePreview();
+        });
+        
+        // Fullscreen preview
+        fullscreenBtn.addEventListener('click', function() {
+            updateFullscreenPreview();
+            fullscreenPreview.classList.add('active');
+        });
+        
+        // Close fullscreen preview
+        closeFullscreen.addEventListener('click', function() {
+            fullscreenPreview.classList.remove('active');
+        });
+        
+        // Full code preview
+        fullcodeBtn.addEventListener('click', function() {
+            updateFullCodePreview();
+            fullscreenCode.classList.add('active');
+        });
+        
+        // Close full code preview
+        closeFullcode.addEventListener('click', function() {
+            fullscreenCode.classList.remove('active');
+        });
+        
+        // Toggle live preview
+        livePreviewBtn.addEventListener('click', function() {
+            livePreviewEnabled = !livePreviewEnabled;
+            
+            if (livePreviewEnabled) {
+                statusIndicator.className = 'status-indicator status-live';
+                livePreviewBtn.innerHTML = '<i class="fas fa-bolt"></i> Live Preview: ON';
+            } else {
+                statusIndicator.className = 'status-indicator status-off';
+                livePreviewBtn.innerHTML = '<i class="fas fa-bolt"></i> Live Preview: OFF';
+            }
+        });
+        
+        // Reset button with confirmation
+        resetBtn.addEventListener('click', function() {
+            if (confirm('Are you sure you want to reset all code editors?')) {
+                htmlCode.value = `<!DOCTYPE html>
+<html>
+<head>
+<title>Hello World</title>
+</head>
+<body>
+</body>
+</html>`;
+                cssCode.value = `body{
+    
+}`;
+                jsCode.value = ``;
+                updatePreview();
+            }
+        });
+        
+        // Live preview while typing (debounced)
+        [htmlCode, cssCode, jsCode].forEach(editor => {
+            editor.addEventListener('input', () => {
+                if (livePreviewEnabled) {
+                    clearTimeout(debounceTimer);
+                    debounceTimer = setTimeout(updatePreview, 300);
+                }
+            });
+        });
+        
+        // Function: Update main live preview iframe
+        function updatePreview() {
+            const html = htmlCode.value;
+            const css = '<style>' + cssCode.value + '</style>';
+            const js = '<script>' + jsCode.value + '<\/script>';
+            
+            const previewDocument = previewFrame.contentDocument || previewFrame.contentWindow.document;
+            
+            previewDocument.open();
+            previewDocument.write(html + css + js);
+            previewDocument.close();
+        }
+        
+        // Function: Update fullscreen preview iframe
+        function updateFullscreenPreview() {
+            const html = htmlCode.value;
+            const css = '<style>' + cssCode.value + '</style>';
+            const js = '<script>' + jsCode.value + '<\/script>';
+            
+            const fullscreenDocument = fullscreenFrame.contentDocument || fullscreenFrame.contentWindow.document;
+            
+            fullscreenDocument.open();
+            fullscreenDocument.write(html + css + js);
+            fullscreenDocument.close();
+        }
+        
+        // Function: Update full code preview (read-only code display)
+        function updateFullCodePreview() {
+            htmlCodeDisplay.textContent = htmlCode.value;
+            cssCodeDisplay.textContent = cssCode.value;
+            jsCodeDisplay.textContent = jsCode.value;
+        }
+    });
+</script>
+</body>
+</html>

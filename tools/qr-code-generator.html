@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <!-- Character Encoding --> 
+<meta charset="UTF-8">    
+<!-- Viewport --> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <!-- Primary SEO --> 
+ <title>Free QR Code Generator with Logo | Deep Mega Tools</title>
+ <meta name="description" content="Create custom QR codes for URLs, WiFi, phone numbers, email, SMS, and locations. Upload logos, customize shapes and colors, and download QR codes as PNG, JPEG, or WEBP for free.">
+ <meta name="keywords" content="QR Code Generator, Free QR Code Generator, QR Code Maker, QR Code Creator, QR Code with Logo, Custom QR Code, WiFi QR Code Generator, URL QR Code Generator, Dynamic QR Code, Deep Mega Tools, QR Code Download">
+ <meta name="author" content="Prembabu Kashyap">
+ <meta name="robots" content="index, follow, max-image-preview:large"> 
+ <meta name="application-name" content="Deep Mega Tools">
+ <meta name="theme-color" content="#2563eb">
+  <!-- Canonical URL --> 
+ <link rel="canonical" href="https://deepmegatools.vercel.app/tools/qr-code-generator">
+  <!-- Favicon --> 
+ <link rel="icon" type="image/png" href="/favicon.png">
+ <!-- Open Graph -->
+ <meta property="og:type" content="website">
+ <meta property="og:title" content="Free QR Code Generator with Logo | Deep Mega Tools"> 
+ <meta property="og:description" content="Generate beautiful custom QR codes with logo upload, color customization, shape editing, and multiple content types."> 
+ <meta property="og:url" content="https://deepmegatools.vercel.app/tools/qr-code-generator">
+  <meta property="og:site_name" content="Deep Mega Tools">
+  <meta property="og:image" content="https://deepmegatools.vercel.app/images/qr-generator-preview.jpg">
+  <meta property="og:image:width" content="1200"> <meta property="og:image:height" content="630"> 
+  <meta property="og:image:alt" content="Deep Mega Tools QR Code Generator"> 
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+ <meta name="twitter:title" content="Free QR Code Generator with Logo | Deep Mega Tools"> 
+ <meta name="twitter:description" content="Create custom QR codes with logos, colors, and shapes. Download in PNG, JPEG, and WEBP formats."> 
+ <meta name="twitter:image" content="https://deepmegatools.vercel.app/images/98dc2a48-1120-4e39-94c4-8d730f534c0f.png"> 
+ <!-- Apple Mobile Web App --> 
+ <meta name="apple-mobile-web-app-capable" content="yes"> 
+ <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Deep Mega Tools"> 
+  <!-- Browser Compatibility --> 
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Security -->
+   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <!-- Software Application Schema --> 
+    <script type="application/ld+json"> { "@context":"https://schema.org", "@type":"SoftwareApplication", "name":"QR Code Generator", "applicationCategory":"UtilitiesApplication", "operatingSystem":"Web", "url":"https://deepmegatools.vercel.app/tools/qr-code-generator", "creator":{ "@type":"Person", "name":"Prembabu Kashyap" }, "description":"Generate custom QR codes with logo upload, color customization, shape editing, and support for URLs, WiFi, phone numbers, email, SMS, and geo locations.", "offers":{ "@type":"Offer", "price":"0", "priceCurrency":"USD" } } 
+    </script> 
+    <!-- Website Schema -->
+     <script type="application/ld+json"> { "@context":"https://schema.org", "@type":"WebSite", "name":"Deep Mega Tools", "url":"https://deepmegatools.vercel.app/" } </script> <!-- Organization Schema -->
+     <script type="application/ld+json"> { "@context":"https://schema.org", "@type":"Organization", "name":"Deep Mega Tools", "url":"https://deepmegatools.vercel.app/", "logo":"https://deepmegatools.vercel.app/favicon.png" } </script>
+    <!-- Breadcrumb Schema --> 
+    <script type="application/ld+json"> { "@context":"https://schema.org", "@type":"BreadcrumbList", "itemListElement":[ { "@type":"ListItem", "position":1, "name":"Home", "item":"https://deepmegatools.vercel.app/" }, { "@type":"ListItem", "position":2, "name":"QR Code Generator", "item":"https://deepmegatools.vercel.app/tools/qr-code-generator" } ] } </script>
+   <!-- FAQ Schema --> 
+   <script type="application/ld+json"> { "@context":"https://schema.org", "@type":"FAQPage", "mainEntity":[ { "@type":"Question", "name":"Is this QR Code Generator free?", "acceptedAnswer":{ "@type":"Answer", "text":"Yes, you can generate unlimited QR codes for free." } }, { "@type":"Question", "name":"Can I add a logo to my QR Code?", "acceptedAnswer":{ "@type":"Answer", "text":"Yes, you can upload and add your own logo to the QR Code." } }, { "@type":"Question", "name":"Which file formats are supported?", "acceptedAnswer":{ "@type":"Answer", "text":"You can download QR Codes in PNG, JPEG and WEBP formats." } } ] } </script> 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            background: linear-gradient(145deg, #eef2f7 0%, #d9e0e8 100%);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            padding:4px;
+        }
+
+        .qr-studio{
+            max-width:1000px;
+            margin: 0 auto;
+            background:rgba(255, 255, 255, 0.96);
+            border-radius:20px;
+            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+        }
+
+        .studio-header {
+            background:#0f172a;
+            padding:5px 3px;
+            text-align: center;
+        }
+
+        .studio-header h1{
+            font-size:22px;
+            font-weight:700;
+            background: linear-gradient(135deg, #E0F2FE, #A5F3FC, #99F6E4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color:transparent;
+        }
+
+        .studio-header p{
+            color:white;
+            font-size: 0.85rem;
+            margin-top: 6px;
+        }
+
+        .studio-content {
+            padding: 2rem;
+        }
+
+        .input-group {
+            margin-bottom: 1.4rem;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #1e293b;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-group input, .input-group select, .input-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 1.2rem;
+            font-size: 0.95rem;
+            background: white;
+            font-weight: 500;
+        }
+
+        .input-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .flex-row {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.4rem;
+        }
+
+        .flex-row .input-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 1.2rem;
+            background: #f8fafc;
+            padding: 0.8rem 1rem;
+            border-radius: 1.5rem;
+            margin-bottom: 1.4rem;
+            flex-wrap: wrap;
+        }
+
+        .color-item {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            flex-wrap: wrap;
+        }
+
+        .color-preview {
+            width: 32px;
+            height: 32px;
+            border-radius: 12px;
+            border: 2px solid white;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+        }
+
+        input[type="color"] {
+            width: 50px;
+            height: 42px;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        .shape-panel {
+            background: #f1f5f9;
+            border-radius: 1.5rem;
+            padding: 1rem;
+            margin-bottom: 1.4rem;
+            border: 1px solid #e2e8f0;
+        }
+        .shape-grid {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+        .shape-card {
+            flex: 1;
+            min-width: 120px;
+        }
+        .shape-card label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 6px;
+            color: #334155;
+        }
+        .shape-card select {
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 2rem;
+            border: 1px solid #cbd5e1;
+            background: white;
+            font-weight: 500;
+        }
+
+        .logo-upload-area {
+            border: 2px dashed #cbd5e6;
+            border-radius: 1.5rem;
+            padding: 0.8rem 1rem;
+            background: #fefce8;
+            margin-bottom: 1rem;
+        }
+
+        .format-selector {
+            margin-top: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .format-selector label {
+            font-weight: 600;
+            font-size: 0.8rem;
+            margin-bottom: 0;
+        }
+        .format-selector select {
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            border: 1px solid #cbd5e1;
+            background: white;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0 1.2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.9rem 0;
+            font-weight: 700;
+            border: none;
+            border-radius: 2rem;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.2s;
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        .btn-primary {
+            background: #0f172a;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .btn-primary:hover {
+            background: #1e293b;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background:#000000;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #2563eb;
+        }
+
+        .qr-preview-area {
+            background: #ffffff;
+            border-radius: 1.8rem;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 1rem 0;
+            box-shadow: inset 0 1px 4px #0001, 0 8px 20px rgba(0,0,0,0.05);
+        }
+
+        .canvas-wrapper {
+            display: flex;
+            justify-content: center;
+            background: #f1f5f9;
+            border-radius: 1.5rem;
+            padding: 1rem;
+        }
+
+        canvas {
+            max-width: 100%;
+            height: auto;
+            border-radius: 1rem;
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.2);
+            background: white;
+        }
+
+        .status-card {
+            background: #f1f5f9;
+            border-radius: 1.2rem;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            border-left: 5px solid #10b981;
+            color: #065f46;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #0f172a;
+            color: white;
+            border-radius: 40px;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .small-note {
+            font-size: 0.7rem;
+            color: #475569;
+            text-align: center;
+            margin-top: 0.8rem;
+        }
+
+        /* Accessibility helper: visually hidden but accessible */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            padding: 0;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        @media (max-width: 720px) {
+            .studio-content {
+                padding: 1.2rem;
+            }
+            .shape-grid {
+                flex-direction: column;
+            }
+        }
+        
+.related-tools ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.related-tools li {
+    margin-bottom: 10px;
+}
+
+.related-tools a {
+    font-size:16px;
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+    </style>
+</head>
+<body>
+<main>
+<div class="qr-studio">
+    <div class="studio-header">
+        <h1>✨ QR Code Generator Tool ✨</h1>
+        <p>High Error Correction | Multiple Content Types | WCAG Labels | Slider Fixed</p>
+    </div>
+    <div class="studio-content">
+        <!-- Content Type with explicit label association -->
+        <div class="input-group">
+            <label for="contentTypeSelect">📋 CONTENT TYPE</label>
+            <select id="contentTypeSelect">
+                <option value="text">📝 Text / URL</option>
+                <option value="phone">📞 Phone Number</option>
+                <option value="email">✉️ Email Address</option>
+                <option value="sms">💬 SMS</option>
+                <option value="wifi">📶 WiFi Network</option>
+                <option value="geo">📍 Geolocation</option>
+            </select>
+        </div>
+
+        <div id="dynamicInputArea" class="input-group" aria-live="polite"></div>
+
+        <!-- SIZE CONTROL - fully accessible: slider + number with labels -->
+        <div class="flex-row">
+            <div class="input-group">
+                <label for="qrSizeRange">📐 QR SIZE (px) — drag slider</label>
+                <input type="range" id="qrSizeRange" min="200" max="700" value="360" step="5">
+                <!-- Number input gets its own accessible label via aria-label -->
+                <input type="number" id="qrSizeNumber" min="200" max="700" value="360" step="5" 
+                       aria-label="QR size numeric value in pixels" style="margin-top: 8px; width: 100%;">
+            </div>
+            <div class="input-group">
+                <label for="logoSizePercent">🖼️ LOGO SIZE (%)</label>
+                <input type="number" id="logoSizePercent" min="5" max="30" value="18" step="1">
+                <div class="small-note">max 30% for readability</div>
+            </div>
+        </div>
+
+        <!-- Colors with proper label associations -->
+        <div class="color-options">
+            <div class="color-item">
+                <label for="qrColorPicker">🎨 QR Color</label>
+                <input type="color" id="qrColorPicker" value="#1e293b">
+                <div id="qrColorPreview" class="color-preview" style="background:#1e293b;" aria-hidden="true"></div>
+            </div>
+            <div class="color-item">
+                <label for="bgColorPicker">⬜ Background</label>
+                <input type="color" id="bgColorPicker" value="#ffffff">
+                <div id="bgColorPreview" class="color-preview" style="background:#ffffff;" aria-hidden="true"></div>
+            </div>
+        </div>
+
+        <!-- Shape Panel - each select has associated label -->
+        <div class="shape-panel">
+            <div style="font-weight:700; margin-bottom:8px;">🎨 CUSTOMIZE SHAPES</div>
+            <div class="shape-grid">
+                <div class="shape-card">
+                    <label for="moduleShapeSelect">🔘 MODULE SHAPE</label>
+                    <select id="moduleShapeSelect">
+                        <option value="square">■ SQUARE</option>
+                        <option value="rounded">◈ ROUNDED</option>
+                        <option value="dots">● DOTS</option>
+                    </select>
+                </div>
+                <div class="shape-card">
+                    <label for="eyeFrameStyleSelect">👁️ EYE FRAME STYLE</label>
+                    <select id="eyeFrameStyleSelect">
+                        <option value="classic">▣ CLASSIC (Square)</option>
+                        <option value="rounded">🟄 ROUNDED</option>
+                        <option value="diamond">🔶 DIAMOND</option>
+                    </select>
+                </div>
+                <div class="shape-card">
+                    <label for="eyeBallShapeSelect">⚫ EYE BALL SHAPE</label>
+                    <select id="eyeBallShapeSelect">
+                        <option value="square">▪️ Square</option>
+                        <option value="circle">● Circle</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logo + Format: proper label association -->
+        <div class="logo-upload-area">
+            <label for="logoUpload">📎 UPLOAD LOGO (PNG, JPG, WEBP)</label>
+            <input type="file" id="logoUpload" accept="image/*">
+            <div id="logoPreviewThumb" style="margin-top: 8px;"></div>
+            <div class="format-selector">
+                <label for="downloadFormatSelect">💾 DOWNLOAD FORMAT:</label>
+                <select id="downloadFormatSelect">
+                    <option value="image/png">PNG</option>
+                    <option value="image/jpeg">JPEG</option>
+                    <option value="image/webp">WEBP</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button id="generateBtn" class="btn btn-primary">🚀 GENERATE QR CODE</button>
+            <button id="downloadBtn" class="btn btn-secondary">⬇️ DOWNLOAD</button>
+        </div>
+
+        <div class="qr-preview-area">
+            <div class="canvas-wrapper">
+                <canvas id="qrCanvas" width="360" height="360" aria-label="Generated QR code preview"></canvas>
+            </div>
+            <div class="status-card">
+                <span class="badge">✅ QR READY</span> 
+                <span id="statusMessage">Adjust size with slider → QR updates automatically</span>
+            </div>
+            <div class="small-note">
+                ✅ Error Correction: HIGH (H) · Supports logo, custom shapes<br>
+                🎯 Module: Square / Rounded / Dots | Eye Frames: Classic / Rounded / Diamond
+            </div>
+        </div>
+    </div>
+</div><br><hr>
+
+    <h2>About Our QR Code Generator</h2>
+<p>
+Create custom QR codes for URLs, Wi-Fi, phone numbers, email addresses,
+SMS messages, and more. Customize colors, shapes, and logos, then
+download your QR code in PNG, JPG, or WEBP format.
+</p>
+ <h1>What is a QR Code? How Does a QR Code Work? Benefits of QR Codes</h1>
+ <p> QR codes have become an essential part of modern digital communication. From making online payments and sharing website links to connecting to Wi-Fi networks and storing contact information, QR codes provide a fast and convenient way to access information. As smartphones continue to dominate daily life, QR codes are being used by businesses, organizations, and individuals worldwide. </p> 
+<h2>What is a QR Code?</h2>
+<p> A QR Code (Quick Response Code) is a two-dimensional barcode that stores information in a pattern of black and white squares. Unlike traditional barcodes that can only hold a limited amount of data, QR codes can store much more information, including website URLs, text, phone numbers, email addresses, payment details, social media profiles, and Wi-Fi credentials.</p>
+<p> QR codes were developed in 1994 by Denso Wave, a Japanese company, to improve data tracking in manufacturing. Today, they are widely used across industries such as retail, healthcare, education, logistics, marketing, transportation, and digital payments.</p>
+<p> One of the main reasons for the popularity of QR codes is their ease of use. Users simply scan the code using a smartphone camera, and the encoded information becomes instantly available. </p>
+<h2>How Does a QR Code Work?</h2>
+<p> A QR code works by converting information into a machine-readable pattern. When a QR code is generated, the data is encoded into a grid of black and white modules. These modules represent binary information that can be interpreted by scanning software.</p>
+<p> The process typically works as follows: </p>
+<ol> <li>A QR code generator converts information into a QR code image.</li>
+<li>The QR code is displayed digitally or printed on a physical surface.</li>
+ <li>A user scans the QR code using a smartphone camera or QR scanner app.</li>
+ <li>The scanner reads the encoded pattern and decodes the stored information.</li>
+ <li>The device performs the intended action, such as opening a website, displaying text, connecting to Wi-Fi, or processing a payment.</li>
+ </ol>
+ <p> Modern smartphones include built-in QR scanning functionality, making QR codes more accessible than ever before. </p>
+ <h2>How to Generate a QR Code?</h2>
+<p>Hello friends, welcome to our web tool. In this guide, we will provide complete information about how to generate a QR code.</p>
+<p>To create a QR code using this website, first select the type of QR code you want to generate from the <strong>Content Type</strong> option.</p>
+<p>After selecting the content type, the relevant input fields will appear. Fill in the required information according to your needs.</p>
+<p>To increase or decrease the size of the QR code, use the <strong>Drag Slider</strong>.</p>
+<p>The <strong>Logo Size</strong> option allows you to adjust the size of the logo that will be placed in the horizontal and vertical center of the QR code.</p>
+<p>You will also see <strong>Color</strong> and <strong>Background Color</strong> options. These allow you to customize the QR code's color and background color according to your preferences.</p>
+<h3>Customize Shapes</h3>
+<p>Three customization options are available:</p>
+<ul>
+    <li><strong>Module Shape</strong></li>
+    <li><strong>Eye Frame Style</strong></li>
+    <li><strong>Eye Ball Shape</strong></li>
+</ul>
+<h4>Module Shape</h4>
+<p>You can choose from the following three options:</p>
+<ul>
+    <li>Square</li>
+    <li>Rounded</li>
+    <li>Dots</li>
+</ul>
+<p>Select the style that best suits your design requirements.</p>
+<h4>Eye Frame Style</h4>
+<p>Three styles are available:</p>
+<ul>
+    <li>Classic (Square)</li>
+    <li>Rounded</li>
+    <li>Diamond</li>
+</ul>
+<p>Choose the frame style you prefer.</p>
+<h4>Eye Ball Shape</h4>
+
+<p>Two options are available:</p>
+<ul>
+    <li>Square</li>
+    <li>Circle</li>
+</ul>
+<p>Select the shape that matches your desired QR code design.</p>
+<h3>Upload Logo</h3>
+<p>In the <strong>Upload Logo</strong> section, click <strong>Choose File</strong> and select the logo you want to place at the center of the QR code.</p>
+<h3>Download Format</h3>
+<p>Choose the format in which you want to download your QR code:</p>
+<ul>
+    <li>PNG</li>
+    <li>JPG</li>
+    <li>WEBP</li>
+</ul>
+<p>After selecting all the required options, click the <strong>Generate QR Code</strong> button. Your QR code will be created instantly.</p>
+<p>Next, click the <strong>Download</strong> button to save the QR code to your device.</p>
+<p>We have provided complete step-by-step instructions on how to generate a QR code. By following these steps, you can easily create a professionally designed QR code with a custom logo for free. Once downloaded, you can use it anywhere for personal, business, or promotional purposes.</p>
+ <h2>Benefits of QR Codes</h2>
+ <p> QR codes offer numerous advantages for both businesses and consumers. Their versatility and convenience have made them a preferred method of sharing information. </p>
+ <ul><li><strong>Fast Access to Information:</strong> Users can instantly access content with a single scan.</li>
+ <li><strong>Easy to Generate:</strong>QR codes can be created quickly using online QR code generators.</li> <li><strong>High Data Storage Capacity:</strong> They can store significantly more information than traditional barcodes.</li>
+ <li><strong>Cost-Effective Solution:</strong> Businesses can reduce printing costs by linking customers to digital content.</li> <li><strong>Contactless Interaction:</strong> QR codes enable touch-free transactions, menus, registrations, and payments.</li>
+ <li><strong>Improved User Experience:</strong> Customers can access information without manually typing URLs or details.</li>
+ <li><strong>Marketing and Analytics:</strong> Dynamic QR codes can help businesses track user engagement and campaign performance.</li>
+ <li><strong>Versatile Applications:</strong> QR codes can be used for websites, social media, digital payments, event tickets, product information, and more.</li>
+ <li><strong>Mobile Friendly:</strong> Compatible with most smartphones and tablets.</li> <li><strong>Enhanced Business Efficiency:</strong> QR codes streamline communication and automate information sharing.</li>
+  </ul>
+ <h2>Common Uses of QR Codes</h2>
+ <p> QR codes are used in a wide range of industries and applications: </p>
+  <ul> <li>Online and offline marketing campaigns</li> <li>Digital payment systems</li>
+ <li>Restaurant digital menus</li> 
+ <li>Wi-Fi sharing</li>
+  <li>Event registration and ticketing</li> <li>Product packaging and information</li> <li>Educational resources</li>
+  <li>Business cards and contact sharing</li>
+ <li>App downloads and software promotions</li> <li>Customer feedback and surveys</li> </ul> 
+ <h2>Are QR Codes Safe?</h2>
+ <p> QR codes themselves are generally safe. However, users should always verify the destination before opening unknown links. Businesses should use trusted QR code generators and regularly monitor linked content to ensure security and reliability. </p>
+<h2>Frequently Asked Questions (FAQ)</h2>
+  <h3>1. What is a QR Code?</h3>
+  <p> A QR Code (Quick Response Code) is a two-dimensional barcode that stores information such as URLs, text, phone numbers, email addresses, Wi-Fi credentials, and more.</p>
+ <h3>2. Is this QR Code Generator free to use?</h3>
+ <p> Yes, our QR Code Generator is completely free to use. You can create and download QR codes without any cost. </p>
+ <h3>3. Can I add a logo to my QR Code?</h3>
+ <p> Yes, you can upload and place a custom logo in the center of your QR Code to match your brand or personal preferences. </p>
+ <h3>4. What file formats are available for download?</h3> <p> You can download your generated QR Code in PNG, JPG, and WEBP formats. </p>
+ <h3>5. Can I customize the QR Code design?</h3>
+ <p> Yes, this tool allows you to customize colors, background colors, module shapes, eye frame styles, and eye ball shapes. </p>
+<h3>6.What information can be stored in a QR Code?</h3> <p> A QR Code can store website URLs, text, phone numbers, email addresses, SMS messages, Wi-Fi credentials, contact details, locations, and more. </p> <h3>7. Do QR Codes expire?</h3>
+<p> Static QR Codes do not expire and can be scanned indefinitely as long as the stored information remains accessible. </p>
+<h3>8. Are QR Codes safe to use?</h3>
+<p> Yes, QR Codes are generally safe. However, users should always verify unknown links before opening them. </p>
+ <h3>9. Can I use QR Codes for business purposes?</h3> <p>Absolutely. QR Codes are widely used for marketing campaigns, digital payments, product information, event registrations, and customer engagement. </p>
+ <h3>10. Do QR Codes work on all smartphones?</h3>
+ <p> Most modern Android and iPhone devices have built-in QR Code scanning capabilities, making QR Codes compatible with nearly all smartphones. </p>
+<div class="related-tools">
+<h3>Related Tools</h3>
+
+<ul>
+<li><a href="/tools/barcode-generator.html">Barcode Generator</a></li>
+
+<li><a href="/tools/qr-code-scanner.html">QR Code Scanner</a></li>
+
+<li><a href="/tools/url-encoder-decoder.html">URL Encoder & Decoder</a></li>
+
+<li><a href="/tools/image-compressor.html">Image Compressor</a></li>
+</ul>
+</div>
+
+ <h2>Conclusion</h2>
+ <p> QR codes have revolutionized the way information is shared and accessed. Their speed, convenience, and versatility make them an essential tool in today's digital world. Whether used for payments, marketing, customer engagement, or information sharing, QR codes provide a simple and efficient solution for both businesses and individuals. </p> <p> As technology continues to evolve, QR codes are expected to play an even greater role in connecting the physical and digital worlds, making interactions faster, smarter, and more convenient than ever before. </p>  
+</main>
+<script>
+    (function(){
+        // DOM elements
+        const contentTypeSelect = document.getElementById('contentTypeSelect');
+        const dynamicInputArea = document.getElementById('dynamicInputArea');
+        const qrSizeRange = document.getElementById('qrSizeRange');
+        const qrSizeNumber = document.getElementById('qrSizeNumber');
+        const logoSizePercent = document.getElementById('logoSizePercent');
+        const qrColorPicker = document.getElementById('qrColorPicker');
+        const bgColorPicker = document.getElementById('bgColorPicker');
+        const qrColorPreview = document.getElementById('qrColorPreview');
+        const bgColorPreview = document.getElementById('bgColorPreview');
+        const moduleShapeSelect = document.getElementById('moduleShapeSelect');
+        const eyeFrameStyleSelect = document.getElementById('eyeFrameStyleSelect');
+        const eyeBallShapeSelect = document.getElementById('eyeBallShapeSelect');
+        const logoUpload = document.getElementById('logoUpload');
+        const generateBtn = document.getElementById('generateBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const qrCanvas = document.getElementById('qrCanvas');
+        const statusMessage = document.getElementById('statusMessage');
+        const logoPreviewThumb = document.getElementById('logoPreviewThumb');
+        const downloadFormatSelect = document.getElementById('downloadFormatSelect');
+
+        let uploadedLogoImage = null;
+
+        // --- Dynamic input fields FULLY ACCESSIBLE with labels and for attributes ---
+        function updateDynamicFields() {
+            const type = contentTypeSelect.value;
+            let html = '';
+            
+            if (type === 'text') {
+                html = `<label for="contentValue">🔗 TEXT / URL</label>
+                        <input type="text" id="contentValue" placeholder="https://example.com" value="">`;
+            } else if (type === 'phone') {
+                html = `<label for="contentValue">📞 PHONE NUMBER</label>
+                        <input type="tel" id="contentValue" placeholder="+1234567890" value="+1234567890">`;
+            } else if (type === 'email') {
+                html = `<label for="contentValue">✉️ EMAIL ADDRESS</label>
+                        <input type="email" id="contentValue" placeholder="someone@example.com" value="hello@example.com">`;
+            } else if (type === 'sms') {
+                html = `<fieldset style="border: none; padding: 0; margin: 0;">
+                            <legend class="visually-hidden">SMS parameters</legend>
+                            <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                                <div style="flex:2;">
+                                    <label for="smsNumber">📱 Phone number</label>
+                                    <input type="tel" id="smsNumber" placeholder="Phone" value="+1234567890">
+                                </div>
+                                <div style="flex:3;">
+                                    <label for="smsMessage">💬 Message text</label>
+                                    <input type="text" id="smsMessage" placeholder="Message" value="Hello from QR!">
+                                </div>
+                            </div>
+                        </fieldset>`;
+            } else if (type === 'wifi') {
+                html = `<fieldset style="border: none; padding: 0; margin: 0;">
+                            <legend class="visually-hidden">WiFi credentials</legend>
+                            <div style="display:flex; flex-direction:column; gap:0.5rem;">
+                                <div>
+                                    <label for="wifiSSID">📡 SSID (Network name)</label>
+                                    <input type="text" id="wifiSSID" placeholder="SSID" value="MyWiFi">
+                                </div>
+                                <div>
+                                    <label for="wifiPassword">🔑 Password</label>
+                                    <input type="password" id="wifiPassword" placeholder="Password" value="password123">
+                                </div>
+                                <div>
+                                    <label for="wifiEncryption">🔒 Encryption type</label>
+                                    <select id="wifiEncryption">
+                                        <option value="WPA">WPA/WPA2</option>
+                                        <option value="WEP">WEP</option>
+                                        <option value="nopass">None (Open)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </fieldset>`;
+            } else if (type === 'geo') {
+                html = `<fieldset style="border: none; padding: 0; margin: 0;">
+                            <legend class="visually-hidden">Geolocation coordinates</legend>
+                            <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                                <div style="flex:1;">
+                                    <label for="geoLat">🌐 Latitude</label>
+                                    <input type="text" id="geoLat" placeholder="Latitude" value="28.6139">
+                                </div>
+                                <div style="flex:1;">
+                                    <label for="geoLon">📍 Longitude</label>
+                                    <input type="text" id="geoLon" placeholder="Longitude" value="77.2090">
+                                </div>
+                            </div>
+                        </fieldset>`;
+            }
+            
+            dynamicInputArea.innerHTML = html;
+            // Attach input events for live update (accessibility + UX)
+            const inputs = dynamicInputArea.querySelectorAll('input, select, textarea');
+            inputs.forEach(inp => inp.addEventListener('input', () => renderQR()));
+            // Special case: for wifi encryption select attach
+            if (type === 'wifi') {
+                const encSelect = document.getElementById('wifiEncryption');
+                if (encSelect) encSelect.addEventListener('change', () => renderQR());
+            }
+        }
+
+        // --- Build final QR text from current type (handles all fields correctly)---
+        function getQRText() {
+            const type = contentTypeSelect.value;
+            if (type === 'text') {
+                const el = document.getElementById('contentValue');
+                return el?.value.trim() || 'https://qr.example.com';
+            }
+            if (type === 'phone') {
+                const p = document.getElementById('contentValue')?.value.trim();
+                return p ? `tel:${p}` : 'tel:+1234567890';
+            }
+            if (type === 'email') {
+                const e = document.getElementById('contentValue')?.value.trim();
+                return e ? `mailto:${e}` : 'mailto:hello@example.com';
+            }
+            if (type === 'sms') {
+                const num = document.getElementById('smsNumber')?.value.trim() || '1234567890';
+                const msg = document.getElementById('smsMessage')?.value.trim() || 'Hello';
+                return `sms:${num}?body=${encodeURIComponent(msg)}`;
+            }
+            if (type === 'wifi') {
+                const ssid = document.getElementById('wifiSSID')?.value.trim() || 'WiFi';
+                const pass = document.getElementById('wifiPassword')?.value || '';
+                const enc = document.getElementById('wifiEncryption')?.value || 'WPA';
+                if (enc === 'nopass') return `WIFI:S:${ssid};T:nopass;;`;
+                return `WIFI:S:${ssid};T:${enc};P:${pass};;`;
+            }
+            if (type === 'geo') {
+                const lat = document.getElementById('geoLat')?.value.trim() || '28.6139';
+                const lon = document.getElementById('geoLon')?.value.trim() || '77.2090';
+                return `geo:${lat},${lon}`;
+            }
+            return 'https://www.qr-code-generator.com';
+        }
+
+        // --- Drawing utilities (rounded rect, diamond, finder) ---
+        function roundRect(ctx, x, y, w, h, r) {
+            if (w < 2 * r) r = w / 2;
+            if (h < 2 * r) r = h / 2;
+            ctx.beginPath();
+            ctx.moveTo(x + r, y);
+            ctx.lineTo(x + w - r, y);
+            ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+            ctx.lineTo(x + w, y + h - r);
+            ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+            ctx.lineTo(x + r, y + h);
+            ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+            ctx.lineTo(x, y + r);
+            ctx.quadraticCurveTo(x, y, x + r, y);
+            ctx.fill();
+        }
+
+        function drawModule(ctx, x, y, size, shape, color) {
+            ctx.fillStyle = color;
+            if (shape === 'square') {
+                ctx.fillRect(x, y, size, size);
+            } else if (shape === 'rounded') {
+                const radius = size * 0.2;
+                roundRect(ctx, x, y, size, size, radius);
+            } else if (shape === 'dots') {
+                const r = size * 0.35;
+                ctx.beginPath();
+                ctx.arc(x + size / 2, y + size / 2, r, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+        }
+
+        function getQRMatrix(text) {
+            for (let v = 1; v <= 40; v++) {
+                try {
+                    const qr = qrcode(v, 'H');
+                    qr.addData(text);
+                    qr.make();
+                    return qr;
+                } catch(e) { continue; }
+            }
+            throw new Error("Text too long for QR code");
+        }
+
+        function drawDiamond(ctx, cx, cy, w, h) {
+            ctx.beginPath();
+            ctx.moveTo(cx, cy - h / 2);
+            ctx.lineTo(cx + w / 2, cy);
+            ctx.lineTo(cx, cy + h / 2);
+            ctx.lineTo(cx - w / 2, cy);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        function drawFinder(ctx, sx, sy, ms, frameStyle, ballShape, dark, bg) {
+            const total = 7 * ms;
+            const cx = sx + total / 2, cy = sy + total / 2;
+            ctx.fillStyle = dark;
+            if (frameStyle === 'classic') ctx.fillRect(sx, sy, total, total);
+            else if (frameStyle === 'rounded') roundRect(ctx, sx, sy, total, total, ms * 1.2);
+            else drawDiamond(ctx, cx, cy, total, total);
+            
+            const innerOff = ms;
+            const innerSize = ms * 5;
+            ctx.fillStyle = bg;
+            if (frameStyle === 'diamond') drawDiamond(ctx, cx, cy, innerSize, innerSize);
+            else ctx.fillRect(sx + innerOff, sy + innerOff, innerSize, innerSize);
+            
+            const ballPx = ms * 3;
+            const bx = sx + (7 - 3) / 2 * ms;
+            const by = sy + (7 - 3) / 2 * ms;
+            ctx.fillStyle = dark;
+            if (ballShape === 'square') ctx.fillRect(bx, by, ballPx, ballPx);
+            else {
+                ctx.beginPath();
+                ctx.arc(bx + ballPx / 2, by + ballPx / 2, ballPx * 0.45, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+        }
+
+        // --- Main render with reliable canvas resize and custom drawing ---
+        async function renderQR() {
+            const text = getQRText();
+            if (!text || text.length === 0) {
+                statusMessage.innerText = "⚠️ Please fill content.";
+                return false;
+            }
+            
+            const canvasSize = parseInt(qrSizeRange.value, 10);
+            if (isNaN(canvasSize) || canvasSize < 100) return false;
+            
+            // Set canvas dimensions
+            qrCanvas.width = canvasSize;
+            qrCanvas.height = canvasSize;
+            qrCanvas.style.maxWidth = `${Math.min(canvasSize, 360)}px`;
+            
+            const ctx = qrCanvas.getContext('2d');
+            const dark = qrColorPicker.value;
+            const bg = bgColorPicker.value;
+            const moduleShape = moduleShapeSelect.value;
+            const eyeFrame = eyeFrameStyleSelect.value;
+            const eyeBall = eyeBallShapeSelect.value;
+            
+            let qrMat;
+            try {
+                qrMat = getQRMatrix(text);
+            } catch(err) {
+                statusMessage.innerText = "⚠️ Error: " + err.message;
+                ctx.fillStyle = bg;
+                ctx.fillRect(0, 0, canvasSize, canvasSize);
+                ctx.fillStyle = "#dc2626";
+                ctx.font = "16px sans-serif";
+                ctx.fillText("Text too long", 20, canvasSize / 2);
+                return false;
+            }
+            
+            const modCount = qrMat.getModuleCount();
+            const quiet = 4;
+            const totalMod = modCount + 2 * quiet;
+            const moduleSize = canvasSize / totalMod;
+            if (moduleSize < 1.2) {
+                statusMessage.innerText = "⚠️ Size too small, increase QR size (≥280px).";
+                return false;
+            }
+            const offset = quiet * moduleSize;
+            
+            // background
+            ctx.fillStyle = bg;
+            ctx.fillRect(0, 0, canvasSize, canvasSize);
+            
+            // draw modules
+            for (let row = 0; row < modCount; row++) {
+                for (let col = 0; col < modCount; col++) {
+                    if (qrMat.isDark(row, col)) {
+                        const x = offset + col * moduleSize;
+                        const y = offset + row * moduleSize;
+                        drawModule(ctx, x, y, moduleSize, moduleShape, dark);
+                    }
+                }
+            }
+            
+            // finder patterns
+            const finders = [[0, 0], [modCount - 7, 0], [0, modCount - 7]];
+            for (let [fx, fy] of finders) {
+                const x = offset + fx * moduleSize;
+                const y = offset + fy * moduleSize;
+                drawFinder(ctx, x, y, moduleSize, eyeFrame, eyeBall, dark, bg);
+            }
+            
+            // overlay logo with proper scaling
+            if (uploadedLogoImage && uploadedLogoImage.complete && uploadedLogoImage.naturalWidth > 0) {
+                const ratio = Math.min(0.30, Math.max(0.05, parseInt(logoSizePercent.value, 10) / 100));
+                let logoW = canvasSize * ratio;
+                let logoH = (uploadedLogoImage.height / uploadedLogoImage.width) * logoW;
+                if (logoH > canvasSize * ratio * 1.2) logoH = canvasSize * ratio;
+                const logoX = (canvasSize - logoW) / 2;
+                const logoY = (canvasSize - logoH) / 2;
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(canvasSize / 2, canvasSize / 2, Math.max(logoW, logoH) / 2 + 6, 0, 2 * Math.PI);
+                ctx.fillStyle = "#FFFFFF";
+                ctx.fill();
+                ctx.drawImage(uploadedLogoImage, logoX, logoY, logoW, logoH);
+                ctx.restore();
+                ctx.beginPath();
+                ctx.arc(canvasSize / 2, canvasSize / 2, Math.max(logoW, logoH) / 2 + 2, 0, 2 * Math.PI);
+                ctx.strokeStyle = "#ccc";
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            }
+            statusMessage.innerText = `✅ QR ready | ${canvasSize}px | High error correction`;
+            return true;
+        }
+        
+        function downloadQR() {
+            if (!qrCanvas || qrCanvas.width === 0) { alert("Generate QR first."); return; }
+            const format = downloadFormatSelect.value;
+            let ext = 'png';
+            if (format === 'image/jpeg') ext = 'jpg';
+            if (format === 'image/webp') ext = 'webp';
+            const link = document.createElement('a');
+            link.download = `qrcode.${ext}`;
+            link.href = qrCanvas.toDataURL(format, 0.95);
+            link.click();
+        }
+        
+        // ========== FIXED SIZE SLIDER + NUMBER binding ==========
+        function updateSizeAndRender() {
+            const val = parseInt(qrSizeRange.value, 10);
+            qrSizeNumber.value = val;
+            renderQR();
+        }
+        
+        qrSizeRange.addEventListener('input', updateSizeAndRender);
+        qrSizeNumber.addEventListener('input', function() {
+            let val = parseInt(this.value, 10);
+            if (isNaN(val)) val = 360;
+            val = Math.min(700, Math.max(200, val));
+            qrSizeRange.value = val;
+            qrSizeNumber.value = val;
+            renderQR();
+        });
+        
+        // --- Event listeners (with accessibility support)---
+        contentTypeSelect.addEventListener('change', () => { updateDynamicFields(); renderQR(); });
+        qrColorPicker.addEventListener('input', () => { qrColorPreview.style.backgroundColor = qrColorPicker.value; renderQR(); });
+        bgColorPicker.addEventListener('input', () => { bgColorPreview.style.backgroundColor = bgColorPicker.value; renderQR(); });
+        moduleShapeSelect.addEventListener('change', () => renderQR());
+        eyeFrameStyleSelect.addEventListener('change', () => renderQR());
+        eyeBallShapeSelect.addEventListener('change', () => renderQR());
+        logoSizePercent.addEventListener('input', () => renderQR());
+        
+        logoUpload.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) { uploadedLogoImage = null; logoPreviewThumb.innerHTML = ''; renderQR(); return; }
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                const img = new Image();
+                img.onload = () => {
+                    uploadedLogoImage = img;
+                    logoPreviewThumb.innerHTML = `<img src="${ev.target.result}" style="width:48px; height:48px; object-fit:contain; border-radius:12px; border:1px solid #ccc;" alt="Logo preview">`;
+                    renderQR();
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+        
+        generateBtn.addEventListener('click', renderQR);
+        downloadBtn.addEventListener('click', downloadQR);
+        
+        // initialization
+        updateDynamicFields();
+        renderQR();
+    })();
+</script>
+</body>
+</html>

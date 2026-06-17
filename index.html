@@ -1,395 +1,327 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="title" content="Deep Mega Tools">
-<meta name="description" content="Deep Mega Tools provides modern online developer tools including CSS generators, image compressors, code editors, responsive checkers, password generators, minifiers, and many powerful web development utilities.">
-<meta name="keywords" content="developer tools, online tools, CSS generator, image compressor, code editor, JavaScript tools, HTML tools, web development tools, responsive checker, password generator, DevTools Hub, webtools">
-<meta name="author" content="PremBabu Kashyap">
-<meta name="robots" content="index, follow">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5">
-<!-- Preconnect to CDN for faster resource loading -->
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Load CSS with media="print" for non-critical CSS, then upgrade -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-<meta name="google-site-verification" content="6Ib5P3GfFX8Wcj3aSKfPs7QFsSQoTj6aKGZxp9HkMCk" />
-<!-- Inline critical CSS including horizontal navbar on mobile & fixed card layout -->
-<style>
-/* CRITICAL CSS - Above the fold styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <meta charset="UTF-8">
+    <meta name="title" content="Deep Mega Tools">
+    <meta name="description" content="Deep Mega Tools provides modern online developer tools including CSS generators, image compressors, code editors, responsive checkers, password generators, minifiers, and many powerful web development utilities.">
+    <meta name="keywords" content="developer tools, online tools, CSS generator, image compressor, code editor, JavaScript tools, HTML tools, web development tools, responsive checker, password generator, DevTools Hub, webtools">
+    <meta name="author" content="PremBabu Kashyap">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5">
+    <!-- Preconnect to CDN for faster resource loading -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Load CSS with media="print" for non-critical CSS, then upgrade -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+    <!-- Inline critical CSS to avoid render-blocking -->
+    <style>
+        /* CRITICAL CSS - Above the fold styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-:root {
-    --bg-primary: #0f172a;
-    --bg-secondary: #111827;
-    --bg-card: rgba(255,255,255,0.05);
-    --border-color: rgba(255,255,255,0.08);
-    --text-primary: #ffffff;
-    --text-secondary: #cbd5e1;
-    --accent: #38bdf8;
-    --search-bg: #1e293b;
-    --shadow-light: 0 10px 25px -5px rgba(0,0,0,0.2);
-    --card-radius: 28px;
-}
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #111827;
+            --bg-card: rgba(255,255,255,0.05);
+            --border-color: rgba(255,255,255,0.08);
+            --text-primary: #ffffff;
+            --text-secondary: #cbd5e1;
+            --accent: #38bdf8;
+            --search-bg: #1e293b;
+            --shadow-light: 0 10px 25px -5px rgba(0,0,0,0.2);
+            --card-radius: 28px;
+        }
 
-body.light-mode {
-    --bg-primary: #f1f5f9;
-    --bg-secondary: #ffffff;
-    --bg-card: #ffffff;
-    --border-color: #e2e8f0;
-    --text-primary: #0f172a;
-    --text-secondary: #334155;
-    --accent: #0284c7;
-    --search-bg: #f8fafc;
-    --shadow-light: 0 10px 15px -3px rgba(0,0,0,0.1);
-}
+        body.light-mode {
+            --bg-primary: #f1f5f9;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --border-color: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --accent: #0284c7;
+            --search-bg: #f8fafc;
+            --shadow-light: 0 10px 15px -3px rgba(0,0,0,0.1);
+        }
 
-body {
-    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    transition: background 0.2s ease, color 0.2s ease;
-}
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background 0.2s ease, color 0.2s ease;
+        }
 
-#Deep header {
-    width:100%;
-    padding:12px 5%;
-    background: var(--bg-secondary);
-    position:sticky;
-    top: 0;
-    z-index: 1000;
-    border-bottom: 1px solid var(--border-color);
-    transition: background 0.2s ease;
-    box-shadow: var(--shadow-light);
-}
+        #Deep header {
+            width:100%;
+            padding:10px 5%;
+            background: var(--bg-secondary);
+            position:sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.2s ease;
+            box-shadow: var(--shadow-light);
 
-#Deep header .navbar {
-    display:flex;
-    align-items:center;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: nowrap;  /* ensure no wrap, keep horizontal */
-    width: 100%;
-}
+        }
 
-#Deep header .navbar .logo {
-    font-size: 26px;
-    font-weight: bold;
-    background: linear-gradient(135deg, var(--accent), #8b5cf6);
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    white-space: nowrap;
-    flex-shrink: 0;
-}
+        #Deep header .navbar {
+            display:flex;
+            align-items:center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
 
-#Deep header .navbar .search-box {
-    flex: 1;
-    min-width: 0;  /* prevent overflow */
-    max-width: 500px;
-}
+        #Deep header .navbar .logo {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
 
-#Deep header .navbar .search-box input {
-    width: 100%;
-    padding: 10px 18px;
-    border: none;
-    outline: none;
-    border-radius: 40px;
-    background: var(--search-bg);
-    color: var(--text-primary);
-    font-size: 16px;
-    border: 1px solid var(--border-color);
-    transition: all 0.2s;
-}
+        #Deep header .navbar .search-box {
+            flex: 1;
+            max-width: 500px;
+        }
 
-#Deep header .navbar .search-box input:focus {
-    border-color: var(--accent);
-}
+        #Deep header .navbar .search-box input {
+            width: 100%;
+            padding: 10px 18px;
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            background: var(--search-bg);
+            color: var(--text-primary);
+            font-size: 16px;
+            border: 1px solid var(--border-color);
+        }
 
-.theme-toggle {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 50%;
-    width: 46px;
-    height: 46px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    flex-shrink: 0;
-}
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 46px;
+            height: 46px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
 
-.theme-toggle i {
-    font-size: 1.5rem;
-    color: var(--accent);
-}
+        .theme-toggle i {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
 
-.category-section {
-    padding: 20px 5% 0 5%;
-}
+        .category-section {
+            padding: 20px 5% 0 5%;
+        }
 
-.category-section .category-title {
-    font-size: 28px;
-    margin: 40px 0 24px 0;
-    color: var(--accent);
-    font-weight: 700;
-    border-left: 4px solid var(--accent);
-    padding-left: 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
+        .category-section .category-title {
+            font-size: 28px;
+            margin: 40px 0 24px 0;
+            color: var(--accent);
+            font-weight: 700;
+            border-left: 4px solid var(--accent);
+            padding-left: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-.category-section .category-title:first-of-type {
-    margin-top: 0;
-}
+        .category-section .category-title:first-of-type {
+            margin-top: 0;
+        }
 
-/* FIXED: Search layout remains stable - grid layout stays consistent */
-.tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 28px;
-    width: 100%;
-}
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 28px;
+        }
 
-/* FIXED: Cards always display correctly with border-radius */
-.tool-card {
-    background: var(--bg-card);
-    border-radius: var(--card-radius);
-    padding: 28px 24px;
-    border: 1px solid var(--border-color);
-    transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    height: 100%;
-}
-.tool-card:hover{ border-color:#38bdf8; transform: translateY(-4px);}
+        .tool-card {
+            background: var(--bg-card);
+            border-radius: var(--card-radius);
+            padding: 28px 24px;
+            border: 1px solid var(--border-color);
+            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .tool-card:hover{ border-color:#38bdf8; }
 
-/* FIXED for square border issue - Keep border-radius on focus/click */
-a {
-    text-decoration: none;
-    display: block;
-    border-radius: var(--card-radius);
-}
+        .tool-card .tool-image {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            margin-bottom: 22px;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-a:focus,
-a:active,
-a:focus-visible {
-    outline: none;
-    border-radius: var(--card-radius);
-}
+        .tool-card .tool-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
 
-a:focus .tool-card,
-a:active .tool-card {
-    border-radius: var(--card-radius);
-}
+        .tool-card h3 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            font-weight: 700;
+        }
 
-.tool-card .tool-image {
-    width: 70px;
-    height: 70px;
-    border-radius: 20px;
-    margin-bottom: 22px;
-    background: var(--bg-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
+        .tool-card p {
+            color: var(--text-secondary);
+            line-height: 1.5;
+            font-size: 14px;
+        }
 
-.tool-card .tool-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 16px;
-}
+        footer {
+            padding: 20px 5%;
+            text-align: center;
+            color: var(--text-secondary);
+            background: var(--bg-secondary);
+            margin-top: 60px;
+            border-top: 1px solid var(--border-color);
+            font-size: 14px;
+        }
 
-.tool-card h3 {
-    font-size: 22px;
-    margin-bottom: 12px;
-    color: var(--text-primary);
-    font-weight: 700;
-    line-height: 1.3;
-}
+        @media (max-width: 768px) {
+            #Deep header .navbar {
+                flex-direction: row;
+                flex-wrap: nowrap;
+                gap: 8px;
+                align-items: center;
+                justify-content: space-between;
+            }
+            #Deep header .navbar .logo {
+                font-size: 16px;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+            #Deep header .navbar .search-box {
+                flex: 1;
+                min-width: 0;
+                max-width: 100%;
+            }
+            #Deep header .navbar .search-box input {
+                font-size: 14px;
+                padding: 7px 12px;
+                width: 100%;
+            }
+            #Deep header .navbar .theme-toggle {
+                align-self: center;
+                margin-top: 0;
+                width: 36px;
+                height: 36px;
+                flex-shrink: 0;
+            }
+            #Deep header .navbar .theme-toggle i {
+                font-size: 1.2rem;
+            }
+            .category-section .category-title {
+                font-size: 24px;
+                margin: 30px 0 20px 0;
+            }
+            .tool-card h3 {
+                font-size: 20px;
+            }
+        }
 
-.tool-card p {
-    color: var(--text-secondary);
-    line-height: 1.5;
-    font-size: 14px;
-    margin: 0;
-}
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
 
-/* Fixed: Search hide/show doesn't break grid layout */
-.tool-card[style*="display: none"] {
-    display: none !important;
-}
-.tool-card[style*="display: block"],
-.tool-card[style*="display: flex"] {
-    display: flex !important;
-}
+        .skip-to-content {
+            position: absolute;
+            left: -9999px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
 
-footer {
-    padding: 20px 5%;
-    text-align: center;
-    color: var(--text-secondary);
-    background: var(--bg-secondary);
-    margin-top: 60px;
-    border-top: 1px solid var(--border-color);
-    font-size: 14px;
-}
-
-/* Mobile: Keep horizontal flex, cards layout normal */
-@media (max-width: 768px) {
-    #Deep header {
-        padding: 10px 4%;
-    }
-    #Deep header .navbar {
-        gap: 12px;
-        flex-wrap: nowrap;
-    }
-    #Deep header .navbar .logo {
-        font-size: 18px;
-        white-space: nowrap;
-    }
-    .theme-toggle {
-        width: 40px;
-        height: 40px;
-    }
-    .theme-toggle i {
-        font-size: 1.2rem;
-    }
-    #Deep header .navbar .search-box {
-        flex: 1;
-        min-width: 0;
-    }
-    #Deep header .navbar .search-box input {
-        padding: 8px 12px;
-        font-size: 14px;
-    }
-    .category-section .category-title {
-        font-size: 22px;
-        margin: 30px 0 20px 0;
-    }
-    .tool-card h3 {
-        font-size: 20px;
-    }
-    .tools-grid {
-        gap: 20px;
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    }
-    .tool-card {
-        padding: 22px 20px;
-    }
-}
-
-@media (max-width: 480px) {
-    #Deep header .navbar .logo {
-        font-size: 15px;
-    }
-    #Deep header .navbar {
-        gap: 8px;
-    }
-    .theme-toggle {
-        width: 36px;
-        height: 36px;
-    }
-    #Deep header .navbar .search-box input {
-        padding: 6px 10px;
-        font-size: 13px;
-    }
-    .tools-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-}
-
-::-webkit-scrollbar {
-    width: 8px;
-}
-::-webkit-scrollbar-track {
-    background: var(--bg-primary);
-}
-::-webkit-scrollbar-thumb {
-    background: var(--accent);
-    border-radius: 10px;
-}
-
-.skip-to-content {
-    position: absolute;
-    left: -9999px;
-    top: auto;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-}
-
-.skip-to-content:focus {
-    left: 50%;
-    transform: translateX(-50%);
-    width: auto;
-    height: auto;
-    padding: 12px 24px;
-    background: var(--accent);
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    top: 10px;
-    z-index: 9999;
-}
-#mainContent a{
-    text-decoration:none;
-    color: inherit;
-    display: block;
-}
-/* Ensure card styles are complete when wrapped by link */
-a .tool-card {
-    display: flex;
-}
-</style>
-<title>Deep Mega Tools | Modern Dev Hub</title>
+        .skip-to-content:focus {
+            left: 50%;
+            transform: translateX(-50%);
+            width: auto;
+            height: auto;
+            padding: 12px 24px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            top: 10px;
+            z-index: 9999;
+        }
+        #mainContent a{text-decoration:none;}
+    </style>
+    <!-- Non-critical CSS loaded asynchronously -->
+    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
+    <!-- Font display optimization -->
+    <style>
+        /* System font stack with font-display optimization */
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400 700;
+            font-display: swap;
+            src: local('Inter'), local('Inter-Regular');
+        }
+        /* Fallback font loading with font-display: optional for performance */
+    </style>
+    <title>Deep Mega Tools | Modern Dev Hub</title>
 </head>
 <body id="Deepmega">
-<a href="#mainContent" class="skip-to-content">Skip to main content</a>
-<main id="Deep">
-<header>
-    <div class="navbar">
-        <div class="logo">
-            ⚡ Deep Mega Tools
-        </div>
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="🔍 Search tools..." aria-label="Search tools">
-        </div>
-        <button class="theme-toggle" id="themeToggleBtn" aria-label="Switch between light and dark mode" title="Switch theme">
-            <i class="fa-solid fa-sun" id="themeIcon" aria-hidden="true"></i>
-        </button>
-    </div>
-</header>
+    <a href="#mainContent" class="skip-to-content">Skip to main content</a>
+    <main id="Deep">
+        <header>
+            <div class="navbar">
+                <div class="logo">
+                    ⚡ Deep Mega Tools
+                </div>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="🔍 Search tools..." aria-label="Search tools">
+                </div>
+                <button class="theme-toggle" id="themeToggleBtn" aria-label="Switch between light and dark mode" title="Switch theme">
+                    <i class="fa-solid fa-sun" id="themeIcon" aria-hidden="true"></i>
+                </button>
+            </div>
+        </header>
 
-<div class="category-section" id="mainContent">
-    <!-- Category 1: Image & Design Tools -->
-    <h2 class="category-title" id="image-design-category"><i class="fa-solid fa-palette" aria-hidden="true"></i> Image & Design Tools</h2>
-    
- <div class="tools-grid" data-category="image-design" aria-labelledby="image-design-category">
- <!--Tool No.1-->
- <a href="tools/barcode-generator.html"><div class="tool-card" data-name="Barcode Generator">
+        <div class="category-section" id="mainContent">
+            <!-- Category 1: Image & Design Tools -->
+            <h2 class="category-title" id="image-design-category"><i class="fa-solid fa-palette" aria-hidden="true"></i> Image & Design Tools</h2>
+
+            <div class="tools-grid" data-category="image-design" aria-labelledby="image-design-category">
+                <!--Tool No.1-->
+                <a href="tools/barcode-generator.html"><div class="tool-card" data-name="Barcode Generator">
 <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/image_processed_593x612.webp" alt="Barcode Generator" loading="lazy"></div>
             <h3>Barcode Generator</h3>
             <p>Free Barcode Generator Online - Create Barcode Images Instantly.</p>
         </div></a>
 <!--Tool No.2-->
- <a href="qr-code-generator.html">       
+ <a href="tools/qr-code-generator.html">       
  <div class="tool-card" data-name="QRcode Generator">
             <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/final_75x75.webp" alt="Free Online QR Code Generator Tool" loading="lazy"></div>
             <h3>QR Code Generator</h3>
@@ -409,82 +341,91 @@ a .tool-card {
             <h3>Coming Soon</h3>
             <p>Compress images without losing quality, optimize web visuals.</p>
         </div></a>
-    </div>
+                <!--Tool No.4-->
+                <a href="">
+                    <div class="tool-card" data-name="QRcode Generator">
+                        <div class="tool-image"><img src="images/background-remover.png" alt="Free Online QR Code Generator Tool" loading="lazy"></div>
+                        <h3>Foming Soon</h3>
+                        <p></p>
+                    </div></a>
+                </div>
 
-    <!-- Category 2: Social Media Tools -->
-    <h2 class="category-title" id="social-media-category"><i class="fa-solid fa-share-alt" aria-hidden="true"></i> Social Media Tools</h2>
-    <div class="tools-grid" data-category="social-media" aria-labelledby="social-media-category">
-        <div class="tool-card" data-name="QR Code Generator Pro">
-            <div class="tool-image"><img src="images/qr-generator.png" alt="QR Generator" loading="lazy" data-original-src="images/qr-generator.png"></div>
-            <h3>Coming Soon</h3>
-            <p></p>
-        </div>
-        <div class="tool-card" data-name="Poster Generator">
-            <div class="tool-image"><img src="images/poster-generator.png" alt="Poster Generator" loading="lazy" data-original-src="images/poster-generator.png"></div>
-            <h3>Coming Soon</h3>
-            <p></p>
-        </div>
-    </div>
+                <!-- Category 2: Social Media Tools -->
+                <h2 class="category-title" id="social-media-category"><i class="fa-solid fa-share-alt" aria-hidden="true"></i> Social Media Tools</h2>
+                <div class="tools-grid" data-category="social-media" aria-labelledby="social-media-category">
+                    <div class="tool-card" data-name="QR Code Generator">
+                        <div class="tool-image"><img src="images/qr-generator.png" alt="QR Generator" loading="lazy"></div>
+                        <h3>Coming Soon</h3>
+                        <p></p>
+                    </div>
+                    <div class="tool-card" data-name="Poster Generator">
+                        <div class="tool-image"><img src="images/poster-generator.png" alt="Poster Generator" loading="lazy"></div>
+                        <h3>Coming Soon</h3>
+                        <p></p>
+                    </div>
+                </div>
 
-    <!-- Category 3: Utility Tools -->
-    <h2 class="category-title" id="utility-category"><i class="fa-solid fa-toolbox" aria-hidden="true"></i> Utility Tools</h2>
-    <div class="tools-grid" data-category="utility" aria-labelledby="utility-category">
-        <div class="tool-card" data-name="Password Generator">
-            <div class="tool-image"><img src="images/password-generator.png" alt="Password Generator" loading="lazy" data-original-src="images/password-generator.png"></div>
-            <h3>Coming Soon</h3>
-            <p></p>
-        </div>
-        <div class="tool-card" data-name="Unit Converter">
-            <div class="tool-image"><img src="images/unit-converter.png" alt="Unit Converter" loading="lazy" data-original-src="images/unit-converter.png"></div>
-            <h3>Coming Soon</h3>
-            <p></p>
-        </div>
-    </div>
+                <!-- Category 3: Utility Tools -->
+                <h2 class="category-title" id="utility-category"><i class="fa-solid fa-toolbox" aria-hidden="true"></i> Utility Tools</h2>
+                <div class="tools-grid" data-category="utility" aria-labelledby="utility-category">
+                    <div class="tool-card" data-name="Password Generator">
+                        <div class="tool-image"><img src="images/password-generator.png" alt="Password Generator" loading="lazy"></div>
+                        <h3>Coming Soon</h3>
+                        <p></p>
+                    </div>
+                    <div class="tool-card" data-name="Unit Converter">
+                        <div class="tool-image"><img src="images/unit-converter.png" alt="Unit Converter" loading="lazy"></div>
+                        <h3>Coming Soon</h3>
+                        <p></p>
+                    </div>
+                </div>
 
-    <!-- Category 4: SEO & Blogger Tools -->
-    <h2 class="category-title" id="seo-category"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> SEO & Blogger Tools</h2>
-    <div class="tools-grid" data-category="seo-blogger" aria-labelledby="seo-category">
-        <div class="tool-card" data-name="Text To Slug">
-            <div class="tool-image"><img src="images/text-slug.png" alt="Text to Slug" loading="lazy" data-original-src="images/text-slug.png"></div>
-            <h3>Coming Soon</h3>
-            <p></p>
-        </div>
-        <div class="tool-card" data-name="Meta Tag Generator">
-            <div class="tool-image"><img src="images/meta-tag.png" alt="Meta Tags" loading="lazy" data-original-src="images/meta-tag.png"></div>
-            <h3>Coming Soon</h3>
-            <p>Generate SEO meta tags for social sharing & search engines.</p>
-        </div>
-    </div>
+                <!-- Category 4: SEO & Blogger Tools -->
+                <h2 class="category-title" id="seo-category"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> SEO & Blogger Tools</h2>
+                <div class="tools-grid" data-category="seo-blogger" aria-labelledby="seo-category">
+                    <div class="tool-card" data-name="Text To Slug">
+                        <div class="tool-image"><img src="images/text-slug.png" alt="Text to Slug" loading="lazy"></div>
+                        <h3>Coming Soon</h3>
+                        <p></p>
+                    </div>
+                    <div class="tool-card" data-name="Meta Tag Generator">
+                        <div class="tool-image"><img src="images/meta-tag.png" alt="Meta Tags" loading="lazy"></div>
+                        <h3>Coming Soon</h3>
+                        <p></p>
+                    </div>
+                </div>
 
-    <!-- Category 5: Developer Tools -->
-<h2 class="category-title" id="developer-category"><i class="fa-solid fa-code" aria-hidden="true"></i> Developer Tools</h2>
-    <div class="tools-grid" data-category="developer" aria-labelledby="developer-category">
-  <a href="unlock-page.html">
+                <!-- Category 5: Developer Tools -->
+                <h2 class="category-title" id="developer-category"><i class="fa-solid fa-code" aria-hidden="true"></i> Developer Tools</h2>
+                <div class="tools-grid" data-category="developer" aria-labelledby="developer-category">
+                    <a href="unlock-page.html">
  <div class="tool-card" data-name="Unlock Page Generator">
-            <div class="tool-image"><img src="images/images/unlock page.webp" alt="Unlock Page Generator" loading="lazy" data-original-src="images/images/unlock page.webp"></div>
+            <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/unlock page.webp" alt="Unlock Page Generator" loading="lazy" data-original-src="images/images/unlock page.webp"></div>
             <h3>Unlock Page Generator</h3>
             <p>Generate unlock pages instantly,Generate unlock links with ease.</p>
         </div></a>
-        <div class="tool-card" data-name="Color Contrast Analyzer Dev">
-            <div class="tool-image"><img src="images/color-picker.png" alt="Color Contrast Analyzer" loading="lazy" data-original-src="images/
+        
+        <a href="tools/color-contrast-analyzer.html"><div class="tool-card" data-name="Color Contrast Analyzer Dev">
+            <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/
+/final_1091x1038.webp" alt="Color Contrast Analyzer" loading="lazy" data-original-src="https://deepmegatools.vercel.app/images/
 /final_1091x1038.webp"></div>
 <h3>Color Contrast Analyzer</h3>
 <p>Checks contrast ratio between text & background following WCAG.</p>
-        </div>
-  <a href="auto-code-typing.html">  
+        </div></a>
+  <a href="tools/auto-code-typing.html">  
  <div class="tool-card" data-name="Automatic Code Typing">
-            <div class="tool-image"><img src="images/images/final_731x757.webp" alt="Automatic Code Typing" loading="lazy" data-original-src="images/images/final_731x757.webp"></div>
+            <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/final_731x757.webp" alt="Automatic Code Typing" loading="lazy" data-original-src="https://deepmegatools.vercel.app/images/final_731x757.webp"></div>
  <h3>Automatic Code Typing</h3>
   <p>Paste HTML/CSS/JS code and watch automatic typing effect.</p>
         </div></a>
-        <a href="code-editor.html"><div class="tool-card" data-name="Live Code Editor">
-            <div class="tool-image"><img src="images/image_processed_1254x1254.webp" alt="Live Code Editor" loading="lazy" data-original-src="images/image_processed_1254x1254.webp"></div>
+        <a href="tools/code-editor.html"><div class="tool-card" data-name="Live Code Editor">
+            <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/image_processed_1254x1254.webp" alt="Live Code Editor" loading="lazy" data-original-src="https://deepmegatools.vercel.app/images/image_processed_1254x1254.webp"></div>
   <h3>Live Code Editor</h3>
     <p>HTML/CSS/JS Editor with live preview and console.</p>
         </div></a>
-        <a href="css-border-Image.html">
+        <a href="tools/css-border-Image.html">
         <div class="tool-card" data-name="CSS Border Image">
-  <div class="tool-image"><img src="images/ai-chat.png" alt="CSS Border Image" loading="lazy" data-original-src="images/images/final_932x847.webp"></div>
+  <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/final_932x847.webp" alt="CSS Border Image" loading="lazy" data-original-src="https://deepmegatools.vercel.app/images/final_932x847.webp"></div>
               <h3>CSS Border Image</h3>
             <p>Generate border images live using images and gradients.</p>
         </div></a>
@@ -494,228 +435,164 @@ a .tool-card {
             <h3><!--Responsive Checker-->Coming Soon</h3>
             <p>Test website responsiveness across multiple device sizes.</p>
         </div>
-    </div>
-</div>
+                </div>
+                </div>
 
-<footer>
-    <i class="fa-regular fa-copyright" aria-hidden="true"></i> 2026 Deep Mega Tools • All Rights Reserved • 
-    <span id="currentYear"></span> ✨ 5 categories | 30+ powerful tools
-</footer>
-</main>
+                <footer>
+                    <i class="fa-regular fa-copyright" aria-hidden="true"></i> 2026 Deep Mega Tools • All Rights Reserved •
+                    <span id="currentYear"></span> ✨ 5 categories | 24 powerful tools
+                </footer>
+            </main>
 
-<script>
-(function() {
-    const safeStorage = {
-        getItem: function(key) { try { return localStorage.getItem(key); } catch(e) { return null; } },
-        setItem: function(key, value) { try { localStorage.setItem(key, value); } catch(e) {} }
-    };
-
-    const themeToggleBtn = document.getElementById('themeToggleBtn');
-    const themeIcon = document.getElementById('themeIcon');
-    const bodyElement = document.body;
-    const getInitialTheme = () => {
-        const savedTheme = safeStorage.getItem('deepMegaTheme');
-        if (savedTheme === 'light') return 'light';
-        if (savedTheme === 'dark') return 'dark';
-        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    };
-    const applyTheme = (theme) => {
-        if (theme === 'light') {
-            bodyElement.classList.add('light-mode');
-            themeIcon.className = 'fa-solid fa-moon';
-            safeStorage.setItem('deepMegaTheme', 'light');
-        } else {
-            bodyElement.classList.remove('light-mode');
-            themeIcon.className = 'fa-solid fa-sun';
-            safeStorage.setItem('deepMegaTheme', 'dark');
-        }
-    };
-    applyTheme(getInitialTheme());
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener('click', () => {
-            applyTheme(bodyElement.classList.contains('light-mode') ? 'dark' : 'light');
-        });
-    }
-
-    const searchInput = document.getElementById('searchInput');
-    const allCards = document.querySelectorAll('.tool-card');
-    const categoryGrids = document.querySelectorAll('.tools-grid');
-    let searchTimeout;
-    
-    const filterTools = () => {
-        const searchTerm = searchInput.value.toLowerCase().trim();
-        let anyVisible = false;
-        const categoryHasVisible = new Map();
-        
-        allCards.forEach(card => {
-            const name = (card.getAttribute('data-name') || '').toLowerCase();
-            const title = card.querySelector('h3')?.innerText.toLowerCase() || '';
-            const desc = card.querySelector('p')?.innerText.toLowerCase() || '';
-            const match = searchTerm === '' || name.includes(searchTerm) || title.includes(searchTerm) || desc.includes(searchTerm);
-            // Fixed: Use flex display to maintain card style
-            if (match) {
-                card.style.display = 'flex';
-                anyVisible = true;
-                const parentGrid = card.closest('.tools-grid');
-                if (parentGrid) categoryHasVisible.set(parentGrid, true);
-            } else {
-                card.style.display = 'none';
-            }
-        });
-        
-        categoryGrids.forEach(grid => {
-            const hasVisible = categoryHasVisible.get(grid) === true;
-            const titleElem = grid.parentElement?.querySelector('.category-title');
-            if (searchTerm !== '' && !hasVisible) {
-                grid.style.display = 'none';
-                if (titleElem) titleElem.style.display = 'none';
-            } else {
-                grid.style.display = 'grid';
-                if (titleElem) titleElem.style.display = 'flex';
-            }
-        });
-        
-        let noResultMsg = document.getElementById('noResultMsg');
-        if (!anyVisible && searchTerm !== '') {
-            if (!noResultMsg) {
-                noResultMsg = document.createElement('div');
-                noResultMsg.id = 'noResultMsg';
-                noResultMsg.setAttribute('role', 'status');
-                noResultMsg.style.cssText = 'text-align:center;padding:60px 20px;color:var(--text-secondary);font-size:1.2rem;grid-column:1/-1;width:100%;';
-                noResultMsg.innerHTML = `<i class="fa-regular fa-compass fa-2x" style="display:block;margin-bottom:16px" aria-hidden="true"></i> No tools match "<strong>${escapeHtml(searchTerm)}</strong>". Try another keyword!`;
-                document.getElementById('mainContent')?.appendChild(noResultMsg);
-            } else {
-                noResultMsg.style.display = 'block';
-            }
-        } else if (noResultMsg) {
-            noResultMsg.style.display = 'none';
-        }
-    };
-    
-    const escapeHtml = (str) => str.replace(/[&<>]/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[m] || m));
-    
-    if (searchInput) {
-        searchInput.addEventListener('input', () => {
-            clearTimeout(searchTimeout);
-            searchTimeout = setTimeout(filterTools, 150);
-        });
-    }
-    
-    const yearSpan = document.getElementById('currentYear');
-    if (yearSpan) yearSpan.innerText = new Date().getFullYear();
-    
-    // ========== FIX: COMPREHENSIVE IMAGE ERROR HANDLER TO ELIMINATE CONSOLE ERRORS ==========
-    // This global handler catches all image 404 errors and replaces them with SVG fallbacks
-    // without any console noise or broken image indicators
-    
-    const FALLBACK_SVG = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="%2338bdf8" stroke-width="1.2"%3E%3Crect x="2" y="2" width="20" height="20" rx="2.18"%3E%3C/rect%3E%3Ccircle cx="8.5" cy="8.5" r="1.5"%3E%3C/circle%3E%3Cpolyline points="21 15 16 10 5 21"%3E%3C/polyline%3E%3C/svg%3E';
-    
-    // Function to safely replace image with fallback
-    const replaceWithFallback = (img, originalSrc) => {
-        if (!img || img.hasAttribute('data-fallback-applied')) return;
-        // Mark as handled to prevent infinite loops
-        img.setAttribute('data-fallback-applied', 'true');
-        // Remove error listener to avoid recursion
-        img.onerror = null;
-        // Set fallback SVG
-        img.src = FALLBACK_SVG;
-        // Apply consistent styling
-        img.style.cssText = 'background:var(--bg-primary);padding:8px;object-fit:contain;width:70px;height:70px;border-radius:16px';
-        img.alt = img.alt || 'Tool icon';
-        // Optional: log silently for debugging only if needed (but we avoid console errors)
-    };
-    
-    // Find all images on the page (including dynamically added ones)
-    const handleAllImages = () => {
-        const images = document.querySelectorAll('.tool-image img');
-        images.forEach(img => {
-            // Skip if already processed
-            if (img.hasAttribute('data-error-handled')) return;
-            img.setAttribute('data-error-handled', 'true');
-            
-            // Store original src for reference
-            const originalSrc = img.src;
-            
-            // Remove any existing error listeners and attach our own
-            img.onerror = function(e) {
-                e.stopPropagation();
-                replaceWithFallback(this, originalSrc);
-                return false;
-            };
-            
-            // Also check if image already failed (complete but naturalWidth = 0)
-            if (img.complete && img.naturalWidth === 0) {
-                replaceWithFallback(img, originalSrc);
-            }
-        });
-    };
-    
-    // Run initial scan
-    handleAllImages();
-    
-    // Use MutationObserver to handle dynamically added images (if any future tools added)
-    const observer = new MutationObserver(function(mutations) {
-        mutations.forEach(function(mutation) {
-            if (mutation.type === 'childList') {
-                mutation.addedNodes.forEach(function(node) {
-                    if (node.nodeType === 1) { // Element node
-                        if (node.matches && node.matches('.tool-image img')) {
-                            const img = node;
-                            if (!img.hasAttribute('data-error-handled')) {
-                                img.setAttribute('data-error-handled', 'true');
-                                img.onerror = function(e) {
-                                    e.stopPropagation();
-                                    replaceWithFallback(this, this.src);
-                                    return false;
-                                };
-                                if (img.complete && img.naturalWidth === 0) {
-                                    replaceWithFallback(img, img.src);
-                                }
+            <script>
+                // Optimized JavaScript with deferred execution
+                (function() {
+                    // Safe storage handler
+                    const safeStorage = {
+                        getItem: function(key) {
+                            try {
+                                return localStorage.getItem(key);
+                            } catch (e) {
+                                return null;
                             }
+                        },
+                        setItem: function(key, value) {
+                            try {
+                                localStorage.setItem(key, value);
+                            } catch (e) {}
                         }
-                        if (node.querySelectorAll) {
-                            node.querySelectorAll('.tool-image img').forEach(img => {
-                                if (!img.hasAttribute('data-error-handled')) {
-                                    img.setAttribute('data-error-handled', 'true');
-                                    img.onerror = function(e) {
-                                        e.stopPropagation();
-                                        replaceWithFallback(this, this.src);
-                                        return false;
-                                    };
-                                    if (img.complete && img.naturalWidth === 0) {
-                                        replaceWithFallback(img, img.src);
-                                    }
-                                }
-                            });
+                    };
+
+                    // Theme toggle
+                    const themeToggleBtn = document.getElementById('themeToggleBtn');
+                    const themeIcon = document.getElementById('themeIcon');
+                    const bodyElement = document.body;
+
+                    const getInitialTheme = () => {
+                        const savedTheme = safeStorage.getItem('deepMegaTheme');
+                        if (savedTheme === 'light') return 'light';
+                        if (savedTheme === 'dark') return 'dark';
+                        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+                    };
+
+                    const applyTheme = (theme) => {
+                        if (theme === 'light') {
+                            bodyElement.classList.add('light-mode');
+                            themeIcon.className = 'fa-solid fa-moon';
+                            safeStorage.setItem('deepMegaTheme', 'light');
+                        } else {
+                            bodyElement.classList.remove('light-mode');
+                            themeIcon.className = 'fa-solid fa-sun';
+                            safeStorage.setItem('deepMegaTheme', 'dark');
                         }
+                    };
+
+                    applyTheme(getInitialTheme());
+
+                    if (themeToggleBtn) {
+                        themeToggleBtn.addEventListener('click', () => {
+                            applyTheme(bodyElement.classList.contains('light-mode') ? 'dark' : 'light');
+                        });
+
+                        themeToggleBtn.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                applyTheme(bodyElement.classList.contains('light-mode') ? 'dark' : 'light');
+                            }
+                        });
                     }
-                });
-            }
-        });
-    });
-    
-    observer.observe(document.body, { childList: true, subtree: true });
-    
-    // Also handle any existing images that might have already triggered errors before our handler
-    // This is critical for PageSpeed Insights - we proactively replace broken images
-    window.addEventListener('load', function() {
-        // Final pass: replace any remaining broken images
-        document.querySelectorAll('.tool-image img').forEach(img => {
-            if (!img.complete || (img.complete && img.naturalWidth === 0)) {
-                if (!img.hasAttribute('data-fallback-applied')) {
-                    replaceWithFallback(img, img.src);
-                }
-            }
-        });
-        
-        // Clean up any console error logs that might have been created by browser default
-        // (This won't suppress actual errors but ensures our fallback is visible)
-    });
-    
-    // Preserve existing individual onerror handlers from HTML (they had onerror attributes)
-    // But we need to ensure they don't cause double fallback - our global will override
-    // The previous individual handlers had some inline fallback logic, but we'll let our unified handler manage everything
-})();
-</script>
-</body>
-</html>
+
+                    // Search functionality with debounce for better performance
+                    const searchInput = document.getElementById('searchInput');
+                    const allCards = document.querySelectorAll('.tool-card');
+                    const categoryTitles = document.querySelectorAll('.category-title');
+                    const categoryGrids = document.querySelectorAll('.tools-grid');
+
+                    let searchTimeout;
+
+                    const filterTools = () => {
+                        const searchTerm = searchInput.value.toLowerCase().trim();
+                        let anyVisible = false;
+                        const categoryHasVisible = new Map();
+
+                        allCards.forEach(card => {
+                            const name = (card.getAttribute('data-name') || '').toLowerCase();
+                            const title = card.querySelector('h3')?.innerText.toLowerCase() || '';
+                            const desc = card.querySelector('p')?.innerText.toLowerCase() || '';
+                            const match = searchTerm === '' || name.includes(searchTerm) || title.includes(
+                            searchTerm) || desc.includes(searchTerm);
+
+                            card.style.display = match ? 'block' : 'none';
+                            if (match) {
+                                anyVisible = true;
+                                const parentGrid = card.closest('.tools-grid');
+                                if (parentGrid) categoryHasVisible.set(parentGrid, true);
+                            }
+                        });
+
+                        categoryGrids.forEach(grid => {
+                            const hasVisible = categoryHasVisible.get(grid) === true;
+                            const title = grid.parentElement?.querySelector('.category-title');
+                            if (searchTerm !== '' && !hasVisible) {
+                                grid.style.display = 'none';
+                                if (title) title.style.display = 'none';
+                            } else {
+                                grid.style.display = '';
+                                if (title) title.style.display = '';
+                            }
+                        });
+
+                        let noResultMsg = document.getElementById('noResultMsg');
+                        if (!anyVisible && searchTerm !== '') {
+                            if (!noResultMsg) {
+                                noResultMsg = document.createElement('div');
+                                noResultMsg.id = 'noResultMsg';
+                                noResultMsg.setAttribute('role', 'status');
+                                noResultMsg.style.cssText =
+                                    'text-align:center;padding:60px 20px;color:var(--text-secondary);font-size:1.2rem;grid-column:1/-1';
+                                noResultMsg.innerHTML =
+                                    `<i class="fa-regular fa-compass fa-2x" style="display:block;margin-bottom:16px" aria-hidden="true"></i> No tools match "<strong>${escapeHtml(searchTerm)}</strong>". Try another keyword!`;
+                                document.getElementById('mainContent')?.appendChild(noResultMsg);
+                            } else {
+                                noResultMsg.style.display = 'block';
+                            }
+                        } else if (noResultMsg) {
+                            noResultMsg.style.display = 'none';
+                        }
+                    };
+
+                    const escapeHtml = (str) => str.replace(/[&<>]/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' } [
+                        m
+                    ] || m));
+
+                    if (searchInput) {
+                        searchInput.addEventListener('input', () => {
+                            clearTimeout(searchTimeout);
+                            searchTimeout = setTimeout(filterTools, 150);
+                        });
+                    }
+
+                    // Set current year
+                    const yearSpan = document.getElementById('currentYear');
+                    if (yearSpan) yearSpan.innerText = new Date().getFullYear();
+
+                    // Lazy load image fallback
+                    document.querySelectorAll('.tool-image img').forEach(img => {
+                        img.addEventListener('error', function() {
+                            this.onerror = null;
+                            this.src =
+                                'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="%2338bdf8" stroke-width="1.2"%3E%3Crect x="2" y="2" width="20" height="20" rx="2.18"%3E%3C/rect%3E%3Ccircle cx="8.5" cy="8.5" r="1.5"%3E%3C/circle%3E%3Cpolyline points="21 15 16 10 5 21"%3E%3C/polyline%3E%3C/svg%3E';
+                            this.style.cssText =
+                                'background:var(--bg-primary);padding:8px;object-fit:contain;width:70px;height:70px';
+                        });
+                    });
+
+                    // Set cache-friendly cache headers via meta tags for static assets
+                    const cacheMeta = document.createElement('meta');
+                    cacheMeta.httpEquiv = 'Cache-Control';
+                    cacheMeta.content = 'public, max-age=604800, immutable';
+                    document.head.appendChild(cacheMeta);
+                })();
+            </script>
+        </body>
+        </html>

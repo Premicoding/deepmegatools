@@ -1,24 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-<loc>https://deepmegatools.vercel.app/</loc>
-</url>
-<url>
-<loc>https://deepmegatools.vercel.app/tools/code-editor.html</loc>
-</url>
-<url>
-<loc>https://deepmegatools.vercel.app/tools/color-contrast-analyzer.html</loc>
-</url>
-<url>
-<loc>https://deepmegatools.vercel.app/tools/EMI-checker.html</loc>
-</url>
-<url>
-<loc>https://deepmegatools.vercel.app/tools/word-counter.html</loc>
-</url>
-<url>
-<loc>https://deepmegatools.vercel.app/tools/auto-code-typing.html</loc>
-</url>
-<url>
-<loc>https://deepmegatools.vercel.app/tools/unlock-page.html</loc>
-</url>
-</urlset>  
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://deepmegatools.vercel.app/</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://deepmegatools.vercel.app/tools/code-editor.html</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://deepmegatools.vercel.app/tools/color-contrast-analyzer.html</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://deepmegatools.vercel.app/tools/EMI-checker.html</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://deepmegatools.vercel.app/tools/word-counter.html</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://deepmegatools.vercel.app/tools/auto-code-typing.html</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://deepmegatools.vercel.app/tools/unlock-page.html</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+</urlset>

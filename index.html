@@ -8,6 +8,18 @@
     <meta name="author" content="PremBabu Kashyap">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5">
+    <meta name="google-site-verification" content="6Ib5P3GfFX8Wcj3aSKfPs7QFsSQoTj6aKGZxp9HkMCk" />
+
+    <!-- ====== GOOGLE ANALYTICS (gtag.js) – ADDED HERE ====== -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J13EVKDED3D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-J13EVKDED3D');
+    </script>
+    <!-- ====================================================== -->
+
     <!-- Preconnect to CDN for faster resource loading -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
@@ -15,6 +27,7 @@
     <!-- Load CSS with media="print" for non-critical CSS, then upgrade -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
+
     <!-- Inline critical CSS to avoid render-blocking -->
     <style>
         /* CRITICAL CSS - Above the fold styles */
@@ -167,6 +180,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow:hidden;
+            filter: drop-shadow(2px 2px 4px white);
         }
 
         .tool-card .tool-image img {
@@ -275,6 +290,7 @@
             z-index: 9999;
         }
         #mainContent a{text-decoration:none;}
+        #SDS{font-family: Blippo, fantasy;padding:0 4px;}
     </style>
     <!-- Non-critical CSS loaded asynchronously -->
     <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
@@ -308,7 +324,14 @@
                 </button>
             </div>
         </header>
-
+        <div id="SDS">
+            <div class="DSS">
+                <h1>Deep Mega Tools – Free Online Tools for Developers, Creators & Bloggers.</h1>
+            </div>
+            <div class="PTS">
+                <p>Deep Mega Tools offers a powerful collection of free online tools, including QR Code Generator, SEO & Blogger Tools, AI-Powered Tools, Image & Design Tools, Developer Tools, Social Media Tools, PDF Tools, JSON Formatter, Password Generator, Background Remover, Image Compressor, and more.</p>
+            </div>
+        </div>
         <div class="category-section" id="mainContent">
             <!-- Category 1: Image & Design Tools -->
             <h2 class="category-title" id="image-design-category"><i class="fa-solid fa-palette" aria-hidden="true"></i> Image & Design Tools</h2>
@@ -316,283 +339,281 @@
             <div class="tools-grid" data-category="image-design" aria-labelledby="image-design-category">
                 <!--Tool No.1-->
                 <a href="tools/barcode-generator.html"><div class="tool-card" data-name="Barcode Generator">
-<div class="tool-image"><img src="https://deepmegatools.vercel.app/images/image_processed_593x612.webp" alt="Barcode Generator" loading="lazy"></div>
-            <h3>Barcode Generator</h3>
-            <p>Free Barcode Generator Online - Create Barcode Images Instantly.</p>
-        </div></a>
-<!--Tool No.2-->
- <a href="tools/qr-code-generator.html">       
- <div class="tool-card" data-name="QRcode Generator">
-            <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/final_75x75.webp" alt="Free Online QR Code Generator Tool" loading="lazy"></div>
-            <h3>QR Code Generator</h3>
-            <p>Free QR Code Generator Online - Create Custom QR Codes Instantly</p>
-        </div></a>
-        <!--Tool No.3-->
- <a href="#">
-<div class="tool-card" data-name="Color Contrast Analyzer">
- <div class="tool-image"><img src="images/background-remover.png" alt="Free Online Color Contrast Analyzer Tool" loading="lazy" data-original-src="images/background-remover.png"></div>
-            <h3>Coming Soon</h3>
-            <p>Free Color Contrast Analyzer - WCAG Contrast Checker Online</p>
-        </div></a>
-        <!--Tool No.4-->
- <a href="#">
-<div class="tool-card" data-name="Image Compressor">
-            <div class="tool-image"><img src="images/image-compressor.png" alt="Image Compressor Tool" loading="lazy" data-original-src="images/image-compressor.png"></div>
-            <h3>Coming Soon</h3>
-            <p>Compress images without losing quality, optimize web visuals.</p>
-        </div></a>
+                        <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/image_processed_593x612.webp" alt="Barcode Generator" loading="lazy"></div>
+                        <h3>Barcode Generator</h3>
+                        <p>Free Barcode Generator Online - Create Barcode Images Instantly.</p>
+                    </div></a>
+                <!--Tool No.2-->
+                <a href="tools/qr-code-generator.html">       
+                    <div class="tool-card" data-name="QRcode Generator">
+                        <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/final_75x75.webp" alt="Free Online QR Code Generator Tool" loading="lazy"></div>
+                        <h3>QR Code Generator</h3>
+                        <p>Free QR Code Generator Online - Create Custom QR Codes Instantly</p>
+                    </div></a>
+                <!--Tool No.3-->
+                <a href="#">
+                    <div class="tool-card" data-name="Color Contrast Analyzer">
+                        <div class="tool-image"><img src="images/background-remover.png" alt="Free Online Color Contrast Analyzer Tool" loading="lazy" data-original-src="images/background-remover.png"></div>
+                        <h3>Coming Soon</h3>
+                        <p>Free Color Contrast Analyzer - WCAG Contrast Checker Online</p>
+                    </div></a>
+                <!--Tool No.4-->
+                <a href="#">
+                    <div class="tool-card" data-name="Image Compressor">
+                        <div class="tool-image"><img src="images/image-compressor.png" alt="Image Compressor Tool" loading="lazy" data-original-src="images/image-compressor.png"></div>
+                        <h3>Coming Soon</h3>
+                        <p>Compress images without losing quality, optimize web visuals.</p>
+                    </div></a>
                 <!--Tool No.4-->
                 <a href="">
                     <div class="tool-card" data-name="QRcode Generator">
                         <div class="tool-image"><img src="images/background-remover.png" alt="Free Online QR Code Generator Tool" loading="lazy"></div>
-                        <h3>Foming Soon</h3>
+                        <h3>Coming Soon</h3>
                         <p></p>
                     </div></a>
-                </div>
+            </div>
 
-                <!-- Category 2: Social Media Tools -->
-                <h2 class="category-title" id="social-media-category"><i class="fa-solid fa-share-alt" aria-hidden="true"></i> Social Media Tools</h2>
-                <div class="tools-grid" data-category="social-media" aria-labelledby="social-media-category">
-                    <div class="tool-card" data-name="QR Code Generator">
-                        <div class="tool-image"><img src="images/qr-generator.png" alt="QR Generator" loading="lazy"></div>
-                        <h3>Coming Soon</h3>
-                        <p></p>
-                    </div>
-                    <div class="tool-card" data-name="Poster Generator">
-                        <div class="tool-image"><img src="images/poster-generator.png" alt="Poster Generator" loading="lazy"></div>
-                        <h3>Coming Soon</h3>
-                        <p></p>
-                    </div>
+            <!-- Category 2: Social Media Tools -->
+            <h2 class="category-title" id="social-media-category"><i class="fa-solid fa-share-alt" aria-hidden="true"></i> Social Media Tools</h2>
+            <div class="tools-grid" data-category="social-media" aria-labelledby="social-media-category">
+                <div class="tool-card" data-name="QR Code Generator">
+                    <div class="tool-image"><img src="images/qr-generator.png" alt="QR Generator" loading="lazy"></div>
+                    <h3>Coming Soon</h3>
+                    <p></p>
                 </div>
-
-                <!-- Category 3: Utility Tools -->
-                <h2 class="category-title" id="utility-category"><i class="fa-solid fa-toolbox" aria-hidden="true"></i> Utility Tools</h2>
-                <div class="tools-grid" data-category="utility" aria-labelledby="utility-category">
-                    <div class="tool-card" data-name="Password Generator">
-                        <div class="tool-image"><img src="images/password-generator.png" alt="Password Generator" loading="lazy"></div>
-                        <h3>Coming Soon</h3>
-                        <p></p>
-                    </div>
-                    <div class="tool-card" data-name="Unit Converter">
-                        <div class="tool-image"><img src="images/unit-converter.png" alt="Unit Converter" loading="lazy"></div>
-                        <h3>Coming Soon</h3>
-                        <p></p>
-                    </div>
+                <div class="tool-card" data-name="Poster Generator">
+                    <div class="tool-image"><img src="images/poster-generator.png" alt="Poster Generator" loading="lazy"></div>
+                    <h3>Coming Soon</h3>
+                    <p></p>
                 </div>
+            </div>
 
-                <!-- Category 4: SEO & Blogger Tools -->
-                <h2 class="category-title" id="seo-category"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> SEO & Blogger Tools</h2>
-                <div class="tools-grid" data-category="seo-blogger" aria-labelledby="seo-category">
-                    <div class="tool-card" data-name="Text To Slug">
-                        <div class="tool-image"><img src="images/text-slug.png" alt="Text to Slug" loading="lazy"></div>
-                        <h3>Coming Soon</h3>
-                        <p></p>
-                    </div>
-                    <div class="tool-card" data-name="Meta Tag Generator">
-                        <div class="tool-image"><img src="images/meta-tag.png" alt="Meta Tags" loading="lazy"></div>
-                        <h3>Coming Soon</h3>
-                        <p></p>
-                    </div>
+            <!-- Category 3: Utility Tools -->
+            <h2 class="category-title" id="utility-category"><i class="fa-solid fa-toolbox" aria-hidden="true"></i> Utility Tools</h2>
+            <div class="tools-grid" data-category="utility" aria-labelledby="utility-category">
+                <div class="tool-card" data-name="Password Generator">
+                    <div class="tool-image"><img src="images/password-generator.png" alt="Password Generator" loading="lazy"></div>
+                    <h3>Coming Soon</h3>
+                    <p></p>
                 </div>
+                <div class="tool-card" data-name="Unit Converter">
+                    <div class="tool-image"><img src="images/unit-converter.png" alt="Unit Converter" loading="lazy"></div>
+                    <h3>Coming Soon</h3>
+                    <p></p>
+                </div>
+            </div>
 
-                <!-- Category 5: Developer Tools -->
-                <h2 class="category-title" id="developer-category"><i class="fa-solid fa-code" aria-hidden="true"></i> Developer Tools</h2>
-                <div class="tools-grid" data-category="developer" aria-labelledby="developer-category">
-                    <a href="tools/unlock-page.html">
- <div class="tool-card" data-name="Unlock Page Generator">
-            <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/unlock page.webp" alt="Unlock Page Generator" loading="lazy" data-original-src="images/images/unlock page.webp"></div>
-            <h3>Unlock Page Generator</h3>
-            <p>Generate unlock pages instantly,Generate unlock links with ease.</p>
-        </div></a>
-        
-        <a href="tools/color-contrast-analyzer.html"><div class="tool-card" data-name="Color Contrast Analyzer Dev">
-            <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/
-/final_1091x1038.webp" alt="Color Contrast Analyzer" loading="lazy" data-original-src="https://deepmegatools.vercel.app/images/
-/final_1091x1038.webp"></div>
-<h3>Color Contrast Analyzer</h3>
-<p>Checks contrast ratio between text & background following WCAG.</p>
-        </div></a>
-  <a href="tools/auto-code-typing.html">  
- <div class="tool-card" data-name="Automatic Code Typing">
-            <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/final_731x757.webp" alt="Automatic Code Typing" loading="lazy" data-original-src="https://deepmegatools.vercel.app/images/final_731x757.webp"></div>
- <h3>Automatic Code Typing</h3>
-  <p>Paste HTML/CSS/JS code and watch automatic typing effect.</p>
-        </div></a>
-        <a href="tools/code-editor.html"><div class="tool-card" data-name="Live Code Editor">
-            <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/image_processed_1254x1254.webp" alt="Live Code Editor" loading="lazy" data-original-src="https://deepmegatools.vercel.app/images/image_processed_1254x1254.webp"></div>
-  <h3>Live Code Editor</h3>
-    <p>HTML/CSS/JS Editor with live preview and console.</p>
-        </div></a>
-        <a href="tools/css-border-Image.html">
-        <div class="tool-card" data-name="CSS Border Image">
-  <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/final_932x847.webp" alt="CSS Border Image" loading="lazy" data-original-src="https://deepmegatools.vercel.app/images/final_932x847.webp"></div>
-              <h3>CSS Border Image</h3>
-            <p>Generate border images live using images and gradients.</p>
-        </div></a>
-    
-        <div class="tool-card" data-name="Responsive Checker">
-            <div class="tool-image"><img src="images/responsive-checker.png" alt="Responsive Checker" loading="lazy" data-original-src="images/responsive-checker.png"></div>
-            <h3><!--Responsive Checker-->Coming Soon</h3>
-            <p>Test website responsiveness across multiple device sizes.</p>
+            <!-- Category 4: SEO & Blogger Tools -->
+            <h2 class="category-title" id="seo-category"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> SEO & Blogger Tools</h2>
+            <div class="tools-grid" data-category="seo-blogger" aria-labelledby="seo-category">
+                <div class="tool-card" data-name="Text To Slug">
+                    <div class="tool-image"><img src="images/text-slug.png" alt="Text to Slug" loading="lazy"></div>
+                    <h3>Coming Soon</h3>
+                    <p></p>
+                </div>
+                <div class="tool-card" data-name="Meta Tag Generator">
+                    <div class="tool-image"><img src="images/meta-tag.png" alt="Meta Tags" loading="lazy"></div>
+                    <h3>Coming Soon</h3>
+                    <p></p>
+                </div>
+            </div>
+
+            <!-- Category 5: Developer Tools -->
+            <h2 class="category-title" id="developer-category"><i class="fa-solid fa-code" aria-hidden="true"></i> Developer Tools</h2>
+            <div class="tools-grid" data-category="developer" aria-labelledby="developer-category">
+                <a href="tools/unlock-page.html">
+                    <div class="tool-card" data-name="Unlock Page Generator">
+                        <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/unlock page.webp" alt="Unlock Page Generator" loading="lazy" data-original-src="images/images/unlock page.webp"></div>
+                        <h3>Unlock Page Generator</h3>
+                        <p>Generate unlock pages instantly,Generate unlock links with ease.</p>
+                    </div></a>
+
+                <a href="tools/color-contrast-analyzer.html"><div class="tool-card" data-name="Color Contrast Analyzer Dev">
+                        <div class="tool-image"><img src="https://deepmegatools.vercel.app/images//final_1091x1038.webp" alt="Color Contrast Analyzer" loading="lazy" data-original-src="https://deepmegatools.vercel.app/images//final_1091x1038.webp"></div>
+                        <h3>Color Contrast Analyzer</h3>
+                        <p>Checks contrast ratio between text & background following WCAG.</p>
+                    </div></a>
+                <a href="tools/auto-code-typing.html">  
+                    <div class="tool-card" data-name="Automatic Code Typing">
+                        <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/final_731x757.webp" alt="Automatic Code Typing" loading="lazy" data-original-src="https://deepmegatools.vercel.app/images/final_731x757.webp"></div>
+                        <h3>Automatic Code Typing</h3>
+                        <p>Paste HTML/CSS/JS code and watch automatic typing effect.</p>
+                    </div></a>
+                <a href="tools/code-editor.html"><div class="tool-card" data-name="Live Code Editor">
+                        <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/image_processed_1254x1254.webp" alt="Live Code Editor" loading="lazy" data-original-src="https://deepmegatools.vercel.app/images/image_processed_1254x1254.webp"></div>
+                        <h3>Live Code Editor</h3>
+                        <p>HTML/CSS/JS Editor with live preview and console.</p>
+                    </div></a>
+                <a href="tools/css-border-Image.html">
+                    <div class="tool-card" data-name="CSS Border Image">
+                        <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/final_932x847.webp" alt="CSS Border Image" loading="lazy" data-original-src="https://deepmegatools.vercel.app/images/final_932x847.webp"></div>
+                        <h3>CSS Border Image</h3>
+                        <p>Generate border images live using images and gradients.</p>
+                    </div></a>
+
+                <div class="tool-card" data-name="Responsive Checker">
+                    <div class="tool-image"><img src="images/responsive-checker.png" alt="Responsive Checker" loading="lazy" data-original-src="images/responsive-checker.png"></div>
+                    <h3><!--Responsive Checker-->Coming Soon</h3>
+                    <p>Test website responsiveness across multiple device sizes.</p>
+                </div>
+            </div>
         </div>
-                </div>
-                </div>
 
-                <footer>
-                    <i class="fa-regular fa-copyright" aria-hidden="true"></i> 2026 Deep Mega Tools • All Rights Reserved •
-                    <span id="currentYear"></span> ✨ 5 categories | 24 powerful tools
-                </footer>
-            </main>
+        <footer>
+            <i class="fa-regular fa-copyright" aria-hidden="true"></i> 2026 Deep Mega Tools • All Rights Reserved •
+            <span id="currentYear"></span> ✨ 5 categories | 24 powerful tools
+        </footer>
+    </main>
 
-            <script>
-                // Optimized JavaScript with deferred execution
-                (function() {
-                    // Safe storage handler
-                    const safeStorage = {
-                        getItem: function(key) {
-                            try {
-                                return localStorage.getItem(key);
-                            } catch (e) {
-                                return null;
-                            }
-                        },
-                        setItem: function(key, value) {
-                            try {
-                                localStorage.setItem(key, value);
-                            } catch (e) {}
-                        }
-                    };
-
-                    // Theme toggle
-                    const themeToggleBtn = document.getElementById('themeToggleBtn');
-                    const themeIcon = document.getElementById('themeIcon');
-                    const bodyElement = document.body;
-
-                    const getInitialTheme = () => {
-                        const savedTheme = safeStorage.getItem('deepMegaTheme');
-                        if (savedTheme === 'light') return 'light';
-                        if (savedTheme === 'dark') return 'dark';
-                        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-                    };
-
-                    const applyTheme = (theme) => {
-                        if (theme === 'light') {
-                            bodyElement.classList.add('light-mode');
-                            themeIcon.className = 'fa-solid fa-moon';
-                            safeStorage.setItem('deepMegaTheme', 'light');
-                        } else {
-                            bodyElement.classList.remove('light-mode');
-                            themeIcon.className = 'fa-solid fa-sun';
-                            safeStorage.setItem('deepMegaTheme', 'dark');
-                        }
-                    };
-
-                    applyTheme(getInitialTheme());
-
-                    if (themeToggleBtn) {
-                        themeToggleBtn.addEventListener('click', () => {
-                            applyTheme(bodyElement.classList.contains('light-mode') ? 'dark' : 'light');
-                        });
-
-                        themeToggleBtn.addEventListener('keydown', (e) => {
-                            if (e.key === 'Enter' || e.key === ' ') {
-                                e.preventDefault();
-                                applyTheme(bodyElement.classList.contains('light-mode') ? 'dark' : 'light');
-                            }
-                        });
+    <script>
+        // Optimized JavaScript with deferred execution
+        (function() {
+            // Safe storage handler
+            const safeStorage = {
+                getItem: function(key) {
+                    try {
+                        return localStorage.getItem(key);
+                    } catch (e) {
+                        return null;
                     }
+                },
+                setItem: function(key, value) {
+                    try {
+                        localStorage.setItem(key, value);
+                    } catch (e) {}
+                }
+            };
 
-                    // Search functionality with debounce for better performance
-                    const searchInput = document.getElementById('searchInput');
-                    const allCards = document.querySelectorAll('.tool-card');
-                    const categoryTitles = document.querySelectorAll('.category-title');
-                    const categoryGrids = document.querySelectorAll('.tools-grid');
+            // Theme toggle
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            const themeIcon = document.getElementById('themeIcon');
+            const bodyElement = document.body;
 
-                    let searchTimeout;
+            const getInitialTheme = () => {
+                const savedTheme = safeStorage.getItem('deepMegaTheme');
+                if (savedTheme === 'light') return 'light';
+                if (savedTheme === 'dark') return 'dark';
+                return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+            };
 
-                    const filterTools = () => {
-                        const searchTerm = searchInput.value.toLowerCase().trim();
-                        let anyVisible = false;
-                        const categoryHasVisible = new Map();
+            const applyTheme = (theme) => {
+                if (theme === 'light') {
+                    bodyElement.classList.add('light-mode');
+                    themeIcon.className = 'fa-solid fa-moon';
+                    safeStorage.setItem('deepMegaTheme', 'light');
+                } else {
+                    bodyElement.classList.remove('light-mode');
+                    themeIcon.className = 'fa-solid fa-sun';
+                    safeStorage.setItem('deepMegaTheme', 'dark');
+                }
+            };
 
-                        allCards.forEach(card => {
-                            const name = (card.getAttribute('data-name') || '').toLowerCase();
-                            const title = card.querySelector('h3')?.innerText.toLowerCase() || '';
-                            const desc = card.querySelector('p')?.innerText.toLowerCase() || '';
-                            const match = searchTerm === '' || name.includes(searchTerm) || title.includes(
-                            searchTerm) || desc.includes(searchTerm);
+            applyTheme(getInitialTheme());
 
-                            card.style.display = match ? 'block' : 'none';
-                            if (match) {
-                                anyVisible = true;
-                                const parentGrid = card.closest('.tools-grid');
-                                if (parentGrid) categoryHasVisible.set(parentGrid, true);
-                            }
-                        });
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', () => {
+                    applyTheme(bodyElement.classList.contains('light-mode') ? 'dark' : 'light');
+                });
 
-                        categoryGrids.forEach(grid => {
-                            const hasVisible = categoryHasVisible.get(grid) === true;
-                            const title = grid.parentElement?.querySelector('.category-title');
-                            if (searchTerm !== '' && !hasVisible) {
-                                grid.style.display = 'none';
-                                if (title) title.style.display = 'none';
-                            } else {
-                                grid.style.display = '';
-                                if (title) title.style.display = '';
-                            }
-                        });
-
-                        let noResultMsg = document.getElementById('noResultMsg');
-                        if (!anyVisible && searchTerm !== '') {
-                            if (!noResultMsg) {
-                                noResultMsg = document.createElement('div');
-                                noResultMsg.id = 'noResultMsg';
-                                noResultMsg.setAttribute('role', 'status');
-                                noResultMsg.style.cssText =
-                                    'text-align:center;padding:60px 20px;color:var(--text-secondary);font-size:1.2rem;grid-column:1/-1';
-                                noResultMsg.innerHTML =
-                                    `<i class="fa-regular fa-compass fa-2x" style="display:block;margin-bottom:16px" aria-hidden="true"></i> No tools match "<strong>${escapeHtml(searchTerm)}</strong>". Try another keyword!`;
-                                document.getElementById('mainContent')?.appendChild(noResultMsg);
-                            } else {
-                                noResultMsg.style.display = 'block';
-                            }
-                        } else if (noResultMsg) {
-                            noResultMsg.style.display = 'none';
-                        }
-                    };
-
-                    const escapeHtml = (str) => str.replace(/[&<>]/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' } [
-                        m
-                    ] || m));
-
-                    if (searchInput) {
-                        searchInput.addEventListener('input', () => {
-                            clearTimeout(searchTimeout);
-                            searchTimeout = setTimeout(filterTools, 150);
-                        });
+                themeToggleBtn.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        applyTheme(bodyElement.classList.contains('light-mode') ? 'dark' : 'light');
                     }
+                });
+            }
 
-                    // Set current year
-                    const yearSpan = document.getElementById('currentYear');
-                    if (yearSpan) yearSpan.innerText = new Date().getFullYear();
+            // Search functionality with debounce for better performance
+            const searchInput = document.getElementById('searchInput');
+            const allCards = document.querySelectorAll('.tool-card');
+            const categoryTitles = document.querySelectorAll('.category-title');
+            const categoryGrids = document.querySelectorAll('.tools-grid');
 
-                    // Lazy load image fallback
-                    document.querySelectorAll('.tool-image img').forEach(img => {
-                        img.addEventListener('error', function() {
-                            this.onerror = null;
-                            this.src =
-                                'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="%2338bdf8" stroke-width="1.2"%3E%3Crect x="2" y="2" width="20" height="20" rx="2.18"%3E%3C/rect%3E%3Ccircle cx="8.5" cy="8.5" r="1.5"%3E%3C/circle%3E%3Cpolyline points="21 15 16 10 5 21"%3E%3C/polyline%3E%3C/svg%3E';
-                            this.style.cssText =
-                                'background:var(--bg-primary);padding:8px;object-fit:contain;width:70px;height:70px';
-                        });
-                    });
+            let searchTimeout;
 
-                    // Set cache-friendly cache headers via meta tags for static assets
-                    const cacheMeta = document.createElement('meta');
-                    cacheMeta.httpEquiv = 'Cache-Control';
-                    cacheMeta.content = 'public, max-age=604800, immutable';
-                    document.head.appendChild(cacheMeta);
-                })();
-            </script>
-        </body>
-        </html>
+            const filterTools = () => {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                let anyVisible = false;
+                const categoryHasVisible = new Map();
+
+                allCards.forEach(card => {
+                    const name = (card.getAttribute('data-name') || '').toLowerCase();
+                    const title = card.querySelector('h3')?.innerText.toLowerCase() || '';
+                    const desc = card.querySelector('p')?.innerText.toLowerCase() || '';
+                    const match = searchTerm === '' || name.includes(searchTerm) || title.includes(
+                        searchTerm) || desc.includes(searchTerm);
+
+                    card.style.display = match ? 'block' : 'none';
+                    if (match) {
+                        anyVisible = true;
+                        const parentGrid = card.closest('.tools-grid');
+                        if (parentGrid) categoryHasVisible.set(parentGrid, true);
+                    }
+                });
+
+                categoryGrids.forEach(grid => {
+                    const hasVisible = categoryHasVisible.get(grid) === true;
+                    const title = grid.parentElement?.querySelector('.category-title');
+                    if (searchTerm !== '' && !hasVisible) {
+                        grid.style.display = 'none';
+                        if (title) title.style.display = 'none';
+                    } else {
+                        grid.style.display = '';
+                        if (title) title.style.display = '';
+                    }
+                });
+
+                let noResultMsg = document.getElementById('noResultMsg');
+                if (!anyVisible && searchTerm !== '') {
+                    if (!noResultMsg) {
+                        noResultMsg = document.createElement('div');
+                        noResultMsg.id = 'noResultMsg';
+                        noResultMsg.setAttribute('role', 'status');
+                        noResultMsg.style.cssText =
+                            'text-align:center;padding:60px 20px;color:var(--text-secondary);font-size:1.2rem;grid-column:1/-1';
+                        noResultMsg.innerHTML =
+                            `<i class="fa-regular fa-compass fa-2x" style="display:block;margin-bottom:16px" aria-hidden="true"></i> No tools match "<strong>${escapeHtml(searchTerm)}</strong>". Try another keyword!`;
+                        document.getElementById('mainContent')?.appendChild(noResultMsg);
+                    } else {
+                        noResultMsg.style.display = 'block';
+                    }
+                } else if (noResultMsg) {
+                    noResultMsg.style.display = 'none';
+                }
+            };
+
+            const escapeHtml = (str) => str.replace(/[&<>]/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[
+                m
+            ] || m));
+
+            if (searchInput) {
+                searchInput.addEventListener('input', () => {
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(filterTools, 150);
+                });
+            }
+
+            // Set current year
+            const yearSpan = document.getElementById('currentYear');
+            if (yearSpan) yearSpan.innerText = new Date().getFullYear();
+
+            // Lazy load image fallback
+            document.querySelectorAll('.tool-image img').forEach(img => {
+                img.addEventListener('error', function() {
+                    this.onerror = null;
+                    this.src =
+                        'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="%2338bdf8" stroke-width="1.2"%3E%3Crect x="2" y="2" width="20" height="20" rx="2.18"%3E%3C/rect%3E%3Ccircle cx="8.5" cy="8.5" r="1.5"%3E%3C/circle%3E%3Cpolyline points="21 15 16 10 5 21"%3E%3C/polyline%3E%3C/svg%3E';
+                    this.style.cssText =
+                        'background:var(--bg-primary);padding:8px;object-fit:contain;width:70px;height:70px';
+                });
+            });
+
+            // Set cache-friendly cache headers via meta tags for static assets
+            const cacheMeta = document.createElement('meta');
+            cacheMeta.httpEquiv = 'Cache-Control';
+            cacheMeta.content = 'public, max-age=604800, immutable';
+            document.head.appendChild(cacheMeta);
+        })();
+    </script>
+</body>
+</html>

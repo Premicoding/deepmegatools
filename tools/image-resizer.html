@@ -1,0 +1,3511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- =========================
+    SoftwareApplication Schema
+    ========================= -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "Image Resizer Tool",
+            "applicationCategory": "MultimediaApplication",
+            "applicationSubCategory": "Image Editing Tool",
+            "operatingSystem": "Any",
+            "browserRequirements": "Requires JavaScript. Works in all modern web browsers.",
+            "url": "https://deepmegatools.vercel.app/image-resizer",
+            "image": "https://deepmegatools.vercel.app/images/image-resizer-tool.webp",
+            "description": "Resize images online without losing quality. Crop, rotate, change DPI, optimize file size, apply filters, and download high-quality images instantly.",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+            },
+            "creator": {
+                "@type": "Organization",
+                "name": "Deep Mega Tools"
+            },
+            "featureList": [
+                "Resize Images",
+                "Crop Images",
+                "Rotate Images",
+                "Adjust Image Quality",
+                "Change DPI",
+                "Target File Size",
+                "Multiple Output Formats",
+                "Live Preview",
+                "Mobile Friendly"
+            ]
+        }
+    </script>
+
+    <!-- =========================
+    FAQ Schema
+    ========================= -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [{
+                "@type": "Question",
+                "name": "Is this Image Resizer Tool free?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Deep Mega Tools Image Resizer is completely free to use."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Will resizing reduce image quality?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The tool preserves image quality while allowing you to optimize file size."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Which image formats are supported?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "JPG, JPEG, PNG, WEBP, GIF, BMP and SVG formats are supported."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Can I use it on mobile devices?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. The tool works on Android phones, iPhones, tablets, laptops and desktop computers."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Do I need to install any software?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. Everything works directly in your web browser without installation."
+                }
+            }, {
+                "@type": "Question",
+                "name": "Are my uploaded images secure?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Your images are processed securely and are not permanently stored or shared."
+                }
+            }]
+        }
+    </script>
+
+    <!-- =========================
+    Breadcrumb Schema
+    ========================= -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://deepmegatools.vercel.app/"
+            }, {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Image Tools",
+                "item": "https://deepmegatools.vercel.app/image-tools"
+            }, {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Image Resizer Tool",
+                "item": "https://deepmegatools.vercel.app/image-resizer"
+            }]
+        }
+    </script>
+
+    <!-- =========================
+    WebPage Schema
+    ========================= -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Free Online Image Resizer Tool",
+            "url": "https://deepmegatools.vercel.app/image-resizer",
+            "description": "Resize images online without losing quality using Deep Mega Tools. Crop, rotate, change DPI, optimize image size and download instantly.",
+            "inLanguage": "en",
+            "isPartOf": {
+                "@type": "WebSite",
+                "name": "Deep Mega Tools",
+                "url": "https://deepmegatools.vercel.app/"
+            },
+            "primaryImageOfPage": {
+                "@type": "ImageObject",
+                "url": "https://deepmegatools.vercel.app/images/image-resizer-tool.webp"
+            }
+        }
+    </script>
+
+    <!-- =========================
+    Organization Schema
+    ========================= -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Deep Mega Tools",
+            "url": "https://deepmegatools.vercel.app/",
+            "logo": "https://deepmegatools.vercel.app/favicon.ico",
+            "description": "Deep Mega Tools provides free online Image Tools, SEO Tools, Developer Tools, PDF Tools, AI Tools and many other useful web utilities.",
+            "founder": {
+                "@type": "Person",
+                "name": "Premi Coding"
+            },
+            "sameAs": [
+                "https://www.youtube.com/@PremiCoding"
+            ]
+        }
+    </script>
+    <meta charset="UTF-8">
+    <title>Free Online Image Resizer Tool - Resize Images Without Losing Quality</title>
+    <meta name="description" content="Free Online Image Resizer Tool to resize, crop, compress, adjust DPI, change image dimensions, optimize file size, and convert JPG, PNG, WEBP images without losing quality.">
+    <meta name="keywords" content="image resizer, resize image online, image compressor, crop image, image optimizer, JPG resize, PNG resize, WEBP converter, adjust DPI, free image tool">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://deepmegatools.vercel.app/image-resizer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+    <!-- FIXED: Load CSS asynchronously to avoid render-blocking -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css"></noscript>
+
+    <style>
+        
+        .hero-image {
+    width: 100%;
+    height: clamp(220px, 45vw, 650px);
+    overflow: hidden;
+    border-radius: 18px;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}    
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 20px 16px;
+            background: linear-gradient(145deg, #e0eafc 0%, #cfdef3 100%);
+            min-height: 100vh;
+            transition: background 0.3s ease, color 0.3s ease;
+            line-height: 1.7;
+            color: #0f172a;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(145deg, #111827, #1f2937);
+            color: #e2e8f0;
+        }
+
+        /* ============================================================
+               MAIN CONTAINER
+            ============================================================ */
+        main {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto 2.5rem auto;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            backdrop-filter: blur(2px);
+        }
+
+        body.dark-mode main {
+            background: rgba(15, 23, 42, 0.97);
+        }
+
+        /* ============================================================
+               ARTICLE SECTIONS — Shared Styles
+            ============================================================ */
+        #about,
+        #what-is,
+        #why,
+        #features,
+        #how-to-use,
+        #aspect-ratio,
+        #seo-benefits,
+        #social-media-sizes,
+        #best-practices,
+        #faq,
+        .related-tools,
+        #author,
+        #conclusion,
+        .cta {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto 2.2rem auto;
+            padding: 2rem 2.5rem;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        #about:hover,
+        #what-is:hover,
+        #why:hover,
+        #features:hover,
+        #how-to-use:hover,
+        #aspect-ratio:hover,
+        #seo-benefits:hover,
+        #social-media-sizes:hover,
+        #best-practices:hover,
+        #faq:hover,
+        .related-tools:hover,
+        #author:hover,
+        #conclusion:hover,
+        .cta:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+
+        body.dark-mode #about,
+        body.dark-mode #what-is,
+        body.dark-mode #why,
+        body.dark-mode #features,
+        body.dark-mode #how-to-use,
+        body.dark-mode #aspect-ratio,
+        body.dark-mode #seo-benefits,
+        body.dark-mode #social-media-sizes,
+        body.dark-mode #best-practices,
+        body.dark-mode #faq,
+        body.dark-mode .related-tools,
+        body.dark-mode #author,
+        body.dark-mode #conclusion,
+        body.dark-mode .cta {
+            background: rgba(30, 41, 59, 0.85);
+            border-color: rgba(71, 85, 105, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        body.dark-mode #about:hover,
+        body.dark-mode #what-is:hover,
+        body.dark-mode #why:hover,
+        body.dark-mode #features:hover,
+        body.dark-mode #how-to-use:hover,
+        body.dark-mode #aspect-ratio:hover,
+        body.dark-mode #seo-benefits:hover,
+        body.dark-mode #social-media-sizes:hover,
+        body.dark-mode #best-practices:hover,
+        body.dark-mode #faq:hover,
+        body.dark-mode .related-tools:hover,
+        body.dark-mode #author:hover,
+        body.dark-mode #conclusion:hover,
+        body.dark-mode .cta:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* --- headings inside articles --- */
+        #about h2,
+        #what-is h2,
+        #why h2,
+        #features h2,
+        #how-to-use h2,
+        #aspect-ratio h2,
+        #seo-benefits h2,
+        #social-media-sizes h2,
+        #best-practices h2,
+        #faq h2,
+        .related-tools h3,
+        #author h2,
+        #conclusion h2,
+        .cta h2 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.25;
+            margin-bottom: 1rem;
+            color: #0b3b22;
+            border-left: 6px solid #1e6f3f;
+            padding-left: 1rem;
+            background: linear-gradient(135deg, #0b3b22 0%, #1e6f3f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        #about h3,
+        #what-is h3,
+        #why h3,
+        #features h3,
+        #how-to-use h3,
+        #aspect-ratio h3,
+        #seo-benefits h3,
+        #social-media-sizes h3,
+        #best-practices h3,
+        #faq h3,
+        #author h3,
+        #conclusion h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin: 1.6rem 0 0.6rem 0;
+            color: #1e6f3f;
+            letter-spacing: -0.01em;
+        }
+
+        body.dark-mode #about h2,
+        body.dark-mode #what-is h2,
+        body.dark-mode #why h2,
+        body.dark-mode #features h2,
+        body.dark-mode #how-to-use h2,
+        body.dark-mode #aspect-ratio h2,
+        body.dark-mode #seo-benefits h2,
+        body.dark-mode #social-media-sizes h2,
+        body.dark-mode #best-practices h2,
+        body.dark-mode #faq h2,
+        body.dark-mode .related-tools h3,
+        body.dark-mode #author h2,
+        body.dark-mode #conclusion h2,
+        body.dark-mode .cta h2 {
+            background: linear-gradient(135deg, #4ade80 0%, #86efac 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            border-left-color: #4ade80;
+        }
+
+        body.dark-mode #about h3,
+        body.dark-mode #what-is h3,
+        body.dark-mode #why h3,
+        body.dark-mode #features h3,
+        body.dark-mode #how-to-use h3,
+        body.dark-mode #aspect-ratio h3,
+        body.dark-mode #seo-benefits h3,
+        body.dark-mode #social-media-sizes h3,
+        body.dark-mode #best-practices h3,
+        body.dark-mode #faq h3,
+        body.dark-mode #author h3,
+        body.dark-mode #conclusion h3 {
+            color: #86efac;
+        }
+
+        /* --- paragraphs --- */
+        #about p,
+        #what-is p,
+        #why p,
+        #features p,
+        #how-to-use p,
+        #aspect-ratio p,
+        #seo-benefits p,
+        #social-media-sizes p,
+        #best-practices p,
+        #faq p,
+        #author p,
+        #conclusion p,
+        .cta p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        body.dark-mode #about p,
+        body.dark-mode #what-is p,
+        body.dark-mode #why p,
+        body.dark-mode #features p,
+        body.dark-mode #how-to-use p,
+        body.dark-mode #aspect-ratio p,
+        body.dark-mode #seo-benefits p,
+        body.dark-mode #social-media-sizes p,
+        body.dark-mode #best-practices p,
+        body.dark-mode #faq p,
+        body.dark-mode #author p,
+        body.dark-mode #conclusion p,
+        body.dark-mode .cta p {
+            color: #e2e8f0;
+        }
+
+        /* --- lists --- */
+        #why ul,
+        #features ul,
+        #how-to-use ol,
+        #seo-benefits ul,
+        #best-practices ul,
+        .related-tools ul {
+            padding-left: 1.5rem;
+            margin: 1rem 0 1.5rem 0;
+        }
+
+        #why ul li,
+        #features ul li,
+        #how-to-use ol li,
+        #seo-benefits ul li,
+        #best-practices ul li,
+        .related-tools ul li {
+            font-size: 1.02rem;
+            line-height: 1.8;
+            margin-bottom: 0.4rem;
+            padding-left: 0.3rem;
+            list-style-type: none;
+            position: relative;
+        }
+
+        #why ul li::before,
+        #features ul li::before,
+        #seo-benefits ul li::before,
+        #best-practices ul li::before,
+        .related-tools ul li::before {
+            content: "✦ ";
+            color: #1e6f3f;
+            font-weight: 700;
+            position: absolute;
+            left: -1.2rem;
+        }
+
+        body.dark-mode #why ul li::before,
+        body.dark-mode #features ul li::before,
+        body.dark-mode #seo-benefits ul li::before,
+        body.dark-mode #best-practices ul li::before,
+        body.dark-mode .related-tools ul li::before {
+            color: #4ade80;
+        }
+
+        #how-to-use ol li {
+            list-style-type: decimal;
+            padding-left: 0.3rem;
+        }
+
+        #how-to-use ol li::marker {
+            color: #1e6f3f;
+            font-weight: 700;
+        }
+
+        body.dark-mode #how-to-use ol li::marker {
+            color: #4ade80;
+        }
+
+        /* --- tables --- */
+        #aspect-ratio table,
+        #social-media-sizes table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2rem 0 0.5rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        #aspect-ratio table thead,
+        #social-media-sizes table thead {
+            background: linear-gradient(135deg, #0b3b22, #1e6f3f);
+            color: #fff;
+        }
+
+        #aspect-ratio table th,
+        #social-media-sizes table th {
+            padding: 0.9rem 1.2rem;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+
+        #aspect-ratio table td,
+        #social-media-sizes table td {
+            padding: 0.8rem 1.2rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            font-size: 0.98rem;
+        }
+
+        #aspect-ratio table tbody tr:nth-child(even),
+        #social-media-sizes table tbody tr:nth-child(even) {
+            background: rgba(30, 111, 63, 0.04);
+        }
+
+        #aspect-ratio table tbody tr:hover,
+        #social-media-sizes table tbody tr:hover {
+            background: rgba(30, 111, 63, 0.08);
+            transition: background 0.2s;
+        }
+
+        body.dark-mode #aspect-ratio table thead,
+        body.dark-mode #social-media-sizes table thead {
+            background: linear-gradient(135deg, #065f46, #1e6f3f);
+        }
+
+        body.dark-mode #aspect-ratio table td,
+        body.dark-mode #social-media-sizes table td {
+            border-bottom-color: rgba(255, 255, 255, 0.08);
+            color: #e2e8f0;
+        }
+
+        body.dark-mode #aspect-ratio table tbody tr:nth-child(even),
+        body.dark-mode #social-media-sizes table tbody tr:nth-child(even) {
+            background: rgba(74, 222, 128, 0.06);
+        }
+
+        body.dark-mode #aspect-ratio table tbody tr:hover,
+        body.dark-mode #social-media-sizes table tbody tr:hover {
+            background: rgba(74, 222, 128, 0.12);
+        }
+
+        /* --- FAQ details/summary --- */
+        #faq details {
+            margin-bottom: 0.8rem;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        body.dark-mode #faq details {
+            background: rgba(30, 41, 59, 0.6);
+            border-color: rgba(71, 85, 105, 0.3);
+        }
+
+        #faq details:hover {
+            border-color: #1e6f3f;
+        }
+
+        body.dark-mode #faq details:hover {
+            border-color: #4ade80;
+        }
+
+        #faq summary {
+            padding: 1rem 1.5rem;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            color: #0b3b22;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: background 0.2s, color 0.2s;
+            list-style: none;
+            position: relative;
+        }
+
+        #faq summary::-webkit-details-marker {
+            display: none;
+        }
+
+        #faq summary::after {
+            content: "▼";
+            font-size: 0.75rem;
+            margin-left: auto;
+            color: #1e6f3f;
+            transition: transform 0.25s ease;
+        }
+
+        #faq details[open] summary::after {
+            transform: rotate(180deg);
+        }
+
+        #faq summary:hover {
+            background: rgba(30, 111, 63, 0.05);
+        }
+
+        body.dark-mode #faq summary {
+            color: #86efac;
+        }
+
+        body.dark-mode #faq summary::after {
+            color: #4ade80;
+        }
+
+        body.dark-mode #faq summary:hover {
+            background: rgba(74, 222, 128, 0.08);
+        }
+
+        #faq details p {
+            padding: 0 1.5rem 1.2rem 1.5rem;
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #1e293b;
+        }
+
+        body.dark-mode #faq details p {
+            color: #e2e8f0;
+        }
+
+        /* --- related tools --- */
+        .related-tools ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .related-tools ul li {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0;
+        }
+
+        .related-tools ul li::before {
+            display: none;
+        }
+
+        .related-tools ul li a {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            background: rgba(30, 111, 63, 0.08);
+            border-radius: 40px;
+            color: #0b3b22;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: background 0.25s, color 0.25s, transform 0.15s;
+            border: 1px solid transparent;
+        }
+
+        .related-tools ul li a:hover {
+            background: #1e6f3f;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 111, 63, 0.25);
+        }
+
+        body.dark-mode .related-tools ul li a {
+            background: rgba(74, 222, 128, 0.12);
+            color: #86efac;
+        }
+
+        body.dark-mode .related-tools ul li a:hover {
+            background: #4ade80;
+            color: #0b3b22;
+            box-shadow: 0 4px 12px rgba(74, 222, 128, 0.3);
+        }
+
+        /* --- CTA --- */
+        .cta {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(11, 59, 34, 0.05), rgba(30, 111, 63, 0.08));
+            border: 2px solid rgba(30, 111, 63, 0.15);
+        }
+
+        .cta h2 {
+            text-align: center;
+            border-left: none;
+            padding-left: 0;
+            background: linear-gradient(135deg, #0b3b22 0%, #1e6f3f 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        body.dark-mode .cta {
+            background: linear-gradient(135deg, rgba(74, 222, 128, 0.06), rgba(30, 111, 63, 0.12));
+            border-color: rgba(74, 222, 128, 0.2);
+        }
+
+        body.dark-mode .cta h2 {
+            background: linear-gradient(135deg, #4ade80 0%, #86efac 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta p {
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .cta strong {
+            color: #0b3b22;
+        }
+
+        body.dark-mode .cta strong {
+            color: #86efac;
+        }
+
+        /* --- special: "Free Online Image Resizer Tool" heading at top --- */
+        body>h1:first-of-type {
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto 1.2rem auto;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #0b3b22;
+            text-align: center;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            padding: 0 0.5rem;
+        }
+
+        body.dark-mode>h1:first-of-type {
+            color: #86efac;
+        }
+
+        @media (max-width: 680px) {
+            body>h1:first-of-type {
+                font-size: 1.6rem;
+            }
+
+            #about,
+            #what-is,
+            #why,
+            #features,
+            #how-to-use,
+            #aspect-ratio,
+            #seo-benefits,
+            #social-media-sizes,
+            #best-practices,
+            #faq,
+            .related-tools,
+            #author,
+            #conclusion,
+            .cta {
+                padding: 1.2rem 1.2rem;
+                margin-bottom: 1.5rem;
+                border-radius: 1.2rem;
+            }
+
+            #about h2,
+            #what-is h2,
+            #why h2,
+            #features h2,
+            #how-to-use h2,
+            #aspect-ratio h2,
+            #seo-benefits h2,
+            #social-media-sizes h2,
+            #best-practices h2,
+            #faq h2,
+            .related-tools h3,
+            #author h2,
+            #conclusion h2,
+            .cta h2 {
+                font-size: 1.4rem;
+                padding-left: 0.7rem;
+                border-left-width: 4px;
+            }
+
+            #about h3,
+            #what-is h3,
+            #why h3,
+            #features h3,
+            #how-to-use h3,
+            #aspect-ratio h3,
+            #seo-benefits h3,
+            #social-media-sizes h3,
+            #best-practices h3,
+            #faq h3,
+            #author h3,
+            #conclusion h3 {
+                font-size: 1.15rem;
+            }
+
+            #about p,
+            #what-is p,
+            #why p,
+            #features p,
+            #how-to-use p,
+            #aspect-ratio p,
+            #seo-benefits p,
+            #social-media-sizes p,
+            #best-practices p,
+            #faq p,
+            #author p,
+            #conclusion p,
+            .cta p {
+                font-size: 0.98rem;
+            }
+
+            #why ul li,
+            #features ul li,
+            #how-to-use ol li,
+            #seo-benefits ul li,
+            #best-practices ul li,
+            .related-tools ul li {
+                font-size: 0.96rem;
+            }
+
+            #aspect-ratio table th,
+            #social-media-sizes table th,
+            #aspect-ratio table td,
+            #social-media-sizes table td {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            #faq summary {
+                font-size: 0.98rem;
+                padding: 0.8rem 1rem;
+            }
+
+            #faq details p {
+                padding: 0 1rem 1rem 1rem;
+                font-size: 0.95rem;
+            }
+
+            .related-tools ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .related-tools ul li a {
+                display: block;
+                text-align: center;
+            }
+
+            .cta h2 {
+                font-size: 1.3rem;
+            }
+
+            #aspect-ratio table,
+            #social-media-sizes table {
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+        }
+
+        @media (max-width: 400px) {
+            body {
+                padding: 12px 8px;
+            }
+
+            #about,
+            #what-is,
+            #why,
+            #features,
+            #how-to-use,
+            #aspect-ratio,
+            #seo-benefits,
+            #social-media-sizes,
+            #best-practices,
+            #faq,
+            .related-tools,
+            #author,
+            #conclusion,
+            .cta {
+                padding: 1rem 0.8rem;
+                border-radius: 1rem;
+            }
+
+            body>h1:first-of-type {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* ============================================================
+               TOOL STYLES (preserved & integrated)
+            ============================================================ */
+        .app-header {
+            background: linear-gradient(135deg, #0b3b22, #0a5c2e);
+            padding: 24px 24px 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            border-bottom: 3px solid #ffb347;
+        }
+
+        .app-header h1 {
+            margin: 0;
+            font-size: 1.85rem;
+            color: white;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+        }
+
+        h2 {
+            margin: 0 0 16px 0;
+            font-size: 1.4rem;
+            color: #1e293b;
+        }
+
+        body.dark-mode h2 {
+            color: #f1f5f9;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .lightmode-toggle-header {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            font-weight: bold;
+            padding: 8px 18px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .lightmode-toggle-header:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: scale(0.97);
+        }
+
+        .content-inner {
+            padding: 20px 28px 28px 28px;
+        }
+
+        .upload-area,
+        .info-panel,
+        .live-preview-card,
+        .crop-actions-group,
+        .filter-panel {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            transition: background 0.2s;
+        }
+
+        .upload-area,
+        .info-panel,
+        .live-preview-card,
+        .crop-actions-group,
+        .filter-panel,
+        .ctrl-group label,
+        .info-item,
+        .live-preview-card span,
+        .compare-before span,
+        .compare-after span {
+            color: #0f172a;
+        }
+
+        body.dark-mode .upload-area,
+        body.dark-mode .info-panel,
+        body.dark-mode .live-preview-card,
+        body.dark-mode .crop-actions-group,
+        body.dark-mode .filter-panel,
+        body.dark-mode .ctrl-group label,
+        body.dark-mode .info-item,
+        body.dark-mode .live-preview-card span,
+        body.dark-mode .compare-before span,
+        body.dark-mode .compare-after span {
+            color: #e2e8f0;
+        }
+
+        .upload-area {
+            border: 1px dashed #3b82f6;
+            text-align: center;
+        }
+
+        .file-label {
+            display: inline-block;
+            background: #1e6f3f;
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .file-label:hover {
+            background: #0f4d2e;
+            transform: scale(0.97);
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .info-panel {
+            background: #eef2ff;
+            border-left: 6px solid #2c7a47;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .info-item {
+            background: white;
+            padding: 4px 12px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: baseline;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        body.dark-mode .info-item {
+            background: #1e293b;
+            color: #f1f5f9;
+        }
+
+        .live-preview-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            background: #fef9e3;
+        }
+
+        .live-size-badge {
+            padding: 5px 14px;
+            border-radius: 40px;
+            font-family: monospace;
+        }
+
+        .image-stage {
+            background: #1e1f22;
+            border-radius: 24px;
+            padding: 12px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .crop-wrapper {
+            max-width: 100%;
+            overflow: hidden;
+            border-radius: 16px;
+            background: #2d2f36;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #cropImage {
+            max-width: 100%;
+            display: block;
+            margin: 0 auto;
+            transition: transform 0.1s ease, filter 0.1s ease;
+            width: auto;
+            height: auto;
+        }
+
+        /* ========== CUSTOM ROUNDED CROPPER HANDLES ========== */
+        .cropper-point {
+            background-color: #ffffff !important;
+            border: 2px solid #1e6f3f !important;
+            border-radius: 50% !important;
+            width: 14px !important;
+            height: 14px !important;
+            opacity: 0.95 !important;
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+            transition: transform 0.1s, background 0.1s;
+        }
+
+        .cropper-point:hover {
+            background-color: #ffb347 !important;
+            transform: scale(1.2);
+            border-color: #fff !important;
+        }
+
+        .cropper-point.point-se,
+        .cropper-point.point-sw,
+        .cropper-point.point-ne,
+        .cropper-point.point-nw {
+            background-color: #ffb347 !important;
+            border: 2px solid white !important;
+        }
+
+        .cropper-view-box {
+            outline: 2px solid #2c7a47 !important;
+            outline-color: #2c7a47 !important;
+            border-radius: 8px !important;
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .cropper-dashed {
+            border-color: #ffffffaa !important;
+        }
+
+        .cropper-center::before,
+        .cropper-center::after {
+            background-color: #ffffffcc !important;
+        }
+
+        .cropper-face {
+            background-color: rgba(0, 0, 0, 0.35) !important;
+        }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px 20px;
+            margin-bottom: 28px;
+        }
+
+        .crop-actions-group {
+            grid-column: span 2;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            background: #f1f5f9;
+        }
+
+        button,
+        .crop-actions-group select,
+        .crop-actions-group button {
+            padding: 8px 16px;
+            border-radius: 40px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            background: white;
+            color: black;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: 0.1s;
+        }
+
+        button:active {
+            transform: scale(0.96);
+        }
+
+        .btn-crop {
+            background: #2563eb;
+            color: white;
+        }
+
+        .btn-reset-crop {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-enable-crop {
+            background: #16a34a;
+            color: white;
+        }
+
+        .btn-disable-crop {
+            background: #dc2626;
+            color: white;
+        }
+
+        .btn-download {
+            background: #0f3b2c;
+            color: white;
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+        }
+
+        .ctrl-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .dual-input {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .dual-input input,
+        .ctrl-group select,
+        .ctrl-group input {
+            flex: 1;
+            padding: 10px 12px;
+            border-radius: 20px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .rotate-reset-wrapper {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .compare-wrapper {
+            margin: 20px 0;
+        }
+
+        .compare-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .compare-before,
+        .compare-after {
+            background: #f8fafc;
+            padding: 10px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .compare-before img,
+        .compare-after img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            border-radius: 10px;
+            display: block;
+            margin: 0 auto;
+            background: #f0f0f0;
+        }
+
+        .filter-panel {
+            background: #f3e8ff;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 10px;
+            align-items: center;
+            padding: 14px 16px;
+        }
+
+        .filter-panel .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 8px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .filter-panel .filter-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #4a1a7a;
+            margin-right: 4px;
+        }
+
+        body.dark-mode .filter-panel .filter-label {
+            color: #c084fc;
+        }
+
+        .btn-filter {
+            background: #9333ea;
+            color: white;
+            font-size: 0.78rem;
+            padding: 5px 12px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            transition: 0.15s;
+            white-space: nowrap;
+        }
+
+        .btn-filter:hover {
+            transform: scale(0.96);
+            opacity: 0.9;
+        }
+
+        .btn-filter-active {
+            background: #7e22ce;
+            box-shadow: 0 0 0 2px #c084fc;
+        }
+
+        .filter-sliders-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 18px;
+            width: 100%;
+            margin-top: 6px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(128, 128, 128, 0.2);
+        }
+
+        .filter-sliders-wrap label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #1e293b;
+        }
+
+        body.dark-mode .filter-sliders-wrap label {
+            color: #e2e8f0;
+        }
+
+        .filter-sliders-wrap input[type="range"] {
+            width: 80px;
+            height: 4px;
+            border-radius: 4px;
+            background: #cbd5e1;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .filter-sliders-wrap input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #7e22ce;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .filter-sliders-wrap input[type="range"]::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #7e22ce;
+            cursor: pointer;
+            border: 2px solid white;
+        }
+
+        .filter-sliders-wrap .slider-val {
+            min-width: 28px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #4a1a7a;
+            text-align: center;
+        }
+
+        body.dark-mode .filter-sliders-wrap .slider-val {
+            color: #c084fc;
+        }
+
+        .undo-redo-group {
+            display: flex;
+            gap: 6px;
+        }
+
+        .btn-undo-redo {
+            background: #475569;
+            color: white;
+            font-size: 0.78rem;
+            padding: 5px 12px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-undo-redo:hover {
+            opacity: 0.85;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(145deg, #111827, #1f2937);
+            color: #fff;
+        }
+
+        body.dark-mode main,
+        body.dark-mode .info-item,
+        body.dark-mode .crop-actions-group,
+        body.dark-mode .live-preview-card,
+        body.dark-mode .upload-area,
+        body.dark-mode .compare-before,
+        body.dark-mode .compare-after,
+        body.dark-mode .filter-panel {
+            background: #0f172a;
+        }
+
+        body.dark-mode input,
+        body.dark-mode select,
+        body.dark-mode button:not(.lightmode-toggle-header) {
+            background: #1e293b;
+            color: white;
+            border-color: #334155;
+        }
+
+        body.dark-mode .lightmode-toggle-header {
+            background: #334155;
+            border-color: #475569;
+            color: #f1f5f9;
+        }
+
+        body.dark-mode .info-panel {
+            background: #1e293b;
+            border-left-color: #4ade80;
+        }
+
+        body.dark-mode .live-preview-card {
+            background: #1e1e2f;
+        }
+
+        body.dark-mode .image-stage {
+            background: #0a0c10;
+        }
+
+        body.dark-mode .crop-wrapper {
+            background: #1f222a;
+        }
+
+        body.dark-mode .compare-before img,
+        body.dark-mode .compare-after img {
+            background: #1e293b;
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        body.dark-mode .btn-undo-redo {
+            background: #64748b;
+            color: #f8fafc;
+        }
+
+        body.dark-mode .btn-filter {
+            background: #a855f7;
+        }
+
+        body.dark-mode .btn-crop {
+            background: #3b82f6;
+        }
+
+        body.dark-mode .btn-enable-crop {
+            background: #22c55e;
+        }
+
+        body.dark-mode .btn-disable-crop {
+            background: #ef4444;
+        }
+
+        body.dark-mode .filter-sliders-wrap input[type="range"] {
+            background: #334155;
+        }
+
+        body.dark-mode .filter-sliders-wrap input[type="range"]::-webkit-slider-thumb {
+            background: #a855f7;
+        }
+
+        body.dark-mode .filter-sliders-wrap input[type="range"]::-moz-range-thumb {
+            background: #a855f7;
+        }
+
+        .filter-group-label {
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: #4a1a7a;
+            margin-right: 4px;
+            display: inline-block;
+        }
+
+        body.dark-mode .filter-group-label {
+            color: #c084fc;
+        }
+
+        @media (max-width: 680px) {
+            .controls-grid,
+            .crop-actions-group {
+                grid-template-columns: 1fr;
+            }
+            .crop-actions-group {
+                grid-column: span 1;
+            }
+            .compare-box {
+                grid-template-columns: 1fr;
+            }
+            .content-inner {
+                padding: 16px;
+            }
+            .app-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .cropper-point {
+                width: 12px !important;
+                height: 12px !important;
+            }
+            .filter-sliders-wrap label {
+                flex: 1 1 45%;
+            }
+            .filter-sliders-wrap input[type="range"] {
+                width: 60px;
+            }
+            .btn-filter {
+                font-size: 0.7rem;
+                padding: 4px 10px;
+            }
+        }
+
+        /* scroll margin for anchor links */
+        #about,
+        #what-is,
+        #why,
+        #features,
+        #how-to-use,
+        #aspect-ratio,
+        #seo-benefits,
+        #social-media-sizes,
+        #best-practices,
+        #faq,
+        .related-tools,
+        #author,
+        #conclusion,
+        .cta {
+            scroll-margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    TOP HEADING (outside main)
+    ============================================================ -->
+    <h1>Free Online Image Resizer Tool – Resize Images Without Losing Quality</h1>
+
+    <!-- ============================================================
+    ABOUT SECTION (moved outside main)
+    ============================================================ -->
+    <section id="about">
+        <article>
+            <p>
+                High-quality images are essential for websites, social media, online applications, blogs, and digital marketing. However, uploading images with incorrect dimensions or large file sizes can slow down your website, reduce user experience, and even affect your search engine rankings.
+            </p>       
+<img src="https://deepmegatools.vercel.app/images/final_1693x929.webp"
+     alt="alt="Free Online Image Resizer Tool to Resize JPG PNG WEBP Images Without Losing Quality"
+     class="article-image"
+     loading="lazy"
+     decoding="async">  
+      <p>
+The <strong>Free Online Image Resizer Tool</strong> by <strong>Deep Mega Tools</strong> allows you to resize images quickly without compromising quality. Whether you need to adjust image dimensions, crop photos, change DPI, reduce file size, apply filters, or convert image formats, this all-in-one tool makes the entire process simple and efficient.
+            </p>
+            <p>
+                Supporting popular formats including JPG, JPEG, PNG, WEBP, GIF, BMP, and SVG, our tool works seamlessly across desktops, tablets, and smartphones. No software installation or registration is required—simply upload your image, customize the settings, and download the optimized version within seconds.
+            </p>
+        </article>
+    </section>
+
+    <!-- ============================================================
+    MAIN TOOL
+    ============================================================ -->
+    <main>
+        <div class="app-header">
+            <h1>🎨 Image Resizer</h1>
+            <div class="header-actions">
+                <button id="lightModeHeaderBtn" class="lightmode-toggle-header" aria-label="Toggle dark mode">🌙 Dark Mode</button>
+            </div>
+        </div>
+
+        <div class="content-inner">
+            <h2 class="visually-hidden">Image Upload &amp; Presets</h2>
+            <div class="upload-area">
+                <label class="file-label" for="imageFile">📂 Choose Image</label>
+                <input type="file" id="imageFile" accept="image/jpeg,image/png,image/webp,image/bmp,image/gif,image/svg+xml">
+                <div style="font-size: 12px; margin-top: 8px;">✨ Drag &amp; Drop anywhere or Ctrl+V to Paste image</div>
+            </div>
+
+            <div class="ctrl-group">
+                <label for="presetSize">📱 Social Media Presets</label>
+                <select id="presetSize">
+                    <option value="">-- Select Preset --</option>
+                    <optgroup label="📘 Facebook"><option value="170x170">Profile: 170×170</option><option value="820x312">Cover: 820×312</option><option value="1200x900">Post: 1200×900</option><option value="1200x630">Landscape Post: 1200×630</option><option value="1080x1920">Story: 1080×1920</option><option value="1280x720">Ad: 1280×720</option><option value="1920x1005">Event Cover: 1920×1005</option><option value="1640x856">Group Cover: 1640×856</option></optgroup>
+                    <optgroup label="📷 Instagram"><option value="320x320">Profile: 320×320</option><option value="1080x1080">Post Square: 1080×1080</option><option value="1080x1350">Portrait: 1080×1350</option><option value="1080x566">Landscape: 1080×566</option><option value="1080x1920">Story: 1080×1920</option></optgroup>
+                    <optgroup label="𝕏 Twitter"><option value="400x400">Profile: 400×400</option><option value="1500x500">Header: 1500×500</option><option value="1024x512">Post Image: 1024×512</option></optgroup>
+                    <optgroup label="🔗 LinkedIn"><option value="400x400">Profile: 400×400</option><option value="1584x396">Cover: 1584×396</option><option value="1200x627">Post: 1200×627</option></optgroup>
+                    <optgroup label="📌 Pinterest"><option value="165x165">Profile: 165×165</option><option value="1000x1500">Pin: 1000×1500</option></optgroup>
+                    <optgroup label="▶️ YouTube"><option value="800x800">Profile: 800×800</option><option value="2560x1440">Channel Art: 2560×1440</option><option value="1280x720">Thumbnail: 1280×720</option></optgroup>
+                    <optgroup label="🎵 TikTok"><option value="200x200">Profile: 200×200</option><option value="1080x1920">Video: 1080×1920</option></optgroup>
+                    <optgroup label="🖨️ Print &amp; Photo Sizes"><option value="413x531">Passport: 413×531</option><option value="1200x1800">4×6 Photo: 1200×1800</option><option value="1500x2100">5×7 Photo: 1500×2100</option><option value="2400x3000">8×10 Photo: 2400×3000</option><option value="3000x3600">10×12 Photo: 3000×3600</option></optgroup>
+                    <optgroup label="📐 Aspect Ratios"><option value="1x1">1:1 (Square)</option><option value="4x3">4:3</option><option value="16x9">16:9 (Widescreen)</option><option value="21x9">21:9 (Cinemascope)</option></optgroup>
+                    <optgroup label="📄 Paper Sizes"><option value="2480x3508">A4: 2480×3508</option><option value="1748x2480">A5: 1748×2480</option></optgroup>
+                </select>
+            </div>
+
+            <!-- ===== FILTER PANEL ===== -->
+            <div class="filter-panel" id="filterPanel">
+                <span style="font-weight:700; font-size:0.95rem; color:#4a1a7a; width:100%;">🎨 Image Filters &amp; Adjustments</span>
+
+                <div class="filter-row">
+                    <span class="filter-group-label">Presets:</span>
+                    <button id="filterNone" class="btn-filter btn-filter-active">🔄 Normal</button>
+                    <button id="filterGrayscale" class="btn-filter">⚫ Grayscale</button>
+                    <button id="filterSepia" class="btn-filter">🟤 Sepia</button>
+                    <button id="filterHueRotate" class="btn-filter">🌈 Hue Rotate</button>
+                    <button id="filterSaturate" class="btn-filter">🎨 Saturation</button>
+                    <button id="filterBlur" class="btn-filter">💫 Blur</button>
+                    <button id="filterInvert" class="btn-filter">🔲 Invert</button>
+                    <button id="filterWarmth" class="btn-filter">☀️ Warmth</button>
+                    <button id="filterVintage" class="btn-filter">📟 Vintage</button>
+                    <button id="filterNoir" class="btn-filter">🖤 Noir</button>
+                    <button id="filterPastel" class="btn-filter">🌸 Pastel</button>
+                    <button id="filterDuotone" class="btn-filter">🎭 Duotone</button>
+                    <button id="filterSolarize" class="btn-filter">☀️ Solarize</button>
+                    <button id="filterPosterize" class="btn-filter">🎯 Posterize</button>
+                    <button id="filterEmboss" class="btn-filter">🔮 Emboss</button>
+                    <button id="filterSharpen" class="btn-filter">🔪 Sharpen</button>
+                    <button id="filterVibrance" class="btn-filter">💜 Vibrance</button>
+                    <button id="filterHDR" class="btn-filter">🌅 HDR</button>
+                    <button id="filterCrossProcess" class="btn-filter">🎞️ Cross Process</button>
+                    <button id="filterLomo" class="btn-filter">📸 Lomo</button>
+                    <button id="filterFade" class="btn-filter">🌫️ Fade</button>
+                </div>
+
+                <div class="filter-row" style="margin-top:4px;">
+                    <span class="filter-group-label">Adjust:</span>
+                    <div class="undo-redo-group">
+                        <button id="undoBtn" class="btn-undo-redo" title="Undo (Ctrl+Z)">↩️ Undo</button>
+                        <button id="redoBtn" class="btn-undo-redo" title="Redo (Ctrl+Y)">↪️ Redo</button>
+                    </div>
+                </div>
+
+                <!-- All adjustment sliders -->
+                <div class="filter-sliders-wrap" id="filterSlidersWrap">
+                    <label>☀️ Brightness <input type="range" id="brightnessSlider" min="-100" max="100" value="0"><span class="slider-val" id="brightnessVal">0</span></label>
+                    <label>🎨 Contrast <input type="range" id="contrastSlider" min="-100" max="100" value="0"><span class="slider-val" id="contrastVal">0</span></label>
+                    <label>🌈 Hue <input type="range" id="hueSlider" min="0" max="360" value="0"><span class="slider-val" id="hueVal">0°</span></label>
+                    <label>🎨 Saturation <input type="range" id="saturationSlider" min="0" max="200" value="100"><span class="slider-val" id="saturationVal">100%</span></label>
+                    <label>💫 Blur <input type="range" id="blurSlider" min="0" max="20" value="0" step="0.5"><span class="slider-val" id="blurVal">0px</span></label>
+                    <label>🔲 Invert <input type="range" id="invertSlider" min="0" max="100" value="0"><span class="slider-val" id="invertVal">0%</span></label>
+                    <label>☀️ Temperature <input type="range" id="temperatureSlider" min="-100" max="100" value="0"><span class="slider-val" id="temperatureVal">0</span></label>
+                    <label>🔪 Sharpness <input type="range" id="sharpnessSlider" min="0" max="100" value="0"><span class="slider-val" id="sharpnessVal">0</span></label>
+                    <label>💜 Vibrance <input type="range" id="vibranceSlider" min="0" max="100" value="0"><span class="slider-val" id="vibranceVal">0</span></label>
+                    <label>📸 Exposure <input type="range" id="exposureSlider" min="-100" max="100" value="0"><span class="slider-val" id="exposureVal">0</span></label>
+                    <label>🔆 Gamma <input type="range" id="gammaSlider" min="0" max="200" value="100"><span class="slider-val" id="gammaVal">100%</span></label>
+                    <label>🌑 Shadows <input type="range" id="shadowsSlider" min="-100" max="100" value="0"><span class="slider-val" id="shadowsVal">0</span></label>
+                    <label>☀️ Highlights <input type="range" id="highlightsSlider" min="-100" max="100" value="0"><span class="slider-val" id="highlightsVal">0</span></label>
+                </div>
+            </div>
+            <!-- ===== END FILTER PANEL ===== -->
+
+            <div class="compare-wrapper">
+                <h2>🖼️ Before / After Preview</h2>
+                <div class="compare-box">
+                    <div class="compare-before">
+                        <img id="beforeImage" alt="Original image" style="width:100%; height:auto; aspect-ratio:16/9;">
+                        <span>Original</span>
+                    </div>
+                    <div class="compare-after">
+                        <img id="afterImage" alt="Edited image" style="width:100%; height:auto; aspect-ratio:16/9;">
+                        <span>After Edits</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-bar" style="display: flex; gap: 12px; margin-bottom: 12px;">
+                <button id="copyImageBtn" style="background:#7c3aed; color:white;">📋 Copy Image to Clipboard</button>
+            </div>
+
+            <div class="info-panel" id="metaPanel">
+                <div class="info-item">📷 Format: <span id="metaFormat">—</span></div>
+                <div class="info-item">📏 Original Size: <span id="metaDims">— x — px</span></div>
+                <div class="info-item">💾 File Size: <span id="metaSize">—</span></div>
+            </div>
+
+            <div class="live-preview-card">
+                <span>🔍 <strong>Live Final Size (Auto-updates)</strong></span>
+                <span style="background-color:blue;color:white;font-weight:900;" id="liveProcessedSize" class="live-size-badge">— KB</span>
+                <button id="refreshLiveBtn" class="refresh-live" style="background:#ffb347;">🔄 Refresh</button>
+            </div>
+
+            <div class="image-stage">
+                <div class="crop-wrapper">
+                    <!-- Added fetchpriority and decoding for LCP optimization -->
+                    <img id="cropImage" alt="Image preview area" style="max-width:100%; height:auto; display:block;" fetchpriority="high" decoding="async" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%23333'/%3E%3Ctext x='50%25' y='50%25' font-size='14' fill='%23aaa' text-anchor='middle' dy='.3em'%3E⬆️ Upload an image to start%3C/text%3E%3C/svg%3E">
+                </div>
+            </div>
+
+            <div class="controls-grid">
+                <div class="crop-actions-group">
+                    <span class="crop-label">✂️ Crop Controls</span>
+                    <button id="enableCropBtn" class="btn-enable-crop">✅ Enable Crop</button>
+                    <button id="disableCropBtn" class="btn-disable-crop">❌ Disable Crop</button>
+                    <span id="cropStatusBadge" class="crop-status" style="background:#e2e8f0; padding:4px 12px; border-radius:30px;">⚫ Crop: OFF</span>
+
+                    <label for="aspectRatioSelect" class="visually-hidden">Aspect Ratio Preset</label>
+                    <select id="aspectRatioSelect" disabled>
+                        <option value="NaN">Free Ratio</option>
+                        <option value="1">1:1 Square</option>
+                        <option value="1.3333">4:3</option>
+                        <option value="1.7777">16:9</option>
+                    </select>
+
+                    <label for="extraAspectRatio" class="visually-hidden">More Aspect Ratios</label>
+                    <select id="extraAspectRatio">
+                        <option value="">More Ratios</option>
+                        <option value="0.5625">9:16 Portrait</option>
+                        <option value="0.6667">2:3 Portrait</option>
+                        <option value="1.5">3:2 Landscape</option>
+                        <option value="2.3333">21:9 UltraWide</option>
+                    </select>
+                    <button id="applyCropBtn" class="btn-crop" disabled>📐 Apply Crop</button>
+                    <button id="resetCropBtn" class="btn-reset-crop" disabled>🔄 Reset Crop Box</button>
+                    <button id="flipHorizontalBtn">↔️ Flip H</button>
+                    <button id="flipVerticalBtn">↕️ Flip V</button>
+                    <button id="rotateLeftBtn">↺ Rotate 90°</button>
+                    <button id="rotateRightBtn">↻ Rotate 90°</button>
+                    <button id="zoomInBtn">🔍 Zoom In</button>
+                    <button id="zoomOutBtn">🔍 Zoom Out</button>
+                    <label style="display:flex;align-items:center;gap:6px;"><input type="checkbox" id="lockAspectRatio" checked> 🔒 Lock Ratio (resize)</label>
+                    <div id="cropInfo" style="font-size:12px;">Crop Box: <span id="cropWidth">0</span> x <span id="cropHeight">0</span> px</div>
+                </div>
+
+                <div class="ctrl-group"><label for="targetWidth">📏 Target Width</label><div class="dual-input"><input type="number" id="targetWidth" placeholder="Auto">
+                            <!-- Added aria-label for unit select -->
+                            <select id="widthUnitSelect" aria-label="Width unit"><option value="px">px</option><option value="%">%</option><option value="cm">cm</option><option value="in">in</option></select>
+                        </div></div>
+                <div class="ctrl-group"><label for="targetHeight">📐 Target Height</label><div class="dual-input"><input type="number" id="targetHeight" placeholder="Auto">
+                            <select id="heightUnitSelect" aria-label="Height unit"><option value="px">px</option><option value="%">%</option><option value="cm">cm</option><option value="in">in</option></select>
+                        </div></div>
+
+                <div class="ctrl-group"><label for="outFormat">🖼️ Output Format</label>
+                    <select id="outFormat">
+                        <option value="original" selected>Keep Original</option>
+                        <option value="jpg">JPG</option>
+                        <option value="jpeg">JPEG</option>
+                        <option value="png">PNG</option>
+                        <option value="webp">WEBP</option>
+                        <option value="gif">GIF</option>
+                        <option value="bmp">BMP</option>
+                        <option value="svg">SVG</option>
+                    </select>
+                </div>
+
+                <div class="ctrl-group">
+                    <label for="outputFileName">📝 Output File Name (without extension)</label>
+                    <input type="text" id="outputFileName" placeholder="my_edited_image" value="">
+                    <div style="font-size: 11px; color: #6c757d;">💡 Leave empty to use auto-generated name</div>
+                </div>
+
+                <div class="ctrl-group"><label for="qualityVal">✨ Quality (%)</label><input type="number" id="qualityVal" min="1" max="100" value="90"></div>
+                <div class="ctrl-group"><label for="dpiVal">📄 Resolution (DPI)</label><input type="number" id="dpiVal" value="96" step="10" min="72" max="600"></div>
+                <div class="ctrl-group"><label for="targetSizeKB">🎯 Target File Size (optional)</label><div class="dual-input"><input type="number" id="targetSizeKB" placeholder="e.g., 250">
+                            <select id="sizeUnitSelect" aria-label="File size unit"><option value="KB">KB</option><option value="MB">MB</option></select>
+                        </div></div>
+
+                <div class="ctrl-group">
+                    <label for="rotateRange">🔄 Rotation Angle &amp; Reset All</label>
+                    <div class="rotate-reset-wrapper">
+                        <div class="rotate-range-container"><input type="range" id="rotateRange" min="0" max="360" step="1" value="0"><span id="rotateValueDisplay" style="margin-left:8px;">0°</span></div>
+                        <button id="resetAllBtn" style="background:#dc2626; color:white;">🗑️ Reset Everything</button>
+                    </div>
+                </div>
+            </div>
+
+            <button id="downloadResizedBtn" class="btn-download">💾 Download Final Image</button>
+            <div style="font-size:12px; text-align:center; margin-top:16px;">💡 Tip: Enable Crop first, then drag the crop box → Click "Apply Crop" → Resize/Filters work on cropped image! <br> ✨ Cropper handles are now fully rounded (8-point circular) for easy dragging. <br> 🎨 All filters: Normal, Grayscale, Sepia, Hue Rotate, Saturation, Blur, Invert, Warmth, Vintage, Noir, Pastel, Duotone, Solarize, Posterize, Emboss, Sharpen, Vibrance, HDR, Cross Process, Lomo, Fade + 13 adjustment sliders.</div>
+        </div>
+    </main>
+
+    <!-- ============================================================
+    ARTICLE SECTIONS (outside main)
+    ============================================================ -->
+
+    <!-- ========== SECTION: What Is ========== -->
+    <section id="what-is">
+        <h2>What Is an Image Resizer Tool?</h2>
+        <p>
+            An Image Resizer Tool is an online application that lets you change the dimensions of an image without needing professional editing software. You can adjust the width and height, maintain the aspect ratio, optimize the file size, and prepare images for websites, social media, online forms, or printing.
+        </p>
+        <p>
+            The <strong>Deep Mega Tools Image Resizer</strong> goes beyond basic resizing. It includes advanced editing features such as image cropping, rotation, DPI adjustment, quality control, filters, custom file names, target file size, and multiple output formats—all within a fast, browser-based interface.
+        </p>
+        <p>
+            Because everything is processed directly in your browser, there's no need to install software or create an account. Simply upload your image, make the necessary adjustments, and download the optimized version in seconds.
+        </p>
+    </section>
+
+    <!-- ========== SECTION: Why ========== -->
+    <section id="why">
+        <h2>Why Should You Resize Images?</h2>
+        <p>
+            Resizing images is important for both performance and usability. Large images increase loading time, consume more bandwidth, and can negatively affect your website's SEO. Properly optimized images improve user experience, load faster, and meet the size requirements of different online platforms.
+        </p>
+        <p>
+            Whether you're uploading a profile picture, creating social media content, publishing a blog post, or submitting documents online, resizing your images ensures the best possible quality while keeping file sizes manageable.
+        </p>
+        <ul>
+            <li>Improve website loading speed.</li>
+            <li>Enhance Google SEO performance.</li>
+            <li>Boost Core Web Vitals scores.</li>
+            <li>Reduce image file size without noticeable quality loss.</li>
+            <li>Meet social media image size requirements.</li>
+            <li>Prepare images for online application forms.</li>
+            <li>Save storage space on your device.</li>
+            <li>Create a better user experience across all devices.</li>
+        </ul>
+    </section>
+
+    <!-- ========== SECTION: Features ========== -->
+    <section id="features">
+        <h2>Powerful Features of Our Free Image Resizer Tool</h2>
+        <p>
+            Unlike many basic online image resizing tools, Deep Mega Tools provides a complete image editing experience with professional-grade features designed for everyday users, developers, bloggers, students, photographers, and digital marketers.
+        </p>
+
+        <h3>📐 Custom Width &amp; Height</h3>
+        <p>
+            Resize your image by entering custom width and height values in pixels while maintaining complete control over the final dimensions.
+        </p>
+
+        <h3>🔒 Aspect Ratio Lock</h3>
+        <p>
+            Keep your images proportional by locking the aspect ratio, preventing stretching or distortion during resizing.
+        </p>
+
+        <h3>✂️ Smart Image Cropping</h3>
+        <p>
+            Crop unwanted areas and focus only on the most important part of your image before downloading.
+        </p>
+
+        <h3>🎨 Built-in Image Filters</h3>
+        <p>
+            Enhance your images using filters such as Brightness, Contrast, Saturation, Grayscale, Blur, and other visual adjustments.
+        </p>
+
+        <h3>🔄 Image Rotation</h3>
+        <p>
+            Rotate images by 90°, 180°, or 270° with a single click to correct orientation instantly.
+        </p>
+
+        <h3>🖼️ Multiple Output Formats</h3>
+        <p>
+            Download your resized image in several popular formats, including:
+        </p>
+        <ul>
+            <li>JPG</li>
+            <li>JPEG</li>
+            <li>PNG</li>
+            <li>WEBP</li>
+            <li>GIF</li>
+            <li>BMP</li>
+            <li>SVG</li>
+        </ul>
+
+        <h3>⭐ Image Quality Control</h3>
+        <p>
+            Adjust compression levels to balance image quality and file size according to your specific requirements.
+        </p>
+
+        <h3>🖨️ DPI Adjustment</h3>
+        <p>
+            Modify image resolution for digital use or high-quality printing by selecting the appropriate DPI value.
+        </p>
+
+        <h3>📦 Target File Size</h3>
+        <p>
+            Need an image under 20 KB, 50 KB, 100 KB, or another specific size? Our Target File Size feature helps optimize your image for document uploads and online application forms.
+        </p>
+
+        <h3>📁 Custom File Name</h3>
+        <p>
+            Rename your file before downloading to keep your images organized and SEO-friendly.
+        </p>
+
+        <h3>⚡ Fast Processing</h3>
+        <p>
+            Advanced browser technology processes your images quickly, allowing you to download optimized files within seconds.
+        </p>
+
+        <h3>🔐 Privacy Protection</h3>
+        <p>
+            Your images are processed securely in your browser. We do not permanently store or share your uploaded files, helping protect your privacy.
+        </p>
+
+        <h3>📱 Fully Responsive</h3>
+        <p>
+            The Image Resizer Tool works perfectly on desktops, laptops, tablets, Android phones, and iPhones without requiring additional software.
+        </p>
+    </section>
+
+    <!-- ========== SECTION: How to Use ========== -->
+    <section id="how-to-use">
+        <h2>How to Use the Image Resizer Tool</h2>
+        <p>
+            Resizing an image with <strong>Deep Mega Tools</strong> is simple and takes only a few seconds. Follow these steps to optimize your images without compromising quality.
+        </p>
+        <ol>
+            <li>Click the <strong>Upload Image</strong> button and select an image from your device.</li>
+            <li>Choose a preset size if you're resizing for social media platforms such as Instagram, Facebook, YouTube, LinkedIn, or X (Twitter).</li>
+            <li>Crop the image if you want to remove unwanted areas before resizing.</li>
+            <li>Apply filters such as Brightness, Contrast, Saturation, or Grayscale if needed.</li>
+            <li>Enable <strong>Aspect Ratio Lock</strong> to keep the image proportions unchanged.</li>
+            <li>Enter your preferred Width and Height in pixels.</li>
+            <li>Select the output format, including JPG, PNG, WEBP, GIF, BMP, or SVG.</li>
+            <li>Adjust the image quality to achieve the right balance between quality and file size.</li>
+            <li>Change the Resolution (DPI) if you're preparing the image for printing.</li>
+            <li>Set a Target File Size if your image must meet upload requirements such as 20 KB, 50 KB, or 100 KB.</li>
+            <li>Rotate the image if necessary.</li>
+            <li>Rename the file before downloading.</li>
+            <li>Click <strong>Download Image</strong> to save the optimized version to your device.</li>
+        </ol>
+    </section>
+
+    <!-- ========== SECTION: Aspect Ratio ========== -->
+    <section id="aspect-ratio">
+        <h2>What Is Aspect Ratio?</h2>
+        <p>
+            Aspect Ratio is the proportional relationship between an image's width and height. Maintaining the correct aspect ratio ensures that your image looks natural and does not appear stretched or distorted after resizing.
+        </p>
+        <p>
+            For most resizing tasks, keeping the aspect ratio locked is highly recommended. This preserves the original proportions while adjusting the overall dimensions.
+        </p>
+        <h3>Common Aspect Ratios</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Aspect Ratio</th>
+                    <th>Best For</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1:1</td><td>Instagram Posts, Profile Pictures</td></tr>
+                <tr><td>4:3</td><td>Digital Cameras, Presentations</td></tr>
+                <tr><td>16:9</td><td>YouTube Thumbnails, Videos, Widescreen Displays</td></tr>
+                <tr><td>3:2</td><td>DSLR Photography</td></tr>
+                <tr><td>9:16</td><td>Instagram Stories, YouTube Shorts, TikTok Videos</td></tr>
+                <tr><td>21:9</td><td>Ultra-Wide Banners and Monitors</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ========== SECTION: SEO Benefits ========== -->
+    <section id="seo-benefits">
+        <h2>Why Image Resizing Matters for SEO</h2>
+        <p>
+            Optimized images are an important part of technical SEO. Large image files slow down websites, increase bandwidth usage, and negatively affect Core Web Vitals. Properly resized images improve loading speed and provide a better browsing experience for visitors.
+        </p>
+        <ul>
+            <li>Improves website loading speed.</li>
+            <li>Enhances Core Web Vitals performance.</li>
+            <li>Helps reduce bounce rates.</li>
+            <li>Supports better Google Search rankings.</li>
+            <li>Improves mobile page performance.</li>
+            <li>Reduces server bandwidth usage.</li>
+            <li>Creates a faster and smoother user experience.</li>
+            <li>Makes image optimization easier for search engines.</li>
+        </ul>
+    </section>
+
+    <!-- ========== SECTION: Social Media Sizes ========== -->
+    <section id="social-media-sizes">
+        <h2>Recommended Social Media Image Sizes</h2>
+        <p>
+            Using the correct dimensions helps your images appear sharp and professional across different social media platforms.
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Platform</th>
+                    <th>Recommended Size</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Instagram Post</td><td>1080 × 1080 px</td></tr>
+                <tr><td>Instagram Story</td><td>1080 × 1920 px</td></tr>
+                <tr><td>Facebook Post</td><td>1200 × 630 px</td></tr>
+                <tr><td>YouTube Thumbnail</td><td>1280 × 720 px</td></tr>
+                <tr><td>YouTube Shorts Thumbnail</td><td>1080 × 1920 px</td></tr>
+                <tr><td>LinkedIn Post</td><td>1200 × 627 px</td></tr>
+                <tr><td>X (Twitter) Post</td><td>1600 × 900 px</td></tr>
+                <tr><td>Pinterest Pin</td><td>1000 × 1500 px</td></tr>
+                <tr><td>WhatsApp Status</td><td>1080 × 1920 px</td></tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ========== SECTION: Best Practices ========== -->
+    <section id="best-practices">
+        <h2>Best Practices for Image Optimization</h2>
+        <p>
+            Follow these recommendations to achieve the best balance between image quality, loading speed, and SEO performance.
+        </p>
+        <ul>
+            <li>Use the WEBP format whenever possible for better compression.</li>
+            <li>Keep file sizes as small as possible without noticeable quality loss.</li>
+            <li>Use descriptive file names that include relevant keywords.</li>
+            <li>Add meaningful ALT text to improve accessibility and image SEO.</li>
+            <li>Use responsive images for different screen sizes.</li>
+            <li>Avoid uploading unnecessarily large images.</li>
+            <li>Use 72 DPI for web images and 300 DPI for print projects.</li>
+            <li>Preview your image before downloading.</li>
+            <li>Maintain the original aspect ratio whenever possible.</li>
+            <li>Choose the correct image format based on your needs.</li>
+        </ul>
+    </section>
+
+    <!-- ========== SECTION: FAQ ========== -->
+    <section id="faq">
+        <h2>Frequently Asked Questions (FAQs)</h2>
+
+        <details>
+            <summary>Is this Image Resizer Tool completely free?</summary>
+            <p>
+                Yes. The Image Resizer Tool by <strong>Deep Mega Tools</strong> is 100% free to use. You can resize images online without creating an account or paying any subscription fees.
+            </p>
+        </details>
+
+        <details>
+            <summary>Will resizing reduce image quality?</summary>
+            <p>
+                Our tool is designed to preserve image quality while resizing. You can also adjust the quality level manually to achieve the best balance between file size and visual appearance.
+            </p>
+        </details>
+
+        <details>
+            <summary>Which image formats are supported?</summary>
+            <p>
+                The tool supports popular image formats including JPG, JPEG, PNG, WEBP, GIF, BMP, and SVG.
+            </p>
+        </details>
+
+        <details>
+            <summary>Can I resize images on my mobile phone?</summary>
+            <p>
+                Absolutely. The tool is fully responsive and works smoothly on Android phones, iPhones, tablets, laptops, and desktop computers.
+            </p>
+        </details>
+
+        <details>
+            <summary>Do I need to install any software?</summary>
+            <p>
+                No. Everything works directly in your web browser. Simply upload your image, resize it, and download the optimized version.
+            </p>
+        </details>
+
+        <details>
+            <summary>Are my uploaded images secure?</summary>
+            <p>
+                Yes. Your privacy is important to us. Images are processed securely, and we do not permanently store or share your uploaded files.
+            </p>
+        </details>
+    </section>
+
+    <!-- ========== RELATED TOOLS ========== -->
+    <div class="related-tools">
+        <h3>🔧 Related Tools</h3>
+        <ul>
+            <li><a href="/tools/barcode-generator.html">Barcode Generator</a></li>
+            <li><a href="https://deepmegatools.vercel.app/tools/qr-code-generator.html">QR Code Generator</a></li>
+            <li><a href="/tools/color-contrast-analyzer.html">Color Contrast Analyzer</a></li>
+            <li><a href="/tools/unlock-page.html">Unlock Page Generator</a></li>
+        </ul>
+    </div>
+
+    <!-- ========== AUTHOR (E-E-A-T) ========== -->
+    <section id="author">
+        <h2>About Deep Mega Tools</h2>
+        <p>
+            <strong>Deep Mega Tools</strong> is a free online platform developed by a team of experienced full-stack developers and SEO specialists at <strong>Premi Coding</strong>. Our mission is to help users perform everyday digital tasks quickly and efficiently—from image editing and SEO utilities to PDF tools, QR Code generators, developer tools, and productivity solutions.
+        </p>
+        <p>
+            With a strong focus on performance, privacy, and usability, our tools are trusted by thousands of bloggers, web developers, digital marketers, and students worldwide. We are committed to delivering fast, secure, and easy-to-use online tools that require no installation or registration.
+        </p>
+    </section>
+
+    <!-- ========== CONCLUSION ========== -->
+    <section id="conclusion">
+        <h2>Conclusion</h2>
+        <p>
+            Whether you're a blogger, web developer, student, designer, photographer, content creator, or digital marketer, optimizing images is an essential part of your workflow. Properly resized images improve website performance, enhance user experience, and meet the requirements of websites, social media platforms, and online applications.
+        </p>
+        <p>
+            The <strong>Free Online Image Resizer Tool</strong> by <strong>Deep Mega Tools</strong> combines powerful features—including image resizing, cropping, rotation, filters, DPI adjustment, target file size, quality control, and multiple output formats—into one fast and user-friendly solution.
+        </p>
+        <p>
+            If you're looking for a reliable, secure, and easy-to-use online image resizer, Deep Mega Tools has everything you need to resize and optimize images in just a few clicks.
+        </p>
+    </section>
+
+    <!-- ========== CALL TO ACTION ========== -->
+    <section class="cta">
+        <h2>Resize Your Images Online — Fast, Free, and Secure</h2>
+        <p>
+            Upload your image, customize the dimensions, apply edits, and download a perfectly optimized image within seconds. No installation, no watermark, and no registration required.
+        </p>
+        <p>
+            <strong>✓ 100% Free &nbsp; • &nbsp; ✓ Fast Processing &nbsp; • &nbsp; ✓ Secure &amp; Private &nbsp; • &nbsp; ✓ High-Quality Output</strong>
+        </p>
+        <p>
+            Start resizing your images today with <strong>Deep Mega Tools</strong> and experience a faster, smarter, and more efficient way to optimize images online.
+        </p>
+    </section>
+
+    <!-- ============================================================
+    SCRIPTS — removed duplicate CSS link, kept only async preload
+    ============================================================ -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js" defer>
+    </script>
+    <script>
+        (function() {
+            function waitForCropper() {
+                return new Promise((resolve) => {
+                    if (typeof Cropper !== 'undefined') { resolve(); } else {
+                        const checkInterval = setInterval(() => {
+                            if (typeof Cropper !== 'undefined') { clearInterval(checkInterval);
+                                resolve(); }
+                        }, 50);
+                        setTimeout(() => { clearInterval(checkInterval);
+                            resolve(); }, 3000);
+                    }
+                });
+            }
+            window.addEventListener('DOMContentLoaded', async () => {
+                await waitForCropper();
+                initApp();
+            });
+
+            function initApp() {
+                if (typeof Cropper === 'undefined') { console.error("Cropper library failed to load.");
+                    alert("Image Cropper library could not be loaded. Please refresh the page."); }
+
+                const fileInput = document.getElementById('imageFile');
+                const cropImg = document.getElementById('cropImage');
+                const metaFormat = document.getElementById('metaFormat');
+                const metaDims = document.getElementById('metaDims');
+                const metaSize = document.getElementById('metaSize');
+                const liveSizeSpan = document.getElementById('liveProcessedSize');
+                const refreshLive = document.getElementById('refreshLiveBtn');
+                const targetW = document.getElementById('targetWidth');
+                const targetH = document.getElementById('targetHeight');
+                const widthUnit = document.getElementById('widthUnitSelect');
+                const heightUnit = document.getElementById('heightUnitSelect');
+                const outFormat = document.getElementById('outFormat');
+                const quality = document.getElementById('qualityVal');
+                const dpi = document.getElementById('dpiVal');
+                const targetSizeKB = document.getElementById('targetSizeKB');
+                const sizeUnit = document.getElementById('sizeUnitSelect');
+                const rotateRange = document.getElementById('rotateRange');
+                const rotateVal = document.getElementById('rotateValueDisplay');
+                const resetAllBtn = document.getElementById('resetAllBtn');
+                const downloadBtn = document.getElementById('downloadResizedBtn');
+                const enableCrop = document.getElementById('enableCropBtn');
+                const disableCrop = document.getElementById('disableCropBtn');
+                const cropStatus = document.getElementById('cropStatusBadge');
+                const aspectSelect = document.getElementById('aspectRatioSelect');
+                const extraAspect = document.getElementById('extraAspectRatio');
+                const applyCropBtn = document.getElementById('applyCropBtn');
+                const resetCropBtn = document.getElementById('resetCropBtn');
+                const flipH = document.getElementById('flipHorizontalBtn');
+                const flipV = document.getElementById('flipVerticalBtn');
+                const rotateLeft = document.getElementById('rotateLeftBtn');
+                const rotateRight = document.getElementById('rotateRightBtn');
+                const zoomIn = document.getElementById('zoomInBtn');
+                const zoomOut = document.getElementById('zoomOutBtn');
+                const lockAspect = document.getElementById('lockAspectRatio');
+                const presetSelect = document.getElementById('presetSize');
+                const copyBtn = document.getElementById('copyImageBtn');
+                const beforeImg = document.getElementById('beforeImage');
+                const afterImg = document.getElementById('afterImage');
+                const lightModeHeaderBtn = document.getElementById('lightModeHeaderBtn');
+                const undoBtn = document.getElementById('undoBtn');
+                const redoBtn = document.getElementById('redoBtn');
+
+                // ---- filter buttons ----
+                const filterNone = document.getElementById('filterNone');
+                const filterGrayscale = document.getElementById('filterGrayscale');
+                const filterSepia = document.getElementById('filterSepia');
+                const filterHueRotate = document.getElementById('filterHueRotate');
+                const filterSaturate = document.getElementById('filterSaturate');
+                const filterBlur = document.getElementById('filterBlur');
+                const filterInvert = document.getElementById('filterInvert');
+                const filterWarmth = document.getElementById('filterWarmth');
+                const filterVintage = document.getElementById('filterVintage');
+                const filterNoir = document.getElementById('filterNoir');
+                const filterPastel = document.getElementById('filterPastel');
+                const filterDuotone = document.getElementById('filterDuotone');
+                const filterSolarize = document.getElementById('filterSolarize');
+                const filterPosterize = document.getElementById('filterPosterize');
+                const filterEmboss = document.getElementById('filterEmboss');
+                const filterSharpen = document.getElementById('filterSharpen');
+                const filterVibrance = document.getElementById('filterVibrance');
+                const filterHDR = document.getElementById('filterHDR');
+                const filterCrossProcess = document.getElementById('filterCrossProcess');
+                const filterLomo = document.getElementById('filterLomo');
+                const filterFade = document.getElementById('filterFade');
+
+                // ---- sliders ----
+                const brightnessSlider = document.getElementById('brightnessSlider');
+                const contrastSlider = document.getElementById('contrastSlider');
+                const hueSlider = document.getElementById('hueSlider');
+                const saturationSlider = document.getElementById('saturationSlider');
+                const blurSlider = document.getElementById('blurSlider');
+                const invertSlider = document.getElementById('invertSlider');
+                const temperatureSlider = document.getElementById('temperatureSlider');
+                const sharpnessSlider = document.getElementById('sharpnessSlider');
+                const vibranceSlider = document.getElementById('vibranceSlider');
+                const exposureSlider = document.getElementById('exposureSlider');
+                const gammaSlider = document.getElementById('gammaSlider');
+                const shadowsSlider = document.getElementById('shadowsSlider');
+                const highlightsSlider = document.getElementById('highlightsSlider');
+
+                const brightnessVal = document.getElementById('brightnessVal');
+                const contrastVal = document.getElementById('contrastVal');
+                const hueVal = document.getElementById('hueVal');
+                const saturationVal = document.getElementById('saturationVal');
+                const blurVal = document.getElementById('blurVal');
+                const invertVal = document.getElementById('invertVal');
+                const temperatureVal = document.getElementById('temperatureVal');
+                const sharpnessVal = document.getElementById('sharpnessVal');
+                const vibranceVal = document.getElementById('vibranceVal');
+                const exposureVal = document.getElementById('exposureVal');
+                const gammaVal = document.getElementById('gammaVal');
+                const shadowsVal = document.getElementById('shadowsVal');
+                const highlightsVal = document.getElementById('highlightsVal');
+
+                const outputFileNameInput = document.getElementById('outputFileName');
+
+                let cropper = null;
+                let originalImage = null;
+                let originalWidth = 0,
+                    originalHeight = 0;
+                let originalFileType = 'image/png';
+                let originalFileSize = 0;
+                let currentRotation = 0;
+                let flipX = 1,
+                    flipY = 1;
+                let isCroppedMode = false;
+                let croppedCanvasCache = null;
+                let currentObjectUrl = null;
+                let cropEnabled = false;
+                let historyStack = [];
+                let historyIndex = -1;
+                let currentFilter = 'none';
+                let currentBrightness = 0;
+                let currentContrast = 0;
+                let currentHue = 0;
+                let currentSaturation = 100;
+                let currentBlur = 0;
+                let currentInvert = 0;
+                let currentTemperature = 0;
+                let currentSharpness = 0;
+                let currentVibrance = 0;
+                let currentExposure = 0;
+                let currentGamma = 100;
+                let currentShadows = 0;
+                let currentHighlights = 0;
+                let isUndoRedoAction = false;
+
+                // ---- helper: safe localStorage ----
+                function safeSetItem(key, value) { try { localStorage.setItem(key, value); } catch (e) {} }
+
+                function safeGetItem(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+
+                // ---- apply all CSS filters to cropImg ----
+                function applyCSSFilters() {
+                    let filterValue = '';
+                    // preset filters
+                    if (currentFilter === 'grayscale') filterValue += 'grayscale(100%) ';
+                    else if (currentFilter === 'sepia') filterValue += 'sepia(100%) ';
+                    else if (currentFilter === 'hue-rotate') filterValue += `hue-rotate(${currentHue}deg) `;
+                    else if (currentFilter === 'saturate') filterValue += `saturate(${currentSaturation / 100}) `;
+                    else if (currentFilter === 'blur') filterValue += `blur(${currentBlur}px) `;
+                    else if (currentFilter === 'invert') filterValue += `invert(${currentInvert / 100}) `;
+                    else if (currentFilter === 'warmth') {
+                        const warmthFactor = currentTemperature / 100;
+                        if (warmthFactor > 0) {
+                            filterValue += `sepia(${warmthFactor * 0.6}) `;
+                            filterValue += `saturate(${1 + warmthFactor * 0.3}) `;
+                        } else {
+                            filterValue += `hue-rotate(${warmthFactor * 0.8}deg) `;
+                            filterValue += `saturate(${1 + Math.abs(warmthFactor) * 0.2}) `;
+                        }
+                    } else if (currentFilter === 'vintage') {
+                        filterValue += 'sepia(0.5) contrast(1.1) brightness(0.95) saturate(1.3) ';
+                    } else if (currentFilter === 'noir') {
+                        filterValue += 'grayscale(100%) contrast(1.5) brightness(0.9) ';
+                    } else if (currentFilter === 'pastel') {
+                        filterValue += 'saturate(0.7) brightness(1.1) contrast(0.9) ';
+                    } else if (currentFilter === 'duotone') {
+                        filterValue += 'grayscale(100%) sepia(0.8) hue-rotate(180deg) saturate(1.4) ';
+                    } else if (currentFilter === 'solarize') {
+                        filterValue += 'invert(0.4) contrast(1.3) brightness(1.1) ';
+                    } else if (currentFilter === 'posterize') {
+                        filterValue += 'contrast(1.2) brightness(1.05) ';
+                    } else if (currentFilter === 'emboss') {
+                        filterValue += 'contrast(1.2) brightness(1.1) ';
+                    } else if (currentFilter === 'sharpen') {
+                        const s = 1 + currentSharpness / 100;
+                        filterValue += `contrast(${s}) brightness(${1 + (s - 1) * 0.2}) `;
+                    } else if (currentFilter === 'vibrance') {
+                        const v = 1 + currentVibrance / 100;
+                        filterValue += `saturate(${v}) brightness(${1 + (v - 1) * 0.1}) `;
+                    } else if (currentFilter === 'hdr') {
+                        filterValue += 'contrast(1.25) brightness(1.05) saturate(1.2) ';
+                    } else if (currentFilter === 'cross-process') {
+                        filterValue += 'sepia(0.3) saturate(1.4) contrast(1.1) hue-rotate(-10deg) ';
+                    } else if (currentFilter === 'lomo') {
+                        filterValue += 'saturate(1.6) contrast(1.2) brightness(0.9) sepia(0.15) ';
+                    } else if (currentFilter === 'fade') {
+                        filterValue += 'saturate(0.5) brightness(1.1) contrast(0.85) ';
+                    }
+
+                    // individual adjustments (always applied on top of preset)
+                    if (currentBrightness !== 0) filterValue += `brightness(${(100 + currentBrightness) / 100}) `;
+                    if (currentContrast !== 0) filterValue += `contrast(${(100 + currentContrast) / 100}) `;
+                    if (currentFilter !== 'hue-rotate' && currentHue !== 0) filterValue += `hue-rotate(${currentHue}deg) `;
+                    if (currentFilter !== 'saturate' && currentSaturation !== 100) filterValue +=
+                        `saturate(${currentSaturation / 100}) `;
+                    if (currentFilter !== 'blur' && currentBlur !== 0) filterValue += `blur(${currentBlur}px) `;
+                    if (currentFilter !== 'invert' && currentInvert !== 0) filterValue += `invert(${currentInvert / 100}) `;
+                    if (currentFilter !== 'sharpen' && currentSharpness !== 0) {
+                        const s = 1 + currentSharpness / 100;
+                        filterValue += `contrast(${s}) brightness(${1 + (s - 1) * 0.2}) `;
+                    }
+                    if (currentFilter !== 'vibrance' && currentVibrance !== 0) {
+                        const v = 1 + currentVibrance / 100;
+                        filterValue += `saturate(${v}) brightness(${1 + (v - 1) * 0.1}) `;
+                    }
+                    // exposure: approximate via brightness + contrast
+                    if (currentExposure !== 0) {
+                        const e = currentExposure / 100;
+                        filterValue += `brightness(${1 + e}) contrast(${1 + e * 0.3}) `;
+                    }
+                    // gamma: approximate via brightness + contrast
+                    if (currentGamma !== 100) {
+                        const g = currentGamma / 100;
+                        filterValue += `brightness(${g}) contrast(${1 + (g - 1) * 0.4}) `;
+                    }
+                    // shadows: approximate via brightness + contrast
+                    if (currentShadows !== 0) {
+                        const s = currentShadows / 100;
+                        filterValue += `brightness(${1 + s * 0.5}) contrast(${1 - s * 0.3}) `;
+                    }
+                    // highlights: approximate via brightness + contrast
+                    if (currentHighlights !== 0) {
+                        const h = currentHighlights / 100;
+                        filterValue += `brightness(${1 + h * 0.3}) contrast(${1 + h * 0.4}) `;
+                    }
+
+                    cropImg.style.filter = filterValue.trim() || 'none';
+                    if (afterImg && afterImg !== cropImg) afterImg.style.filter = cropImg.style.filter;
+                }
+
+                // ---- update after image ----
+                function updateAfterImage() {
+                    if (afterImg && cropImg.src && !cropImg.src.includes('svg')) {
+                        afterImg.src = cropImg.src;
+                        afterImg.style.filter = cropImg.style.filter;
+                        afterImg.style.transform = cropImg.style.transform;
+                    }
+                }
+
+                // ---- save to history ----
+                function saveToHistory() {
+                    if (isUndoRedoAction) return;
+                    if (!cropImg.src || cropImg.src.includes('svg')) return;
+                    const state = {
+                        imageData: cropImg.src,
+                        filter: currentFilter,
+                        brightness: currentBrightness,
+                        contrast: currentContrast,
+                        hue: currentHue,
+                        saturation: currentSaturation,
+                        blur: currentBlur,
+                        invert: currentInvert,
+                        temperature: currentTemperature,
+                        sharpness: currentSharpness,
+                        vibrance: currentVibrance,
+                        exposure: currentExposure,
+                        gamma: currentGamma,
+                        shadows: currentShadows,
+                        highlights: currentHighlights,
+                        rotation: currentRotation,
+                        flipX: flipX,
+                        flipY: flipY,
+                        isCropped: isCroppedMode,
+                        width: originalWidth,
+                        height: originalHeight
+                    };
+                    if (historyIndex < historyStack.length - 1) historyStack = historyStack.slice(0, historyIndex + 1);
+                    historyStack.push(state);
+                    historyIndex = historyStack.length - 1;
+                    if (historyStack.length > 50) { historyStack.shift();
+                        historyIndex--; }
+                }
+
+                // ---- restore from history ----
+                async function restoreFromHistory(state) {
+                    if (!state) return;
+                    isUndoRedoAction = true;
+                    cropImg.src = state.imageData;
+                    currentFilter = state.filter || 'none';
+                    currentBrightness = state.brightness || 0;
+                    currentContrast = state.contrast || 0;
+                    currentHue = state.hue || 0;
+                    currentSaturation = state.saturation || 100;
+                    currentBlur = state.blur || 0;
+                    currentInvert = state.invert || 0;
+                    currentTemperature = state.temperature || 0;
+                    currentSharpness = state.sharpness || 0;
+                    currentVibrance = state.vibrance || 0;
+                    currentExposure = state.exposure || 0;
+                    currentGamma = state.gamma || 100;
+                    currentShadows = state.shadows || 0;
+                    currentHighlights = state.highlights || 0;
+                    currentRotation = state.rotation || 0;
+                    flipX = state.flipX || 1;
+                    flipY = state.flipY || 1;
+                    isCroppedMode = state.isCropped || false;
+                    originalWidth = state.width || 0;
+                    originalHeight = state.height || 0;
+
+                    // sync sliders
+                    brightnessSlider.value = currentBrightness;
+                    contrastSlider.value = currentContrast;
+                    hueSlider.value = currentHue;
+                    saturationSlider.value = currentSaturation;
+                    blurSlider.value = currentBlur;
+                    invertSlider.value = currentInvert;
+                    temperatureSlider.value = currentTemperature;
+                    sharpnessSlider.value = currentSharpness;
+                    vibranceSlider.value = currentVibrance;
+                    exposureSlider.value = currentExposure;
+                    gammaSlider.value = currentGamma;
+                    shadowsSlider.value = currentShadows;
+                    highlightsSlider.value = currentHighlights;
+
+                    brightnessVal.innerText = currentBrightness;
+                    contrastVal.innerText = currentContrast;
+                    hueVal.innerText = currentHue + '°';
+                    saturationVal.innerText = currentSaturation + '%';
+                    blurVal.innerText = currentBlur + 'px';
+                    invertVal.innerText = currentInvert + '%';
+                    temperatureVal.innerText = currentTemperature;
+                    sharpnessVal.innerText = currentSharpness;
+                    vibranceVal.innerText = currentVibrance;
+                    exposureVal.innerText = currentExposure;
+                    gammaVal.innerText = currentGamma + '%';
+                    shadowsVal.innerText = currentShadows;
+                    highlightsVal.innerText = currentHighlights;
+
+                    rotateRange.value = currentRotation;
+                    rotateVal.innerText = currentRotation + '°';
+
+                    // sync filter buttons
+                    document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('btn-filter-active'));
+                    const filterMap = {
+                        'none': filterNone,
+                        'grayscale': filterGrayscale,
+                        'sepia': filterSepia,
+                        'hue-rotate': filterHueRotate,
+                        'saturate': filterSaturate,
+                        'blur': filterBlur,
+                        'invert': filterInvert,
+                        'warmth': filterWarmth,
+                        'vintage': filterVintage,
+                        'noir': filterNoir,
+                        'pastel': filterPastel,
+                        'duotone': filterDuotone,
+                        'solarize': filterSolarize,
+                        'posterize': filterPosterize,
+                        'emboss': filterEmboss,
+                        'sharpen': filterSharpen,
+                        'vibrance': filterVibrance,
+                        'hdr': filterHDR,
+                        'cross-process': filterCrossProcess,
+                        'lomo': filterLomo,
+                        'fade': filterFade
+                    };
+                    if (filterMap[currentFilter]) filterMap[currentFilter].classList.add('btn-filter-active');
+
+                    cropImg.onload = () => {
+                        applyCSSFilters();
+                        updateTransformStyle();
+                        updateAfterImage();
+                        updateLivePreviewDebounced();
+                        metaDims.innerText = `${originalWidth} × ${originalHeight} px${isCroppedMode ? ' (cropped)' : ''}`;
+                        setTimeout(() => { isUndoRedoAction = false; }, 100);
+                    };
+                    if (cropImg.complete) cropImg.onload();
+                }
+
+                function undo() { if (historyIndex > 0) { historyIndex--;
+                        restoreFromHistory(historyStack[historyIndex]); } }
+
+                function redo() { if (historyIndex < historyStack.length - 1) { historyIndex++;
+                        restoreFromHistory(historyStack[historyIndex]); } }
+
+                function updateFilterAndAdjust() {
+                    applyCSSFilters();
+                    updateAfterImage();
+                    updateLivePreviewDebounced();
+                    if (!isUndoRedoAction) saveToHistory();
+                }
+
+                function updateTransformStyle() {
+                    cropImg.style.transform = `rotate(${currentRotation}deg) scaleX(${flipX}) scaleY(${flipY})`;
+                    if (afterImg && afterImg !== cropImg) afterImg.style.transform = cropImg.style.transform;
+                    updateLivePreviewDebounced();
+                }
+
+                function destroyCropper() { if (cropper) { cropper.destroy();
+                        cropper = null; } }
+
+                function initCropperIfNeeded() {
+                    if (!cropEnabled || typeof Cropper === 'undefined' || !cropImg.complete || cropImg.naturalWidth === 0)
+                        return;
+                    destroyCropper();
+                    try {
+                        cropper = new Cropper(cropImg, { viewMode: 1, autoCropArea: 0.8, responsive: true,
+                            aspectRatio: parseFloat(aspectSelect.value) || NaN });
+                        const interval = setInterval(() => {
+                            if (cropper) {
+                                const data = cropper.getData(true);
+                                const cw = document.getElementById('cropWidth');
+                                const ch = document.getElementById('cropHeight');
+                                if (cw) cw.innerText = Math.round(data.width);
+                                if (ch) ch.innerText = Math.round(data.height);
+                            }
+                        }, 200);
+                        if (window.cropInterval) clearInterval(window.cropInterval);
+                        window.cropInterval = interval;
+                    } catch (e) { console.error("Cropper init error:", e); }
+                }
+
+                function setCropEnabled(enabled) {
+                    if (enabled && typeof Cropper === 'undefined') { alert("Cropper library not loaded."); return; }
+                    cropEnabled = enabled;
+                    if (enabled) {
+                        cropStatus.innerText = '🟢 Crop: ENABLED';
+                        cropStatus.style.background = '#dcfce7';
+                        aspectSelect.disabled = false;
+                        applyCropBtn.disabled = false;
+                        resetCropBtn.disabled = false;
+                        if (originalImage && cropImg.src && !cropImg.src.includes('svg')) { destroyCropper();
+                            initCropperIfNeeded(); }
+                    } else {
+                        cropStatus.innerText = '⚫ Crop: DISABLED';
+                        cropStatus.style.background = '#e2e8f0';
+                        aspectSelect.disabled = true;
+                        applyCropBtn.disabled = true;
+                        resetCropBtn.disabled = true;
+                        destroyCropper();
+                    }
+                }
+
+                function applyCropAction() {
+                    if (!cropEnabled || !cropper) { alert("Enable crop first."); return; }
+                    const croppedCanvas = cropper.getCroppedCanvas({ imageSmoothingEnabled: true });
+                    if (!croppedCanvas) return;
+                    croppedCanvasCache = croppedCanvas;
+                    isCroppedMode = true;
+                    const dataUrl = croppedCanvas.toDataURL();
+                    cropImg.src = dataUrl;
+                    originalWidth = croppedCanvas.width;
+                    originalHeight = croppedCanvas.height;
+                    metaDims.innerText = `${originalWidth} × ${originalHeight} px (cropped)`;
+                    destroyCropper();
+                    cropImg.onload = () => {
+                        if (cropEnabled) initCropperIfNeeded();
+                        applyCSSFilters();
+                        updateTransformStyle();
+                        updateAfterImage();
+                        updateLivePreviewDebounced();
+                        if (beforeImg && originalImage) beforeImg.src = originalImage.src;
+                        saveToHistory();
+                    };
+                    if (cropImg.complete) cropImg.onload();
+                }
+
+                function getCurrentSource() {
+                    if (isCroppedMode && croppedCanvasCache) return croppedCanvasCache;
+                    if (originalImage) return originalImage;
+                    return null;
+                }
+
+                // ---- advanced canvas processing with all filters ----
+                function applyPixelFilters(imageData, width, height) {
+                    const data = imageData.data;
+                    const len = data.length;
+
+                    let r, g, b, a;
+
+                    // --- Grayscale ---
+                    if (currentFilter === 'grayscale') {
+                        for (let i = 0; i < len; i += 4) {
+                            r = data[i];
+                            g = data[i + 1];
+                            b = data[i + 2];
+                            const gray = 0.299 * r + 0.587 * g + 0.114 * b;
+                            data[i] = gray;
+                            data[i + 1] = gray;
+                            data[i + 2] = gray;
+                        }
+                    }
+
+                    // --- Sepia ---
+                    if (currentFilter === 'sepia') {
+                        for (let i = 0; i < len; i += 4) {
+                            r = data[i];
+                            g = data[i + 1];
+                            b = data[i + 2];
+                            data[i] = Math.min(255, r * 0.393 + g * 0.769 + b * 0.189);
+                            data[i + 1] = Math.min(255, r * 0.349 + g * 0.686 + b * 0.168);
+                            data[i + 2] = Math.min(255, r * 0.272 + g * 0.534 + b * 0.131);
+                        }
+                    }
+
+                    // --- Hue Rotation ---
+                    if (currentFilter === 'hue-rotate' || currentHue !== 0) {
+                        const hueAngle = (currentFilter === 'hue-rotate' || currentHue !== 0) ? currentHue : 0;
+                        if (hueAngle !== 0) {
+                            const rad = hueAngle * Math.PI / 180;
+                            const cosA = Math.cos(rad);
+                            const sinA = Math.sin(rad);
+                            for (let i = 0; i < len; i += 4) {
+                                r = data[i];
+                                g = data[i + 1];
+                                b = data[i + 2];
+                                const y = 0.299 * r + 0.587 * g + 0.114 * b;
+                                const u = -0.147 * r - 0.289 * g + 0.436 * b;
+                                const v = 0.615 * r - 0.515 * g - 0.100 * b;
+                                const u2 = u * cosA - v * sinA;
+                                const v2 = u * sinA + v * cosA;
+                                data[i] = Math.min(255, Math.max(0, y + 1.14 * v2));
+                                data[i + 1] = Math.min(255, Math.max(0, y - 0.395 * u2 - 0.581 * v2));
+                                data[i + 2] = Math.min(255, Math.max(0, y + 2.032 * u2));
+                            }
+                        }
+                    }
+
+                    // --- Saturation ---
+                    if (currentFilter === 'saturate' || currentSaturation !== 100) {
+                        const sat = (currentFilter === 'saturate' || currentSaturation !== 100) ? currentSaturation / 100 :
+                            1;
+                        if (sat !== 1) {
+                            for (let i = 0; i < len; i += 4) {
+                                r = data[i];
+                                g = data[i + 1];
+                                b = data[i + 2];
+                                const gray = 0.299 * r + 0.587 * g + 0.114 * b;
+                                data[i] = Math.min(255, Math.max(0, gray + (r - gray) * sat));
+                                data[i + 1] = Math.min(255, Math.max(0, gray + (g - gray) * sat));
+                                data[i + 2] = Math.min(255, Math.max(0, gray + (b - gray) * sat));
+                            }
+                        }
+                    }
+
+                    // --- Invert ---
+                    if (currentFilter === 'invert' || currentInvert !== 0) {
+                        const inv = (currentFilter === 'invert' || currentInvert !== 0) ? currentInvert / 100 : 0;
+                        if (inv > 0) {
+                            for (let i = 0; i < len; i += 4) {
+                                data[i] = Math.min(255, Math.max(0, data[i] + (255 - 2 * data[i]) * inv));
+                                data[i + 1] = Math.min(255, Math.max(0, data[i + 1] + (255 - 2 * data[i + 1]) * inv));
+                                data[i + 2] = Math.min(255, Math.max(0, data[i + 2] + (255 - 2 * data[i + 2]) * inv));
+                            }
+                        }
+                    }
+
+                    // --- Brightness ---
+                    if (currentBrightness !== 0) {
+                        const b = currentBrightness * 2.55;
+                        for (let i = 0; i < len; i += 4) {
+                            data[i] = Math.min(255, Math.max(0, data[i] + b));
+                            data[i + 1] = Math.min(255, Math.max(0, data[i + 1] + b));
+                            data[i + 2] = Math.min(255, Math.max(0, data[i + 2] + b));
+                        }
+                    }
+
+                    // --- Contrast ---
+                    if (currentContrast !== 0) {
+                        const factor = (259 * (currentContrast + 255)) / (255 * (259 - currentContrast));
+                        for (let i = 0; i < len; i += 4) {
+                            data[i] = Math.min(255, Math.max(0, factor * (data[i] - 128) + 128));
+                            data[i + 1] = Math.min(255, Math.max(0, factor * (data[i + 1] - 128) + 128));
+                            data[i + 2] = Math.min(255, Math.max(0, factor * (data[i + 2] - 128) + 128));
+                        }
+                    }
+
+                    // --- Vintage ---
+                    if (currentFilter === 'vintage') {
+                        for (let i = 0; i < len; i += 4) {
+                            r = data[i];
+                            g = data[i + 1];
+                            b = data[i + 2];
+                            data[i] = Math.min(255, r * 0.85 + g * 0.35 + b * 0.15);
+                            data[i + 1] = Math.min(255, r * 0.35 + g * 0.70 + b * 0.25);
+                            data[i + 2] = Math.min(255, r * 0.20 + g * 0.30 + b * 0.50);
+                        }
+                    }
+
+                    // --- Noir ---
+                    if (currentFilter === 'noir') {
+                        for (let i = 0; i < len; i += 4) {
+                            r = data[i];
+                            g = data[i + 1];
+                            b = data[i + 2];
+                            let gray = 0.299 * r + 0.587 * g + 0.114 * b;
+                            gray = Math.min(255, Math.max(0, (gray - 128) * 1.5 + 128));
+                            data[i] = gray;
+                            data[i + 1] = gray;
+                            data[i + 2] = gray;
+                        }
+                    }
+
+                    // --- Pastel ---
+                    if (currentFilter === 'pastel') {
+                        for (let i = 0; i < len; i += 4) {
+                            r = data[i];
+                            g = data[i + 1];
+                            b = data[i + 2];
+                            const gray = 0.299 * r + 0.587 * g + 0.114 * b;
+                            data[i] = Math.min(255, gray + (r - gray) * 0.7);
+                            data[i + 1] = Math.min(255, gray + (g - gray) * 0.7);
+                            data[i + 2] = Math.min(255, gray + (b - gray) * 0.7);
+                            data[i] = Math.min(255, data[i] + 15);
+                            data[i + 1] = Math.min(255, data[i + 1] + 15);
+                            data[i + 2] = Math.min(255, data[i + 2] + 15);
+                        }
+                    }
+
+                    // --- Duotone ---
+                    if (currentFilter === 'duotone') {
+                        for (let i = 0; i < len; i += 4) {
+                            r = data[i];
+                            g = data[i + 1];
+                            b = data[i + 2];
+                            const gray = 0.299 * r + 0.587 * g + 0.114 * b;
+                            const t = gray / 255;
+                            data[i] = Math.min(255, t * 200 + 55);
+                            data[i + 1] = Math.min(255, t * 80 + 30);
+                            data[i + 2] = Math.min(255, t * 180 + 75);
+                        }
+                    }
+
+                    // --- Solarize ---
+                    if (currentFilter === 'solarize') {
+                        for (let i = 0; i < len; i += 4) {
+                            data[i] = Math.min(255, Math.abs(data[i] - 128) * 2);
+                            data[i + 1] = Math.min(255, Math.abs(data[i + 1] - 128) * 2);
+                            data[i + 2] = Math.min(255, Math.abs(data[i + 2] - 128) * 2);
+                        }
+                    }
+
+                    // --- Posterize ---
+                    if (currentFilter === 'posterize') {
+                        const levels = 6;
+                        const step = 255 / levels;
+                        for (let i = 0; i < len; i += 4) {
+                            data[i] = Math.round(data[i] / step) * step;
+                            data[i + 1] = Math.round(data[i + 1] / step) * step;
+                            data[i + 2] = Math.round(data[i + 2] / step) * step;
+                        }
+                    }
+
+                    // --- Emboss (convolution) ---
+                    if (currentFilter === 'emboss') {
+                        const kernel = [
+                            [-2, -1, 0],
+                            [-1, 1, 1],
+                            [0, 1, 2]
+                        ];
+                        const kSum = 1;
+                        const srcData = new Uint8ClampedArray(data);
+                        for (let y = 1; y < height - 1; y++) {
+                            for (let x = 1; x < width - 1; x++) {
+                                let idx = (y * width + x) * 4;
+                                let r2 = 0,
+                                    g2 = 0,
+                                    b2 = 0;
+                                for (let ky = -1; ky <= 1; ky++) {
+                                    for (let kx = -1; kx <= 1; kx++) {
+                                        const px = (y + ky) * width + (x + kx);
+                                        const kidx = px * 4;
+                                        const kv = kernel[ky + 1][kx + 1];
+                                        r2 += srcData[kidx] * kv;
+                                        g2 += srcData[kidx + 1] * kv;
+                                        b2 += srcData[kidx + 2] * kv;
+                                    }
+                                }
+                                data[idx] = Math.min(255, Math.max(0, r2 / kSum + 128));
+                                data[idx + 1] = Math.min(255, Math.max(0, g2 / kSum + 128));
+                                data[idx + 2] = Math.min(255, Math.max(0, b2 / kSum + 128));
+                            }
+                        }
+                    }
+
+                    // --- Sharpen (convolution) ---
+                    if (currentFilter === 'sharpen' || currentSharpness > 0) {
+                        const strength = (currentFilter === 'sharpen' || currentSharpness > 0) ? 1 + currentSharpness /
+                            50 : 1;
+                        const kernel = [
+                            [0, -strength * 0.5, 0],
+                            [-strength * 0.5, 1 + strength * 2, -strength * 0.5],
+                            [0, -strength * 0.5, 0]
+                        ];
+                        const srcData = new Uint8ClampedArray(data);
+                        for (let y = 1; y < height - 1; y++) {
+                            for (let x = 1; x < width - 1; x++) {
+                                let idx = (y * width + x) * 4;
+                                let r2 = 0,
+                                    g2 = 0,
+                                    b2 = 0;
+                                for (let ky = -1; ky <= 1; ky++) {
+                                    for (let kx = -1; kx <= 1; kx++) {
+                                        const px = (y + ky) * width + (x + kx);
+                                        const kidx = px * 4;
+                                        const kv = kernel[ky + 1][kx + 1];
+                                        r2 += srcData[kidx] * kv;
+                                        g2 += srcData[kidx + 1] * kv;
+                                        b2 += srcData[kidx + 2] * kv;
+                                    }
+                                }
+                                data[idx] = Math.min(255, Math.max(0, r2));
+                                data[idx + 1] = Math.min(255, Math.max(0, g2));
+                                data[idx + 2] = Math.min(255, Math.max(0, b2));
+                            }
+                        }
+                    }
+
+                    // --- Vibrance ---
+                    if (currentFilter === 'vibrance' || currentVibrance > 0) {
+                        const vib = (currentFilter === 'vibrance' || currentVibrance > 0) ? 1 + currentVibrance / 100 :
+                            1;
+                        if (vib !== 1) {
+                            for (let i = 0; i < len; i += 4) {
+                                r = data[i];
+                                g = data[i + 1];
+                                b = data[i + 2];
+                                const gray = 0.299 * r + 0.587 * g + 0.114 * b;
+                                const maxC = Math.max(r, g, b);
+                                const minC = Math.min(r, g, b);
+                                const sat = maxC === 0 ? 0 : (maxC - minC) / maxC;
+                                const boost = 1 + (vib - 1) * (1 - sat);
+                                data[i] = Math.min(255, Math.max(0, gray + (r - gray) * boost));
+                                data[i + 1] = Math.min(255, Math.max(0, gray + (g - gray) * boost));
+                                data[i + 2] = Math.min(255, Math.max(0, gray + (b - gray) * boost));
+                            }
+                        }
+                    }
+
+                    // --- HDR ---
+                    if (currentFilter === 'hdr') {
+                        for (let i = 0; i < len; i += 4) {
+                            data[i] = Math.min(255, Math.max(0, (data[i] - 128) * 1.3 + 128));
+                            data[i + 1] = Math.min(255, Math.max(0, (data[i + 1] - 128) * 1.3 + 128));
+                            data[i + 2] = Math.min(255, Math.max(0, (data[i + 2] - 128) * 1.3 + 128));
+                        }
+                    }
+
+                    // --- Cross Process ---
+                    if (currentFilter === 'cross-process') {
+                        for (let i = 0; i < len; i += 4) {
+                            r = data[i];
+                            g = data[i + 1];
+                            b = data[i + 2];
+                            data[i] = Math.min(255, r * 1.1 + g * 0.1);
+                            data[i + 1] = Math.min(255, g * 0.9 + b * 0.1);
+                            data[i + 2] = Math.min(255, b * 0.8 + r * 0.2);
+                            data[i] = Math.min(255, data[i] + 5);
+                            data[i + 1] = Math.min(255, data[i + 1] - 5);
+                            data[i + 2] = Math.min(255, data[i + 2] + 10);
+                        }
+                    }
+
+                    // --- Lomo ---
+                    if (currentFilter === 'lomo') {
+                        for (let i = 0; i < len; i += 4) {
+                            r = data[i];
+                            g = data[i + 1];
+                            b = data[i + 2];
+                            const gray = 0.299 * r + 0.587 * g + 0.114 * b;
+                            data[i] = Math.min(255, gray + (r - gray) * 1.6);
+                            data[i + 1] = Math.min(255, gray + (g - gray) * 1.2);
+                            data[i + 2] = Math.min(255, gray + (b - gray) * 0.8);
+                            data[i] = Math.min(255, data[i] - 10);
+                            data[i + 1] = Math.min(255, data[i + 1] - 5);
+                            data[i + 2] = Math.min(255, data[i + 2] + 5);
+                        }
+                    }
+
+                    // --- Fade ---
+                    if (currentFilter === 'fade') {
+                        for (let i = 0; i < len; i += 4) {
+                            r = data[i];
+                            g = data[i + 1];
+                            b = data[i + 2];
+                            const gray = 0.299 * r + 0.587 * g + 0.114 * b;
+                            const fade = 0.5;
+                            data[i] = Math.min(255, gray + (r - gray) * fade);
+                            data[i + 1] = Math.min(255, gray + (g - gray) * fade);
+                            data[i + 2] = Math.min(255, gray + (b - gray) * fade);
+                            data[i] = Math.min(255, data[i] + 20);
+                            data[i + 1] = Math.min(255, data[i + 1] + 20);
+                            data[i + 2] = Math.min(255, data[i + 2] + 20);
+                        }
+                    }
+
+                    // --- Temperature (warm/cool) ---
+                    if (currentFilter === 'warmth' || currentTemperature !== 0) {
+                        const temp = (currentFilter === 'warmth' || currentTemperature !== 0) ? currentTemperature / 100 :
+                            0;
+                        if (temp !== 0) {
+                            for (let i = 0; i < len; i += 4) {
+                                if (temp > 0) {
+                                    data[i] = Math.min(255, data[i] + temp * 30);
+                                    data[i + 2] = Math.min(255, Math.max(0, data[i + 2] - temp * 20));
+                                } else {
+                                    data[i] = Math.min(255, Math.max(0, data[i] + temp * 20));
+                                    data[i + 2] = Math.min(255, data[i + 2] - temp * 30);
+                                }
+                            }
+                        }
+                    }
+
+                    // --- Exposure ---
+                    if (currentExposure !== 0) {
+                        const e = currentExposure / 100;
+                        for (let i = 0; i < len; i += 4) {
+                            data[i] = Math.min(255, Math.max(0, data[i] * (1 + e) + 5 * e));
+                            data[i + 1] = Math.min(255, Math.max(0, data[i + 1] * (1 + e) + 5 * e));
+                            data[i + 2] = Math.min(255, Math.max(0, data[i + 2] * (1 + e) + 5 * e));
+                        }
+                    }
+
+                    // --- Gamma ---
+                    if (currentGamma !== 100) {
+                        const g = currentGamma / 100;
+                        const invGamma = 1 / g;
+                        for (let i = 0; i < len; i += 4) {
+                            data[i] = Math.min(255, Math.max(0, Math.pow(data[i] / 255, invGamma) * 255));
+                            data[i + 1] = Math.min(255, Math.max(0, Math.pow(data[i + 1] / 255, invGamma) * 255));
+                            data[i + 2] = Math.min(255, Math.max(0, Math.pow(data[i + 2] / 255, invGamma) * 255));
+                        }
+                    }
+
+                    // --- Shadows ---
+                    if (currentShadows !== 0) {
+                        const s = currentShadows / 100;
+                        for (let i = 0; i < len; i += 4) {
+                            const darken = (data[i] < 128) ? s * 1.2 : s * 0.3;
+                            data[i] = Math.min(255, Math.max(0, data[i] + darken * 40));
+                            data[i + 1] = Math.min(255, Math.max(0, data[i + 1] + darken * 40));
+                            data[i + 2] = Math.min(255, Math.max(0, data[i + 2] + darken * 40));
+                        }
+                    }
+
+                    // --- Highlights ---
+                    if (currentHighlights !== 0) {
+                        const h = currentHighlights / 100;
+                        for (let i = 0; i < len; i += 4) {
+                            const lighten = (data[i] > 128) ? h * 1.2 : h * 0.3;
+                            data[i] = Math.min(255, Math.max(0, data[i] + lighten * 40));
+                            data[i + 1] = Math.min(255, Math.max(0, data[i + 1] + lighten * 40));
+                            data[i + 2] = Math.min(255, Math.max(0, data[i + 2] + lighten * 40));
+                        }
+                    }
+
+                    // --- Blur (simple box blur) ---
+                    if (currentFilter === 'blur' || currentBlur > 0) {
+                        const radius = Math.max(1, Math.round((currentFilter === 'blur' || currentBlur > 0) ? currentBlur *
+                            0.5 : 1));
+                        if (radius > 0) {
+                            const srcData2 = new Uint8ClampedArray(data);
+                            const size = radius * 2 + 1;
+                            const area = size * size;
+                            for (let y = radius; y < height - radius; y++) {
+                                for (let x = radius; x < width - radius; x++) {
+                                    let rSum = 0,
+                                        gSum = 0,
+                                        bSum = 0;
+                                    for (let dy = -radius; dy <= radius; dy++) {
+                                        for (let dx = -radius; dx <= radius; dx++) {
+                                            const idx2 = ((y + dy) * width + (x + dx)) * 4;
+                                            rSum += srcData2[idx2];
+                                            gSum += srcData2[idx2 + 1];
+                                            bSum += srcData2[idx2 + 2];
+                                        }
+                                    }
+                                    const idx = (y * width + x) * 4;
+                                    data[idx] = rSum / area;
+                                    data[idx + 1] = gSum / area;
+                                    data[idx + 2] = bSum / area;
+                                }
+                            }
+                        }
+                    }
+
+                    return imageData;
+                }
+
+                // ---- generate final canvas with all filters applied ----
+                async function generateFinalCanvas() {
+                    const source = getCurrentSource();
+                    if (!source) return null;
+                    let srcW = source instanceof HTMLImageElement ? source.naturalWidth : source.width;
+                    let srcH = source instanceof HTMLImageElement ? source.naturalHeight : source.height;
+                    let dpiVal = parseFloat(dpi.value) || 96;
+                    let rawW = targetW.value ? parseFloat(targetW.value) : null;
+                    let rawH = targetH.value ? parseFloat(targetH.value) : null;
+                    const toPx = (val, unit, ref) => {
+                        if (!val) return null;
+                        if (unit === 'px') return val;
+                        if (unit === '%') return (val / 100) * ref;
+                        if (unit === 'cm') return (val / 2.54) * dpiVal;
+                        if (unit === 'in') return val * dpiVal;
+                        return val;
+                    };
+                    let outW = toPx(rawW, widthUnit.value, srcW);
+                    let outH = toPx(rawH, heightUnit.value, srcH);
+                    if (outW && !outH) outH = (outW / srcW) * srcH;
+                    else if (!outW && outH) outW = (outH / srcH) * srcW;
+                    else if (!outW && !outH) { outW = srcW;
+                        outH = srcH; }
+                    outW = Math.max(1, Math.round(outW));
+                    outH = Math.max(1, Math.round(outH));
+
+                    const canvas = document.createElement('canvas');
+                    canvas.width = outW;
+                    canvas.height = outH;
+                    const ctx = canvas.getContext('2d');
+
+                    const scaleX = outW / srcW;
+                    const scaleY = outH / srcH;
+                    const scale = Math.min(scaleX, scaleY);
+                    const drawW = srcW * scale;
+                    const drawH = srcH * scale;
+
+                    const rad = currentRotation * Math.PI / 180;
+                    ctx.save();
+                    ctx.translate(outW / 2, outH / 2);
+                    ctx.rotate(rad);
+                    ctx.scale(flipX, flipY);
+                    ctx.drawImage(source, -drawW / 2, -drawH / 2, drawW, drawH);
+                    ctx.restore();
+
+                    const imageData = ctx.getImageData(0, 0, outW, outH);
+                    applyPixelFilters(imageData, outW, outH);
+                    ctx.putImageData(imageData, 0, 0);
+
+                    return canvas;
+                }
+
+                // ---- update live processed size ----
+                async function updateLiveProcessedSize() {
+                    const canvas = await generateFinalCanvas();
+                    if (!canvas) { liveSizeSpan.innerText = '— KB'; return; }
+                    let mime = 'image/png';
+                    const fmt = outFormat.value;
+                    if (fmt === 'original') mime = originalFileType || 'image/png';
+                    else if (fmt === 'png') mime = 'image/png';
+                    else if (fmt === 'jpeg' || fmt === 'jpg') mime = 'image/jpeg';
+                    else if (fmt === 'webp') mime = 'image/webp';
+                    else if (fmt === 'gif') mime = 'image/gif';
+                    else if (fmt === 'bmp') mime = 'image/bmp';
+                    else if (fmt === 'svg') mime = 'image/svg+xml';
+                    else mime = 'image/png';
+                    let q = Math.min(1, Math.max(0.01, parseFloat(quality.value) / 100));
+                    const blob = await new Promise(r => canvas.toBlob(r, mime, q));
+                    if (blob) liveSizeSpan.innerText = `${(blob.size / 1024).toFixed(1)} KB`;
+                    else liveSizeSpan.innerText = 'Error';
+                }
+
+                let debounceTimer;
+
+                function updateLivePreviewDebounced() {
+                    clearTimeout(debounceTimer);
+                    debounceTimer = setTimeout(updateLiveProcessedSize, 80);
+                }
+
+                // ---- load image from file ----
+                function loadImageFromFile(file) {
+                    if (!file || !file.type.startsWith('image/')) { alert('Please select a valid image'); return; }
+                    if (currentObjectUrl) URL.revokeObjectURL(currentObjectUrl);
+                    const url = URL.createObjectURL(file);
+                    currentObjectUrl = url;
+                    const img = new Image();
+                    img.onload = () => {
+                        originalImage = img;
+                        originalWidth = img.naturalWidth;
+                        originalHeight = img.naturalHeight;
+                        originalFileType = file.type;
+                        originalFileSize = file.size;
+                        metaFormat.innerText = file.type.split('/')[1].toUpperCase().replace('JPEG', 'JPG').replace(
+                            'SVG+XML', 'SVG');
+                        metaDims.innerText = `${originalWidth} × ${originalHeight} px`;
+                        metaSize.innerText = (originalFileSize / 1024).toFixed(1) + ' KB';
+                        cropImg.src = url;
+                        currentRotation = 0;
+                        flipX = 1;
+                        flipY = 1;
+                        currentFilter = 'none';
+                        currentBrightness = 0;
+                        currentContrast = 0;
+                        currentHue = 0;
+                        currentSaturation = 100;
+                        currentBlur = 0;
+                        currentInvert = 0;
+                        currentTemperature = 0;
+                        currentSharpness = 0;
+                        currentVibrance = 0;
+                        currentExposure = 0;
+                        currentGamma = 100;
+                        currentShadows = 0;
+                        currentHighlights = 0;
+
+                        // reset all sliders
+                        brightnessSlider.value = 0;
+                        contrastSlider.value = 0;
+                        hueSlider.value = 0;
+                        saturationSlider.value = 100;
+                        blurSlider.value = 0;
+                        invertSlider.value = 0;
+                        temperatureSlider.value = 0;
+                        sharpnessSlider.value = 0;
+                        vibranceSlider.value = 0;
+                        exposureSlider.value = 0;
+                        gammaSlider.value = 100;
+                        shadowsSlider.value = 0;
+                        highlightsSlider.value = 0;
+
+                        brightnessVal.innerText = '0';
+                        contrastVal.innerText = '0';
+                        hueVal.innerText = '0°';
+                        saturationVal.innerText = '100%';
+                        blurVal.innerText = '0px';
+                        invertVal.innerText = '0%';
+                        temperatureVal.innerText = '0';
+                        sharpnessVal.innerText = '0';
+                        vibranceVal.innerText = '0';
+                        exposureVal.innerText = '0';
+                        gammaVal.innerText = '100%';
+                        shadowsVal.innerText = '0';
+                        highlightsVal.innerText = '0';
+
+                        rotateRange.value = 0;
+                        rotateVal.innerText = '0°';
+                        isCroppedMode = false;
+                        croppedCanvasCache = null;
+                        destroyCropper();
+                        document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('btn-filter-active'));
+                        filterNone.classList.add('btn-filter-active');
+
+                        cropImg.onload = () => {
+                            applyCSSFilters();
+                            updateTransformStyle();
+                            if (cropEnabled) initCropperIfNeeded();
+                            updateAfterImage();
+                            updateLiveProcessedSize();
+                            if (beforeImg) beforeImg.src = url;
+                            saveToHistory();
+                        };
+                        if (cropImg.complete) cropImg.onload();
+                    };
+                    img.onerror = () => { alert('Failed to load image');
+                        URL.revokeObjectURL(url); };
+                    img.src = url;
+                }
+
+                // ---- full reset ----
+                function fullReset() {
+                    if (currentObjectUrl) URL.revokeObjectURL(currentObjectUrl);
+                    destroyCropper();
+                    if (window.cropInterval) clearInterval(window.cropInterval);
+                    originalImage = null;
+                    originalWidth = originalHeight = 0;
+                    currentRotation = 0;
+                    flipX = flipY = 1;
+                    isCroppedMode = false;
+                    croppedCanvasCache = null;
+                    currentFilter = 'none';
+                    currentBrightness = 0;
+                    currentContrast = 0;
+                    currentHue = 0;
+                    currentSaturation = 100;
+                    currentBlur = 0;
+                    currentInvert = 0;
+                    currentTemperature = 0;
+                    currentSharpness = 0;
+                    currentVibrance = 0;
+                    currentExposure = 0;
+                    currentGamma = 100;
+                    currentShadows = 0;
+                    currentHighlights = 0;
+
+                    brightnessSlider.value = 0;
+                    contrastSlider.value = 0;
+                    hueSlider.value = 0;
+                    saturationSlider.value = 100;
+                    blurSlider.value = 0;
+                    invertSlider.value = 0;
+                    temperatureSlider.value = 0;
+                    sharpnessSlider.value = 0;
+                    vibranceSlider.value = 0;
+                    exposureSlider.value = 0;
+                    gammaSlider.value = 100;
+                    shadowsSlider.value = 0;
+                    highlightsSlider.value = 0;
+
+                    brightnessVal.innerText = '0';
+                    contrastVal.innerText = '0';
+                    hueVal.innerText = '0°';
+                    saturationVal.innerText = '100%';
+                    blurVal.innerText = '0px';
+                    invertVal.innerText = '0%';
+                    temperatureVal.innerText = '0';
+                    sharpnessVal.innerText = '0';
+                    vibranceVal.innerText = '0';
+                    exposureVal.innerText = '0';
+                    gammaVal.innerText = '100%';
+                    shadowsVal.innerText = '0';
+                    highlightsVal.innerText = '0';
+
+                    document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('btn-filter-active'));
+                    filterNone.classList.add('btn-filter-active');
+                    setCropEnabled(false);
+                    rotateRange.value = 0;
+                    rotateVal.innerText = '0°';
+                    targetW.value = '';
+                    targetH.value = '';
+                    outFormat.value = 'original';
+                    quality.value = '90';
+                    dpi.value = '96';
+                    targetSizeKB.value = '';
+                    if (outputFileNameInput) outputFileNameInput.value = '';
+                    cropImg.src =
+                        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Crect width='400' height='250' fill='%23333'/%3E%3Ctext x='50%25' y='50%25' font-size='14' fill='%23aaa' text-anchor='middle' dy='.3em'%3ENo Image%3C/text%3E%3C/svg%3E";
+                    cropImg.style.filter = 'none';
+                    cropImg.style.transform = 'rotate(0deg) scaleX(1) scaleY(1)';
+                    metaFormat.innerText = '—';
+                    metaDims.innerText = '— x — px';
+                    metaSize.innerText = '—';
+                    liveSizeSpan.innerText = '— KB';
+                    fileInput.value = '';
+                    if (beforeImg) beforeImg.src = '';
+                    if (afterImg) afterImg.src = '';
+                    historyStack = [];
+                    historyIndex = -1;
+                }
+
+                // ---- theme ----
+                function initTheme() {
+                    let isDark = safeGetItem('theme') === 'dark';
+                    document.body.classList.toggle('dark-mode', isDark);
+                    lightModeHeaderBtn.innerHTML = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+                }
+
+                function toggleTheme() {
+                    const isDark = !document.body.classList.contains('dark-mode');
+                    document.body.classList.toggle('dark-mode', isDark);
+                    lightModeHeaderBtn.innerHTML = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+                    safeSetItem('theme', isDark ? 'dark' : 'light');
+                }
+                lightModeHeaderBtn.addEventListener('click', toggleTheme);
+                initTheme();
+
+                // ---- event listeners ----
+                fileInput.addEventListener('change', e => { if (e.target.files[0]) loadImageFromFile(e.target.files[0]); });
+                window.addEventListener('dragover', e => e.preventDefault());
+                window.addEventListener('drop', e => {
+                    e.preventDefault();
+                    if (e.dataTransfer.files[0]) loadImageFromFile(e.dataTransfer.files[0]);
+                });
+                document.addEventListener('paste', e => {
+                    const items = e.clipboardData.items;
+                    for (let item of items)
+                        if (item.type.indexOf('image') !== -1) { loadImageFromFile(item.getAsFile()); break; }
+                });
+
+                enableCrop.addEventListener('click', () => setCropEnabled(true));
+                disableCrop.addEventListener('click', () => setCropEnabled(false));
+                applyCropBtn.addEventListener('click', applyCropAction);
+                resetCropBtn.addEventListener('click', () => { if (cropper) cropper.reset(); });
+                resetAllBtn.addEventListener('click', fullReset);
+
+                rotateRange.addEventListener('input', () => {
+                    currentRotation = parseInt(rotateRange.value);
+                    rotateVal.innerText = currentRotation + '°';
+                    updateTransformStyle();
+                    if (!isUndoRedoAction) saveToHistory();
+                });
+                flipH.addEventListener('click', () => { flipX *= -1;
+                    updateTransformStyle(); if (!isUndoRedoAction) saveToHistory(); });
+                flipV.addEventListener('click', () => { flipY *= -1;
+                    updateTransformStyle(); if (!isUndoRedoAction) saveToHistory(); });
+                rotateLeft.addEventListener('click', () => {
+                    currentRotation = (currentRotation - 90 + 360) % 360;
+                    rotateRange.value = currentRotation;
+                    rotateVal.innerText = currentRotation + '°';
+                    updateTransformStyle();
+                    if (!isUndoRedoAction) saveToHistory();
+                });
+                rotateRight.addEventListener('click', () => {
+                    currentRotation = (currentRotation + 90) % 360;
+                    rotateRange.value = currentRotation;
+                    rotateVal.innerText = currentRotation + '°';
+                    updateTransformStyle();
+                    if (!isUndoRedoAction) saveToHistory();
+                });
+                zoomIn.addEventListener('click', () => { if (cropper) cropper.zoom(0.1); });
+                zoomOut.addEventListener('click', () => { if (cropper) cropper.zoom(-0.1); });
+                extraAspect.addEventListener('change', () => { if (cropper && extraAspect.value) cropper.setAspectRatio(
+                        parseFloat(extraAspect.value)); });
+                aspectSelect.addEventListener('change', () => { if (cropper) cropper.setAspectRatio(parseFloat(
+                        aspectSelect.value) || NaN); });
+
+                targetW.addEventListener('input', () => {
+                    if (lockAspect.checked && originalWidth && targetW.value) {
+                        const ratio = originalHeight / originalWidth;
+                        targetH.value = Math.round(targetW.value * ratio);
+                    }
+                    updateLivePreviewDebounced();
+                    if (!isUndoRedoAction) saveToHistory();
+                });
+                targetH.addEventListener('input', () => {
+                    if (lockAspect.checked && originalWidth && targetH.value) {
+                        const ratio = originalWidth / originalHeight;
+                        targetW.value = Math.round(targetH.value * ratio);
+                    }
+                    updateLivePreviewDebounced();
+                    if (!isUndoRedoAction) saveToHistory();
+                });
+                [widthUnit, heightUnit, outFormat, quality, dpi, targetSizeKB, sizeUnit].forEach(el => el.addEventListener(
+                    'input', updateLivePreviewDebounced));
+                refreshLive.addEventListener('click', updateLiveProcessedSize);
+
+                downloadBtn.addEventListener('click', async () => {
+                    const canvas = await generateFinalCanvas();
+                    if (!canvas) { alert('No image loaded'); return; }
+                    const fmt = outFormat.value;
+                    let mime = 'image/png';
+                    let ext = 'png';
+                    if (fmt === 'original') { mime = originalFileType || 'image/png';
+                        ext = mime.split('/')[1]; if (ext === 'jpeg') ext = 'jpg'; if (ext === 'svg+xml') ext =
+                            'svg'; } else if (fmt === 'png') { mime = 'image/png';
+                        ext = 'png'; } else if (fmt === 'jpeg' || fmt === 'jpg') { mime = 'image/jpeg';
+                        ext = 'jpg'; } else if (fmt === 'webp') { mime = 'image/webp';
+                        ext = 'webp'; } else if (fmt === 'gif') { mime = 'image/gif';
+                        ext = 'gif'; } else if (fmt === 'bmp') { mime = 'image/bmp';
+                        ext = 'bmp'; } else if (fmt === 'svg') { mime = 'image/svg+xml';
+                        ext = 'svg'; }
+                    const q = Math.min(1, Math.max(0.01, parseFloat(quality.value) / 100));
+                    const blob = await new Promise(r => canvas.toBlob(r, mime, q));
+                    if (blob) {
+                        const link = document.createElement('a');
+                        const url = URL.createObjectURL(blob);
+                        let baseFileName = outputFileNameInput.value.trim();
+                        let fileName = baseFileName === "" ? `final_${canvas.width}x${canvas.height}.${ext}` :
+                            `${baseFileName.replace(/[\\/:*?"<>|]/g, '') || 'image'}.${ext}`;
+                        link.href = url;
+                        link.download = fileName;
+                        link.click();
+                        URL.revokeObjectURL(url);
+                    }
+                });
+
+                presetSelect.addEventListener('change', () => {
+                    if (!presetSelect.value) return;
+                    const [w, h] = presetSelect.value.split('x');
+                    targetW.value = w;
+                    targetH.value = h;
+                    widthUnit.value = 'px';
+                    heightUnit.value = 'px';
+                    updateLivePreviewDebounced();
+                    if (!isUndoRedoAction) saveToHistory();
+                });
+
+                copyBtn.addEventListener('click', async () => {
+                    const canvas = await generateFinalCanvas();
+                    if (!canvas) { alert('No image to copy'); return; }
+                    canvas.toBlob(async (blob) => {
+                        try {
+                            await navigator.clipboard.write([new ClipboardItem({ [blob.type]: blob })]);
+                            copyBtn.innerHTML = '✅ Copied!';
+                            setTimeout(() => copyBtn.innerHTML = '📋 Copy Image', 2000);
+                        } catch (e) { alert('Clipboard copy requires HTTPS'); }
+                    });
+                });
+
+                // ---- filter button clicks ----
+                const filterButtons = [
+                    { btn: filterNone, name: 'none' },
+                    { btn: filterGrayscale, name: 'grayscale' },
+                    { btn: filterSepia, name: 'sepia' },
+                    { btn: filterHueRotate, name: 'hue-rotate' },
+                    { btn: filterSaturate, name: 'saturate' },
+                    { btn: filterBlur, name: 'blur' },
+                    { btn: filterInvert, name: 'invert' },
+                    { btn: filterWarmth, name: 'warmth' },
+                    { btn: filterVintage, name: 'vintage' },
+                    { btn: filterNoir, name: 'noir' },
+                    { btn: filterPastel, name: 'pastel' },
+                    { btn: filterDuotone, name: 'duotone' },
+                    { btn: filterSolarize, name: 'solarize' },
+                    { btn: filterPosterize, name: 'posterize' },
+                    { btn: filterEmboss, name: 'emboss' },
+                    { btn: filterSharpen, name: 'sharpen' },
+                    { btn: filterVibrance, name: 'vibrance' },
+                    { btn: filterHDR, name: 'hdr' },
+                    { btn: filterCrossProcess, name: 'cross-process' },
+                    { btn: filterLomo, name: 'lomo' },
+                    { btn: filterFade, name: 'fade' }
+                ];
+
+                filterButtons.forEach(({ btn, name }) => {
+                    btn.addEventListener('click', () => {
+                        document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove(
+                            'btn-filter-active'));
+                        btn.classList.add('btn-filter-active');
+                        currentFilter = name;
+                        if (name === 'hue-rotate') currentHue = parseInt(hueSlider.value) || 0;
+                        if (name === 'saturate') currentSaturation = parseInt(saturationSlider.value) || 100;
+                        if (name === 'blur') currentBlur = parseFloat(blurSlider.value) || 0;
+                        if (name === 'invert') currentInvert = parseInt(invertSlider.value) || 0;
+                        if (name === 'warmth') currentTemperature = parseInt(temperatureSlider.value) || 0;
+                        if (name === 'sharpen') currentSharpness = parseInt(sharpnessSlider.value) || 0;
+                        if (name === 'vibrance') currentVibrance = parseInt(vibranceSlider.value) || 0;
+                        updateFilterAndAdjust();
+                    });
+                });
+
+                // ---- slider events ----
+                const sliderMap = [
+                    { slider: brightnessSlider, val: brightnessVal, set: v => currentBrightness = v, display: v => v },
+                    { slider: contrastSlider, val: contrastVal, set: v => currentContrast = v, display: v => v },
+                    { slider: hueSlider, val: hueVal, set: v => currentHue = v, display: v => v + '°' },
+                    { slider: saturationSlider, val: saturationVal, set: v => currentSaturation = v, display: v => v +
+                            '%' },
+                    { slider: blurSlider, val: blurVal, set: v => currentBlur = v, display: v => v + 'px' },
+                    { slider: invertSlider, val: invertVal, set: v => currentInvert = v, display: v => v + '%' },
+                    { slider: temperatureSlider, val: temperatureVal, set: v => currentTemperature = v, display: v => v },
+                    { slider: sharpnessSlider, val: sharpnessVal, set: v => currentSharpness = v, display: v => v },
+                    { slider: vibranceSlider, val: vibranceVal, set: v => currentVibrance = v, display: v => v },
+                    { slider: exposureSlider, val: exposureVal, set: v => currentExposure = v, display: v => v },
+                    { slider: gammaSlider, val: gammaVal, set: v => currentGamma = v, display: v => v + '%' },
+                    { slider: shadowsSlider, val: shadowsVal, set: v => currentShadows = v, display: v => v },
+                    { slider: highlightsSlider, val: highlightsVal, set: v => currentHighlights = v, display: v => v }
+                ];
+
+                sliderMap.forEach(({ slider, val, set, display }) => {
+                    slider.addEventListener('input', () => {
+                        const v = parseFloat(slider.value);
+                        set(v);
+                        if (val) val.innerText = display(v);
+                        updateFilterAndAdjust();
+                    });
+                });
+
+                // ---- undo/redo ----
+                undoBtn.addEventListener('click', undo);
+                redoBtn.addEventListener('click', redo);
+                document.addEventListener('keydown', (e) => {
+                    if (e.ctrlKey && e.key === 'z') { e.preventDefault();
+                        undo(); } else if (e.ctrlKey && (e.key === 'y' || (e.shiftKey && e.key === 'Z'))) { e
+                            .preventDefault();
+                        redo(); }
+                });
+
+                setInterval(() => { updateAfterImage(); }, 200);
+                setCropEnabled(false);
+            }
+        })();
+    </script>
+</body>
+</html>

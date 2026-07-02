@@ -1,0 +1,2267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WhatsApp Direct Chat Tool - Send WhatsApp Message Without Saving Number</title>
+    <meta name="description" content="Free WhatsApp Direct Chat Tool to send WhatsApp messages without saving phone numbers. Generate WhatsApp chat links, create QR codes, and start conversations instantly.">
+    <meta name="keywords" content="WhatsApp Direct Chat Tool, WhatsApp Link Generator, WhatsApp Click to Chat, Send WhatsApp Without Saving Number, wa.me Generator, WhatsApp URL Generator, WhatsApp Chat Link Creator, Direct WhatsApp Message">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://deepmegatools.vercel.app/tools/whatsapp-direct-chat.html">
+
+    <!-- ===== Performance: Preconnect to critical origins ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                { "@type": "Question", "name": "Can I send a WhatsApp message without saving the phone number?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Enter the phone number, choose the correct country code, and click Open Chat to start a WhatsApp conversation without saving the contact." } },
+                { "@type": "Question", "name": "Is this WhatsApp Direct Chat Tool free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. This tool is completely free with no registration or hidden charges." } },
+                { "@type": "Question", "name": "Does this tool support international phone numbers?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. It supports WhatsApp phone numbers from almost every country." } },
+                { "@type": "Question", "name": "Can I generate a WhatsApp link?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can generate, copy, and share WhatsApp Click-to-Chat links instantly." } },
+                { "@type": "Question", "name": "Does it work on mobile devices?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The tool works on Android, iPhone, tablets, laptops, and desktop computers." } }
+            ]
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://deepmegatools.vercel.app/" },
+                { "@type": "ListItem", "position": 2, "name": "WhatsApp Direct Chat Tool", "item": "https://deepmegatools.vercel.app/tools/whatsapp-direct-chat" }
+            ]
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "WhatsApp Direct Chat Tool",
+            "url": "https://deepmegatools.vercel.app/tools/whatsapp-direct-chat",
+            "applicationCategory": "CommunicationApplication",
+            "operatingSystem": "Any",
+            "browserRequirements": "Requires JavaScript-enabled browser",
+            "description": "Start WhatsApp chats without saving phone numbers. Generate WhatsApp chat links and optional pre-filled messages instantly.",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Deep Mega Tools",
+            "url": "https://deepmegatools.vercel.app/",
+            "logo": "https://deepmegatools.vercel.app/favicon.png"
+        }
+    </script>
+    <!-- Font Awesome 6 (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- Google Font: Inter (with display=swap already) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ---------- CSS Reset / Base ---------- */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #f0f2f5;
+            --card-bg: #ffffff;
+            --text: #1a1a2e;
+            --text-secondary: #555;
+            --border: #e0e0e0;
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            --radius: 20px;
+            --primary: #25D366;
+            --primary-dark: #128C7E;
+            --primary-light: #dcf8e6;
+            --input-bg: #f8f9fa;
+            --hover: #f1f3f5;
+            --whatsapp-green: #25D366;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --header-gradient: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            --seo-heading: #1a1a2e;
+            --seo-text: #2d2d44;
+            --seo-border: #e8e8ee;
+            --seo-bg-alt: #f7f8fc;
+            --seo-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            --intro-bg: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+            --accessible-green: #0d7a6b;
+        }
+
+        /* Dark Mode */
+        [data-theme="dark"] {
+            --bg: #0f0f1a;
+            --card-bg: #1a1a2e;
+            --text: #eaeef2;
+            --text-secondary: #aab;
+            --border: #2a2a44;
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            --input-bg: #252542;
+            --hover: #2a2a4a;
+            --primary-light: #1a3a2a;
+            --seo-heading: #eaeef2;
+            --seo-text: #d0d4dc;
+            --seo-border: #2a2a44;
+            --seo-bg-alt: #16162b;
+            --seo-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+            --intro-bg: linear-gradient(145deg, #1a1a2e 0%, #16162b 100%);
+            --accessible-green: #3dc2a0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            padding: 4px;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        /* ---------- Container ---------- */
+        .container {
+            margin: 20px auto;
+            max-width: 98%;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            padding: 40px 36px 44px;
+            transition: background var(--transition), box-shadow var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--header-gradient);
+        }
+
+        /* ---------- Header ---------- */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--header-gradient);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            color: #fff;
+            flex-shrink: 0;
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
+        }
+
+        /* Changed from h3 to h2 for proper heading hierarchy */
+        .header-title h2 {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            background: var(--header-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .header-title p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            -webkit-text-fill-color: var(--text-secondary);
+            margin-top: 1px;
+        }
+
+        .theme-toggle {
+            background: var(--input-bg);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 20px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+        }
+
+        .theme-toggle:hover {
+            background: var(--hover);
+            transform: rotate(20deg);
+        }
+
+        /* ---------- Intro Section ---------- */
+        .intro-section {
+            background: var(--intro-bg);
+            border-radius: 16px;
+            padding: 28px 30px;
+            margin-bottom: 28px;
+            border-left: 4px solid var(--primary);
+            box-shadow: var(--seo-shadow);
+            transition: background var(--transition), box-shadow var(--transition);
+        }
+
+        .intro-section h1 {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.4px;
+            color: var(--seo-heading);
+            margin-bottom: 12px;
+            line-height: 1.3;
+            transition: color var(--transition);
+        }
+
+        .intro-section p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--seo-text);
+            margin-bottom: 12px;
+            transition: color var(--transition);
+        }
+
+        .intro-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-section strong {
+            color: var(--accessible-green);
+            font-weight: 700;
+        }
+
+        /* ---------- Form ---------- */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text);
+            letter-spacing: -0.2px;
+        }
+
+        .form-group label .label-icon {
+            margin-right: 8px;
+            color: var(--primary);
+            opacity: 0.7;
+        }
+
+        .form-group .hint {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-left: 6px;
+        }
+
+        .phone-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .phone-row .country-select {
+            flex: 0 0 130px;
+            min-width: 110px;
+            position: relative;
+        }
+
+        .phone-row .phone-input {
+            flex: 1;
+        }
+
+        /* ---------- Custom Dropdown ---------- */
+        .custom-dropdown {
+            position: relative;
+            width: 100%;
+        }
+
+        .dropdown-trigger {
+            width: 100%;
+            padding: 14px 16px;
+            padding-right: 40px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            background: var(--input-bg);
+            color: var(--text);
+            cursor: pointer;
+            transition: all var(--transition);
+            outline: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-align: left;
+            position: relative;
+            user-select: none;
+        }
+
+        .dropdown-trigger:hover {
+            border-color: var(--primary);
+        }
+
+        .dropdown-trigger:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(37, 211, 102, 0.15);
+            background: var(--card-bg);
+        }
+
+        .dropdown-trigger .trigger-flag {
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .dropdown-trigger .trigger-text {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .dropdown-trigger .trigger-arrow {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            color: var(--text-secondary);
+            transition: transform var(--transition);
+            pointer-events: none;
+        }
+
+        .dropdown-trigger.open .trigger-arrow {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .dropdown-panel {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            max-height: 280px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            transition: all var(--transition);
+        }
+
+        .dropdown-panel.open {
+            display: flex;
+        }
+
+        .dropdown-search-wrapper {
+            position: relative;
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+            background: var(--input-bg);
+        }
+
+        .dropdown-search-wrapper .search-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 13px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .dropdown-search-wrapper .dropdown-search-input {
+            width: 100%;
+            padding: 8px 12px 8px 36px;
+            font-size: 13px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            background: var(--card-bg);
+            color: var(--text);
+            outline: none;
+            transition: all var(--transition);
+        }
+
+        .dropdown-search-wrapper .dropdown-search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.12);
+        }
+
+        .dropdown-search-wrapper .dropdown-search-input::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.6;
+            font-weight: 400;
+        }
+
+        .dropdown-search-wrapper .clear-dropdown-search {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 14px;
+            padding: 2px 6px;
+            border-radius: 50%;
+            transition: all var(--transition);
+            display: none;
+            opacity: 0.5;
+        }
+
+        .dropdown-search-wrapper .clear-dropdown-search:hover {
+            opacity: 1;
+            color: var(--text);
+        }
+
+        .dropdown-search-wrapper .clear-dropdown-search.visible {
+            display: block;
+        }
+
+        .dropdown-list {
+            overflow-y: auto;
+            padding: 4px 0;
+            flex: 1;
+            max-height: 200px;
+        }
+
+        .dropdown-list::-webkit-scrollbar {
+            width: 4px;
+        }
+        .dropdown-list::-webkit-scrollbar-track {
+            background: var(--input-bg);
+            border-radius: 8px;
+        }
+        .dropdown-list::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 8px;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text);
+            cursor: pointer;
+            transition: all var(--transition);
+            font-family: 'Inter', sans-serif;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .dropdown-item:hover {
+            background: var(--primary-light);
+        }
+
+        .dropdown-item .item-flag {
+            font-size: 17px;
+            flex-shrink: 0;
+        }
+
+        .dropdown-item .item-dial {
+            color: var(--text-secondary);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .dropdown-item .item-name {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .dropdown-item.hidden-item {
+            display: none !important;
+        }
+
+        .dropdown-no-results {
+            padding: 14px 16px;
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-align: center;
+            font-weight: 500;
+            opacity: 0.6;
+            display: none;
+        }
+
+        .dropdown-no-results.visible {
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            background: var(--input-bg);
+            color: var(--text);
+            transition: all var(--transition);
+            outline: none;
+            font-weight: 500;
+        }
+
+        input[type="text"]:focus,
+        input[type="tel"]:focus,
+        textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(37, 211, 102, 0.15);
+            background: var(--card-bg);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+            max-height: 200px;
+            line-height: 1.6;
+        }
+
+        .char-counter {
+            text-align: right;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 6px;
+            font-weight: 500;
+        }
+        .char-counter .char-count {
+            font-weight: 700;
+            color: var(--text);
+        }
+        .char-counter.warning .char-count {
+            color: #e74c3c;
+        }
+
+        .quick-messages {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .quick-msg-btn {
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1.5px solid var(--border);
+            border-radius: 20px;
+            background: var(--input-bg);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition);
+            font-family: 'Inter', sans-serif;
+            white-space: nowrap;
+        }
+
+        .quick-msg-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.15);
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 15px 24px;
+            font-size: 15px;
+            font-weight: 700;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.2px;
+        }
+
+        .btn-primary {
+            background: var(--header-gradient);
+            color: #fff;
+            box-shadow: 0 8px 28px rgba(37, 211, 102, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(37, 211, 102, 0.45);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.97);
+        }
+
+        .btn-secondary {
+            background: var(--input-bg);
+            color: var(--text);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--hover);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: #2ecc71;
+            color: #fff;
+        }
+
+        .btn-success:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(46, 204, 113, 0.35);
+        }
+
+        .btn .fa-solid,
+        .btn .fa-brands {
+            font-size: 18px;
+        }
+
+        .link-box {
+            margin-top: 24px;
+            padding: 16px 18px;
+            background: var(--input-bg);
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all var(--transition);
+            display: none;
+        }
+
+        .link-box.visible {
+            display: flex;
+        }
+
+        .link-box .link-text {
+            flex: 1;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text);
+            word-break: break-all;
+            font-family: 'Inter', monospace;
+            letter-spacing: -0.2px;
+            line-height: 1.5;
+            max-height: 60px;
+            overflow-y: auto;
+        }
+
+        .link-box .copy-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 6px 8px;
+            border-radius: 8px;
+            transition: all var(--transition);
+            flex-shrink: 0;
+        }
+
+        .link-box .copy-btn:hover {
+            background: var(--primary-light);
+            transform: scale(1.1);
+        }
+
+        .link-box .copy-btn.copied {
+            color: #2ecc71;
+        }
+
+        .qr-section {
+            margin-top: 20px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: var(--input-bg);
+            border-radius: 16px;
+            border: 2px solid var(--border);
+            transition: all var(--transition);
+        }
+
+        .qr-section.visible {
+            display: flex;
+        }
+
+        .qr-section #qrcode {
+            background: #fff;
+            padding: 12px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        .qr-section .qr-label {
+            margin-top: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .qr-section .qr-label i {
+            margin-right: 6px;
+            color: var(--primary);
+        }
+
+        .recent-section {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 2px solid var(--border);
+            transition: border-color var(--transition);
+        }
+
+        .recent-section .recent-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .recent-section .recent-header h4 {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: -0.2px;
+        }
+
+        .recent-section .recent-header h4 i {
+            margin-right: 6px;
+        }
+
+        .recent-section .clear-recent {
+            background: none;
+            border: none;
+            font-size: 12px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 6px;
+            transition: all var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .recent-section .clear-recent:hover {
+            background: var(--hover);
+            color: #e74c3c;
+        }
+
+        .recent-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .recent-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px 6px 12px;
+            background: var(--input-bg);
+            border: 1.5px solid var(--border);
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition);
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+        }
+
+        .recent-item:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .recent-item .recent-flag {
+            font-size: 16px;
+        }
+
+        .recent-item .recent-remove {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 12px;
+            padding: 0 2px;
+            transition: color var(--transition);
+        }
+
+        .recent-item .recent-remove:hover {
+            color: #e74c3c;
+        }
+
+        .recent-empty {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: var(--card-bg);
+            color: var(--text);
+            padding: 14px 28px;
+            border-radius: 14px;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.18);
+            font-weight: 600;
+            font-size: 14px;
+            border: 2px solid var(--border);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.92);
+        }
+
+        [data-theme="dark"] .toast {
+            background: rgba(26, 26, 46, 0.95);
+        }
+
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast .toast-icon {
+            font-size: 22px;
+        }
+        .toast .toast-icon.success {
+            color: #2ecc71;
+        }
+        .toast .toast-icon.error {
+            color: #e74c3c;
+        }
+        .toast .toast-icon.info {
+            color: var(--primary);
+        }
+
+        /* ---------- SEO Content ---------- */
+        .seo-content {
+            margin-top: 48px;
+            padding-top: 36px;
+            border-top: 3px solid var(--seo-border);
+            max-width: 100%;
+            color: var(--seo-text);
+            line-height: 1.8;
+            font-size: 16px;
+            transition: color var(--transition), border-color var(--transition);
+        }
+
+        .seo-content h2 {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            color: var(--seo-heading);
+            margin-top: 40px;
+            margin-bottom: 14px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--seo-border);
+            transition: color var(--transition), border-color var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .seo-content h2::before {
+            content: "▸";
+            color: var(--accessible-green);
+            font-weight: 900;
+            font-size: 1.2em;
+        }
+
+        .seo-content h3 {
+            font-size: 19px;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+            color: var(--seo-heading);
+            margin-top: 28px;
+            margin-bottom: 10px;
+            transition: color var(--transition);
+        }
+
+        .seo-content p {
+            margin-bottom: 16px;
+            color: var(--seo-text);
+            transition: color var(--transition);
+        }
+
+        .seo-content ul,
+        .seo-content ol {
+            margin: 12px 0 20px 24px;
+            padding-left: 8px;
+            color: var(--seo-text);
+            transition: color var(--transition);
+        }
+
+        .seo-content ul li,
+        .seo-content ol li {
+            margin-bottom: 6px;
+            padding-left: 4px;
+            position: relative;
+        }
+
+        .seo-content ul li::marker {
+            color: var(--accessible-green);
+        }
+        .seo-content ol li::marker {
+            color: var(--accessible-green);
+            font-weight: 700;
+        }
+
+        .seo-content ul ul,
+        .seo-content ol ul,
+        .seo-content ul ol,
+        .seo-content ol ol {
+            margin-top: 4px;
+            margin-bottom: 4px;
+        }
+
+        .seo-content strong {
+            color: var(--seo-heading);
+            font-weight: 700;
+            transition: color var(--transition);
+        }
+
+        .seo-content a {
+            color: var(--accessible-green);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            text-decoration-thickness: 2px;
+            transition: color var(--transition);
+        }
+
+        .seo-content a:hover {
+            color: var(--primary-dark);
+            text-decoration-thickness: 3px;
+        }
+
+        .seo-content blockquote {
+            margin: 20px 0;
+            padding: 16px 24px;
+            border-left: 4px solid var(--primary);
+            background: var(--seo-bg-alt);
+            border-radius: 0 12px 12px 0;
+            color: var(--seo-text);
+            font-style: italic;
+            transition: background var(--transition), border-color var(--transition), color var(--transition);
+        }
+
+        .seo-content hr {
+            margin: 32px 0;
+            border: none;
+            height: 2px;
+            background: var(--seo-border);
+            transition: background var(--transition);
+        }
+
+        .seo-content .highlight-box {
+            background: var(--seo-bg-alt);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 20px 0;
+            border: 1px solid var(--seo-border);
+            transition: background var(--transition), border-color var(--transition);
+        }
+
+        .related-tools h2 {
+            margin-top: 28px;
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 600px) {
+            .container {
+                padding: 28px 20px 32px;
+            }
+            .intro-section {
+                padding: 20px 18px;
+            }
+            .intro-section h1 {
+                font-size: 21px;
+            }
+            .intro-section p {
+                font-size: 15px;
+            }
+            .phone-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .phone-row .country-select {
+                flex: 1;
+                min-width: unset;
+            }
+            .header-title h2 {
+                font-size: 19px;
+            }
+            .logo-icon {
+                width: 42px;
+                height: 42px;
+                font-size: 20px;
+            }
+            .btn {
+                min-width: 100%;
+                flex: 1 1 100%;
+            }
+            .actions {
+                flex-direction: column;
+            }
+            .quick-messages {
+                gap: 6px;
+            }
+            .quick-msg-btn {
+                font-size: 11px;
+                padding: 6px 12px;
+            }
+            .link-box {
+                flex-wrap: wrap;
+            }
+            .link-box .link-text {
+                font-size: 12px;
+                max-height: 80px;
+            }
+            .recent-item {
+                font-size: 12px;
+                padding: 4px 10px 4px 8px;
+            }
+            .toast {
+                width: calc(100% - 40px);
+                font-size: 13px;
+                padding: 12px 18px;
+                bottom: 20px;
+            }
+            .dropdown-trigger {
+                font-size: 14px;
+                padding: 12px 14px;
+                padding-right: 36px;
+            }
+            .dropdown-item {
+                font-size: 13px;
+                padding: 7px 12px;
+            }
+            .dropdown-search-wrapper .dropdown-search-input {
+                font-size: 12px;
+                padding: 6px 10px 6px 32px;
+            }
+            .seo-content h2 {
+                font-size: 20px;
+            }
+            .seo-content h3 {
+                font-size: 17px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                padding: 20px 14px 24px;
+            }
+            .intro-section {
+                padding: 16px 14px;
+            }
+            .intro-section h1 {
+                font-size: 18px;
+            }
+            .header-title h2 {
+                font-size: 17px;
+            }
+            .header-left {
+                gap: 10px;
+            }
+            .theme-toggle {
+                width: 38px;
+                height: 38px;
+                font-size: 17px;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--input-bg);
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 8px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        .input-error {
+            border-color: #e74c3c !important;
+            box-shadow: 0 0 0 4px rgba(231, 76, 60, 0.15) !important;
+        }
+        .error-message {
+            font-size: 12px;
+            color: #e74c3c;
+            font-weight: 500;
+            margin-top: 4px;
+            display: none;
+        }
+        .error-message.visible {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== TOAST ========== -->
+    <div class="toast" id="toast">
+        <span class="toast-icon" id="toastIcon">✅</span>
+        <span id="toastMessage">Copied!</span>
+    </div>
+
+    <!-- ========== MAIN LANDMARK ========== -->
+    <main>
+
+        <!-- ========== INTRO SECTION ========== -->
+        <div class="intro-section">
+            <h1>WhatsApp Direct Chat Tool – Send WhatsApp Messages Without Saving the Number</h1>
+            <p>The <strong>WhatsApp Direct Chat Tool</strong> is a free online utility that allows you to start a WhatsApp conversation instantly without saving the recipient's phone number in your contacts. Whether you're contacting a customer, business, client, seller, freelancer, or international number, this tool helps you save time while keeping your contact list clean.</p>
+            <img src="https://deepmegatools.vercel.app/images/final_1672x941.webp"
+            alt="WhatsApp Direct Chat Tool"
+            width="1200"
+            height="675"
+            loading="lazy"
+            decoding="async"
+            class="article-image">
+            <p>Simply choose the country code, enter the WhatsApp number, optionally type a custom message, and click the <strong>Open Chat</strong> button. The tool instantly redirects you to WhatsApp or WhatsApp Web so you can begin chatting without creating a new contact.</p>
+        </div>
+
+        <!-- ========== MAIN CONTAINER ========== -->
+        <div class="container" id="app">
+
+            <!-- Header -->
+            <div class="header">
+                <div class="header-left">
+                    <div class="logo-icon">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+                    <div class="header-title">
+                        <!-- Changed from h3 to h2 for proper heading hierarchy -->
+                        <h2>Direct Chat</h2>
+                        <p>WhatsApp without saving</p>
+                    </div>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fa-solid fa-moon" id="themeIcon"></i>
+                </button>
+            </div>
+
+            <!-- Country & Phone -->
+            <div class="form-group">
+                <label for="countrySelect">
+                    <i class="fa-solid fa-globe label-icon"></i> Country
+                </label>
+                <div class="phone-row">
+                    <div class="country-select">
+                        <div class="custom-dropdown" id="countryDropdown">
+                            <button class="dropdown-trigger" id="dropdownTrigger" type="button" aria-haspopup="listbox" aria-expanded="false">
+                                <span class="trigger-flag" id="triggerFlag">🇺🇸</span>
+                                <span class="trigger-text" id="triggerText">+1 United States</span>
+                                <span class="trigger-arrow"><i class="fa-solid fa-chevron-down"></i></span>
+                            </button>
+                            <div class="dropdown-panel" id="dropdownPanel" role="listbox">
+                                <div class="dropdown-search-wrapper">
+                                    <span class="search-icon"><i class="fa-solid fa-search"></i></span>
+                                    <input type="text" class="dropdown-search-input" id="dropdownSearchInput" placeholder="Search country..." autocomplete="off" aria-label="Search countries" />
+                                    <button class="clear-dropdown-search" id="clearDropdownSearch" title="Clear search" aria-label="Clear search"><i class="fa-solid fa-xmark"></i></button>
+                                </div>
+                                <div class="dropdown-list" id="dropdownList"></div>
+                                <div class="dropdown-no-results" id="dropdownNoResults">No country found</div>
+                            </div>
+                        </div>
+                        <select id="countrySelect" style="display:none;"></select>
+                    </div>
+                    <div class="phone-input">
+                        <input type="tel" id="phoneInput" placeholder="Phone number (e.g. 9123456789)" aria-label="Phone number" />
+                        <div class="error-message" id="phoneError">Please enter a valid phone number.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+                <label for="messageInput">
+                    <i class="fa-solid fa-comment label-icon"></i> Message
+                    <span class="hint">(optional)</span>
+                </label>
+                <textarea id="messageInput" placeholder="Type your message here…" maxlength="4096" aria-label="Message text"></textarea>
+                <div class="char-counter" id="charCounter">
+                    <span class="char-count" id="charCount">0</span> / 4096
+                </div>
+            </div>
+
+            <!-- Quick Messages -->
+            <div class="quick-messages" id="quickMessages">
+                <button class="quick-msg-btn" data-msg="Hello! I'm interested in your services.">👋 Hello</button>
+                <button class="quick-msg-btn" data-msg="Hi, I'd like to know more about your products.">📦 Products</button>
+                <button class="quick-msg-btn" data-msg="I need support with my order #1234.">🛠️ Support</button>
+                <button class="quick-msg-btn" data-msg="Thanks for your help!">🙏 Thanks</button>
+                <button class="quick-msg-btn" data-msg="Can we schedule a call?">📅 Schedule</button>
+            </div>
+
+            <!-- Actions -->
+            <div class="actions">
+                <button class="btn btn-primary" id="openChatBtn">
+                    <i class="fa-brands fa-whatsapp"></i> Open Chat
+                </button>
+                <button class="btn btn-secondary" id="generateLinkBtn">
+                    <i class="fa-solid fa-link"></i> Generate Link
+                </button>
+                <button class="btn btn-secondary" id="qrToggleBtn">
+                    <i class="fa-solid fa-qrcode"></i> QR
+                </button>
+            </div>
+
+            <!-- Generated Link -->
+            <div class="link-box" id="linkBox">
+                <span class="link-text" id="linkText">https://wa.me/...</span>
+                <button class="copy-btn" id="copyBtn" title="Copy link" aria-label="Copy link">
+                    <i class="fa-regular fa-copy"></i>
+                </button>
+            </div>
+
+            <!-- QR Code -->
+            <div class="qr-section" id="qrSection">
+                <div id="qrcode"></div>
+                <span class="qr-label"><i class="fa-solid fa-camera"></i> Scan to chat</span>
+            </div>
+
+            <!-- Recent Numbers -->
+            <div class="recent-section" id="recentSection">
+                <div class="recent-header">
+                    <h3><i class="fa-solid fa-clock-rotate-left"></i> Recent</h3>
+                    <button class="clear-recent" id="clearRecent" aria-label="Clear all recent numbers">Clear all</button>
+                </div>
+                <div class="recent-list" id="recentList">
+                    <span class="recent-empty">No recent numbers yet.</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ========== SEO CONTENT ========== -->
+        <section class="seo-content">
+
+            <h2>What is WhatsApp Direct Chat?</h2>
+            <p>WhatsApp Direct Chat is an easy way to send messages without saving someone's phone number. Normally, WhatsApp requires users to save a contact before starting a conversation. This tool eliminates that step by generating a secure WhatsApp chat link using the official WhatsApp Click-to-Chat feature.</p>
+            <p>It is especially useful for people who regularly communicate with new customers, delivery agents, temporary contacts, online sellers, buyers, service providers, students, teachers, travelers, and international clients.</p>
+
+            <h2>Why Choose Our WhatsApp Direct Chat Tool?</h2>
+            <p>Unlike many online WhatsApp link generators, our tool is designed with speed, privacy, simplicity, and compatibility in mind. Everything works directly inside your browser, ensuring your information remains secure while providing the fastest possible experience.</p>
+            <ul>
+                <li>Start chats without saving contacts.</li>
+                <li>Generate WhatsApp links instantly.</li>
+                <li>Create QR Codes for sharing.</li>
+                <li>Compatible with WhatsApp and WhatsApp Business.</li>
+                <li>Supports international phone numbers.</li>
+                <li>Works on Android, iPhone, Windows, Mac, Linux, and Tablets.</li>
+                <li>No login or registration required.</li>
+                <li>Free forever.</li>
+                <li>Simple and beginner-friendly interface.</li>
+                <li>Secure browser-based processing.</li>
+            </ul>
+
+            <h2>Benefits of Using WhatsApp Direct Chat</h2>
+            <p>Using our WhatsApp Direct Chat Tool offers many advantages for both personal and professional communication. Instead of filling your contact list with temporary phone numbers, you can send messages instantly while keeping your contacts organized.</p>
+            <ul>
+                <li>Save valuable time.</li>
+                <li>Keep your contact list clean.</li>
+                <li>Perfect for customer support.</li>
+                <li>Ideal for businesses and freelancers.</li>
+                <li>Excellent for international communication.</li>
+                <li>Generate reusable WhatsApp links.</li>
+                <li>Share chat links with anyone.</li>
+                <li>Create QR codes for marketing.</li>
+                <li>Increase productivity.</li>
+                <li>Completely free.</li>
+            </ul>
+
+            <h2>How to Use This Tool</h2>
+            <ol>
+                <li>Select your country code.</li>
+                <li>Enter the WhatsApp phone number.</li>
+                <li>Type an optional custom message.</li>
+                <li>Click the Open Chat button.</li>
+                <li>WhatsApp opens instantly.</li>
+                <li>Start chatting immediately.</li>
+            </ol>
+
+            <h2>Who Can Use This Tool?</h2>
+            <p>This tool is suitable for almost everyone who uses WhatsApp regularly.</p>
+            <ul>
+                <li>Business Owners</li>
+                <li>Customer Support Teams</li>
+                <li>Freelancers</li>
+                <li>Digital Marketers</li>
+                <li>Students</li>
+                <li>Teachers</li>
+                <li>Online Sellers</li>
+                <li>Buyers</li>
+                <li>Travelers</li>
+                <li>Developers</li>
+                <li>Content Creators</li>
+                <li>Small Businesses</li>
+            </ul>
+
+            <h2>Powerful Features of Our WhatsApp Direct Chat Tool</h2>
+            <p>Our WhatsApp Direct Chat Tool is packed with useful features that make starting conversations faster, easier, and more efficient. Whether you're an individual user or a business owner, these features are designed to improve your daily communication experience.</p>
+            <ul>
+                <li>Instant WhatsApp Chat without saving contacts</li>
+                <li>Official WhatsApp Click-to-Chat support</li>
+                <li>Country Code Selector with search option</li>
+                <li>Pre-filled Custom Message</li>
+                <li>WhatsApp Link Generator</li>
+                <li>WhatsApp QR Code Generator</li>
+                <li>Copy Chat Link with one click</li>
+                <li>Recent Number History (optional)</li>
+                <li>Works with WhatsApp Business</li>
+                <li>Dark &amp; Light Theme Support</li>
+                <li>Responsive Design for all devices</li>
+                <li>Fast Browser-Based Processing</li>
+                <li>No Login Required</li>
+                <li>Privacy Friendly</li>
+                <li>100% Free Forever</li>
+            </ul>
+
+            <h2>Supported Countries</h2>
+            <p>Our tool supports WhatsApp phone numbers from almost every country worldwide. Simply choose your country code and start chatting instantly.</p>
+            <p>Supported countries include India, United States, United Kingdom, Canada, Australia, Germany, France, Italy, Spain, Netherlands, Belgium, Switzerland, Sweden, Norway, Denmark, Finland, Ireland, Portugal, Poland, Austria, Brazil, Argentina, Mexico, Chile, Colombia, Peru, South Africa, Nigeria, Kenya, Egypt, Saudi Arabia, United Arab Emirates, Qatar, Kuwait, Bahrain, Oman, Singapore, Malaysia, Indonesia, Thailand, Vietnam, Philippines, Japan, South Korea, China, Pakistan, Bangladesh, Nepal, Sri Lanka and many more.</p>
+
+            <h2>Why Businesses Love This Tool</h2>
+            <p>Businesses frequently communicate with customers who only require one-time support. Saving every customer's phone number can quickly clutter your contact list. This tool helps businesses maintain a clean contact book while improving customer service efficiency.</p>
+            <ul>
+                <li>Customer Support</li>
+                <li>Sales Teams</li>
+                <li>Digital Agencies</li>
+                <li>Freelancers</li>
+                <li>E-commerce Stores</li>
+                <li>Real Estate Agents</li>
+                <li>Travel Agencies</li>
+                <li>Healthcare Providers</li>
+                <li>Educational Institutes</li>
+                <li>Consultants</li>
+            </ul>
+
+            <h2>Privacy &amp; Security</h2>
+            <p>Your privacy is important to us. This tool does not upload your phone number or message to our servers. All information is processed locally in your browser before opening WhatsApp. We do not require registration, login, or account creation.</p>
+            <ul>
+                <li>No account required</li>
+                <li>No registration</li>
+                <li>No hidden fees</li>
+                <li>No data storage</li>
+                <li>Secure browser processing</li>
+                <li>Fast performance</li>
+                <li>Privacy-friendly design</li>
+            </ul>
+
+            <h2>Use Cases</h2>
+            <p>Our WhatsApp Direct Chat Tool is useful in many real-world situations.</p>
+            <ul>
+                <li>Contact new customers instantly.</li>
+                <li>Send messages to delivery partners.</li>
+                <li>Talk with online marketplace buyers.</li>
+                <li>Communicate with temporary clients.</li>
+                <li>Message international phone numbers.</li>
+                <li>Create WhatsApp links for websites.</li>
+                <li>Generate QR codes for business cards.</li>
+                <li>Share support links on social media.</li>
+                <li>Improve customer engagement.</li>
+                <li>Save time every day.</li>
+            </ul>
+
+            <h2>Why Choose Deep Mega Tools?</h2>
+            <p>Deep Mega Tools is dedicated to providing fast, secure, and easy-to-use online utilities. Our tools are designed with user experience, privacy, and performance in mind. We regularly update our tools to ensure compatibility with modern browsers and devices while keeping them completely free to use.</p>
+
+            <h2>Popular Search Terms</h2>
+            <p>Users often search for phrases such as WhatsApp Direct Chat Tool, Send WhatsApp Without Saving Number, WhatsApp Link Generator, WhatsApp Click to Chat, wa.me Link Generator, WhatsApp URL Generator, Direct WhatsApp Message, WhatsApp Chat Link Creator, Open WhatsApp Chat Online, WhatsApp QR Code Generator, WhatsApp Business Link Generator, Generate WhatsApp Link, and WhatsApp Message Without Contact.</p>
+
+            <h2>Frequently Asked Questions (FAQs)</h2>
+
+            <h3>1. Can I send a WhatsApp message without saving the phone number?</h3>
+            <p>Yes. Simply enter the phone number, select the correct country code, and click the <strong>Open Chat</strong> button. The conversation will open directly in WhatsApp without adding the number to your contacts.</p>
+
+            <h3>2. Is this WhatsApp Direct Chat Tool free to use?</h3>
+            <p>Absolutely. Our WhatsApp Direct Chat Tool is completely free. There are no hidden charges, subscriptions, or registration requirements.</p>
+
+            <h3>3. Does this tool work with international phone numbers?</h3>
+            <p>Yes. The tool supports WhatsApp numbers from almost every country. Just choose the correct country code before opening the chat.</p>
+
+            <h3>4. Can I generate a WhatsApp chat link?</h3>
+            <p>Yes. The tool instantly generates a WhatsApp Click-to-Chat link that you can copy, share, or use on websites, business cards, emails, and social media.</p>
+
+            <h3>5. Can I add a custom message before opening WhatsApp?</h3>
+            <p>Yes. You can enter a custom pre-filled message that will automatically appear in the chat when WhatsApp opens.</p>
+
+            <h3>6. Does this tool work on mobile phones?</h3>
+            <p>Yes. It is fully responsive and works on Android phones, iPhones, tablets, laptops, and desktop computers.</p>
+
+            <h3>7. Does it support WhatsApp Business?</h3>
+            <p>Yes. The generated chat links work with both the standard WhatsApp application and WhatsApp Business, depending on which app is installed on your device.</p>
+
+            <h3>8. Is my phone number or message stored?</h3>
+            <p>No. We do not store your phone number or message on our servers. Your information is processed in your browser and then passed directly to WhatsApp.</p>
+
+            <h3>9. Can businesses use this tool?</h3>
+            <p>Yes. Businesses, freelancers, customer support teams, online sellers, marketers, and service providers use this tool to communicate quickly without filling their contact list with temporary numbers.</p>
+
+            <h3>10. Do I need to install any software?</h3>
+            <p>No. This is a browser-based online tool. There is nothing to install. Open the tool, enter the number, and start chatting instantly.</p>
+
+            <div class="related-tools">
+                <h2>Related Tools</h2>
+                <ul>
+                    <li><a href="/tools/barcode-generator.html">QRcode Generator</a></li>
+                    <li><a href="/tools/qr-code-generator.html">QR Code Generator Tool</a></li>
+                    <li><a href="/tools/color-contrast-analyzer.html">Color Contrast Analyzer</a></li>
+                    <li><a href="/tools/image-resizer.html">Image Resizer Tool</a></li>
+                    <li><a href="/tools/unlock-page.html">Unlock Page Generator</a></li>
+                </ul>
+            </div>
+
+            <h2>Start Using Our WhatsApp Direct Chat Tool Today</h2>
+            <p>Save time and simplify your communication with our free WhatsApp Direct Chat Tool. Whether you need to contact customers, clients, friends, colleagues, or international businesses, you can start a conversation instantly without saving the phone number.</p>
+            <p>Generate WhatsApp chat links, create QR codes, send custom messages, and enjoy a fast, secure, and privacy-friendly experience on any device. Our tool is designed to help individuals and businesses communicate more efficiently while keeping contact lists clean and organized.</p>
+            <p>Bookmark this page and use our WhatsApp Direct Chat Tool whenever you need to send a quick message without creating a new contact. It's fast, reliable, mobile-friendly, and completely free.</p>
+
+        </section>
+
+    </main>
+
+    <!-- ========== QRCode.js Library (CDN) – deferred to improve load time ========== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" defer></script>
+
+    <script>
+        // ============================================================
+        //  SAFE STORAGE — wraps localStorage with try/catch
+        //  Prevents "Access is denied" errors in restricted contexts
+        // ============================================================
+        const storage = {
+            getItem(key, fallback) {
+                try {
+                    const value = localStorage.getItem(key);
+                    return value !== null ? value : fallback;
+                } catch (_) {
+                    return fallback;
+                }
+            },
+            setItem(key, value) {
+                try {
+                    localStorage.setItem(key, value);
+                } catch (_) { /* ignore */ }
+            },
+            removeItem(key) {
+                try {
+                    localStorage.removeItem(key);
+                } catch (_) { /* ignore */ }
+            }
+        };
+
+        // ============================================================
+        //  DATA
+        // ============================================================
+        const countryData = [
+            { code: "AF", dial: "+93", flag: "🇦🇫", name: "Afghanistan" },
+            { code: "AL", dial: "+355", flag: "🇦🇱", name: "Albania" },
+            { code: "DZ", dial: "+213", flag: "🇩🇿", name: "Algeria" },
+            { code: "AD", dial: "+376", flag: "🇦🇩", name: "Andorra" },
+            { code: "AO", dial: "+244", flag: "🇦🇴", name: "Angola" },
+            { code: "AR", dial: "+54", flag: "🇦🇷", name: "Argentina" },
+            { code: "AM", dial: "+374", flag: "🇦🇲", name: "Armenia" },
+            { code: "AU", dial: "+61", flag: "🇦🇺", name: "Australia" },
+            { code: "AT", dial: "+43", flag: "🇦🇹", name: "Austria" },
+            { code: "AZ", dial: "+994", flag: "🇦🇿", name: "Azerbaijan" },
+            { code: "BH", dial: "+973", flag: "🇧🇭", name: "Bahrain" },
+            { code: "BD", dial: "+880", flag: "🇧🇩", name: "Bangladesh" },
+            { code: "BY", dial: "+375", flag: "🇧🇾", name: "Belarus" },
+            { code: "BE", dial: "+32", flag: "🇧🇪", name: "Belgium" },
+            { code: "BZ", dial: "+501", flag: "🇧🇿", name: "Belize" },
+            { code: "BJ", dial: "+229", flag: "🇧🇯", name: "Benin" },
+            { code: "BT", dial: "+975", flag: "🇧🇹", name: "Bhutan" },
+            { code: "BO", dial: "+591", flag: "🇧🇴", name: "Bolivia" },
+            { code: "BA", dial: "+387", flag: "🇧🇦", name: "Bosnia" },
+            { code: "BW", dial: "+267", flag: "🇧🇼", name: "Botswana" },
+            { code: "BR", dial: "+55", flag: "🇧🇷", name: "Brazil" },
+            { code: "BN", dial: "+673", flag: "🇧🇳", name: "Brunei" },
+            { code: "BG", dial: "+359", flag: "🇧🇬", name: "Bulgaria" },
+            { code: "BF", dial: "+226", flag: "🇧🇫", name: "Burkina Faso" },
+            { code: "BI", dial: "+257", flag: "🇧🇮", name: "Burundi" },
+            { code: "KH", dial: "+855", flag: "🇰🇭", name: "Cambodia" },
+            { code: "CM", dial: "+237", flag: "🇨🇲", name: "Cameroon" },
+            { code: "CA", dial: "+1", flag: "🇨🇦", name: "Canada" },
+            { code: "CV", dial: "+238", flag: "🇨🇻", name: "Cape Verde" },
+            { code: "CF", dial: "+236", flag: "🇨🇫", name: "CAR" },
+            { code: "TD", dial: "+235", flag: "🇹🇩", name: "Chad" },
+            { code: "CL", dial: "+56", flag: "🇨🇱", name: "Chile" },
+            { code: "CN", dial: "+86", flag: "🇨🇳", name: "China" },
+            { code: "CO", dial: "+57", flag: "🇨🇴", name: "Colombia" },
+            { code: "KM", dial: "+269", flag: "🇰🇲", name: "Comoros" },
+            { code: "CG", dial: "+242", flag: "🇨🇬", name: "Congo" },
+            { code: "CD", dial: "+243", flag: "🇨🇩", name: "Congo (DRC)" },
+            { code: "CR", dial: "+506", flag: "🇨🇷", name: "Costa Rica" },
+            { code: "HR", dial: "+385", flag: "🇭🇷", name: "Croatia" },
+            { code: "CU", dial: "+53", flag: "🇨🇺", name: "Cuba" },
+            { code: "CY", dial: "+357", flag: "🇨🇾", name: "Cyprus" },
+            { code: "CZ", dial: "+420", flag: "🇨🇿", name: "Czechia" },
+            { code: "DK", dial: "+45", flag: "🇩🇰", name: "Denmark" },
+            { code: "DJ", dial: "+253", flag: "🇩🇯", name: "Djibouti" },
+            { code: "DM", dial: "+1767", flag: "🇩🇲", name: "Dominica" },
+            { code: "DO", dial: "+1849", flag: "🇩🇴", name: "Dominican Rep." },
+            { code: "EC", dial: "+593", flag: "🇪🇨", name: "Ecuador" },
+            { code: "EG", dial: "+20", flag: "🇪🇬", name: "Egypt" },
+            { code: "SV", dial: "+503", flag: "🇸🇻", name: "El Salvador" },
+            { code: "GQ", dial: "+240", flag: "🇬🇶", name: "Equatorial Guinea" },
+            { code: "ER", dial: "+291", flag: "🇪🇷", name: "Eritrea" },
+            { code: "EE", dial: "+372", flag: "🇪🇪", name: "Estonia" },
+            { code: "ET", dial: "+251", flag: "🇪🇹", name: "Ethiopia" },
+            { code: "FJ", dial: "+679", flag: "🇫🇯", name: "Fiji" },
+            { code: "FI", dial: "+358", flag: "🇫🇮", name: "Finland" },
+            { code: "FR", dial: "+33", flag: "🇫🇷", name: "France" },
+            { code: "GA", dial: "+241", flag: "🇬🇦", name: "Gabon" },
+            { code: "GM", dial: "+220", flag: "🇬🇲", name: "Gambia" },
+            { code: "GE", dial: "+995", flag: "🇬🇪", name: "Georgia" },
+            { code: "DE", dial: "+49", flag: "🇩🇪", name: "Germany" },
+            { code: "GH", dial: "+233", flag: "🇬🇭", name: "Ghana" },
+            { code: "GR", dial: "+30", flag: "🇬🇷", name: "Greece" },
+            { code: "GD", dial: "+1473", flag: "🇬🇩", name: "Grenada" },
+            { code: "GT", dial: "+502", flag: "🇬🇹", name: "Guatemala" },
+            { code: "GN", dial: "+224", flag: "🇬🇳", name: "Guinea" },
+            { code: "GW", dial: "+245", flag: "🇬🇼", name: "Guinea-Bissau" },
+            { code: "GY", dial: "+592", flag: "🇬🇾", name: "Guyana" },
+            { code: "HT", dial: "+509", flag: "🇭🇹", name: "Haiti" },
+            { code: "HN", dial: "+504", flag: "🇭🇳", name: "Honduras" },
+            { code: "HU", dial: "+36", flag: "🇭🇺", name: "Hungary" },
+            { code: "IS", dial: "+354", flag: "🇮🇸", name: "Iceland" },
+            { code: "IN", dial: "+91", flag: "🇮🇳", name: "India" },
+            { code: "ID", dial: "+62", flag: "🇮🇩", name: "Indonesia" },
+            { code: "IR", dial: "+98", flag: "🇮🇷", name: "Iran" },
+            { code: "IQ", dial: "+964", flag: "🇮🇶", name: "Iraq" },
+            { code: "IE", dial: "+353", flag: "🇮🇪", name: "Ireland" },
+            { code: "IL", dial: "+972", flag: "🇮🇱", name: "Israel" },
+            { code: "IT", dial: "+39", flag: "🇮🇹", name: "Italy" },
+            { code: "JM", dial: "+1876", flag: "🇯🇲", name: "Jamaica" },
+            { code: "JP", dial: "+81", flag: "🇯🇵", name: "Japan" },
+            { code: "JO", dial: "+962", flag: "🇯🇴", name: "Jordan" },
+            { code: "KZ", dial: "+7", flag: "🇰🇿", name: "Kazakhstan" },
+            { code: "KE", dial: "+254", flag: "🇰🇪", name: "Kenya" },
+            { code: "KI", dial: "+686", flag: "🇰🇮", name: "Kiribati" },
+            { code: "KW", dial: "+965", flag: "🇰🇼", name: "Kuwait" },
+            { code: "KG", dial: "+996", flag: "🇰🇬", name: "Kyrgyzstan" },
+            { code: "LA", dial: "+856", flag: "🇱🇦", name: "Laos" },
+            { code: "LV", dial: "+371", flag: "🇱🇻", name: "Latvia" },
+            { code: "LB", dial: "+961", flag: "🇱🇧", name: "Lebanon" },
+            { code: "LS", dial: "+266", flag: "🇱🇸", name: "Lesotho" },
+            { code: "LR", dial: "+231", flag: "🇱🇷", name: "Liberia" },
+            { code: "LY", dial: "+218", flag: "🇱🇾", name: "Libya" },
+            { code: "LI", dial: "+423", flag: "🇱🇮", name: "Liechtenstein" },
+            { code: "LT", dial: "+370", flag: "🇱🇹", name: "Lithuania" },
+            { code: "LU", dial: "+352", flag: "🇱🇺", name: "Luxembourg" },
+            { code: "MG", dial: "+261", flag: "🇲🇬", name: "Madagascar" },
+            { code: "MW", dial: "+265", flag: "🇲🇼", name: "Malawi" },
+            { code: "MY", dial: "+60", flag: "🇲🇾", name: "Malaysia" },
+            { code: "MV", dial: "+960", flag: "🇲🇻", name: "Maldives" },
+            { code: "ML", dial: "+223", flag: "🇲🇱", name: "Mali" },
+            { code: "MT", dial: "+356", flag: "🇲🇹", name: "Malta" },
+            { code: "MH", dial: "+692", flag: "🇲🇭", name: "Marshall Islands" },
+            { code: "MR", dial: "+222", flag: "🇲🇷", name: "Mauritania" },
+            { code: "MU", dial: "+230", flag: "🇲🇺", name: "Mauritius" },
+            { code: "MX", dial: "+52", flag: "🇲🇽", name: "Mexico" },
+            { code: "FM", dial: "+691", flag: "🇫🇲", name: "Micronesia" },
+            { code: "MD", dial: "+373", flag: "🇲🇩", name: "Moldova" },
+            { code: "MC", dial: "+377", flag: "🇲🇨", name: "Monaco" },
+            { code: "MN", dial: "+976", flag: "🇲🇳", name: "Mongolia" },
+            { code: "ME", dial: "+382", flag: "🇲🇪", name: "Montenegro" },
+            { code: "MA", dial: "+212", flag: "🇲🇦", name: "Morocco" },
+            { code: "MZ", dial: "+258", flag: "🇲🇿", name: "Mozambique" },
+            { code: "MM", dial: "+95", flag: "🇲🇲", name: "Myanmar" },
+            { code: "NA", dial: "+264", flag: "🇳🇦", name: "Namibia" },
+            { code: "NR", dial: "+674", flag: "🇳🇷", name: "Nauru" },
+            { code: "NP", dial: "+977", flag: "🇳🇵", name: "Nepal" },
+            { code: "NL", dial: "+31", flag: "🇳🇱", name: "Netherlands" },
+            { code: "NZ", dial: "+64", flag: "🇳🇿", name: "New Zealand" },
+            { code: "NI", dial: "+505", flag: "🇳🇮", name: "Nicaragua" },
+            { code: "NE", dial: "+227", flag: "🇳🇪", name: "Niger" },
+            { code: "NG", dial: "+234", flag: "🇳🇬", name: "Nigeria" },
+            { code: "KP", dial: "+850", flag: "🇰🇵", name: "North Korea" },
+            { code: "MK", dial: "+389", flag: "🇲🇰", name: "North Macedonia" },
+            { code: "NO", dial: "+47", flag: "🇳🇴", name: "Norway" },
+            { code: "OM", dial: "+968", flag: "🇴🇲", name: "Oman" },
+            { code: "PK", dial: "+92", flag: "🇵🇰", name: "Pakistan" },
+            { code: "PW", dial: "+680", flag: "🇵🇼", name: "Palau" },
+            { code: "PA", dial: "+507", flag: "🇵🇦", name: "Panama" },
+            { code: "PG", dial: "+675", flag: "🇵🇬", name: "Papua New Guinea" },
+            { code: "PY", dial: "+595", flag: "🇵🇾", name: "Paraguay" },
+            { code: "PE", dial: "+51", flag: "🇵🇪", name: "Peru" },
+            { code: "PH", dial: "+63", flag: "🇵🇭", name: "Philippines" },
+            { code: "PL", dial: "+48", flag: "🇵🇱", name: "Poland" },
+            { code: "PT", dial: "+351", flag: "🇵🇹", name: "Portugal" },
+            { code: "QA", dial: "+974", flag: "🇶🇦", name: "Qatar" },
+            { code: "RO", dial: "+40", flag: "🇷🇴", name: "Romania" },
+            { code: "RU", dial: "+7", flag: "🇷🇺", name: "Russia" },
+            { code: "RW", dial: "+250", flag: "🇷🇼", name: "Rwanda" },
+            { code: "KN", dial: "+1869", flag: "🇰🇳", name: "Saint Kitts" },
+            { code: "LC", dial: "+1758", flag: "🇱🇨", name: "Saint Lucia" },
+            { code: "VC", dial: "+1784", flag: "🇻🇨", name: "St Vincent" },
+            { code: "WS", dial: "+685", flag: "🇼🇸", name: "Samoa" },
+            { code: "SM", dial: "+378", flag: "🇸🇲", name: "San Marino" },
+            { code: "ST", dial: "+239", flag: "🇸🇹", name: "Sao Tome" },
+            { code: "SA", dial: "+966", flag: "🇸🇦", name: "Saudi Arabia" },
+            { code: "SN", dial: "+221", flag: "🇸🇳", name: "Senegal" },
+            { code: "RS", dial: "+381", flag: "🇷🇸", name: "Serbia" },
+            { code: "SC", dial: "+248", flag: "🇸🇨", name: "Seychelles" },
+            { code: "SL", dial: "+232", flag: "🇸🇱", name: "Sierra Leone" },
+            { code: "SG", dial: "+65", flag: "🇸🇬", name: "Singapore" },
+            { code: "SK", dial: "+421", flag: "🇸🇰", name: "Slovakia" },
+            { code: "SI", dial: "+386", flag: "🇸🇮", name: "Slovenia" },
+            { code: "SB", dial: "+677", flag: "🇸🇧", name: "Solomon Islands" },
+            { code: "SO", dial: "+252", flag: "🇸🇴", name: "Somalia" },
+            { code: "ZA", dial: "+27", flag: "🇿🇦", name: "South Africa" },
+            { code: "KR", dial: "+82", flag: "🇰🇷", name: "South Korea" },
+            { code: "SS", dial: "+211", flag: "🇸🇸", name: "South Sudan" },
+            { code: "ES", dial: "+34", flag: "🇪🇸", name: "Spain" },
+            { code: "LK", dial: "+94", flag: "🇱🇰", name: "Sri Lanka" },
+            { code: "SD", dial: "+249", flag: "🇸🇩", name: "Sudan" },
+            { code: "SR", dial: "+597", flag: "🇸🇷", name: "Suriname" },
+            { code: "SE", dial: "+46", flag: "🇸🇪", name: "Sweden" },
+            { code: "CH", dial: "+41", flag: "🇨🇭", name: "Switzerland" },
+            { code: "SY", dial: "+963", flag: "🇸🇾", name: "Syria" },
+            { code: "TW", dial: "+886", flag: "🇹🇼", name: "Taiwan" },
+            { code: "TJ", dial: "+992", flag: "🇹🇯", name: "Tajikistan" },
+            { code: "TZ", dial: "+255", flag: "🇹🇿", name: "Tanzania" },
+            { code: "TH", dial: "+66", flag: "🇹🇭", name: "Thailand" },
+            { code: "TG", dial: "+228", flag: "🇹🇬", name: "Togo" },
+            { code: "TO", dial: "+676", flag: "🇹🇴", name: "Tonga" },
+            { code: "TT", dial: "+1868", flag: "🇹🇹", name: "Trinidad" },
+            { code: "TN", dial: "+216", flag: "🇹🇳", name: "Tunisia" },
+            { code: "TR", dial: "+90", flag: "🇹🇷", name: "Turkey" },
+            { code: "TM", dial: "+993", flag: "🇹🇲", name: "Turkmenistan" },
+            { code: "TV", dial: "+688", flag: "🇹🇻", name: "Tuvalu" },
+            { code: "UG", dial: "+256", flag: "🇺🇬", name: "Uganda" },
+            { code: "UA", dial: "+380", flag: "🇺🇦", name: "Ukraine" },
+            { code: "AE", dial: "+971", flag: "🇦🇪", name: "UAE" },
+            { code: "GB", dial: "+44", flag: "🇬🇧", name: "United Kingdom" },
+            { code: "US", dial: "+1", flag: "🇺🇸", name: "United States" },
+            { code: "UY", dial: "+598", flag: "🇺🇾", name: "Uruguay" },
+            { code: "UZ", dial: "+998", flag: "🇺🇿", name: "Uzbekistan" },
+            { code: "VU", dial: "+678", flag: "🇻🇺", name: "Vanuatu" },
+            { code: "VA", dial: "+379", flag: "🇻🇦", name: "Vatican" },
+            { code: "VE", dial: "+58", flag: "🇻🇪", name: "Venezuela" },
+            { code: "VN", dial: "+84", flag: "🇻🇳", name: "Vietnam" },
+            { code: "YE", dial: "+967", flag: "🇾🇪", name: "Yemen" },
+            { code: "ZM", dial: "+260", flag: "🇿🇲", name: "Zambia" },
+            { code: "ZW", dial: "+263", flag: "🇿🇼", name: "Zimbabwe" }
+        ];
+
+        // ============================================================
+        //  STATE — using safe storage with fallbacks
+        // ============================================================
+        let currentTheme = storage.getItem('wa-theme', 'light');
+        let recentNumbers = (() => {
+            try {
+                const raw = storage.getItem('wa-recent', '[]');
+                return JSON.parse(raw);
+            } catch (_) {
+                return [];
+            }
+        })();
+        let qrInstance = null;
+        let selectedCountry = null;
+
+        // ============================================================
+        //  DOM REFS
+        // ============================================================
+        const countrySelect = document.getElementById('countrySelect');
+        const dropdownTrigger = document.getElementById('dropdownTrigger');
+        const dropdownPanel = document.getElementById('dropdownPanel');
+        const dropdownList = document.getElementById('dropdownList');
+        const dropdownSearchInput = document.getElementById('dropdownSearchInput');
+        const clearDropdownSearch = document.getElementById('clearDropdownSearch');
+        const dropdownNoResults = document.getElementById('dropdownNoResults');
+        const triggerFlag = document.getElementById('triggerFlag');
+        const triggerText = document.getElementById('triggerText');
+
+        const phoneInput = document.getElementById('phoneInput');
+        const messageInput = document.getElementById('messageInput');
+        const charCount = document.getElementById('charCount');
+        const charCounter = document.getElementById('charCounter');
+        const phoneError = document.getElementById('phoneError');
+        const openChatBtn = document.getElementById('openChatBtn');
+        const generateLinkBtn = document.getElementById('generateLinkBtn');
+        const qrToggleBtn = document.getElementById('qrToggleBtn');
+        const linkBox = document.getElementById('linkBox');
+        const linkText = document.getElementById('linkText');
+        const copyBtn = document.getElementById('copyBtn');
+        const qrSection = document.getElementById('qrSection');
+        const qrContainer = document.getElementById('qrcode');
+        const recentList = document.getElementById('recentList');
+        const clearRecentBtn = document.getElementById('clearRecent');
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+        const toastIcon = document.getElementById('toastIcon');
+        const quickMsgBtns = document.querySelectorAll('.quick-msg-btn');
+
+        // ============================================================
+        //  INIT
+        // ============================================================
+        function init() {
+            const sorted = [...countryData].sort((a, b) => a.name.localeCompare(b.name));
+            populateDropdown(sorted);
+            applyTheme(currentTheme);
+            renderRecent();
+            loadDefaultCountry(sorted);
+            setupEventListeners();
+            updateCharCount();
+        }
+
+        // ============================================================
+        //  POPULATE DROPDOWN
+        // ============================================================
+        function populateDropdown(countries) {
+            dropdownList.innerHTML = '';
+            countries.forEach((c, index) => {
+                const item = document.createElement('button');
+                item.type = 'button';
+                item.className = 'dropdown-item';
+                item.dataset.dial = c.dial;
+                item.dataset.code = c.code;
+                item.dataset.index = index;
+                item.setAttribute('role', 'option');
+                item.innerHTML = `
+                            <span class="item-flag">${c.flag}</span>
+                            <span class="item-dial">${c.dial}</span>
+                            <span class="item-name">${c.name}</span>
+                        `;
+                item.addEventListener('click', () => {
+                    selectCountry(c);
+                    closeDropdown();
+                });
+                dropdownList.appendChild(item);
+            });
+
+            let html = '';
+            countries.forEach(c => {
+                html += `<option value="${c.dial}" data-code="${c.code}" data-flag="${c.flag}">
+                            ${c.flag} ${c.dial} ${c.name}
+                        </option>`;
+            });
+            countrySelect.innerHTML = html;
+        }
+
+        // ============================================================
+        //  COUNTRY SELECTION
+        // ============================================================
+        function selectCountry(country) {
+            selectedCountry = country;
+            triggerFlag.textContent = country.flag;
+            triggerText.textContent = `${country.dial} ${country.name}`;
+            countrySelect.value = country.dial;
+            countrySelect.dispatchEvent(new Event('change'));
+            dropdownSearchInput.value = '';
+            filterDropdown('');
+        }
+
+        function loadDefaultCountry(sorted) {
+            let defaultCountry = null;
+            try {
+                const lang = navigator.language || navigator.languages?.[0] || 'en-US';
+                const parts = lang.split('-');
+                const region = parts.length > 1 ? parts[1].toUpperCase() : 'US';
+                defaultCountry = countryData.find(c => c.code === region);
+            } catch (_) { /* ignore */ }
+            if (!defaultCountry) {
+                defaultCountry = countryData.find(c => c.code === 'US') || countryData[0];
+            }
+            selectCountry(defaultCountry);
+        }
+
+        // ============================================================
+        //  DROPDOWN TOGGLE / SEARCH / FILTER
+        // ============================================================
+        function toggleDropdown() {
+            const isOpen = dropdownPanel.classList.contains('open');
+            if (isOpen) {
+                closeDropdown();
+            } else {
+                openDropdown();
+            }
+        }
+
+        function openDropdown() {
+            dropdownPanel.classList.add('open');
+            dropdownTrigger.classList.add('open');
+            dropdownTrigger.setAttribute('aria-expanded', 'true');
+            dropdownSearchInput.value = '';
+            filterDropdown('');
+            setTimeout(() => dropdownSearchInput.focus(), 50);
+        }
+
+        function closeDropdown() {
+            dropdownPanel.classList.remove('open');
+            dropdownTrigger.classList.remove('open');
+            dropdownTrigger.setAttribute('aria-expanded', 'false');
+        }
+
+        function filterDropdown(searchTerm) {
+            const term = searchTerm.toLowerCase().trim();
+            const items = dropdownList.querySelectorAll('.dropdown-item');
+            let hasVisible = false;
+
+            items.forEach(item => {
+                const dial = item.dataset.dial.toLowerCase();
+                const code = item.dataset.code.toLowerCase();
+                const text = item.textContent.toLowerCase();
+
+                const matches = !term ||
+                    text.includes(term) ||
+                    dial.includes(term) ||
+                    code.includes(term);
+
+                if (matches) {
+                    item.classList.remove('hidden-item');
+                    hasVisible = true;
+                } else {
+                    item.classList.add('hidden-item');
+                }
+            });
+
+            if (term && !hasVisible) {
+                dropdownNoResults.classList.add('visible');
+            } else {
+                dropdownNoResults.classList.remove('visible');
+            }
+
+            if (term.length > 0) {
+                clearDropdownSearch.classList.add('visible');
+            } else {
+                clearDropdownSearch.classList.remove('visible');
+            }
+        }
+
+        // ============================================================
+        //  THEME — using safe storage
+        // ============================================================
+        function applyTheme(theme) {
+            currentTheme = theme;
+            document.documentElement.setAttribute('data-theme', theme);
+            themeIcon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+            storage.setItem('wa-theme', theme);
+        }
+
+        function toggleTheme() {
+            const next = currentTheme === 'light' ? 'dark' : 'light';
+            applyTheme(next);
+        }
+
+        // ============================================================
+        //  RECENT NUMBERS — using safe storage
+        // ============================================================
+        function renderRecent() {
+            if (recentNumbers.length === 0) {
+                recentList.innerHTML = `<span class="recent-empty">No recent numbers yet.</span>`;
+                return;
+            }
+            let html = '';
+            const reversed = [...recentNumbers].reverse();
+            reversed.forEach(item => {
+                const country = countryData.find(c => c.dial === item.dial) || { flag: '🌍', dial: item.dial };
+                html += `
+                            <div class="recent-item" data-dial="${item.dial}" data-number="${item.number}" role="button" tabindex="0" aria-label="Chat with ${item.dial} ${item.number}">
+                                <span class="recent-flag">${country.flag}</span>
+                                ${item.dial} ${item.number}
+                                <button class="recent-remove" data-dial="${item.dial}" data-number="${item.number}" title="Remove" aria-label="Remove ${item.dial} ${item.number} from recent">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
+                        `;
+            });
+            recentList.innerHTML = html;
+
+            recentList.querySelectorAll('.recent-item').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    if (e.target.closest('.recent-remove')) return;
+                    const dial = el.dataset.dial;
+                    const number = el.dataset.number;
+                    const country = countryData.find(c => c.dial === dial);
+                    if (country) {
+                        selectCountry(country);
+                    }
+                    phoneInput.value = number;
+                    validatePhone();
+                    closeDropdown();
+                });
+                el.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        el.click();
+                    }
+                });
+            });
+
+            recentList.querySelectorAll('.recent-remove').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const dial = btn.dataset.dial;
+                    const number = btn.dataset.number;
+                    removeRecent(dial, number);
+                });
+            });
+        }
+
+        function addRecent(dial, number) {
+            recentNumbers = recentNumbers.filter(item => !(item.dial === dial && item.number === number));
+            recentNumbers.unshift({ dial, number });
+            if (recentNumbers.length > 10) recentNumbers.pop();
+            storage.setItem('wa-recent', JSON.stringify(recentNumbers));
+            renderRecent();
+        }
+
+        function removeRecent(dial, number) {
+            recentNumbers = recentNumbers.filter(item => !(item.dial === dial && item.number === number));
+            storage.setItem('wa-recent', JSON.stringify(recentNumbers));
+            renderRecent();
+        }
+
+        function clearRecent() {
+            recentNumbers = [];
+            storage.setItem('wa-recent', JSON.stringify(recentNumbers));
+            renderRecent();
+            showToast('Recent numbers cleared', '🗑️', 'info');
+        }
+
+        // ============================================================
+        //  VALIDATION
+        // ============================================================
+        function validatePhone() {
+            const raw = phoneInput.value.trim();
+            if (!raw) {
+                phoneInput.classList.remove('input-error');
+                phoneError.classList.remove('visible');
+                return false;
+            }
+            const digits = raw.replace(/\D/g, '');
+            if (digits.length < 4 || digits.length > 15) {
+                phoneInput.classList.add('input-error');
+                phoneError.classList.add('visible');
+                return false;
+            }
+            phoneInput.classList.remove('input-error');
+            phoneError.classList.remove('visible');
+            return true;
+        }
+
+        function getPhoneDigits() {
+            return phoneInput.value.trim().replace(/\D/g, '');
+        }
+
+        function getFullNumber() {
+            const dial = countrySelect.value;
+            const digits = getPhoneDigits();
+            if (!digits) return null;
+            return dial + digits;
+        }
+
+        function getWhatsAppLink() {
+            const full = getFullNumber();
+            if (!full) return null;
+            let msg = messageInput.value.trim();
+            let url = `https://wa.me/${full.replace('+', '')}`;
+            if (msg) {
+                url += `?text=${encodeURIComponent(msg)}`;
+            }
+            return url;
+        }
+
+        // ============================================================
+        //  UI UPDATES
+        // ============================================================
+        function updateCharCount() {
+            const len = messageInput.value.length;
+            charCount.textContent = len;
+            if (len > 4000) {
+                charCounter.classList.add('warning');
+            } else {
+                charCounter.classList.remove('warning');
+            }
+        }
+
+        function showLink(url) {
+            linkText.textContent = url;
+            linkBox.classList.add('visible');
+            copyBtn.innerHTML = `<i class="fa-regular fa-copy"></i>`;
+            copyBtn.classList.remove('copied');
+        }
+
+        function hideLink() {
+            linkBox.classList.remove('visible');
+        }
+
+        function showQR(url) {
+            qrSection.classList.add('visible');
+            qrContainer.innerHTML = '';
+            try {
+                qrInstance = new QRCode(qrContainer, {
+                    text: url,
+                    width: 160,
+                    height: 160,
+                    colorDark: '#1a1a2e',
+                    colorLight: '#ffffff',
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            } catch (_) {
+                qrContainer.innerHTML =
+                    `<p style="color:var(--text-secondary);font-size:13px;padding:20px;">Could not generate QR</p>`;
+            }
+        }
+
+        function hideQR() {
+            qrSection.classList.remove('visible');
+            qrContainer.innerHTML = '';
+            qrInstance = null;
+        }
+
+        function toggleQR() {
+            const url = getWhatsAppLink();
+            if (!url) {
+                showToast('Please enter a valid phone number first', '⚠️', 'error');
+                return;
+            }
+            if (qrSection.classList.contains('visible')) {
+                hideQR();
+                showToast('QR Code hidden', '👀', 'info');
+            } else {
+                showQR(url);
+                showToast('QR Code generated!', '📱', 'success');
+            }
+        }
+
+        // ============================================================
+        //  TOAST
+        // ============================================================
+        let toastTimeout = null;
+
+        function showToast(message, icon = '✅', type = 'success') {
+            toastMessage.textContent = message;
+            toastIcon.textContent = icon;
+            toastIcon.className = 'toast-icon ' + type;
+            toast.classList.add('show');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2800);
+        }
+
+        // ============================================================
+        //  ACTIONS
+        // ============================================================
+        function buildChat() {
+            const isValid = validatePhone();
+            if (!isValid) {
+                showToast('Please enter a valid phone number', '⚠️', 'error');
+                return null;
+            }
+            const url = getWhatsAppLink();
+            if (!url) {
+                showToast('Invalid phone number', '⚠️', 'error');
+                return null;
+            }
+            const dial = countrySelect.value;
+            const number = getPhoneDigits();
+            if (number.length >= 4) {
+                addRecent(dial, number);
+            }
+            return url;
+        }
+
+        function openChat() {
+            const url = buildChat();
+            if (!url) return;
+            showLink(url);
+            window.open(url, '_blank');
+            showToast('Opening WhatsApp…', '🚀', 'success');
+        }
+
+        function generateLink() {
+            const url = buildChat();
+            if (!url) return;
+            showLink(url);
+            showToast('Link generated!', '🔗', 'success');
+        }
+
+        function copyLink() {
+            const url = linkText.textContent;
+            if (!url || url === 'https://wa.me/...') {
+                showToast('Generate a link first', '📋', 'error');
+                return;
+            }
+            navigator.clipboard.writeText(url).then(() => {
+                copyBtn.innerHTML = `<i class="fa-solid fa-check"></i>`;
+                copyBtn.classList.add('copied');
+                showToast('Copied to clipboard!', '✅', 'success');
+                setTimeout(() => {
+                    copyBtn.innerHTML = `<i class="fa-regular fa-copy"></i>`;
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            }).catch(() => {
+                const textArea = document.createElement('textarea');
+                textArea.value = url;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast('Copied!', '✅', 'success');
+            });
+        }
+
+        // ============================================================
+        //  EVENT LISTENERS
+        // ============================================================
+        function setupEventListeners() {
+
+            themeToggle.addEventListener('click', toggleTheme);
+            phoneInput.addEventListener('input', validatePhone);
+            messageInput.addEventListener('input', updateCharCount);
+
+            quickMsgBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const msg = btn.dataset.msg;
+                    messageInput.value = msg;
+                    updateCharCount();
+                    messageInput.focus();
+                });
+            });
+
+            openChatBtn.addEventListener('click', openChat);
+            generateLinkBtn.addEventListener('click', generateLink);
+            copyBtn.addEventListener('click', copyLink);
+            qrToggleBtn.addEventListener('click', toggleQR);
+            clearRecentBtn.addEventListener('click', clearRecent);
+
+            phoneInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    openChat();
+                }
+            });
+
+            messageInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+                    e.preventDefault();
+                    openChat();
+                }
+            });
+
+            dropdownTrigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleDropdown();
+            });
+
+            dropdownSearchInput.addEventListener('input', (e) => {
+                filterDropdown(e.target.value);
+            });
+
+            clearDropdownSearch.addEventListener('click', () => {
+                dropdownSearchInput.value = '';
+                filterDropdown('');
+                dropdownSearchInput.focus();
+            });
+
+            document.addEventListener('click', (e) => {
+                const dropdown = document.getElementById('countryDropdown');
+                if (dropdown && !dropdown.contains(e.target)) {
+                    closeDropdown();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeDropdown();
+                }
+            });
+
+            countrySelect.addEventListener('change', validatePhone);
+        }
+
+        // ============================================================
+        //  START
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+
+</body>
+</html> 

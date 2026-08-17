@@ -1,0 +1,1857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(s){s.dataset.zone='11571806',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Border Radius Generator – Create Custom CSS Border Radius Online</title>
+    <meta name="description" content="Free online Border Radius Generator – create custom CSS border-radius styles with live preview. Simple & complex shape modes, dark/light theme." />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://use.fontawesome.com" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            background: #1e1e2f;
+            color: #e0e0e0;
+            padding: 8px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.light {
+            background: #f0f2f5;
+            color: #1e1e2f;
+        }
+
+        /* ----- Hero Section ----- */
+        .intro-hero {
+            max-width: 1100px;
+            margin: 0 auto 1.2rem;
+            padding: 1.8rem 2.5rem;
+            background: #2d2d44;
+            border-radius: 1.2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+            transition: background 0.3s, box-shadow 0.3s;
+            line-height: 1.6;
+        }
+
+        body.light .intro-hero {
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .intro-hero h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            color: #4fc3f7;
+            letter-spacing: -0.5px;
+        }
+
+        .intro-hero p {
+            margin: 0 0 0.8rem;
+            color: #d0d0e0;
+            font-size: 1.05rem;
+        }
+
+        body.light .intro-hero p {
+            color: #333;
+        }
+
+        .intro-hero code {
+            background: #1a1a2e;
+            padding: 0.15rem 0.5rem;
+            border-radius: 0.3rem;
+            font-size: 0.85em;
+            color: #4fc3f7;
+            font-family: 'Courier New', monospace;
+        }
+
+        body.light .intro-hero code {
+            background: #f0f2f5;
+            color: #1a1a2e;
+        }
+
+        /* ----- Tool (App) ----- */
+        .app {
+            width: 100%;
+            max-width: 1100px;
+            background: #2d2d44;
+            border-radius: 1.2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+            overflow: hidden;
+            transition: background 0.3s;
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+        }
+
+        body.light .app {
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.6rem 1.2rem;
+            padding: 0.8rem 1.5rem;
+            background: #1a1a2e;
+            border-bottom: 1px solid #3a3a55;
+        }
+
+        body.light .toolbar {
+            background: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .toolbar .logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        body.light .toolbar .logo {
+            color: #1e1e2f;
+        }
+
+        .toolbar .logo i {
+            color: #4fc3f7;
+        }
+
+        .toolbar .spacer {
+            flex: 1;
+        }
+
+        .toolbar .btn {
+            background: transparent;
+            border: 1px solid #555;
+            color: #ccc;
+            padding: 0.3rem 0.9rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .toolbar .btn:focus-visible {
+            outline: 2px solid #4fc3f7;
+            outline-offset: 2px;
+        }
+
+        .toolbar .btn:hover {
+            background: #3a3a55;
+            border-color: #888;
+        }
+
+        body.light .toolbar .btn {
+            color: #333;
+            border-color: #bbb;
+        }
+        body.light .toolbar .btn:hover {
+            background: #e9ecef;
+        }
+
+        .toolbar .btn-primary {
+            background: #4fc3f7;
+            border-color: #4fc3f7;
+            color: #1a1a2e;
+            font-weight: 600;
+        }
+        .toolbar .btn-primary:hover {
+            background: #81d4fa;
+            border-color: #81d4fa;
+        }
+
+        .toolbar .badge-unit {
+            background: #3a3a55;
+            padding: 0.2rem 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #aaa;
+        }
+
+        body.light .toolbar .badge-unit {
+            background: #e9ecef;
+            color: #555;
+        }
+
+        /* ----- AD SLOT (clear, no hidden opacity) ----- */
+        .ad-slot {
+            background: #2a2a42;
+            border-radius: 0.8rem;
+            text-align: center;
+            font-size: 0.85rem;
+            margin: 0.5rem 0;
+            min-height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        body.light .ad-slot {
+            background: #f8f9fa;
+            
+        }
+
+        /* ----- Main Grid ----- */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 1.5rem;
+            padding: 1.5rem;
+        }
+
+        @media (max-width: 700px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        /* ----- Preview ----- */
+        .preview-panel {
+            background: #1e1e2e;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            position: relative;
+            border: 1px solid #3a3a55;
+        }
+
+        body.light .preview-panel {
+            background: #fafafa;
+            border-color: #ddd;
+        }
+
+        .sample-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .sample-box {
+            width: 160px;
+            height: 160px;
+            background: #4fc3f7;
+            border: 3px solid #fff;
+            box-shadow: 4px 6px 12px rgba(0, 0, 0, 0.5);
+            transition: box-shadow 0.2s, background 0.2s, width 0.15s, height 0.15s;
+            position: relative;
+        }
+
+        body.light .sample-box {
+            border-color: #333;
+        }
+
+        .handle {
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #fff;
+            border: 2px solid #333;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+            cursor: grab;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            display: none;
+            transition: 0.15s;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .handle:hover {
+            background: #ffd54f;
+            transform: translate(-50%, -50%) scale(1.15);
+        }
+        .handle:active {
+            cursor: grabbing;
+        }
+        .handle:focus-visible {
+            outline: 2px solid #4fc3f7;
+            outline-offset: 2px;
+        }
+
+        .simple-mode .handle {
+            display: block;
+        }
+
+        .handle-tl {
+            top: 0;
+            left: 0;
+        }
+        .handle-tr {
+            top: 0;
+            right: 0;
+            transform: translate(50%, -50%);
+        }
+        .handle-br {
+            bottom: 0;
+            right: 0;
+            transform: translate(50%, 50%);
+        }
+        .handle-bl {
+            bottom: 0;
+            left: 0;
+            transform: translate(-50%, 50%);
+        }
+
+        /* ----- Controls ----- */
+        .controls-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .controls-panel .group {
+            background: #1e1e2e;
+            border-radius: 0.8rem;
+            padding: 0.8rem 1rem;
+            border: 1px solid #3a3a55;
+        }
+
+        body.light .controls-panel .group {
+            background: #fafafa;
+            border-color: #ddd;
+        }
+
+        .group-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #888;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .slider-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .slider-row label {
+            min-width: 70px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .slider-row input[type="range"] {
+            flex: 1;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 8px;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #4fc3f7, #4fc3f7) 0% 0% / var(--fill, 0%) 100% no-repeat, #444;
+            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.5);
+            outline: none;
+            transition: background 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .slider-row input[type="range"]:focus-visible {
+            outline: 2px solid #4fc3f7;
+            outline-offset: 2px;
+        }
+        .slider-row input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #fff, #4fc3f7);
+            cursor: pointer;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 0 2px rgba(79, 195, 247, 0.3);
+            transition: 0.15s;
+        }
+        .slider-row input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            background: radial-gradient(circle at 30% 30%, #fff, #81d4fa);
+            box-shadow: 0 2px 12px rgba(79, 195, 247, 0.6), 0 0 0 4px rgba(79, 195, 247, 0.2);
+        }
+        .slider-row input[type="range"]::-webkit-slider-thumb:active {
+            transform: scale(0.95);
+            cursor: grabbing;
+        }
+        .slider-row input[type="range"]::-moz-range-track {
+            height: 8px;
+            border-radius: 8px;
+            background: #444;
+            border: none;
+        }
+        .slider-row input[type="range"]::-moz-range-thumb {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #fff, #4fc3f7);
+            cursor: pointer;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        }
+        .slider-row input[type="range"]:focus::-moz-range-thumb {
+            outline: 2px solid #4fc3f7;
+            outline-offset: 2px;
+        }
+
+        body.light .slider-row input[type="range"] {
+            background: linear-gradient(90deg, #4fc3f7, #4fc3f7) 0% 0% / var(--fill, 0%) 100% no-repeat, #ccc;
+            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+        }
+        body.light .slider-row input[type="range"]::-webkit-slider-thumb {
+            border-color: #333;
+            background: radial-gradient(circle at 30% 30%, #fff, #4fc3f7);
+        }
+        body.light .slider-row input[type="range"]::-moz-range-thumb {
+            border-color: #333;
+        }
+
+        .slider-row .val {
+            min-width: 34px;
+            text-align: right;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #4fc3f7;
+        }
+
+        /* Complex Grid */
+        .complex-grid {
+            display: grid;
+            grid-template-columns: 28px 1fr 40px 1fr 40px;
+            gap: 0.6rem 0.4rem;
+            align-items: center;
+            font-size: 0.75rem;
+        }
+        .complex-grid .header {
+            font-weight: 600;
+            color: #888;
+        }
+        .complex-grid .corner {
+            font-weight: 600;
+        }
+        .complex-grid .corner.tl {
+            color: #4fc3f7;
+        }
+        .complex-grid .corner.tr {
+            color: #ffb74d;
+        }
+        .complex-grid .corner.br {
+            color: #ef5350;
+        }
+        .complex-grid .corner.bl {
+            color: #ab47bc;
+        }
+
+        .complex-grid input[type="range"] {
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 8px;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #4fc3f7, #4fc3f7) 0% 0% / var(--fill, 0%) 100% no-repeat, #444;
+            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.5);
+            outline: none;
+            transition: background 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .complex-grid input[type="range"]:focus-visible {
+            outline: 2px solid #4fc3f7;
+            outline-offset: 2px;
+        }
+        .complex-grid input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #fff, #4fc3f7);
+            cursor: pointer;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 0 2px rgba(79, 195, 247, 0.3);
+            transition: 0.15s;
+        }
+        .complex-grid input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            background: radial-gradient(circle at 30% 30%, #fff, #81d4fa);
+            box-shadow: 0 2px 12px rgba(79, 195, 247, 0.6), 0 0 0 4px rgba(79, 195, 247, 0.2);
+        }
+        .complex-grid input[type="range"]::-webkit-slider-thumb:active {
+            transform: scale(0.95);
+            cursor: grabbing;
+        }
+        .complex-grid input[type="range"]::-moz-range-track {
+            height: 8px;
+            border-radius: 8px;
+            background: #444;
+            border: none;
+        }
+        .complex-grid input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #fff, #4fc3f7);
+            cursor: pointer;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        }
+        .complex-grid input[type="range"]:focus::-moz-range-thumb {
+            outline: 2px solid #4fc3f7;
+            outline-offset: 2px;
+        }
+
+        body.light .complex-grid input[type="range"] {
+            background: linear-gradient(90deg, #4fc3f7, #4fc3f7) 0% 0% / var(--fill, 0%) 100% no-repeat, #ccc;
+            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+        }
+        body.light .complex-grid input[type="range"]::-webkit-slider-thumb {
+            border-color: #333;
+        }
+        body.light .complex-grid input[type="range"]::-moz-range-thumb {
+            border-color: #333;
+        }
+
+        .complex-grid .val {
+            text-align: right;
+            font-weight: 600;
+            font-size: 0.7rem;
+            color: #4fc3f7;
+            min-width: 28px;
+        }
+
+        /* Extra */
+        .extra-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+            align-items: center;
+        }
+        .extra-controls .item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+        }
+        .extra-controls input[type="color"] {
+            width: 32px;
+            height: 32px;
+            border: 0;
+            padding: 0;
+            cursor: pointer;
+            border-radius: 6px;
+            background: transparent;
+        }
+        .extra-controls input[type="color"]:focus-visible {
+            outline: 2px solid #4fc3f7;
+            outline-offset: 2px;
+        }
+        .extra-controls input[type="range"] {
+            width: 70px;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 6px;
+            border-radius: 4px;
+            background: #444;
+            outline: none;
+        }
+        .extra-controls input[type="range"]:focus-visible {
+            outline: 2px solid #4fc3f7;
+            outline-offset: 2px;
+        }
+        .extra-controls input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #4fc3f7;
+            cursor: pointer;
+            border: 1px solid #fff;
+        }
+        .extra-controls input[type="range"]::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #4fc3f7;
+            cursor: pointer;
+            border: 1px solid #fff;
+        }
+        body.light .extra-controls input[type="range"] {
+            background: #ccc;
+        }
+
+        /* Presets */
+        .preset-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+        .preset-group .preset-btn {
+            background: #2d2d44;
+            border: 1px solid #555;
+            color: #ccc;
+            padding: 0.2rem 0.7rem;
+            border-radius: 1.2rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .preset-group .preset-btn:focus-visible {
+            outline: 2px solid #4fc3f7;
+            outline-offset: 2px;
+        }
+        .preset-group .preset-btn:hover {
+            background: #4fc3f7;
+            color: #1a1a2e;
+            border-color: #4fc3f7;
+        }
+
+        body.light .preset-group .preset-btn {
+            background: #e9ecef;
+            border-color: #ccc;
+            color: #333;
+        }
+        body.light .preset-group .preset-btn:hover {
+            background: #4fc3f7;
+            color: #fff;
+        }
+
+        /* Code Panel */
+        .code-panel {
+            background: #0f0f1f;
+            padding: 0.8rem 1.5rem;
+            border-top: 1px solid #3a3a55;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        body.light .code-panel {
+            background: #f8f9fa;
+            border-top-color: #ddd;
+        }
+
+        .code-panel textarea {
+            flex: 1;
+            min-width: 200px;
+            background: transparent;
+            border: none;
+            color: #aaf;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            resize: none;
+            outline: none;
+            padding: 0.3rem 0;
+            height: 2.8rem;
+            line-height: 1.4;
+        }
+        .code-panel textarea:focus-visible {
+            outline: 2px solid #4fc3f7;
+            outline-offset: 2px;
+        }
+
+        body.light .code-panel textarea {
+            color: #1a1a2e;
+        }
+
+        .code-panel .actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.6rem 1rem;
+        }
+
+        .code-panel .actions label {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.75rem;
+            color: #888;
+            cursor: pointer;
+        }
+        .code-panel .actions label input[type="checkbox"] {
+            accent-color: #4fc3f7;
+            width: 16px;
+            height: 16px;
+        }
+        .code-panel .actions label input[type="checkbox"]:focus-visible {
+            outline: 2px solid #4fc3f7;
+            outline-offset: 2px;
+        }
+
+        .code-panel .copy-btn {
+            background: #4fc3f7;
+            border: none;
+            color: #1a1a2e;
+            padding: 0.4rem 1.2rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .code-panel .copy-btn:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
+        .code-panel .copy-btn:hover {
+            background: #81d4fa;
+        }
+
+        /* Full Article */
+        .seo-article {
+            max-width: 1100px;
+            margin: 2rem auto 1rem;
+            padding: 2rem 2.5rem;
+            background: #2d2d44;
+            border-radius: 1.2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+            line-height: 1.7;
+        }
+
+        body.light .seo-article {
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .seo-article h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 1.8rem 0 0.6rem;
+            color: #e0e0e0;
+            border-bottom: 2px solid #3a3a55;
+            padding-bottom: 0.4rem;
+        }
+
+        body.light .seo-article h2 {
+            color: #1e1e2f;
+            border-bottom-color: #ddd;
+        }
+
+        .seo-article h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1.2rem 0 0.4rem;
+            color: #b0b0d0;
+        }
+
+        body.light .seo-article h3 {
+            color: #2d2d44;
+        }
+
+        .seo-article p {
+            margin: 0 0 1rem;
+            color: #d0d0e0;
+        }
+
+        body.light .seo-article p {
+            color: #333;
+        }
+
+        .seo-article ul,
+        .seo-article ol {
+            margin: 0 0 1rem 1.8rem;
+            color: #d0d0e0;
+        }
+
+        body.light .seo-article ul,
+        body.light .seo-article ol {
+            color: #333;
+        }
+
+        .seo-article li {
+            margin-bottom: 0.4rem;
+        }
+
+        .seo-article code {
+            background: #1a1a2e;
+            padding: 0.15rem 0.5rem;
+            border-radius: 0.3rem;
+            font-size: 0.85em;
+            color: #4fc3f7;
+            font-family: 'Courier New', monospace;
+        }
+
+        body.light .seo-article code {
+            background: #f0f2f5;
+            color: #1a1a2e;
+        }
+
+        .seo-article pre {
+            background: #1a1a2e;
+            padding: 1rem 1.2rem;
+            border-radius: 0.6rem;
+            overflow-x: auto;
+            margin: 0 0 1.2rem;
+            border: 1px solid #3a3a55;
+        }
+
+        body.light .seo-article pre {
+            background: #f0f2f5;
+            border-color: #ddd;
+        }
+
+        .seo-article pre code {
+            background: transparent;
+            padding: 0;
+            color: #aaf;
+            font-size: 0.85rem;
+        }
+
+        body.light .seo-article pre code {
+            color: #1a1a2e;
+        }
+
+        .seo-article .faq-item {
+            margin: 0.8rem 0 0.4rem;
+            font-weight: 600;
+            color: #e0e0e0;
+        }
+
+        body.light .seo-article .faq-item {
+            color: #1e1e2f;
+        }
+
+        .seo-article .faq-answer {
+            margin: 0 0 1rem 0.5rem;
+            color: #d0d0e0;
+        }
+
+        body.light .seo-article .faq-answer {
+            color: #333;
+        }
+
+        .seo-article hr {
+            border: none;
+            border-top: 1px solid #3a3a55;
+            margin: 2rem 0 1.5rem;
+        }
+
+        body.light .seo-article hr {
+            border-top-color: #ddd;
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .intro-hero {
+                padding: 1.2rem 1.2rem;
+                margin-bottom: 0.8rem;
+            }
+            .intro-hero h1 {
+                font-size: 1.5rem;
+            }
+            .intro-hero p {
+                font-size: 0.95rem;
+            }
+            .seo-article {
+                padding: 1.2rem 1.2rem;
+                margin: 1.2rem 0 0.8rem;
+                border-radius: 0.8rem;
+            }
+            .seo-article h2 {
+                font-size: 1.15rem;
+            }
+            .seo-article pre {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.8rem;
+            }
+            .ad-slot {
+                min-height: 70px;
+                padding: 0.6rem;
+                font-size: 0.7rem;
+            }
+            .main-grid {
+                padding: 1rem;
+            }
+            .sample-box {
+                width: 120px;
+                height: 120px;
+            }
+            .toolbar {
+                padding: 0.5rem 1rem;
+                gap: 0.4rem;
+            }
+            .toolbar .logo {
+                font-size: 0.9rem;
+            }
+            .code-panel {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .code-panel textarea {
+                height: 4rem;
+                font-size: 0.7rem;
+            }
+            .complex-grid {
+                grid-template-columns: 24px 1fr 30px 1fr 30px;
+                gap: 0.4rem 0.2rem;
+            }
+        }
+
+        ::selection {
+            background: #4fc3f7;
+            color: #1a1a2e;
+        }
+        body.light ::selection {
+            background: #4fc3f7;
+            color: #fff;
+        }
+          .article-image {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======================== HERO ======================== -->
+    <div class="intro-hero">
+        <h1>Border Radius Generator – Create Custom CSS Border Radius Online</h1>
+        <p>
+            A <strong>Border Radius Generator</strong> is a free online tool that helps developers and designers create custom CSS rounded corners without writing the CSS manually. Adjust each corner, preview the result instantly, and copy the generated <code>border-radius</code> CSS code for your website.
+        </p>
+     <img src="https://deepmegatools.vercel.app/images/final_1254x1254 (1).webp"
+                sizes="(max-width: 934px) 100vw, 934px"
+                alt="CSS Border Radius Tool"
+                width="934"
+                height="350"
+                fetchpriority="high"
+                decoding="async"
+                class="article-image">   
+        <p>
+            This online CSS border radius generator supports both <strong>simple</strong> and <strong>complex</strong> shape modes. You can use percentage (%) or pixel (px) values, experiment with presets, customize colors and dimensions, and generate ready-to-use CSS code.
+        </p>
+        <div class="ad-slot" id="ad-slot-hero" style="margin-top:1rem;">
+            <script>
+                atOptions = {
+                    'key' : '4a5f587745db5b940de8deaed1687481',
+                    'format' : 'iframe',
+                    'height' : 250,
+                    'width' : 300,
+                    'params' : {}
+                };
+            </script>
+            <script src="https://www.highperformanceformat.com/4a5f587745db5b940de8deaed1687481/invoke.js"></script>
+        </div>
+    </div>
+
+    <!-- ======================== TOOL ======================== -->
+    <div class="app" id="app">
+
+        <div class="toolbar">
+            <div class="logo">
+                <i class="fas fa-paint-brush" aria-hidden="true"></i> Border Radius
+            </div>
+            <div class="spacer"></div>
+            <span class="badge-unit" id="unitBadge" aria-hidden="true">%</span>
+            <button class="btn" id="unitToggle" aria-label="Toggle between percentage and pixels" title="Switch between % and px"><i class="fas fa-ruler" aria-hidden="true"></i> <span id="unitLabel">%</span></button>
+            <button class="btn" id="themeToggle" aria-label="Toggle dark or light theme" title="Toggle dark/light"><i class="fas fa-moon" aria-hidden="true"></i></button>
+            <button class="btn btn-primary" id="resetBtn" aria-label="Reset all values to zero"><i class="fas fa-undo" aria-hidden="true"></i> Reset</button>
+        </div>
+
+        <div class="ad-slot" id="ad-slot-1" style="margin:0.5rem 1.5rem;">
+            <script>
+                atOptions = {
+                    'key' : '91e7ba532a25afd865920655c45cb55c',
+                    'format' : 'iframe',
+                    'height' : 60,
+                    'width' : 468,
+                    'params' : {}
+                };
+            </script>
+            <script src="https://www.highperformanceformat.com/91e7ba532a25afd865920655c45cb55c/invoke.js"></script>
+        </div>
+
+        <div class="main-grid">
+
+            <div class="preview-panel" id="previewPanel">
+                <div class="sample-wrapper" id="sampleWrapper">
+                    <div class="sample-box" id="sampleBox" role="img" aria-label="Preview of border-radius shape"></div>
+                    <div class="handle handle-tl" id="handleTL" title="Top‑Left" role="slider" aria-label="Drag to adjust top-left corner" tabindex="0"></div>
+                    <div class="handle handle-tr" id="handleTR" title="Top‑Right" role="slider" aria-label="Drag to adjust top-right corner" tabindex="0"></div>
+                    <div class="handle handle-br" id="handleBR" title="Bottom‑Right" role="slider" aria-label="Drag to adjust bottom-right corner" tabindex="0"></div>
+                    <div class="handle handle-bl" id="handleBL" title="Bottom‑Left" role="slider" aria-label="Drag to adjust bottom-left corner" tabindex="0"></div>
+                </div>
+            </div>
+
+            <div class="controls-panel">
+
+                <div class="group">
+                    <div class="group-title">Shape Mode</div>
+                    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                        <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.85rem;">
+                            <input type="radio" name="shapeMode" value="simple" checked aria-label="Simple shape mode" /> Simple
+                        </label>
+                        <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.85rem;">
+                            <input type="radio" name="shapeMode" value="complex" aria-label="Complex shape mode" /> Complex
+                        </label>
+                    </div>
+                </div>
+
+                <div class="group" id="simpleGroup">
+                    <div class="group-title">Corners</div>
+                    <div class="slider-row">
+                        <label for="tl">Top Left</label>
+                        <input type="range" id="tl" min="0" max="100" value="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" />
+                        <span class="val" id="tlVal" aria-hidden="true">0</span>
+                    </div>
+                    <div class="slider-row">
+                        <label for="tr">Top Right</label>
+                        <input type="range" id="tr" min="0" max="100" value="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" />
+                        <span class="val" id="trVal" aria-hidden="true">0</span>
+                    </div>
+                    <div class="slider-row">
+                        <label for="br">Bottom Right</label>
+                        <input type="range" id="br" min="0" max="100" value="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" />
+                        <span class="val" id="brVal" aria-hidden="true">0</span>
+                    </div>
+                    <div class="slider-row">
+                        <label for="bl">Bottom Left</label>
+                        <input type="range" id="bl" min="0" max="100" value="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" />
+                        <span class="val" id="blVal" aria-hidden="true">0</span>
+                    </div>
+                </div>
+
+                <div class="group" id="complexGroup" style="display:none;">
+                    <div class="group-title">Complex (h / v)</div>
+                    <div class="complex-grid">
+                        <div></div><div class="header">h</div><div></div><div class="header">v</div><div></div>
+                        <div class="corner tl">TL</div>
+                        <input type="range" id="tlh" min="0" max="100" value="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" /><span class="val" id="tlhVal">0</span>
+                        <input type="range" id="tlv" min="0" max="100" value="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" /><span class="val" id="tlvVal">0</span>
+                        <div class="corner tr">TR</div>
+                        <input type="range" id="trh" min="0" max="100" value="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" /><span class="val" id="trhVal">0</span>
+                        <input type="range" id="trv" min="0" max="100" value="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" /><span class="val" id="trvVal">0</span>
+                        <div class="corner br">BR</div>
+                        <input type="range" id="brh" min="0" max="100" value="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" /><span class="val" id="brhVal">0</span>
+                        <input type="range" id="brv" min="0" max="100" value="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" /><span class="val" id="brvVal">0</span>
+                        <div class="corner bl">BL</div>
+                        <input type="range" id="blh" min="0" max="100" value="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" /><span class="val" id="blhVal">0</span>
+                        <input type="range" id="blv" min="0" max="100" value="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" /><span class="val" id="blvVal">0</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-top:0.4rem; font-size:0.7rem; color:#888;">
+                        <span>h = horizontal</span><span>v = vertical</span>
+                    </div>
+                </div>
+
+                <div class="group">
+                    <div class="group-title">Presets</div>
+                    <div class="preset-group">
+                        <button class="preset-btn" data-preset="circle" aria-label="Apply circle preset">⭕ Circle</button>
+                        <button class="preset-btn" data-preset="pill" aria-label="Apply pill preset">💊 Pill</button>
+                        <button class="preset-btn" data-preset="smooth" aria-label="Apply smooth preset">🍃 Smooth</button>
+                        <button class="preset-btn" data-preset="window" aria-label="Apply window preset">🪟 Window</button>
+                        <button class="preset-btn" data-preset="wave" aria-label="Apply wave preset">🌊 Wave</button>
+                        <button class="preset-btn" data-preset="random" aria-label="Apply random preset">🎲 Random</button>
+                    </div>
+                </div>
+
+                <div class="group">
+                    <div class="group-title">Styling</div>
+                    <div class="extra-controls">
+                        <div class="item"><i class="fas fa-fill-drip" aria-hidden="true"></i> <input type="color" id="bgColor" value="#4fc3f7" aria-label="Background color picker" /></div>
+                        <div class="item"><i class="fas fa-expand" aria-hidden="true"></i> W <input type="range" id="boxW" min="60" max="250" value="160" aria-label="Box width" /></div>
+                        <div class="item"><i class="fas fa-arrows-alt-v" aria-hidden="true"></i> H <input type="range" id="boxH" min="60" max="250" value="160" aria-label="Box height" /></div>
+                        <div class="item"><i class="fas fa-shadow" aria-hidden="true"></i> Spread <input type="range" id="shadowSpread" min="-10" max="20" value="0" aria-label="Shadow spread" /></div>
+                    </div>
+                </div>
+
+                <div class="ad-slot" id="ad-slot-2">
+                    <a href="https://beta.publishers.adsterra.com/referral/1QLaXyveuF" rel="nofollow"><img alt="banner" src="https://landings-cdn.adsterratech.com/referralBanners/gif/120x60_adsterra_reff.gif" /></a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="code-panel">
+            <textarea id="codeOutput" readonly aria-label="Generated CSS code"></textarea>
+            <div class="actions">
+                <label><input type="checkbox" id="chkVendor" aria-label="Include vendor prefixes" /> Vendor</label>
+                <label><input type="checkbox" id="chkIndividual" aria-label="Include individual border-radius properties" /> Individual</label>
+                <button class="copy-btn" id="copyBtn" aria-label="Copy code to clipboard"><i class="fas fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+        </div>
+
+        <div class="ad-slot" id="ad-slot-3" style="margin:0.5rem 1.5rem;">
+            <script async="async" data-cfasync="false" src="https://pl30323394.effectivecpmnetwork.com/46077107eccd135c00cfa52a7bec445f/invoke.js"></script>
+            <div id="container-46077107eccd135c00cfa52a7bec445f"></div>
+        </div>
+
+    </div>
+
+    <!-- ======================== ARTICLE ======================== -->
+    <article class="seo-article">
+
+        <div class="ad-slot" id="ad-slot-4" style="margin:0 0 1.5rem 0;">
+            <a href="https://beta.publishers.adsterra.com/referral/1QLaXyveuF" rel="nofollow"><img alt="banner" src="https://landings-cdn.adsterratech.com/referralBanners/gif/300x250_adsterra_reff.gif" /></a>
+        </div>
+
+        <h2>What Is CSS Border Radius?</h2>
+        <p>The CSS <code>border-radius</code> property creates rounded corners on HTML elements. It can be applied to buttons, cards, images, containers, input fields, profile pictures, and many other web components.</p>
+        <pre><code>.box { border-radius: 20px; }</code></pre>
+        <p>Instead of calculating different corner values manually, use a Border Radius Generator to create the required CSS visually.</p>
+
+        <h2>How to Use the Border Radius Generator</h2>
+        <ol>
+            <li>Open the Border Radius Generator above.</li>
+            <li>Choose <strong>Simple</strong> or <strong>Complex</strong> shape mode.</li>
+            <li>Adjust the top-left, top-right, bottom-right, and bottom-left corners using the sliders.</li>
+            <li>Switch between percentage (%) and pixel (px) units as needed.</li>
+            <li>Watch the live preview update in real time.</li>
+            <li>Apply presets such as Circle, Pill, Smooth, Window, Wave, or Random.</li>
+            <li>Customize the background color, width, height, and shadow spread.</li>
+            <li>Copy the generated CSS code and paste it into your project.</li>
+        </ol>
+
+        <h2>Simple Border Radius Mode</h2>
+        <p>Simple mode lets you control each of the four corners independently. Adjust the top-left, top-right, bottom-right, and bottom-left radius values using sliders — ideal for asymmetric designs.</p>
+        <pre><code>.box { border-radius: 20px 40px 60px 10px; }</code></pre>
+        <p>The four values represent the top-left, top-right, bottom-right, and bottom-left corners respectively.</p>
+
+        <h2>Complex Border Radius Mode</h2>
+        <p>Complex mode gives you separate horizontal and vertical control for each corner, enabling advanced CSS shapes and custom designs.</p>
+        <pre><code>.box { border-radius: 30% 60% 40% 20% / 50% 30% 70% 40%; }</code></pre>
+        <p>The Border Radius Generator creates this type of CSS automatically.</p>
+
+        <h2>Percentage vs Pixel Border Radius</h2>
+        <h3>Using Pixels (px)</h3>
+        <p>Pixel values provide a fixed radius. Example: <code>border-radius: 25px;</code></p>
+        <h3>Using Percentages (%)</h3>
+        <p>Percentage values create flexible and responsive shapes. Example: <code>border-radius: 50%;</code></p>
+
+        <h2>Border Radius Presets</h2>
+        <ul>
+            <li><strong>Circle:</strong> Highly rounded corners.</li>
+            <li><strong>Pill:</strong> Pill-shaped buttons.</li>
+            <li><strong>Smooth:</strong> Asymmetric rounded shape.</li>
+            <li><strong>Window:</strong> Window-style corner effect.</li>
+            <li><strong>Wave:</strong> Irregular wave-like shape.</li>
+            <li><strong>Random:</strong> Random corner values.</li>
+        </ul>
+
+        <h2>Copy CSS Code</h2>
+        <p>Use the <strong>Copy</strong> button to copy the CSS directly.</p>
+        <pre><code>border-top-left-radius
+border-top-right-radius
+border-bottom-right-radius
+border-bottom-left-radius</code></pre>
+
+        <hr />
+
+        <div class="ad-slot" id="ad-slot-5" style="margin:1.5rem 0;">
+            <script>
+                atOptions = {
+                    'key' : '26c2abed86f559feba45b49b246f3178',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script src="https://www.highperformanceformat.com/26c2abed86f559feba45b49b246f3178/invoke.js"></script>
+        </div>
+
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">What is a Border Radius Generator?</div>
+        <div class="faq-answer">An online tool to visually create rounded corners and generate CSS code.</div>
+        <div class="faq-item">Is it free?</div>
+        <div class="faq-answer">Yes, completely free to use.</div>
+        <div class="faq-item">Can I create different values for each corner?</div>
+        <div class="faq-answer">Yes, independently control all four corners.</div>
+        <div class="faq-item">Can I use percentage values?</div>
+        <div class="faq-answer">Yes, both percentage and pixel values are supported.</div>
+        <div class="faq-item">Can I generate complex shapes?</div>
+        <div class="faq-answer">Yes, Complex mode gives horizontal/vertical control per corner.</div>
+<div class="ad-slot" id="ad-slot-hero" style="margin-top:1rem;">
+<!-- Premium Direct Link Ad -->
+<div class="premium-ad">
+  <div class="ad-top">
+    <span class="ad-badge">ADVERTISEMENT</span>
+  </div>
+
+  <div class="ad-content">
+    <div class="ad-icon">✨</div>
+
+    <h3>Discover More</h3>
+    <p>Explore this sponsored offer</p>
+
+    <a
+      href="https://www.effectivecpmnetwork.com/gs0u1gjq2?key=4bd51f6af2f634e7eeff092b5bfda1c1"
+      target="_blank"
+      rel="nofollow sponsored noopener"
+      class="premium-ad-btn"
+    >
+      <span>View Offer</span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+</div>
+
+<style>
+/* Premium Advertisement */
+.premium-ad {
+  width: min(100% - 30px, 430px);
+  margin: 28px auto;
+  overflow: hidden;
+  background: linear-gradient(145deg, #ffffff, #f5f8ff);
+  border: 1px solid #dfe7f5;
+  border-radius: 18px;
+  box-shadow:
+    0 10px 30px rgba(0, 70, 180, 0.10),
+    0 2px 8px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Top label */
+.ad-top {
+  padding: 9px 12px;
+  background: #f0f4fa;
+  border-bottom: 1px solid #e5eaf2;
+}
+
+.ad-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #687386;
+}
+
+/* Content */
+.ad-content {
+  padding: 24px 20px 25px;
+}
+
+.ad-icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0066ff, #7b2cff);
+  color: #fff;
+  font-size: 24px;
+  box-shadow: 0 8px 20px rgba(0, 102, 255, 0.25);
+}
+
+.ad-content h3 {
+  margin: 5px 0 7px;
+  color: #172033;
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.ad-content p {
+  margin: 0 0 20px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Button */
+.premium-ad-btn {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-sizing: border-box;
+
+  background: linear-gradient(135deg, #0066ff, #4b2cff);
+  color: #fff;
+
+  border-radius: 11px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+
+  box-shadow: 0 8px 20px rgba(38, 82, 255, 0.25);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.premium-ad-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(38, 82, 255, 0.35);
+}
+
+.premium-ad-btn:active {
+  transform: scale(.98);
+}
+
+.arrow {
+  font-size: 21px;
+  line-height: 1;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .premium-ad {
+    width: calc(100% - 20px);
+    margin: 20px auto;
+  }
+
+  .ad-content {
+    padding: 21px 16px 22px;
+  }
+
+  .ad-content h3 {
+    font-size: 19px;
+  }
+
+  .premium-ad-btn {
+    min-height: 50px;
+    font-size: 15px;
+  }
+}
+</style>
+</div>
+        <h2>Conclusion</h2>
+        <p>A <strong>Border Radius Generator</strong> makes it easy to create custom rounded corners and CSS shapes visually. Save time and simplify your design process.</p>
+
+    </article>
+<div class="ad-slot" id="ad-slot-hero" style="margin-top:1rem;"><script src="https://pl30323393.effectivecpmnetwork.com/70/eb/41/70eb4189f22b7f13dc56edf5dd28d813.js"></script></div>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                { "@type": "Question", "name": "What is a Border Radius Generator?", "acceptedAnswer": { "@type": "Answer", "text": "An online tool to visually create rounded corners and generate CSS code." } },
+                { "@type": "Question", "name": "Can I create different radius values for each corner?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can independently control the top-left, top-right, bottom-right, and bottom-left corners." } },
+                { "@type": "Question", "name": "Can I use percentage and pixel values?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The generator supports both percentage and pixel units." } },
+                { "@type": "Question", "name": "Can I create complex border-radius shapes?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Complex mode provides horizontal and vertical controls for each corner." } },
+                { "@type": "Question", "name": "Can I copy the generated CSS code?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can copy the generated CSS code using the Copy button." } }
+            ]
+        }
+    </script>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // ----- DOM refs -----
+            const sampleBox = document.getElementById('sampleBox');
+            const sampleWrapper = document.getElementById('sampleWrapper');
+            const codeOutput = document.getElementById('codeOutput');
+            const copyBtn = document.getElementById('copyBtn');
+            const chkVendor = document.getElementById('chkVendor');
+            const chkIndividual = document.getElementById('chkIndividual');
+            const unitToggle = document.getElementById('unitToggle');
+            const unitLabel = document.getElementById('unitLabel');
+            const unitBadge = document.getElementById('unitBadge');
+            const themeToggle = document.getElementById('themeToggle');
+            const resetBtn = document.getElementById('resetBtn');
+
+            // Simple
+            const tl = document.getElementById('tl'),
+                tr = document.getElementById('tr'),
+                br = document.getElementById('br'),
+                bl = document.getElementById('bl');
+            const tlVal = document.getElementById('tlVal'),
+                trVal = document.getElementById('trVal'),
+                brVal = document.getElementById('brVal'),
+                blVal = document.getElementById('blVal');
+
+            // Complex
+            const tlh = document.getElementById('tlh'),
+                tlv = document.getElementById('tlv');
+            const trh = document.getElementById('trh'),
+                trv = document.getElementById('trv');
+            const brh = document.getElementById('brh'),
+                brv = document.getElementById('brv');
+            const blh = document.getElementById('blh'),
+                blv = document.getElementById('blv');
+            const tlhVal = document.getElementById('tlhVal'),
+                tlvVal = document.getElementById('tlvVal');
+            const trhVal = document.getElementById('trhVal'),
+                trvVal = document.getElementById('trvVal');
+            const brhVal = document.getElementById('brhVal'),
+                brvVal = document.getElementById('brvVal');
+            const blhVal = document.getElementById('blhVal'),
+                blvVal = document.getElementById('blvVal');
+
+            // Extra
+            const bgColor = document.getElementById('bgColor');
+            const boxW = document.getElementById('boxW');
+            const boxH = document.getElementById('boxH');
+            const shadowSpread = document.getElementById('shadowSpread');
+
+            const shapeRadios = document.querySelectorAll('input[name="shapeMode"]');
+            const simpleGroup = document.getElementById('simpleGroup');
+            const complexGroup = document.getElementById('complexGroup');
+
+            const handles = {
+                tl: document.getElementById('handleTL'),
+                tr: document.getElementById('handleTR'),
+                br: document.getElementById('handleBR'),
+                bl: document.getElementById('handleBL')
+            };
+            const presetBtns = document.querySelectorAll('.preset-btn');
+
+            // State
+            let currentUnit = '%';
+            let isSimple = true;
+            let isDark = false;
+
+            // ----- सुरक्षित localStorage फंक्शन्स (कोई एरर नहीं) -----
+            function safeSetItem(key, value) {
+                try {
+                    localStorage.setItem(key, value);
+                } catch (_) {
+                    // localStorage उपलब्ध नहीं – चुपचाप इग्नोर
+                }
+            }
+
+            function safeGetItem(key, fallback) {
+                try {
+                    const val = localStorage.getItem(key);
+                    return val !== null ? val : fallback;
+                } catch (_) {
+                    return fallback;
+                }
+            }
+
+            // ----- Helper -----
+            function getVal(input) { return parseFloat(input.value) || 0; }
+
+            function setVal(input, val) {
+                const min = parseFloat(input.min) || 0;
+                const max = parseFloat(input.max) || 100;
+                const newVal = Math.min(max, Math.max(min, val));
+                input.value = newVal;
+                input.setAttribute('aria-valuenow', newVal);
+                const pct = ((newVal - min) / (max - min)) * 100;
+                input.style.setProperty('--fill', pct + '%');
+            }
+
+            function updateDisplayValues() {
+                tlVal.textContent = getVal(tl);
+                trVal.textContent = getVal(tr);
+                brVal.textContent = getVal(br);
+                blVal.textContent = getVal(bl);
+
+                tlhVal.textContent = getVal(tlh);
+                tlvVal.textContent = getVal(tlv);
+                trhVal.textContent = getVal(trh);
+                trvVal.textContent = getVal(trv);
+                brhVal.textContent = getVal(brh);
+                brvVal.textContent = getVal(brv);
+                blhVal.textContent = getVal(blh);
+                blvVal.textContent = getVal(blv);
+            }
+
+            // ----- Generate & apply -----
+            function generateAndApply() {
+                const unit = currentUnit;
+                const simple = isSimple;
+
+                if (simple) {
+                    const t = getVal(tl),
+                        r = getVal(tr),
+                        b = getVal(br),
+                        l = getVal(bl);
+                    const vals = [t, r, b, l].map(x => unit === '%' ? x + '%' : x + 'px');
+                    sampleBox.style.borderTopLeftRadius = vals[0];
+                    sampleBox.style.borderTopRightRadius = vals[1];
+                    sampleBox.style.borderBottomRightRadius = vals[2];
+                    sampleBox.style.borderBottomLeftRadius = vals[3];
+                } else {
+                    const h = [getVal(tlh), getVal(trh), getVal(brh), getVal(blh)].map(x => unit === '%' ? x + '%' : x +
+                    'px');
+                    const v = [getVal(tlv), getVal(trv), getVal(brv), getVal(blv)].map(x => unit === '%' ? x + '%' : x +
+                    'px');
+                    sampleBox.style.borderTopLeftRadius = h[0] + ' ' + v[0];
+                    sampleBox.style.borderTopRightRadius = h[1] + ' ' + v[1];
+                    sampleBox.style.borderBottomRightRadius = h[2] + ' ' + v[2];
+                    sampleBox.style.borderBottomLeftRadius = h[3] + ' ' + v[3];
+                }
+
+                sampleBox.style.background = bgColor.value;
+                sampleBox.style.width = boxW.value + 'px';
+                sampleBox.style.height = boxH.value + 'px';
+                const spread = shadowSpread.value + 'px';
+                sampleBox.style.boxShadow = `4px 6px 12px ${spread} rgba(0,0,0,0.5)`;
+
+                updateCode();
+                updateDisplayValues();
+                sampleWrapper.classList.toggle('simple-mode', isSimple);
+            }
+
+            // ----- Update code -----
+            function updateCode() {
+                const unit = currentUnit;
+                const simple = isSimple;
+                let css = '';
+
+                if (simple) {
+                    const t = getVal(tl),
+                        r = getVal(tr),
+                        b = getVal(br),
+                        l = getVal(bl);
+                    const vals = [t, r, b, l].map(x => unit === '%' ? x + '%' : x + 'px');
+                    css = `border-radius: ${vals.join(' ')};`;
+                } else {
+                    const h = [getVal(tlh), getVal(trh), getVal(brh), getVal(blh)].map(x => unit === '%' ? x + '%' : x +
+                    'px');
+                    const v = [getVal(tlv), getVal(trv), getVal(brv), getVal(blv)].map(x => unit === '%' ? x + '%' : x +
+                    'px');
+                    css = `border-radius: ${h.join(' ')} / ${v.join(' ')};`;
+                }
+
+                let lines = [];
+                if (chkVendor.checked) {
+                    lines.push('-webkit-' + css);
+                    lines.push('-moz-' + css);
+                }
+                lines.push(css);
+
+                if (chkIndividual.checked) {
+                    const props = [
+                        'border-top-left-radius',
+                        'border-top-right-radius',
+                        'border-bottom-right-radius',
+                        'border-bottom-left-radius'
+                    ];
+                    const styles = window.getComputedStyle(sampleBox);
+                    props.forEach(p => {
+                        const val = styles.getPropertyValue(p);
+                        if (val && val !== '0px' && val !== '0%') {
+                            const line = p + ': ' + val + ';';
+                            if (chkVendor.checked) {
+                                lines.push('-webkit-' + line);
+                                lines.push('-moz-' + line);
+                            }
+                            lines.push(line);
+                        }
+                    });
+                }
+
+                codeOutput.value = lines.join('\n');
+                codeOutput.style.height = 'auto';
+                codeOutput.style.height = codeOutput.scrollHeight + 'px';
+            }
+
+            // ----- Presets -----
+            function applyPreset(name) {
+                const simple = isSimple;
+                let vals = [],
+                    hVals = [],
+                    vVals = [];
+                switch (name) {
+                    case 'circle':
+                        vals = [50, 50, 50, 50];
+                        hVals = [50, 50, 50, 50];
+                        vVals = [50, 50, 50, 50];
+                        break;
+                    case 'pill':
+                        vals = [50, 50, 50, 50];
+                        hVals = [50, 50, 50, 50];
+                        vVals = [50, 50, 50, 50];
+                        break;
+                    case 'smooth':
+                        vals = [30, 70, 50, 50];
+                        hVals = [30, 70, 50, 50];
+                        vVals = [50, 30, 70, 50];
+                        break;
+                    case 'window':
+                        vals = [20, 20, 0, 0];
+                        hVals = [20, 20, 0, 0];
+                        vVals = [20, 20, 0, 0];
+                        break;
+                    case 'wave':
+                        vals = [40, 60, 40, 60];
+                        hVals = [40, 60, 40, 60];
+                        vVals = [60, 40, 60, 40];
+                        break;
+                    case 'random':
+                        const r = () => Math.floor(Math.random() * 101);
+                        vals = [r(), r(), r(), r()];
+                        hVals = [r(), r(), r(), r()];
+                        vVals = [r(), r(), r(), r()];
+                        break;
+                    default:
+                        return;
+                }
+                if (simple) {
+                    setVal(tl, vals[0]);
+                    setVal(tr, vals[1]);
+                    setVal(br, vals[2]);
+                    setVal(bl, vals[3]);
+                } else {
+                    setVal(tlh, hVals[0]);
+                    setVal(tlv, vVals[0]);
+                    setVal(trh, hVals[1]);
+                    setVal(trv, vVals[1]);
+                    setVal(brh, hVals[2]);
+                    setVal(brv, vVals[2]);
+                    setVal(blh, hVals[3]);
+                    setVal(blv, vVals[3]);
+                }
+                generateAndApply();
+            }
+
+            // ----- Reset -----
+            function resetAll() {
+                if (isSimple) {
+                    setVal(tl, 0);
+                    setVal(tr, 0);
+                    setVal(br, 0);
+                    setVal(bl, 0);
+                } else {
+                    setVal(tlh, 0);
+                    setVal(tlv, 0);
+                    setVal(trh, 0);
+                    setVal(trv, 0);
+                    setVal(brh, 0);
+                    setVal(brv, 0);
+                    setVal(blh, 0);
+                    setVal(blv, 0);
+                }
+                generateAndApply();
+            }
+
+            // ----- Copy -----
+            function copyCode() {
+                const text = codeOutput.value;
+                navigator.clipboard.writeText(text).then(() => {
+                    copyBtn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Copied!';
+                    setTimeout(() => { copyBtn.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i> Copy'; }, 2000);
+                }).catch(() => {
+                    codeOutput.select();
+                    document.execCommand('copy');
+                    copyBtn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> Copied!';
+                    setTimeout(() => { copyBtn.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i> Copy'; }, 2000);
+                });
+            }
+
+            // ----- Toggle unit (safe) -----
+            function toggleUnit() {
+                currentUnit = (currentUnit === '%') ? 'px' : '%';
+                unitLabel.textContent = currentUnit;
+                unitBadge.textContent = currentUnit;
+                safeSetItem('br-unit', currentUnit);
+                generateAndApply();
+            }
+
+            // ----- Toggle theme (safe) -----
+            function toggleTheme() {
+                isDark = !isDark;
+                document.body.classList.toggle('light', !isDark);
+                themeToggle.innerHTML = isDark ? '<i class="fas fa-sun" aria-hidden="true"></i>' :
+                    '<i class="fas fa-moon" aria-hidden="true"></i>';
+                safeSetItem('br-theme', isDark ? 'dark' : 'light');
+            }
+
+            // ----- Drag handles -----
+            let dragData = null;
+
+            function startDrag(e, corner) {
+                if (!isSimple) return;
+                const handle = e.currentTarget;
+                const rect = sampleBox.getBoundingClientRect();
+                const clientX = e.clientX || e.touches?.[0]?.clientX || 0;
+                const clientY = e.clientY || e.touches?.[0]?.clientY || 0;
+                const idMap = { tl: 'tl', tr: 'tr', br: 'br', bl: 'bl' };
+                const inp = document.getElementById(idMap[corner]);
+                if (!inp) return;
+                dragData = {
+                    corner: corner,
+                    startX: clientX,
+                    startY: clientY,
+                    startVal: getVal(inp),
+                    inp: inp,
+                    rect: rect
+                };
+                document.addEventListener('mousemove', onDragMove);
+                document.addEventListener('mouseup', onDragEnd);
+                document.addEventListener('touchmove', onDragMoveTouch, { passive: false });
+                document.addEventListener('touchend', onDragEndTouch, { passive: false });
+                if (e.cancelable) e.preventDefault();
+                handle.style.cursor = 'grabbing';
+            }
+
+            function onDragMove(e) {
+                if (!dragData) return;
+                const dx = e.clientX - dragData.startX;
+                const dy = e.clientY - dragData.startY;
+                processDrag(dx, dy);
+                if (e.cancelable) e.preventDefault();
+            }
+
+            function onDragMoveTouch(e) {
+                if (!dragData) return;
+                const touch = e.touches[0];
+                const dx = touch.clientX - dragData.startX;
+                const dy = touch.clientY - dragData.startY;
+                processDrag(dx, dy);
+                if (e.cancelable) e.preventDefault();
+            }
+
+            function processDrag(dx, dy) {
+                const { corner, startVal, rect, inp } = dragData;
+                let delta = 0;
+                const size = Math.min(rect.width, rect.height);
+                if (corner === 'tl') delta = (-dx - dy) / 2;
+                else if (corner === 'tr') delta = (dx - dy) / 2;
+                else if (corner === 'br') delta = (dx + dy) / 2;
+                else if (corner === 'bl') delta = (-dx + dy) / 2;
+                const scale = 100 / (size * 0.6);
+                let newVal = startVal + delta * scale;
+                newVal = Math.min(100, Math.max(0, newVal));
+                setVal(inp, newVal);
+                generateAndApply();
+            }
+
+            function onDragEnd(e) {
+                if (dragData) {
+                    updateDisplayValues();
+                    dragData = null;
+                }
+                document.removeEventListener('mousemove', onDragMove);
+                document.removeEventListener('mouseup', onDragEnd);
+                document.removeEventListener('touchmove', onDragMoveTouch);
+                document.removeEventListener('touchend', onDragEndTouch);
+                document.querySelectorAll('.handle').forEach(h => h.style.cursor = 'grab');
+            }
+
+            function onDragEndTouch(e) { onDragEnd(e); }
+
+            Object.keys(handles).forEach(key => {
+                const el = handles[key];
+                if (el) {
+                    el.addEventListener('mousedown', (e) => startDrag(e, key));
+                    el.addEventListener('touchstart', (e) => startDrag(e, key), { passive: false });
+                }
+            });
+
+            // ----- Shape mode -----
+            shapeRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.value === 'simple') {
+                        isSimple = true;
+                        simpleGroup.style.display = 'block';
+                        complexGroup.style.display = 'none';
+                    } else {
+                        isSimple = false;
+                        simpleGroup.style.display = 'none';
+                        complexGroup.style.display = 'block';
+                    }
+                    generateAndApply();
+                });
+            });
+
+            // ----- Event listeners -----
+            const allRanges = document.querySelectorAll('input[type="range"]');
+            allRanges.forEach(inp => {
+                inp.addEventListener('input', generateAndApply);
+                const min = parseFloat(inp.min) || 0;
+                const max = parseFloat(inp.max) || 100;
+                const val = parseFloat(inp.value) || 0;
+                const pct = ((val - min) / (max - min)) * 100;
+                inp.style.setProperty('--fill', pct + '%');
+                inp.setAttribute('aria-valuenow', val);
+            });
+
+            bgColor.addEventListener('input', generateAndApply);
+            boxW.addEventListener('input', generateAndApply);
+            boxH.addEventListener('input', generateAndApply);
+            shadowSpread.addEventListener('input', generateAndApply);
+
+            chkVendor.addEventListener('change', updateCode);
+            chkIndividual.addEventListener('change', updateCode);
+
+            copyBtn.addEventListener('click', copyCode);
+            unitToggle.addEventListener('click', toggleUnit);
+            themeToggle.addEventListener('click', toggleTheme);
+            resetBtn.addEventListener('click', resetAll);
+
+            presetBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    applyPreset(this.dataset.preset);
+                });
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey || e.metaKey) return;
+                if (e.key === 'r' || e.key === 'R') { resetAll();
+                    e.preventDefault(); }
+                if (e.key === 'c' || e.key === 'C') { copyCode();
+                    e.preventDefault(); }
+            });
+
+            // ----- Init with safe localStorage -----
+            const savedTheme = safeGetItem('br-theme', null);
+            if (savedTheme === 'dark') {
+                isDark = true;
+                document.body.classList.remove('light');
+                themeToggle.innerHTML = '<i class="fas fa-sun" aria-hidden="true"></i>';
+            } else if (savedTheme === 'light') {
+                isDark = false;
+                document.body.classList.add('light');
+                themeToggle.innerHTML = '<i class="fas fa-moon" aria-hidden="true"></i>';
+            } else {
+                // Fallback to system preference
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    isDark = true;
+                    document.body.classList.remove('light');
+                    themeToggle.innerHTML = '<i class="fas fa-sun" aria-hidden="true"></i>';
+                } else {
+                    isDark = false;
+                    document.body.classList.add('light');
+                    themeToggle.innerHTML = '<i class="fas fa-moon" aria-hidden="true"></i>';
+                }
+            }
+
+            const savedUnit = safeGetItem('br-unit', null);
+            if (savedUnit === 'px' || savedUnit === '%') {
+                currentUnit = savedUnit;
+                unitLabel.textContent = currentUnit;
+                unitBadge.textContent = currentUnit;
+            }
+
+            simpleGroup.style.display = 'block';
+            complexGroup.style.display = 'none';
+            document.querySelector('input[name="shapeMode"][value="simple"]').checked = true;
+            isSimple = true;
+
+            generateAndApply();
+
+        })();
+    </script>
+
+</body>
+</html>

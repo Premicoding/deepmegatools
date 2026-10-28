@@ -1,0 +1,2257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<!-- ==================== SEO META ==================== -->
+<title>CSS Box Shadow Generator – Free Online Tool + 66 Fancy Effects</title>
+<meta name="description" content="Free CSS box shadow generator with live preview. Create beautiful shadows for cards, buttons and UI, copy CSS or Tailwind code, and explore 66 fancy shadow presets.">
+<meta name="keywords" content="css box shadow generator, box shadow generator, css shadow generator, box-shadow css, inset shadow, css generator">
+<meta name="author" content="Deep Mega Tools">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<link rel="canonical" href="https://deepmegatools.com/tools/css-box-shadow-generator/">
+<meta name="theme-color" content="#4f46e5">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="CSS Box Shadow Generator – Free Online Tool + 66 Fancy Effects">
+<meta property="og:description" content="Create beautiful CSS box shadows visually with live preview, multiple layers, inset shadows, presets and one-click CSS/Tailwind copy.">
+<meta property="og:url" content="https://deepmegatools.com/tools/css-box-shadow-generator/">
+<meta property="og:site_name" content="Deep Mega Tools">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CSS Box Shadow Generator – Free Online Tool">
+<meta name="twitter:description" content="Design beautiful CSS shadows with live preview and 66 fancy presets.">
+
+<!-- ==================== STRUCTURED DATA ==================== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "CSS Box Shadow Generator",
+      "url": "https://deepmegatools.com/tools/css-box-shadow-generator/",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Free online CSS box shadow generator with live preview, multiple layers, inset shadows, presets and 66 fancy effects."
+    },
+    {
+      "@type": "Article",
+      "headline": "CSS Box Shadow Generator – Free Online Tool + 66 Fancy Effects",
+      "description": "Create beautiful CSS box shadows visually with live preview, multiple layers and 66 fancy presets. Copy CSS or Tailwind code instantly.",
+      "author": { "@type": "Organization", "name": "Deep Mega Tools" },
+      "publisher": { "@type": "Organization", "name": "Deep Mega Tools" },
+      "mainEntityOfPage": "https://deepmegatools.com/tools/css-box-shadow-generator/"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What is a CSS Box Shadow Generator?", "acceptedAnswer": { "@type": "Answer", "text": "A CSS Box Shadow Generator is an online tool that helps you create CSS shadow effects visually. It lets you customise shadow properties, preview the result and copy the generated CSS code." } },
+        { "@type": "Question", "name": "Is this CSS Box Shadow Generator free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, the CSS Box Shadow Generator on Deep Mega Tools is a free online tool for creating and customising CSS shadow effects." } },
+        { "@type": "Question", "name": "Can I create multiple shadows on one element?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can add multiple shadow layers and combine them to create complex effects. CSS supports multiple comma-separated shadow values in a single box-shadow declaration." } },
+        { "@type": "Question", "name": "Can I create inset shadows?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can create inset shadow effects that appear inside an element rather than outside its edges." } },
+        { "@type": "Question", "name": "Do I need coding knowledge to use this tool?", "acceptedAnswer": { "@type": "Answer", "text": "No advanced coding knowledge is required. Basic knowledge of HTML and CSS helps you understand and customise the generated code." } },
+        { "@type": "Question", "name": "Can I use the generated CSS in any website?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, you can use the generated CSS in any website or web application that supports standard CSS." } }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+/* =====================================================
+   DESIGN TOKENS (WCAG-AA + Performance Optimized)
+   ===================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --primary: #4f46e5;
+  --primary-dark: #4338ca;
+  --accent: #be185d;
+  --success: #15803d;
+  --danger: #b91c1c;
+
+  --heading: #0f172a;
+  --body: #1e293b;
+  --muted: #475569;
+
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --border: #e6ebf3;
+  --track: #e2e8f0;
+
+  --radius: 18px;
+  --radius-sm: 12px;
+  --radius-xs: 8px;
+
+  --shadow-sm: 0 1px 2px rgba(15,23,42,.06);
+  --shadow: 0 10px 30px rgba(15,23,42,.08);
+  --shadow-lg: 0 25px 60px rgba(15,23,42,.12);
+
+  /* System Fonts for Performance (0 Network Requests) */
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-head: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --max: 1140px;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--body);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--primary-dark); text-decoration: none; transition: color .2s; }
+a:hover { color: var(--accent); }
+
+/* =====================================================
+   WCAG 1.4.1 — LINKS MUST NOT RELY ON COLOR ALONE
+   ===================================================== */
+a:not(.btn):not(.nav-cta):not(.logo) {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  text-decoration-color: currentColor;
+}
+
+a:focus-visible {
+  outline: 3px solid rgba(67,56,202,.6);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.nav-links a {
+  text-decoration-color: currentColor;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-head);
+  color: var(--heading);
+  line-height: 1.25;
+  margin: 0 0 .6em;
+  letter-spacing: -.02em;
+  font-weight: 800;
+}
+h1 { font-size: clamp(1.85rem, 4vw, 2.8rem); }
+h2 { font-size: clamp(1.4rem, 2.8vw, 1.95rem); }
+h3 { font-size: clamp(1.05rem, 1.8vw, 1.22rem); font-weight: 700; }
+p { margin: 0 0 1em; }
+ul, ol { margin: 0 0 1em; padding-left: 1.3em; }
+li { margin-bottom: .45em; }
+
+::selection { background: rgba(79,70,229,.22); color: var(--heading); }
+
+/* =====================================================
+   PERFORMANCE: Off-screen rendering skip
+   ===================================================== */
+.article, 
+#playground,
+#faq {
+  content-visibility: auto;
+  contain-intrinsic-size: 1000px;
+}
+
+/* =====================================================
+   SCROLL PROGRESS + BACK TO TOP
+   ===================================================== */
+#progress {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+  background: linear-gradient(90deg, var(--primary), var(--accent), #b45309);
+  z-index: 2000;
+  transition: width .1s linear;
+}
+#toTop {
+  position: fixed; right: 20px; bottom: 20px;
+  width: 46px; height: 46px; border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, var(--primary-dark), #4338ca);
+  color: #fff; font-size: 1.1rem; cursor: pointer;
+  display: grid; place-items: center;
+  box-shadow: 0 12px 28px rgba(67,56,202,.45);
+  opacity: 0; visibility: hidden; transform: translateY(14px);
+  transition: all .3s ease; z-index: 900;
+}
+#toTop.show { opacity: 1; visibility: visible; transform: translateY(0); }
+#toTop:hover { transform: translateY(-3px); }
+#toTop:focus-visible {
+  outline: 3px solid rgba(255,255,255,.85);
+  outline-offset: 3px;
+}
+
+/* =====================================================
+   LAYOUT
+   ===================================================== */
+.container {
+  width: 100%; max-width: var(--max);
+  margin: 0 auto; padding: 0 20px;
+}
+section { padding: 56px 0; }
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+.site-header {
+  position: sticky; top: 0; z-index: 1000;
+  background: rgba(248,250,252,.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(226,232,240,.9);
+}
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px; gap: 16px;
+}
+.logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-head); font-weight: 800;
+  font-size: 1rem; color: var(--heading);
+  letter-spacing: -.02em; white-space: nowrap;
+}
+.logo:hover { color: var(--heading); }
+.logo-mark {
+  width: 32px; height: 32px; border-radius: 9px;
+  background: linear-gradient(135deg, var(--primary-dark), var(--accent));
+  display: grid; place-items: center;
+  color: #fff; font-size: 15px; font-weight: 800;
+  box-shadow: 0 6px 16px rgba(67,56,202,.4);
+}
+.nav-links {
+  display: flex; gap: 20px; list-style: none;
+  margin: 0; padding: 0; font-size: .9rem; font-weight: 500;
+}
+.nav-links a { color: var(--body); }
+.nav-links a:hover { color: var(--primary-dark); }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px; border-radius: 999px;
+  background: linear-gradient(135deg, var(--primary-dark), #4338ca);
+  color: #fff; font-weight: 600; font-size: .87rem;
+  box-shadow: 0 8px 20px rgba(67,56,202,.35);
+  transition: transform .25s, box-shadow .25s;
+}
+.nav-cta:hover { color: #fff; transform: translateY(-2px); box-shadow: 0 12px 28px rgba(67,56,202,.45); }
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+}
+
+/* =====================================================
+   HERO
+   ===================================================== */
+.hero {
+  position: relative; padding: 64px 0 48px; text-align: center; overflow: hidden;
+  background:
+    radial-gradient(900px 420px at 12% -10%, rgba(79,70,229,.16), transparent 65%),
+    radial-gradient(800px 420px at 88% 0%, rgba(190,24,93,.12), transparent 65%),
+    linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+}
+.badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; border-radius: 999px;
+  background: rgba(79,70,229,.1);
+  border: 1px solid rgba(79,70,229,.22);
+  color: var(--primary-dark);
+  font-size: .78rem; font-weight: 600; margin-bottom: 18px;
+}
+.badge .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 0 3px rgba(21,128,61,.2);
+}
+.hero h1 {
+  max-width: 860px; margin: 0 auto 14px;
+  background: linear-gradient(120deg, #0f172a 20%, #4338ca 60%, #be185d 95%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero p.lead {
+  max-width: 660px; margin: 0 auto 28px;
+  font-size: clamp(.98rem, 1.5vw, 1.08rem);
+  color: var(--muted);
+}
+.hero-actions {
+  display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+}
+
+/* =====================================================
+   BUTTONS
+   ===================================================== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 26px;
+  border-radius: 999px;
+  font-family: inherit;
+  font-weight: 600; font-size: .93rem;
+  border: 1px solid transparent; cursor: pointer;
+  transition: transform .25s, box-shadow .25s, background .25s;
+  touch-action: manipulation;
+  text-decoration: none;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-dark), #4338ca);
+  color: #fff;
+  box-shadow: 0 10px 26px rgba(67,56,202,.38);
+}
+.btn-primary:hover { color: #fff; transform: translateY(-3px); box-shadow: 0 16px 36px rgba(67,56,202,.48); }
+.btn-ghost {
+  background: #fff; color: var(--heading);
+  border-color: var(--border);
+  box-shadow: var(--shadow-sm);
+}
+.btn-ghost:hover { color: var(--primary-dark); transform: translateY(-3px); box-shadow: var(--shadow); }
+.btn:disabled { opacity: .4; cursor: not-allowed; }
+.btn:disabled:hover { transform: none; box-shadow: none; }
+.btn:focus-visible { outline: 3px solid rgba(67,56,202,.5); outline-offset: 3px; }
+
+/* =====================================================
+   GENERATOR TOOL
+   ===================================================== */
+#tool { padding: 24px 0 56px; }
+
+.tool-wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  box-shadow: var(--shadow);
+  min-width: 0;
+}
+.panel-header {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px; margin-bottom: 16px;
+}
+.panel-header h2 { margin: 0; font-size: 1.15rem; }
+.header-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+.header-actions .btn { padding: 7px 12px; font-size: .82rem; }
+
+/* Preview */
+.preview-stage {
+  width: 100%; min-height: 280px;
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  padding: 36px;
+  border: 1px solid var(--border);
+  transition: background-color .2s;
+}
+.preview-stage[data-bg="light"] { background: #ffffff; }
+.preview-stage[data-bg="dark"] { background: #1e1e2e; }
+.preview-stage[data-bg="checker"] {
+  background-color: #fff;
+  background-image:
+    linear-gradient(45deg, #d0d0d0 25%, transparent 25%),
+    linear-gradient(-45deg, #d0d0d0 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #d0d0d0 75%),
+    linear-gradient(-45deg, transparent 75%, #d0d0d0 75%);
+  background-size: 24px 24px;
+  background-position: 0 0, 0 12px, 12px -12px, -12px 0;
+}
+.preview-box {
+  width: clamp(140px, 40vw, 190px);
+  height: clamp(140px, 40vw, 190px);
+  background: #fff;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.bg-toggle {
+  display: flex; gap: 3px; padding: 3px;
+  background: #f1f5f9; border-radius: 8px;
+}
+.bg-toggle button {
+  padding: 5px 12px; font-size: .8rem;
+  background: transparent; color: var(--muted);
+  border: none; border-radius: 6px; cursor: pointer;
+  font-family: inherit; font-weight: 600;
+  transition: background .15s, color .15s;
+}
+.bg-toggle button.active { background: #fff; color: var(--heading); box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+.bg-toggle button:hover:not(.active) { background: rgba(255,255,255,.7); }
+.bg-toggle button:focus-visible {
+  outline: 3px solid rgba(67,56,202,.5);
+  outline-offset: 1px;
+}
+
+/* Output */
+.output {
+  margin-top: 16px;
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 12px;
+  border: 1px solid #1e293b;
+}
+.output code {
+  font-family: var(--mono);
+  font-size: .83rem;
+  white-space: pre-wrap; overflow-wrap: anywhere;
+  line-height: 1.6; color: #9cdcfe;
+}
+.output-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.output-actions .btn { padding: 6px 14px; font-size: .8rem; }
+
+/* Presets */
+.presets-section { margin-bottom: 20px; }
+.section-label {
+  font-size: .72rem; text-transform: uppercase; letter-spacing: .08em;
+  color: var(--muted); margin: 0 0 8px; font-weight: 700;
+}
+.presets { display: flex; flex-wrap: wrap; gap: 8px; }
+.presets button {
+  background: #f1f5f9; color: var(--body);
+  font-size: .83rem; padding: 7px 14px;
+  border: 1px solid transparent; border-radius: 999px;
+  cursor: pointer; font-family: inherit; font-weight: 600;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.presets button:hover { background: rgba(79,70,229,.1); border-color: rgba(79,70,229,.35); color: var(--primary-dark); }
+.presets button:focus-visible {
+  outline: 3px solid rgba(67,56,202,.5);
+  outline-offset: 2px;
+}
+
+/* Shadow Layer */
+.shadow-layer {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin-bottom: 14px;
+  background: #fafbfc;
+  transition: background .15s, border-color .15s, opacity .15s;
+}
+.shadow-layer.dragging { opacity: .45; }
+.shadow-layer.drag-over { border-color: var(--primary); background: rgba(79,70,229,.06); }
+.layer-header {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 12px; flex-wrap: wrap;
+}
+.layer-header h3 { margin: 0; font-size: .98rem; flex: 1; min-width: 0; }
+.drag-handle {
+  cursor: grab; color: var(--muted);
+  font-size: 1.1rem; padding: 4px 6px;
+  user-select: none; border-radius: 4px;
+  line-height: 1; background: transparent; border: none;
+}
+.drag-handle:hover { background: #e8e8e8; color: var(--heading); }
+.drag-handle:active { cursor: grabbing; }
+.drag-handle:focus-visible { outline: 3px solid rgba(67,56,202,.5); outline-offset: 2px; }
+.layer-actions { display: flex; gap: 4px; flex-wrap: wrap; }
+.layer-actions button {
+  padding: 5px 9px; font-size: .82rem;
+  min-width: 30px; min-height: 30px;
+  background: #f1f5f9; color: var(--body);
+  border: none; border-radius: 6px; cursor: pointer;
+  font-family: inherit; font-weight: 600;
+  transition: background .15s;
+}
+.layer-actions button:hover:not(:disabled) { background: #e2e8f0; }
+.layer-actions button:disabled { opacity: .35; cursor: not-allowed; }
+.layer-actions button[data-action="remove"] { background: #fee2e2; color: var(--danger); }
+.layer-actions button[data-action="remove"]:hover { background: #fecaca; }
+.layer-actions button:focus-visible {
+  outline: 3px solid rgba(67,56,202,.5);
+  outline-offset: 2px;
+}
+
+/* Inputs */
+.input-group { margin-bottom: 12px; }
+.input-group > label {
+  display: block; font-weight: 600;
+  font-size: .85rem; margin-bottom: 6px;
+  color: var(--heading);
+}
+.slider-row { display: flex; align-items: center; gap: 10px; }
+.num-input {
+  width: 70px; padding: 5px 8px;
+  font-family: inherit; font-size: .82rem;
+  border: 1px solid var(--border); border-radius: 4px;
+  background: #fff; color: var(--heading);
+  text-align: right; font-variant-numeric: tabular-nums;
+}
+.num-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(79,70,229,.22);
+}
+
+/* Range */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(
+    to right,
+    var(--primary) 0%,
+    var(--primary) var(--pct, 50%),
+    var(--track) var(--pct, 50%),
+    var(--track) 100%
+  );
+  outline: none;
+  cursor: pointer;
+  min-width: 0;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 3px solid #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.25);
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb:active { transform: scale(.95); }
+input[type="range"]::-moz-range-thumb {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 3px solid #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.25);
+  cursor: pointer;
+}
+input[type="range"]:focus-visible { outline: 3px solid rgba(67,56,202,.5); outline-offset: 3px; }
+
+/* Color */
+input[type="color"] {
+  width: 56px; height: 34px;
+  padding: 2px; border: 1px solid var(--border);
+  border-radius: 6px; background: #fff; cursor: pointer;
+}
+.color-row { display: flex; align-items: center; gap: 10px; }
+.color-row .hex {
+  font-family: var(--mono); font-size: .82rem; color: var(--muted);
+}
+
+/* Checkbox */
+.checkbox-group label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-weight: 500; cursor: pointer; font-size: .88rem;
+}
+.checkbox-group input[type="checkbox"] {
+  width: 17px; height: 17px; accent-color: var(--primary); cursor: pointer;
+}
+
+.add-btn {
+  width: 100%; padding: 12px; font-size: .92rem;
+  background: transparent;
+  color: var(--primary-dark);
+  border: 2px dashed rgba(67,56,202,.55);
+  border-radius: var(--radius-sm); font-weight: 600;
+  cursor: pointer; font-family: inherit;
+  transition: background .15s, border-color .15s;
+}
+.add-btn:hover { background: rgba(67,56,202,.06); border-color: var(--primary-dark); }
+.add-btn:focus-visible {
+  outline: 3px solid rgba(67,56,202,.5);
+  outline-offset: 2px;
+}
+
+/* =====================================================
+   TOASTS
+   ===================================================== */
+.toast {
+  position: fixed; bottom: 20px; left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #0f172a; color: #fff;
+  padding: 11px 22px; border-radius: 999px;
+  font-size: .88rem; font-weight: 500;
+  box-shadow: 0 4px 20px rgba(0,0,0,.2);
+  opacity: 0;
+  transition: opacity .3s, transform .3s;
+  pointer-events: none; z-index: 1500;
+  max-width: calc(100vw - 40px);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* =====================================================
+   PLAYGROUND (66 EFFECTS)
+   ===================================================== */
+#playground { padding: 56px 0; }
+.pg-header {
+  display: flex; flex-wrap: wrap;
+  align-items: baseline; justify-content: space-between;
+  gap: 6px 16px; margin-bottom: 22px;
+}
+.pg-header h2 { margin: 0; }
+.pg-header p { margin: 0; font-size: .85rem; color: var(--muted); }
+
+#box {
+  display: grid; width: 100%; gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+@media (max-width: 480px) {
+  #box { grid-template-columns: repeat(auto-fit, minmax(135px, 1fr)); gap: 14px; }
+}
+
+#box .code {
+  position: relative;
+  display: grid; place-items: center;
+  min-height: 170px; padding: 18px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  user-select: none; -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: transform .2s, border-color .2s, box-shadow .25s;
+}
+@media (max-width: 480px) {
+  #box .code { min-height: 140px; padding: 12px; }
+}
+@media (hover: hover) and (pointer: fine) {
+  #box .code:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+  }
+}
+#box .code:focus-visible {
+  outline: 3px solid rgba(67,56,202,.5);
+  outline-offset: 3px;
+}
+#box .code.copied {
+  border-color: var(--success);
+  box-shadow: 0 0 0 3px rgba(21,128,61,.35);
+}
+
+#box .code > div {
+  width: min(120px, 100%);
+  aspect-ratio: 1 / 1;
+  position: relative;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+/* Code overlay */
+#box .code code {
+  position: absolute; inset: 0;
+  display: block; padding: 10px;
+  background: rgba(15,23,42,.92);
+  color: #e2e8f0;
+  font-family: var(--mono);
+  font-weight: 500; font-size: 11.5px; line-height: 1.45;
+  white-space: pre-wrap; word-break: break-word;
+  overflow: auto; border-radius: 11px;
+  opacity: 0; transition: opacity .3s;
+  pointer-events: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  #box .code:hover code {
+    opacity: 1; pointer-events: auto;
+    user-select: text; -webkit-user-select: text;
+  }
+}
+#box .code.show code { opacity: 1; pointer-events: auto; }
+
+/* =====================================================
+   A–Z DEMO SHADOWS
+   ===================================================== */
+#box .code .A{ box-shadow:4px 4px 5px 6px red; background:linear-gradient(145deg, rgb(253,21,251), rgb(234,237,238)); }
+#box .code .B{ box-shadow: inset 9px 15px 8px 1px #343434, 12px 11px 8px 1px; border-radius:50%; }
+#box .code .C{ box-shadow:0px 0px 20px 6px black; background:#fff; }
+#box .code .D{ box-shadow: inset 4px 4px 4px 4px red, inset -4px -4px 4px 4px red, inset 8px 8px 8px 8px blue, inset -8px -8px 8px 8px green; }
+#box .code .E{ box-shadow: -7px -7px 20px 0px red, -4px -4px 5px 0px green, 7px 7px 20px 0px blue, 4px 4px 5px 0px black; }
+#box .code .F{ box-shadow:1px 1px 5px red, -1px -1px 5px blue; }
+#box .code .G{ box-shadow:1px 1px 5px 6px red, 2px 2px 10px 12px gold, 0px 0px 10px 20px hotpink; }
+#box .code .H{ box-shadow:1px 1px 5px 6px red, 2px 2px 12px 15px white, 0px 0px 10px 20px rgb(255,18,228), inset 0px 0px 8px 10px grey; }
+#box .code .I{ box-shadow: 7px 7px 15px 5px black inset; }
+#box .code .J{ box-shadow: 0 0 5px 4px #FF6347, 0 0 5px 20px #FFDAB9, 0px 0 10px 20px #000000; }
+#box .code .K{ box-shadow: 0 0 5px 4px #FF6347, 0 0 5px 15px blue, 0px 0px 5px 22px hotpink, 0px 0 10px 25px yellow; }
+#box .code .L{ box-shadow: rgba(0,0,0,0.35) 0px 5px 15px; }
+#box .code .M{ box-shadow: rgba(0,0,0,0.25) 0px 54px 55px, rgba(0,0,0,0.12) 0px -12px 30px, rgba(0,0,0,0.12) 0px 4px 6px, rgba(0,0,0,0.17) 0px 12px 13px, rgba(0,0,0,0.09) 0px -3px 5px; }
+#box .code .N{ box-shadow: rgba(50,50,93,0.25) 0px 50px 100px -20px, rgba(0,0,0,0.3) 0px 30px 60px -30px, rgba(10,37,64,0.35) 0px -2px 6px 0px inset; }
+#box .code .O{ box-shadow: rgb(85,91,255) 0px 0px 0px 3px, rgb(31,193,27) 0px 0px 0px 6px, rgb(255,217,19) 0px 0px 0px 9px, rgb(255,156,85) 0px 0px 0px 12px, rgb(255,85,85) 0px 0px 0px 15px; }
+#box .code .P{ box-shadow: 0 2.8px 2.2px rgba(0,0,0,0.034), 0 6.7px 5.3px rgba(0,0,0,0.048), 0 12.5px 10px rgba(0,0,0,0.06), 0 22.3px 17.9px rgba(0,0,0,0.072), 0 41.8px 33.4px rgba(0,0,0,0.086), 0 100px 80px rgba(0,0,0,0.12); }
+#box .code .Q{ filter:drop-shadow(0px 0px 15px red); }
+#box .code .R{ box-shadow: inset 5px 5px 10px #000000, inset -5px -5px 10px grey; }
+#box .code .S{ box-shadow:5px 5px 10px; }
+#box .code .T{ box-shadow:inset 0px 0px 5px 5px olive; }
+#box .code .U{ box-shadow:0 0 5px 5px olive; }
+#box .code .V{ box-shadow:0 0 10px 5px red; }
+#box .code .W{ box-shadow:0 15px 10px -5px; }
+#box .code .X{ filter:drop-shadow(0 0 20px grey); }
+#box .code .Y{ filter:drop-shadow(3px -3px 10px blue); }
+#box .code .Z{ box-shadow:1px 1px 5px 6px blue, 2px 2px 12px 15px green, 0px 0px 10px 20px rgb(255,18,228), 0px 0px 8px 20px yellow; }
+
+/* =====================================================
+   FANCY SET 1 (20 effects)
+   ===================================================== */
+#box .code .neon{ background: #050510; box-shadow: 0 0 5px #0ff, 0 0 20px #0ff, 0 0 40px #0ff, 0 0 80px #0ff; }
+#box .code .cyber{ background: #1a0033; box-shadow: -5px -5px 20px #ff00de, 5px 5px 20px #00d9ff, 0 0 35px #ff00de, inset 0 0 20px #00d9ff; }
+#box .code .sunset{ background: linear-gradient(180deg, #ff9966, #ff5e62, #c83e8c, #481880); box-shadow: 0 -10px 30px #ff9966, 0 -20px 60px #ff5e62, 0 -30px 90px #c83e8c; }
+#box .code .fire{ background: #1a0000; box-shadow: 0 0 10px #ff0000, 0 0 30px #ff6600, 0 0 50px #ffcc00, 0 0 90px #ff6600; }
+#box .code .ocean{ background: linear-gradient(180deg, #00d4ff, #0077be, #001f3f); box-shadow: 0 8px 25px #0077be, 0 15px 50px #003d66, 0 25px 80px #001f3f; }
+#box .code .aurora{ background: #0a0018; box-shadow: -12px -12px 45px #00ff9f, 12px 12px 45px #8a2be2, 0 0 60px #00bfff; }
+#box .code .retro{ background: #fff; box-shadow: -8px 8px 0 #ff006e, 8px -8px 0 #00d9ff, 0 0 35px rgba(255,0,110,.55); }
+#box .code .button3d{ background: linear-gradient(180deg, #f0f0f0, #a0a0a0); box-shadow: 0 2px 0 #999, 0 4px 0 #888, 0 6px 0 #777, 0 10px 18px rgba(0,0,0,.4); }
+#box .code .candy{ background: linear-gradient(145deg, #ffb3d9, #ffe066); box-shadow: 0 0 20px #ffb3d9, 0 0 40px #ff99cc, 0 0 60px #ffe066, inset 0 0 25px #fff; }
+#box .code .holo{ background: linear-gradient(135deg, #ff6ec7, #7ee8fa, #b967ff); box-shadow: 10px 10px 30px #ff6ec7, -10px -10px 30px #7ee8fa, 0 0 45px #b967ff, inset 0 0 20px rgba(255,255,255,.6); }
+#box .code .emerald{ background: #001a0d; box-shadow: 0 0 15px #00ff88, 0 0 35px #00cc66, 0 0 55px #009944, 0 0 85px #006633; }
+#box .code .purple{ background: #12001f; box-shadow: 0 0 15px #9d4edd, 0 0 35px #7b2cbf, 0 0 55px #5a189a, 0 0 85px #3c096c; }
+#box .code .chrome{ background: linear-gradient(145deg, #ffffff, #b0b0b0); box-shadow: 6px 6px 15px #4a4a4a, -6px -6px 15px #f0f0f0, inset 2px 2px 5px #fff, inset -2px -2px 5px #888; }
+#box .code .gold{ background: linear-gradient(145deg, #ffd700, #b8860b); box-shadow: 0 0 20px #ffd700, 0 0 40px #ffb300, 0 0 60px #ff8c00, inset 0 0 22px rgba(255,215,0,.6); }
+#box .code .cosmic{ background: radial-gradient(circle, #6a0dad, #191970); box-shadow: 0 0 20px #6a0dad, 0 0 40px #4b0082, 0 0 65px #191970, 0 0 95px #000080; }
+#box .code .cherry{ background: linear-gradient(145deg, #ff0033, #990020); box-shadow: 5px 5px 25px #ff0033, -5px -5px 25px #ff6699, 0 0 45px #ff0033, inset 0 0 20px #ff6699; }
+#box .code .toxic{ background: #0a1a00; box-shadow: 0 0 15px #39ff14, 0 0 30px #39ff14, 0 0 55px #00ff00, inset 0 0 25px #39ff14; }
+#box .code .space{ background: radial-gradient(circle, #0d1b2a, #000); box-shadow: 5px 5px 25px #415a77, -5px -5px 25px #1b263b, 0 0 55px #778da9, inset 0 0 25px #000; }
+#box .code .rainbow{ background: #fff; box-shadow: 10px 0 30px red, 0 10px 30px orange, -10px 0 30px gold, 0 -10px 30px green, 10px 10px 30px blue, -10px -10px 30px purple; }
+#box .code .stack{ background: #fff8e7; box-shadow: 4px 4px 0 #e8d8b0, 8px 8px 0 #d4c090, 12px 12px 0 #c0a870, 18px 18px 25px rgba(0,0,0,.25); }
+
+/* =====================================================
+   FANCY SET 2 (20 effects)
+   ===================================================== */
+/* Optimized Glass: Removed backdrop-filter for performance */
+#box .code .glass{
+  background: linear-gradient(135deg, rgba(255,255,255,.85), rgba(220,230,250,.7));
+  box-shadow: 0 8px 32px rgba(31,38,135,.37), inset 0 0 20px rgba(255,255,255,.5), inset 0 0 40px rgba(150,200,255,.2);
+  border: 1px solid rgba(255,255,255,.6);
+}
+#box .code .sakura{ background: linear-gradient(145deg, #ffe0ec, #ffc2d8); box-shadow: 0 0 20px #ffb6c1, 0 0 40px #ff69b4, inset 0 0 20px #fff; }
+#box .code .kawaii{ background: linear-gradient(145deg, #ffd1dc, #fff0f5); box-shadow: -6px 6px 0 #ff69b4, 6px -6px 0 #87ceeb, 0 0 30px rgba(255,105,180,.4); }
+#box .code .steel{ background: linear-gradient(145deg, #e0e0e0, #808080); box-shadow: 8px 8px 20px #505050, -8px -8px 20px #ffffff, inset 2px 2px 4px #fff, inset -2px -2px 4px #666; }
+#box .code .copper{ background: linear-gradient(145deg, #b87333, #8b4513); box-shadow: 0 0 20px #b87333, 0 0 40px #cd7f32, inset 0 0 20px rgba(255,200,150,.6); }
+#box .code .ice{ background: linear-gradient(145deg, #e0f7ff, #b3e5fc); box-shadow: 0 0 15px #b3e5fc, 0 0 30px #81d4fa, 0 0 50px #4fc3f7, inset 0 0 20px #fff; }
+#box .code .lava{ background: radial-gradient(circle at 30% 30%, #ff9500, #cc3300, #660000); box-shadow: 0 0 25px #ff6600, 0 0 50px #ff3300, 0 0 80px #cc0000; }
+#box .code .matrix{ background: #000; box-shadow: 0 0 10px #00ff00, 0 0 25px #00ff00, 0 0 45px #00ff00, inset 0 0 15px #00ff00; }
+#box .code .royal{ background: linear-gradient(145deg, #4169e1, #000080); box-shadow: 0 0 20px #4169e1, 0 0 40px #1e3a8a, 0 0 60px #000080, inset 0 0 15px rgba(255,255,255,.3); }
+#box .code .crimson{ background: linear-gradient(145deg, #dc143c, #8b0000); box-shadow: 0 0 25px #dc143c, 0 0 50px #b22222, 0 0 80px #8b0000, inset 0 0 15px rgba(255,255,255,.2); }
+#box .code .mint{ background: linear-gradient(145deg, #d4fff0, #98ff98); box-shadow: 0 0 20px #98ff98, 0 0 40px #00fa9a, inset 0 0 20px #fff; }
+#box .code .peach{ background: linear-gradient(145deg, #ffdab9, #ffb385); box-shadow: 0 0 20px #ffdab9, 0 0 40px #ffb385, 0 0 60px #ff9966, inset 0 0 15px #fff; }
+#box .code .lavender{ background: linear-gradient(145deg, #e6e6fa, #b19cd9); box-shadow: 0 0 20px #e6e6fa, 0 0 40px #b19cd9, inset 0 0 20px #fff; }
+#box .code .magma{ background: radial-gradient(circle at 50% 50%, #ff4400, #8b0000, #1a0000); box-shadow: 0 0 20px #ff4400, 0 0 40px #cc2200, 0 0 70px #8b0000, inset 0 0 20px #ff6600; }
+#box .code .electric{ background: #001a33; box-shadow: 0 0 10px #00d4ff, 0 0 25px #0099ff, 0 0 45px #0066ff, 0 0 70px #0033ff; }
+#box .code .twilight{ background: linear-gradient(180deg, #2d1b69, #6a2c70, #b83b5e); box-shadow: 0 -10px 30px #6a2c70, 0 -20px 60px #b83b5e, 0 15px 40px #2d1b69; }
+#box .code .vintage{ background: #f5f0dc; box-shadow: 3px 3px 0 #c4b896, 6px 6px 0 #a89070, 10px 10px 20px rgba(100,70,40,.4), inset 0 0 30px rgba(180,150,110,.3); }
+#box .code .carbon{
+  background:
+    linear-gradient(135deg, #2b2b2b 25%, #1a1a1a 25%, #1a1a1a 50%, #2b2b2b 50%, #2b2b2b 75%, #1a1a1a 75%);
+  background-size: 8px 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,.9), 0 10px 30px rgba(0,0,0,.7), inset 0 0 10px rgba(255,255,255,.05);
+}
+#box .code .tropical{ background: linear-gradient(145deg, #00ced1, #ff8c00); box-shadow: -10px -10px 30px #00ced1, 10px 10px 30px #ff8c00, 0 0 50px rgba(0,206,209,.6); }
+#box .code .rainbowBorder{ background: #fff; box-shadow: 0 0 0 3px red, 0 0 0 6px orange, 0 0 0 9px yellow, 0 0 0 12px green, 0 0 0 15px blue, 0 0 0 18px indigo, 0 0 0 21px violet; }
+
+/* =====================================================
+   ARTICLE SECTIONS
+   ===================================================== */
+.article { padding: 56px 0; }
+.section-head { max-width: 760px; margin-bottom: 34px; }
+.section-head h2 { margin-bottom: 10px; }
+.section-head p { color: var(--muted); margin: 0; }
+
+.eyebrow {
+  display: inline-block; font-size: .74rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--primary-dark);
+  margin-bottom: 8px;
+}
+
+.grid { display: grid; gap: 20px; }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); }
+
+.card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 24px 22px;
+  box-shadow: var(--shadow-sm);
+  transition: transform .3s, box-shadow .3s, border-color .3s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 48px rgba(15,23,42,.11);
+  border-color: rgba(79,70,229,.35);
+}
+.card h3 { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 1rem; }
+.card p { margin: 0; color: var(--muted); font-size: .93rem; line-height: 1.7; }
+
+.num {
+  flex: none; width: 30px; height: 30px; border-radius: 9px;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, rgba(79,70,229,.14), rgba(190,24,93,.14));
+  color: var(--primary-dark); font-size: .82rem; font-weight: 800;
+  font-family: var(--font-head);
+}
+
+/* Steps */
+.steps { counter-reset: step; list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.steps li {
+  counter-increment: step; position: relative;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 16px 20px 16px 68px;
+  margin: 0; box-shadow: var(--shadow-sm);
+  transition: border-color .25s, box-shadow .25s;
+  font-size: .93rem;
+}
+.steps li:hover { border-color: rgba(79,70,229,.35); box-shadow: var(--shadow); }
+.steps li::before {
+  content: counter(step); position: absolute; left: 20px; top: 50%;
+  transform: translateY(-50%); width: 34px; height: 34px;
+  border-radius: 50%; display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--primary-dark), #4338ca);
+  color: #fff; font-weight: 800; font-size: .85rem;
+  font-family: var(--font-head);
+  box-shadow: 0 6px 16px rgba(67,56,202,.35);
+}
+
+/* Code blocks */
+.code-block {
+  position: relative; background: #0f172a; color: #e2e8f0;
+  border-radius: var(--radius-sm); padding: 18px 20px;
+  margin: 0 0 20px; overflow-x: auto;
+  font-family: var(--mono); font-size: .85rem; line-height: 1.75;
+  border: 1px solid #1e293b;
+  box-shadow: 0 14px 34px rgba(15,23,42,.22);
+  white-space: pre;
+}
+.code-block::before {
+  content: "CSS"; position: absolute; top: 10px; right: 14px;
+  font-family: var(--font-body); font-size: .64rem; font-weight: 700;
+  letter-spacing: .12em; color: #94a3b8;
+}
+.tok-prop { color: #7dd3fc; }
+.tok-val { color: #fbbf24; }
+.tok-fn { color: #c4b5fd; }
+
+code.inline {
+  background: rgba(79,70,229,.1); color: var(--primary-dark);
+  padding: 2px 7px; border-radius: 6px;
+  font-family: var(--mono); font-size: .86em;
+  border: 1px solid rgba(79,70,229,.22);
+}
+
+/* Definition list */
+.defs { display: grid; gap: 10px; margin: 0 0 22px; }
+.def {
+  display: grid; grid-template-columns: 170px 1fr; gap: 16px;
+  align-items: start; padding: 14px 18px;
+  background: var(--card); border: 1px solid var(--border);
+  border-left: 4px solid var(--primary-dark);
+  border-radius: var(--radius-sm); box-shadow: var(--shadow-sm);
+  transition: transform .25s, box-shadow .25s;
+}
+.def:hover { transform: translateX(4px); box-shadow: var(--shadow); }
+.def dt { font-family: var(--font-head); font-weight: 700; color: var(--heading); font-size: .92rem; }
+.def dd { margin: 0; color: var(--muted); font-size: .91rem; line-height: 1.7; }
+
+/* Use cases */
+.usecases {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 12px;
+}
+.usecases li {
+  position: relative; background: var(--card);
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  padding: 14px 18px 14px 48px; margin: 0;
+  font-size: .92rem; box-shadow: var(--shadow-sm);
+  transition: border-color .25s, transform .25s;
+}
+.usecases li:hover { border-color: rgba(79,70,229,.4); transform: translateY(-2px); }
+.usecases li::before {
+  content: ""; position: absolute; left: 18px; top: 50%;
+  transform: translateY(-50%); width: 18px; height: 18px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-dark), var(--accent));
+  box-shadow: 0 4px 12px rgba(67,56,202,.35);
+}
+.usecases li::after {
+  content: "✓"; position: absolute; left: 18px; top: 50%;
+  transform: translateY(-50%); width: 18px; height: 18px;
+  display: grid; place-items: center;
+  color: #fff; font-size: .62rem; font-weight: 800; line-height: 1;
+}
+.usecases strong { color: var(--heading); }
+
+/* Tips */
+.tips-box {
+  background: linear-gradient(135deg, rgba(79,70,229,.08), rgba(190,24,93,.06));
+  border: 1px solid rgba(79,70,229,.22);
+  border-radius: var(--radius); padding: 28px 26px;
+  box-shadow: var(--shadow-sm);
+}
+.tips-box ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.tips-box li { position: relative; padding-left: 28px; margin: 0; font-size: .93rem; color: var(--heading); }
+.tips-box li::before {
+  content: ""; position: absolute; left: 0; top: .55em;
+  width: 13px; height: 13px; border-radius: 4px;
+  background: linear-gradient(135deg, var(--primary-dark), var(--accent));
+  box-shadow: 0 3px 10px rgba(67,56,202,.4);
+}
+
+/* FAQ */
+.faq { display: grid; gap: 12px; max-width: 820px; }
+.faq details {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); box-shadow: var(--shadow-sm);
+  transition: box-shadow .25s, border-color .25s; overflow: hidden;
+}
+.faq details[open] { border-color: rgba(79,70,229,.4); box-shadow: var(--shadow); }
+.faq summary {
+  cursor: pointer; list-style: none;
+  padding: 18px 54px 18px 22px; position: relative;
+  font-family: var(--font-head); font-weight: 700;
+  font-size: .95rem; color: var(--heading);
+  transition: color .2s;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary:hover { color: var(--primary-dark); }
+.faq summary:focus-visible {
+  outline: 3px solid rgba(67,56,202,.5);
+  outline-offset: -3px;
+}
+.faq summary::after {
+  content: "+"; position: absolute; right: 20px; top: 50%;
+  transform: translateY(-50%); width: 24px; height: 24px;
+  border-radius: 8px; display: grid; place-items: center;
+  background: rgba(79,70,229,.12); color: var(--primary-dark);
+  font-size: 1.05rem; font-weight: 700; line-height: 1;
+  transition: transform .3s, background .3s, color .3s;
+}
+.faq details[open] summary::after {
+  content: "−"; background: var(--primary-dark); color: #fff;
+  transform: translateY(-50%) rotate(180deg);
+}
+.faq .answer {
+  padding: 0 22px 20px; color: var(--muted);
+  font-size: .92rem; line-height: 1.75;
+}
+.faq .answer p:last-child { margin-bottom: 0; }
+
+/* CTA */
+.cta-section { padding: 20px 0 80px; }
+.cta-box {
+  position: relative; overflow: hidden; text-align: center;
+  border-radius: 24px; padding: 54px 28px;
+  background:
+    radial-gradient(600px 300px at 15% 0%, rgba(255,255,255,.16), transparent 60%),
+    radial-gradient(600px 300px at 85% 100%, rgba(190,24,93,.45), transparent 60%),
+    linear-gradient(135deg, #3730a3 0%, #4338ca 45%, #6d28d9 100%);
+  color: #fff;
+  box-shadow: 0 30px 70px rgba(55,48,163,.35);
+}
+.cta-box h2 { color: #fff; max-width: 700px; margin: 0 auto 12px; font-size: clamp(1.4rem, 2.8vw, 2rem); }
+.cta-box p { color: #f1f5f9; max-width: 600px; margin: 0 auto 26px; font-size: .98rem; }
+.cta-box .btn-white {
+  background: #fff; color: var(--primary-dark);
+  box-shadow: 0 12px 30px rgba(15,23,42,.25);
+}
+.cta-box .btn-white:hover { color: var(--primary-dark); transform: translateY(-3px); box-shadow: 0 18px 40px rgba(15,23,42,.3); }
+.cta-box .btn-outline {
+  background: transparent; color: #fff;
+  border: 1.5px solid rgba(255,255,255,.75);
+}
+.cta-box .btn-outline:hover { color: #fff; background: rgba(255,255,255,.14); transform: translateY(-3px); }
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (max-width: 860px) {
+  .def { grid-template-columns: 1fr; gap: 4px; }
+  .def dt { color: var(--primary-dark); }
+}
+@media (max-width: 640px) {
+  body { font-size: 15.5px; }
+  section, .article, #playground { padding: 40px 0; }
+  .hero { padding: 48px 0 40px; }
+  .panel { padding: 18px; }
+  .card { padding: 22px 18px; }
+  .steps li { padding: 14px 16px 14px 60px; }
+  .steps li::before { left: 16px; width: 30px; height: 30px; font-size: .8rem; }
+  .cta-box { padding: 42px 20px; border-radius: 20px; }
+  .hero-actions .btn { width: 100%; }
+  .btn { padding: 11px 22px; }
+  .tips-box { padding: 24px 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+
+<body>
+
+<div id="progress" aria-hidden="true"></div>
+
+<!-- ==================== HEADER ==================== -->
+<header class="site-header">
+  <div class="container">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#" class="logo">
+        <span class="logo-mark" aria-hidden="true">S</span>
+        <span>Shadow Generator</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#tool">Generator</a></li>
+        <li><a href="#playground">66 Effects</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a href="#tool" class="nav-cta">Try Generator →</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container">
+      <span class="badge"><span class="dot" aria-hidden="true"></span> 100% Free · No Sign-Up</span>
+      <h1 id="hero-title">CSS Box Shadow Generator</h1>
+      <p class="lead">
+        Design beautiful, modern shadows for cards, buttons and UI elements — no CSS coding
+        required. Adjust colours, offsets, blur and inset values, then copy the CSS or Tailwind
+        code with one click.
+      </p>
+      <div class="hero-actions">
+        <a href="#tool" class="btn btn-primary">✨ Open Generator</a>
+        <a href="#playground" class="btn btn-ghost">View 66 Effects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TOOL ==================== -->
+  <section id="tool" aria-label="Box shadow generator tool">
+    <div class="container">
+      <div class="tool-wrap">
+
+        <!-- Preview panel -->
+        <div class="panel preview-panel">
+          <div class="panel-header">
+            <h2>Live Preview</h2>
+            <div class="bg-toggle" role="group" aria-label="Preview background">
+              <button type="button" data-bg="light" class="active">Light</button>
+              <button type="button" data-bg="dark">Dark</button>
+              <button type="button" data-bg="checker">Checker</button>
+            </div>
+          </div>
+          <div class="preview-stage" id="previewStage" data-bg="light">
+            <div class="preview-box" id="previewBox"></div>
+          </div>
+          <div class="output">
+            <code id="cssOutput" aria-live="polite">box-shadow: none;</code>
+            <div class="output-actions">
+              <button type="button" class="btn btn-primary" id="copyCss">Copy CSS</button>
+              <button type="button" class="btn btn-ghost" id="copyTailwind">Copy Tailwind</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls panel -->
+        <div class="panel controls-panel">
+          <div class="panel-header">
+            <h2>Box Shadow Controls</h2>
+            <div class="header-actions">
+              <button type="button" id="undo" class="btn btn-ghost" title="Undo (Ctrl+Z)" aria-label="Undo">↶</button>
+              <button type="button" id="redo" class="btn btn-ghost" title="Redo (Ctrl+Shift+Z)" aria-label="Redo">↷</button>
+              <button type="button" id="randomize" class="btn btn-ghost" title="Randomize (Ctrl+Shift+R)">🎲 Random</button>
+              <button type="button" id="reset" class="btn btn-ghost" title="Reset">↺ Reset</button>
+            </div>
+          </div>
+
+          <div class="presets-section">
+            <h3 class="section-label">Presets</h3>
+            <div class="presets" id="presets"></div>
+          </div>
+
+          <div id="shadowControls"></div>
+          <button type="button" id="addShadow" class="add-btn">+ Add Shadow Layer</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PLAYGROUND ==================== -->
+  <section id="playground" aria-label="66 fancy box shadow effects">
+    <div class="container">
+      <div class="pg-header">
+        <h2>66 Fancy Box Shadow Effects</h2>
+        <p>Hover to see the code · double-click (or press Enter) to copy</p>
+      </div>
+
+      <div id="box">
+
+        <!-- A–Z -->
+        <div class="code" role="button" tabindex="0"><div class="A" aria-hidden="true"></div><code>box-shadow:4px 4px 5px 6px red;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="B" aria-hidden="true"></div><code>box-shadow:inset 9px 15px 8px 1px #343434, 12px 11px 8px 1px;
+border-radius:50%;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="C" aria-hidden="true"></div><code>box-shadow:0px 0px 20px 6px black;
+background:white;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="D" aria-hidden="true"></div><code>box-shadow: inset 4px 4px 4px 4px red, inset -4px -4px 4px 4px red, inset 8px 8px 8px 8px blue, inset -8px -8px 8px 8px green;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="E" aria-hidden="true"></div><code>box-shadow:
+  -7px -7px 20px 0px red,
+  -4px -4px 5px 0px green,
+   7px  7px 20px 0px blue,
+   4px  4px 5px 0px black;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="F" aria-hidden="true"></div><code>box-shadow:1px 1px 5px red, -1px -1px 5px blue;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="G" aria-hidden="true"></div><code>box-shadow:1px 1px 5px 6px red, 2px 2px 10px 12px gold, 0px 0px 10px 20px hotpink;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="H" aria-hidden="true"></div><code>box-shadow:1px 1px 5px 6px red, 2px 2px 12px 15px white, 0px 0px 10px 20px rgb(255, 18, 228), inset 0px 0px 8px 10px grey;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="I" aria-hidden="true"></div><code>box-shadow: 7px 7px 15px 5px black inset;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="J" aria-hidden="true"></div><code>box-shadow: 0 0 5px 4px #FF6347, 0 0 5px 20px #FFDAB9, 0px 0 10px 20px #000000;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="K" aria-hidden="true"></div><code>box-shadow: 0 0 5px 4px #FF6347, 0 0 5px 15px blue, 0px 0px 5px 22px hotpink, 0px 0 10px 25px yellow;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="L" aria-hidden="true"></div><code>box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="M" aria-hidden="true"></div><code>box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="N" aria-hidden="true"></div><code>box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="O" aria-hidden="true"></div><code>box-shadow: rgb(85, 91, 255) 0px 0px 0px 3px, rgb(31, 193, 27) 0px 0px 0px 6px, rgb(255, 217, 19) 0px 0px 0px 9px, rgb(255, 156, 85) 0px 0px 0px 12px, rgb(255, 85, 85) 0px 0px 0px 15px;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="P" aria-hidden="true"></div><code>box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);</code></div>
+        <div class="code" role="button" tabindex="0"><div class="Q" aria-hidden="true"></div><code>filter:drop-shadow(0px 0px 15px red);</code></div>
+        <div class="code" role="button" tabindex="0"><div class="R" aria-hidden="true"></div><code>box-shadow:
+  inset  5px  5px 10px #000000,
+  inset -5px -5px 10px grey;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="S" aria-hidden="true"></div><code>box-shadow:5px 5px 10px;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="T" aria-hidden="true"></div><code>box-shadow:inset 0px 0px 5px 5px olive;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="U" aria-hidden="true"></div><code>box-shadow:0 0 5px 5px olive;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="V" aria-hidden="true"></div><code>box-shadow:0 0 10px 5px red;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="W" aria-hidden="true"></div><code>box-shadow:0 15px 10px -5px;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="X" aria-hidden="true"></div><code>filter:drop-shadow(0 0 20px grey);</code></div>
+        <div class="code" role="button" tabindex="0"><div class="Y" aria-hidden="true"></div><code>filter:drop-shadow(3px -3px 10px blue);</code></div>
+        <div class="code" role="button" tabindex="0"><div class="Z" aria-hidden="true"></div><code>box-shadow:1px 1px 5px 6px blue, 2px 2px 12px 15px green, 0px 0px 10px 20px rgb(255, 18, 228), 0px 0px 8px 20px yellow;</code></div>
+
+        <!-- Fancy set 1 -->
+        <div class="code" role="button" tabindex="0"><div class="neon" aria-hidden="true"></div><code>background: #050510;
+box-shadow:
+  0 0 5px  #0ff,
+  0 0 20px #0ff,
+  0 0 40px #0ff,
+  0 0 80px #0ff;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="cyber" aria-hidden="true"></div><code>background: #1a0033;
+box-shadow:
+  -5px -5px 20px #ff00de,
+   5px  5px 20px #00d9ff,
+   0 0 35px #ff00de,
+   inset 0 0 20px #00d9ff;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="sunset" aria-hidden="true"></div><code>background: linear-gradient(180deg,
+  #ff9966, #ff5e62, #c83e8c, #481880);
+box-shadow:
+   0 -10px 30px #ff9966,
+   0 -20px 60px #ff5e62,
+   0 -30px 90px #c83e8c;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="fire" aria-hidden="true"></div><code>background: #1a0000;
+box-shadow:
+  0 0 10px #ff0000,
+  0 0 30px #ff6600,
+  0 0 50px #ffcc00,
+  0 0 90px #ff6600;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="ocean" aria-hidden="true"></div><code>background: linear-gradient(180deg,
+  #00d4ff, #0077be, #001f3f);
+box-shadow:
+  0  8px 25px #0077be,
+  0 15px 50px #003d66,
+  0 25px 80px #001f3f;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="aurora" aria-hidden="true"></div><code>background: #0a0018;
+box-shadow:
+  -12px -12px 45px #00ff9f,
+   12px  12px 45px #8a2be2,
+   0 0 60px #00bfff;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="retro" aria-hidden="true"></div><code>background: #fff;
+box-shadow:
+  -8px  8px 0 #ff006e,
+   8px -8px 0 #00d9ff,
+   0 0 35px rgba(255,0,110,.55);</code></div>
+        <div class="code" role="button" tabindex="0"><div class="button3d" aria-hidden="true"></div><code>background: linear-gradient(180deg, #f0f0f0, #a0a0a0);
+box-shadow:
+  0  2px 0 #999,
+  0  4px 0 #888,
+  0  6px 0 #777,
+  0 10px 18px rgba(0,0,0,.4);</code></div>
+        <div class="code" role="button" tabindex="0"><div class="candy" aria-hidden="true"></div><code>background: linear-gradient(145deg, #ffb3d9, #ffe066);
+box-shadow:
+  0 0 20px #ffb3d9,
+  0 0 40px #ff99cc,
+  0 0 60px #ffe066,
+  inset 0 0 25px #fff;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="holo" aria-hidden="true"></div><code>background: linear-gradient(135deg, #ff6ec7, #7ee8fa, #b967ff);
+box-shadow:
+   10px  10px 30px #ff6ec7,
+  -10px -10px 30px #7ee8fa,
+   0 0 45px #b967ff,
+   inset 0 0 20px rgba(255,255,255,.6);</code></div>
+        <div class="code" role="button" tabindex="0"><div class="emerald" aria-hidden="true"></div><code>background: #001a0d;
+box-shadow:
+  0 0 15px #00ff88,
+  0 0 35px #00cc66,
+  0 0 55px #009944,
+  0 0 85px #006633;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="purple" aria-hidden="true"></div><code>background: #12001f;
+box-shadow:
+  0 0 15px #9d4edd,
+  0 0 35px #7b2cbf,
+  0 0 55px #5a189a,
+  0 0 85px #3c096c;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="chrome" aria-hidden="true"></div><code>background: linear-gradient(145deg, #ffffff, #b0b0b0);
+box-shadow:
+   6px  6px 15px #4a4a4a,
+  -6px -6px 15px #f0f0f0,
+   inset 2px 2px 5px #fff,
+   inset -2px -2px 5px #888;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="gold" aria-hidden="true"></div><code>background: linear-gradient(145deg, #ffd700, #b8860b);
+box-shadow:
+  0 0 20px #ffd700,
+  0 0 40px #ffb300,
+  0 0 60px #ff8c00,
+  inset 0 0 22px rgba(255,215,0,.6);</code></div>
+        <div class="code" role="button" tabindex="0"><div class="cosmic" aria-hidden="true"></div><code>background: radial-gradient(circle, #6a0dad, #191970);
+box-shadow:
+  0 0 20px #6a0dad,
+  0 0 40px #4b0082,
+  0 0 65px #191970,
+  0 0 95px #000080;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="cherry" aria-hidden="true"></div><code>background: linear-gradient(145deg, #ff0033, #990020);
+box-shadow:
+   5px  5px 25px #ff0033,
+  -5px -5px 25px #ff6699,
+   0 0 45px #ff0033,
+   inset 0 0 20px #ff6699;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="toxic" aria-hidden="true"></div><code>background: #0a1a00;
+box-shadow:
+  0 0 15px #39ff14,
+  0 0 30px #39ff14,
+  0 0 55px #00ff00,
+  inset 0 0 25px #39ff14;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="space" aria-hidden="true"></div><code>background: radial-gradient(circle, #0d1b2a, #000);
+box-shadow:
+   5px  5px 25px #415a77,
+  -5px -5px 25px #1b263b,
+   0 0 55px #778da9,
+   inset 0 0 25px #000;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="rainbow" aria-hidden="true"></div><code>background: #fff;
+box-shadow:
+   10px   0 30px red,
+    0  10px 30px orange,
+  -10px   0 30px gold,
+    0 -10px 30px green,
+   10px  10px 30px blue,
+  -10px -10px 30px purple;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="stack" aria-hidden="true"></div><code>background: #fff8e7;
+box-shadow:
+   4px  4px 0 #e8d8b0,
+   8px  8px 0 #d4c090,
+  12px 12px 0 #c0a870,
+  18px 18px 25px rgba(0,0,0,.25);</code></div>
+
+        <!-- Fancy set 2 -->
+        <div class="code" role="button" tabindex="0"><div class="glass" aria-hidden="true"></div><code>background: linear-gradient(135deg,
+  rgba(255,255,255,.5), rgba(255,255,255,.1));
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+box-shadow:
+  0 8px 32px rgba(31,38,135,.37),
+  inset 0 0 20px rgba(255,255,255,.5),
+  inset 0 0 40px rgba(150,200,255,.2);
+border: 1px solid rgba(255,255,255,.6);</code></div>
+        <div class="code" role="button" tabindex="0"><div class="sakura" aria-hidden="true"></div><code>background: linear-gradient(145deg, #ffe0ec, #ffc2d8);
+box-shadow:
+  0 0 20px #ffb6c1,
+  0 0 40px #ff69b4,
+  inset 0 0 20px #fff;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="kawaii" aria-hidden="true"></div><code>background: linear-gradient(145deg, #ffd1dc, #fff0f5);
+box-shadow:
+  -6px  6px 0 #ff69b4,
+   6px -6px 0 #87ceeb,
+   0 0 30px rgba(255,105,180,.4);</code></div>
+        <div class="code" role="button" tabindex="0"><div class="steel" aria-hidden="true"></div><code>background: linear-gradient(145deg, #e0e0e0, #808080);
+box-shadow:
+   8px  8px 20px #505050,
+  -8px -8px 20px #ffffff,
+   inset 2px 2px 4px #fff,
+   inset -2px -2px 4px #666;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="copper" aria-hidden="true"></div><code>background: linear-gradient(145deg, #b87333, #8b4513);
+box-shadow:
+  0 0 20px #b87333,
+  0 0 40px #cd7f32,
+  inset 0 0 20px rgba(255,200,150,.6);</code></div>
+        <div class="code" role="button" tabindex="0"><div class="ice" aria-hidden="true"></div><code>background: linear-gradient(145deg, #e0f7ff, #b3e5fc);
+box-shadow:
+  0 0 15px #b3e5fc,
+  0 0 30px #81d4fa,
+  0 0 50px #4fc3f7,
+  inset 0 0 20px #fff;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="lava" aria-hidden="true"></div><code>background: radial-gradient(circle at 30% 30%,
+  #ff9500, #cc3300, #660000);
+box-shadow:
+  0 0 25px #ff6600,
+  0 0 50px #ff3300,
+  0 0 80px #cc0000;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="matrix" aria-hidden="true"></div><code>background: #000;
+box-shadow:
+  0 0 10px #00ff00,
+  0 0 25px #00ff00,
+  0 0 45px #00ff00,
+  inset 0 0 15px #00ff00;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="royal" aria-hidden="true"></div><code>background: linear-gradient(145deg, #4169e1, #000080);
+box-shadow:
+  0 0 20px #4169e1,
+  0 0 40px #1e3a8a,
+  0 0 60px #000080,
+  inset 0 0 15px rgba(255,255,255,.3);</code></div>
+        <div class="code" role="button" tabindex="0"><div class="crimson" aria-hidden="true"></div><code>background: linear-gradient(145deg, #dc143c, #8b0000);
+box-shadow:
+  0 0 25px #dc143c,
+  0 0 50px #b22222,
+  0 0 80px #8b0000,
+  inset 0 0 15px rgba(255,255,255,.2);</code></div>
+        <div class="code" role="button" tabindex="0"><div class="mint" aria-hidden="true"></div><code>background: linear-gradient(145deg, #d4fff0, #98ff98);
+box-shadow:
+  0 0 20px #98ff98,
+  0 0 40px #00fa9a,
+  inset 0 0 20px #fff;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="peach" aria-hidden="true"></div><code>background: linear-gradient(145deg, #ffdab9, #ffb385);
+box-shadow:
+  0 0 20px #ffdab9,
+  0 0 40px #ffb385,
+  0 0 60px #ff9966,
+  inset 0 0 15px #fff;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="lavender" aria-hidden="true"></div><code>background: linear-gradient(145deg, #e6e6fa, #b19cd9);
+box-shadow:
+  0 0 20px #e6e6fa,
+  0 0 40px #b19cd9,
+  inset 0 0 20px #fff;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="magma" aria-hidden="true"></div><code>background: radial-gradient(circle at 50% 50%,
+  #ff4400, #8b0000, #1a0000);
+box-shadow:
+  0 0 20px #ff4400,
+  0 0 40px #cc2200,
+  0 0 70px #8b0000,
+  inset 0 0 20px #ff6600;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="electric" aria-hidden="true"></div><code>background: #001a33;
+box-shadow:
+  0 0 10px #00d4ff,
+  0 0 25px #0099ff,
+  0 0 45px #0066ff,
+  0 0 70px #0033ff;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="twilight" aria-hidden="true"></div><code>background: linear-gradient(180deg,
+  #2d1b69, #6a2c70, #b83b5e);
+box-shadow:
+  0 -10px 30px #6a2c70,
+  0 -20px 60px #b83b5e,
+  0 15px 40px #2d1b69;</code></div>
+        <div class="code" role="button" tabindex="0"><div class="vintage" aria-hidden="true"></div><code>background: #f5f0dc;
+box-shadow:
+   3px  3px 0 #c4b896,
+   6px  6px 0 #a89070,
+  10px 10px 20px rgba(100,70,40,.4),
+  inset 0 0 30px rgba(180,150,110,.3);</code></div>
+        <div class="code" role="button" tabindex="0"><div class="carbon" aria-hidden="true"></div><code>background:
+  linear-gradient(135deg,
+    #2b2b2b 25%, #1a1a1a 25%,
+    #1a1a1a 50%, #2b2b2b 50%,
+    #2b2b2b 75%, #1a1a1a 75%);
+background-size: 8px 8px;
+box-shadow:
+  0 0 20px rgba(0,0,0,.9),
+  0 10px 30px rgba(0,0,0,.7),
+  inset 0 0 10px rgba(255,255,255,.05);</code></div>
+        <div class="code" role="button" tabindex="0"><div class="tropical" aria-hidden="true"></div><code>background: linear-gradient(145deg, #00ced1, #ff8c00);
+box-shadow:
+  -10px -10px 30px #00ced1,
+   10px  10px 30px #ff8c00,
+   0 0 50px rgba(0,206,209,.6);</code></div>
+        <div class="code" role="button" tabindex="0"><div class="rainbowBorder" aria-hidden="true"></div><code>background: #fff;
+box-shadow:
+  0 0 0 3px red,
+  0 0 0 6px orange,
+  0 0 0 9px yellow,
+  0 0 0 12px green,
+  0 0 0 15px blue,
+  0 0 0 18px indigo,
+  0 0 0 21px violet;</code></div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ARTICLE: WHAT IS ==================== -->
+  <section class="article" id="what-is" aria-labelledby="what-title">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Introduction</span>
+        <h2 id="what-title">What Is a CSS Box Shadow Generator?</h2>
+      </div>
+      <p>
+        A <strong>CSS Box Shadow Generator</strong> is an online tool that lets you create and
+        customise shadow effects visually. Instead of experimenting with CSS properties manually,
+        you adjust interactive controls and watch each change apply to the preview in real time.
+      </p>
+      <p>
+        The <code class="inline">box-shadow</code> property adds shadow effects around an HTML
+        element. It creates depth, highlights important elements and improves the overall
+        appearance of a user interface — from cards and buttons to modals and dashboards.
+      </p>
+      <p>
+        This free generator simplifies the process with an interactive preview, customisable
+        shadow settings, ready-made presets and a collection of <strong>66 fancy shadow
+        effects</strong>.
+      </p>
+    </div>
+  </section>
+  <div class="related-tools">
+            <h2>Related Tools</h2>
+            <ul>
+                <li><a href="/tools/barcode-generator.html">Barcode Generator</a></li>
+                <li><a href="/tools/qr-code-generator.html">QR Code Generator Tool</a></li>
+                <li><a href="/tools/color-contrast-analyzer.html">Color Contrast Analyzer</a></li>
+                <li><a href="/tools/image-resizer.html">Image Resizer Tool</a></li>
+                <li><a href="/tools/unlock-page.html">Unlock Page Generator</a></li>
+                <li><a href="/tools/auto-code-typing.html">Auto Code Typing</a></li>
+                <li><a href="/tools/code-editor.html">Live Code Editor</a></li>
+            </ul>
+        </div>
+
+  <!-- ==================== ARTICLE: FEATURES ==================== -->
+  <section class="article" id="features" aria-labelledby="features-title" style="background:#fff;">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Everything You Need</span>
+        <h2 id="features-title">Features of Our Free CSS Box Shadow Generator</h2>
+        <p>Ten powerful options that make shadow design fast, visual and frustration-free.</p>
+      </div>
+
+      <div class="grid grid-3">
+        <article class="card"><h3><span class="num">1</span> Live Shadow Preview</h3><p>See your shadow effects instantly as you change the settings. Experiment until you find a design that suits your website.</p></article>
+        <article class="card"><h3><span class="num">2</span> Customisable Settings</h3><p>Adjust shadow position, blur, spread and colour to achieve anything from a subtle shadow to a bold, glowing effect.</p></article>
+        <article class="card"><h3><span class="num">3</span> Multiple Shadow Layers</h3><p>Create complex designs by adding multiple shadow layers to a single element. Combine colours, blur levels and offsets.</p></article>
+        <article class="card"><h3><span class="num">4</span> Ready-Made Presets</h3><p>Choose from predefined shadow styles to get started quickly — no need to configure every property from scratch.</p></article>
+        <article class="card"><h3><span class="num">5</span> 66 Fancy Effects</h3><p>Explore colourful, modern designs such as neon, cyber, sunset, fire, ocean, aurora, glass, rainbow and 3D-style shadows.</p></article>
+        <article class="card"><h3><span class="num">6</span> Copy CSS Code</h3><p>Once you create your desired effect, copy the generated CSS and paste it into your stylesheet or project.</p></article>
+        <article class="card"><h3><span class="num">7</span> Copy Tailwind CSS</h3><p>Use the Tailwind copy option to obtain a Tailwind-oriented output. Check the result before using it in your setup.</p></article>
+        <article class="card"><h3><span class="num">8</span> Undo and Redo</h3><p>Experiment freely. Return to a previous configuration or restore a later state without starting over.</p></article>
+        <article class="card"><h3><span class="num">9</span> Random Generator</h3><p>Use the randomise feature to explore new shadow combinations and discover creative ideas for your next project.</p></article>
+        <article class="card"><h3><span class="num">10</span> Responsive &amp; Easy</h3><p>A friendly interface that works on desktop and mobile screens, convenient for designers on different devices.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ARTICLE: HOW TO USE ==================== -->
+  <section class="article" id="how-to" aria-labelledby="how-title">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Step by Step</span>
+        <h2 id="how-title">How to Use the CSS Box Shadow Generator</h2>
+        <p>Follow these simple steps to create your own CSS shadow effect.</p>
+      </div>
+
+      <ol class="steps">
+        <li>Open the CSS Box Shadow Generator on this page (scroll to the <a href="#tool">tool section</a>).</li>
+        <li>Check the live preview to see the current shadow effect.</li>
+        <li>Select a ready-made preset or customise the shadow settings manually.</li>
+        <li>Adjust the shadow position, blur, spread and colour as needed.</li>
+        <li>Add more shadow layers if you want to create a complex effect.</li>
+        <li>Change the preview background to test against light, dark or checkerboard backgrounds.</li>
+        <li>Review the generated CSS code in the dark output panel.</li>
+        <li>Click the <strong>Copy CSS</strong> button to copy the code for your project.</li>
+        <li>Explore the <a href="#playground">66 fancy shadow effects</a> and copy the code from an effect you like.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ==================== ARTICLE: PROPERTY ==================== -->
+  <section class="article" id="property" aria-labelledby="property-title" style="background:#fff;">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Under the Hood</span>
+        <h2 id="property-title">Understanding the CSS Box Shadow Property</h2>
+        <p>The <code class="inline">box-shadow</code> property adds shadow effects to HTML elements. Knowing its syntax helps you customise the generated code.</p>
+      </div>
+
+      <pre class="code-block"><code><span class="tok-prop">box-shadow</span>: <span class="tok-val">offset-x offset-y blur-radius spread-radius color</span>;</code></pre>
+
+      <dl class="defs">
+        <div class="def"><dt>Offset X</dt><dd>Controls the horizontal position of the shadow. Positive values move it right, negative values move it left.</dd></div>
+        <div class="def"><dt>Offset Y</dt><dd>Controls the vertical position of the shadow. Positive values move it down, negative values move it up.</dd></div>
+        <div class="def"><dt>Blur Radius</dt><dd>Controls how soft or blurred the shadow appears. Larger values generally produce softer shadows.</dd></div>
+        <div class="def"><dt>Spread Radius</dt><dd>Controls how much the shadow expands or contracts. Positive values expand it, negative values shrink it.</dd></div>
+        <div class="def"><dt>Color</dt><dd>Defines the shadow colour. Use named colours, hexadecimal values, RGB or RGBA colours.</dd></div>
+        <div class="def"><dt>Inset</dt><dd>An optional keyword that creates an inner shadow instead of a conventional outer shadow.</dd></div>
+      </dl>
+
+      <p>Not every value needs to be included in every shadow declaration. The exact effect depends on the values and the order in which the shadow layers are defined.</p>
+
+      <h3>Basic Shadow</h3>
+      <p>Create a simple shadow around a card or container.</p>
+      <pre class="code-block"><code><span class="tok-prop">box-shadow</span>: <span class="tok-val">4px 4px 10px</span> <span class="tok-fn">rgba</span>(0, 0, 0, 0.2);</code></pre>
+
+      <h3>Soft Shadow</h3>
+      <p>Use a subtle shadow to give elements a clean, modern appearance.</p>
+      <pre class="code-block"><code><span class="tok-prop">box-shadow</span>: <span class="tok-val">0 4px 15px</span> <span class="tok-fn">rgba</span>(0, 0, 0, 0.1);</code></pre>
+
+      <h3>Coloured Shadow</h3>
+      <p>Add a colourful shadow to make a button or card stand out.</p>
+      <pre class="code-block"><code><span class="tok-prop">box-shadow</span>: <span class="tok-val">0 0 20px</span> <span class="tok-fn">rgba</span>(0, 123, 255, 0.6);</code></pre>
+
+      <h3>Inset Shadow</h3>
+      <p>Create an inner shadow for a pressed or recessed appearance.</p>
+      <pre class="code-block"><code><span class="tok-prop">box-shadow</span>: <span class="tok-val">inset 0 2px 8px</span> <span class="tok-fn">rgba</span>(0, 0, 0, 0.2);</code></pre>
+
+      <h3>Multiple Shadows</h3>
+      <p>Combine multiple shadows to create a more detailed visual effect.</p>
+      <pre class="code-block"><code><span class="tok-prop">box-shadow</span>: <span class="tok-val">0 5px 15px</span> <span class="tok-fn">rgba</span>(0,0,0,0.15),
+             <span class="tok-val">0 10px 30px</span> <span class="tok-fn">rgba</span>(0,0,0,0.08);</code></pre>
+    </div>
+  </section>
+
+  <!-- ==================== ARTICLE: USE CASES ==================== -->
+  <section class="article" id="usecases" aria-labelledby="usecases-title">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Real-World Design</span>
+        <h2 id="usecases-title">Where Can You Use CSS Box Shadow Effects?</h2>
+        <p>CSS box shadows are useful in many types of web design projects.</p>
+      </div>
+
+      <ul class="usecases">
+        <li><strong>Website Cards:</strong> Add depth to product cards, blog cards and content sections.</li>
+        <li><strong>Buttons:</strong> Make buttons more visually appealing with subtle or colourful shadows.</li>
+        <li><strong>Navigation Menus:</strong> Distinguish dropdown menus and navigation panels from the background.</li>
+        <li><strong>Forms &amp; Input Fields:</strong> Highlight form elements and create a more polished interface.</li>
+        <li><strong>Modals &amp; Popups:</strong> Separate dialog boxes from the content behind them.</li>
+        <li><strong>Dashboard Interfaces:</strong> Create visual separation between widgets, panels and info cards.</li>
+        <li><strong>Portfolio Websites:</strong> Add creative effects to project previews and portfolio sections.</li>
+        <li><strong>Modern UI Designs:</strong> Experiment with glass-style, neon, colourful and layered effects.</li>
+      </ul>
+
+      <p style="margin-top:22px;">Choose shadow styles carefully to maintain a consistent design throughout your website.</p>
+    </div>
+  </section>
+
+  <!-- ==================== ARTICLE: BENEFITS ==================== -->
+  <section class="article" id="benefits" aria-labelledby="benefits-title" style="background:#fff;">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Why Use a Generator</span>
+        <h2 id="benefits-title">Benefits of Using an Online CSS Shadow Generator</h2>
+        <p>Creating shadows manually can require repeated adjustments. An online generator makes this faster and more visual.</p>
+      </div>
+
+      <div class="grid grid-2">
+        <article class="card"><h3>⏱ Save Time</h3><p>Adjust shadow properties through controls instead of repeatedly editing CSS declarations.</p></article>
+        <article class="card"><h3>📘 Learn CSS Easily</h3><p>Understand how offsets, blur, spread, colours and inset effects change the appearance of an element.</p></article>
+        <article class="card"><h3>🎨 Explore Creative Designs</h3><p>Experiment with ready-made presets and fancy shadow examples to discover new design ideas.</p></article>
+        <article class="card"><h3>📋 Copy Ready-to-Use Code</h3><p>Transfer your generated CSS into your project and modify it further whenever necessary.</p></article>
+        <article class="card"><h3>✨ Improve UI Appearance</h3><p>Create subtle depth, colourful highlights and layered effects for modern website components.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ARTICLE: TIPS ==================== -->
+  <section class="article" id="tips" aria-labelledby="tips-title">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Pro Advice</span>
+        <h2 id="tips-title">Tips for Creating Better CSS Shadows</h2>
+        <p>Follow these tips to make your shadows look professional.</p>
+      </div>
+
+      <div class="tips-box">
+        <ul>
+          <li>Use subtle shadows for everyday interface elements such as cards and buttons.</li>
+          <li>Avoid excessive blur and spread when a clean, minimal design is your goal.</li>
+          <li>Select shadow colours that complement your website's colour palette.</li>
+          <li>Test your shadows against different backgrounds to make sure they stay visible.</li>
+          <li>Use multiple shadow layers carefully to avoid unnecessarily complicated designs.</li>
+          <li>Maintain consistency by using similar shadow styles for elements that serve similar purposes.</li>
+          <li>Consider performance and readability when adding elaborate effects to many elements.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ ==================== -->
+  <section class="article" id="faq" aria-labelledby="faq-title" style="background:#fff;">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Questions</span>
+        <h2 id="faq-title">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq">
+        <details open>
+          <summary>What is a CSS Box Shadow Generator?</summary>
+          <div class="answer"><p>It is an online tool that helps you create CSS shadow effects visually. You can customise shadow properties, preview the results and copy the generated CSS code.</p></div>
+        </details>
+        <details>
+          <summary>Is this CSS Box Shadow Generator free?</summary>
+          <div class="answer"><p>Yes, the CSS Box Shadow Generator on Deep Mega Tools is completely free to use — no sign-up required.</p></div>
+        </details>
+        <details>
+          <summary>Can I create multiple shadows on one element?</summary>
+          <div class="answer"><p>Yes. You can add multiple shadow layers and combine them to create complex effects. CSS supports multiple comma-separated shadow values in a single <code class="inline">box-shadow</code> declaration.</p></div>
+        </details>
+        <details>
+          <summary>Can I create inset shadows?</summary>
+          <div class="answer"><p>Yes. You can create inset shadow effects that appear inside an element rather than outside its edges.</p></div>
+        </details>
+        <details>
+          <summary>Do I need coding knowledge to use this tool?</summary>
+          <div class="answer"><p>No advanced coding knowledge is required to use the visual controls. Basic knowledge of HTML and CSS helps you understand and customise the generated code.</p></div>
+        </details>
+        <details>
+          <summary>Can I use the generated CSS in any website?</summary>
+          <div class="answer"><p>You can use the generated CSS in any website or web application that supports standard CSS. Place the declaration in the appropriate CSS rule for the element you want to style.</p></div>
+        </details>
+        <details>
+          <summary>What are fancy CSS box shadows?</summary>
+          <div class="answer"><p>Fancy CSS box shadows are creative effects that use combinations of colours, offsets, blur values and multiple layers to produce distinctive visual styles — including neon glows, rainbow effects and 3D-style appearances.</p></div>
+        </details>
+        <details>
+          <summary>Does the tool work on mobile devices?</summary>
+          <div class="answer"><p>Yes. The responsive interface is designed to work on mobile devices as well as desktop screens. You can create shadow effects and copy the generated code from a supported mobile browser.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA ==================== -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Create Beautiful Shadows with Deep Mega Tools</h2>
+        <p>Give your website a more polished appearance. Experiment with different shadow settings, explore 66 fancy effects, preview instantly and copy the CSS you need.</p>
+        <div class="hero-actions">
+          <a href="#tool" class="btn btn-white">🚀 Start Creating Now</a>
+          <a href="#playground" class="btn btn-outline">Browse 66 Effects</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Toasts + Back to top -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="toast" id="pgToast" role="status" aria-live="polite"></div>
+<button id="toTop" aria-label="Back to top">↑</button>
+
+<script>
+/* =====================================================
+   GENERATOR SCRIPT
+   ===================================================== */
+(function () {
+  'use strict';
+
+  const STORAGE_KEY = 'boxShadowGenerator.v3';
+  const MAX_HISTORY = 100;
+  let nextId = 1;
+  const state = { shadows: [], previewBg: 'light' };
+  let history = [];
+  let historyIndex = -1;
+  let dragId = null;
+
+  const PRESETS = {
+    'Soft':        [{ hOffset:0, vOffset:8, blur:24, spread:0, color:'#000000', opacity:0.15, inset:false }],
+    'Material':    [{ hOffset:0, vOffset:2, blur:4,  spread:0, color:'#000000', opacity:0.20, inset:false },
+                    { hOffset:0, vOffset:4, blur:8,  spread:0, color:'#000000', opacity:0.15, inset:false }],
+    'Neumorphism': [{ hOffset:12, vOffset:12, blur:24, spread:0, color:'#bebebe', opacity:1, inset:false },
+                    { hOffset:-12, vOffset:-12, blur:24, spread:0, color:'#ffffff', opacity:1, inset:false }],
+    'Hard Edge':   [{ hOffset:8, vOffset:8, blur:0, spread:0, color:'#000000', opacity:1, inset:false }],
+    'Glow':        [{ hOffset:0, vOffset:0, blur:24, spread:6, color:'#4f46e5', opacity:0.85, inset:false }],
+    'Inset':       [{ hOffset:0, vOffset:2, blur:8,  spread:0, color:'#000000', opacity:0.3, inset:true }],
+    'Layered':     [{ hOffset:0, vOffset:1, blur:2,  spread:0, color:'#000000', opacity:0.07, inset:false },
+                    { hOffset:0, vOffset:4, blur:8,  spread:0, color:'#000000', opacity:0.07, inset:false },
+                    { hOffset:0, vOffset:16, blur:32, spread:0, color:'#000000', opacity:0.07, inset:false }]
+  };
+
+  const $ = id => document.getElementById(id);
+  const uid = () => nextId++;
+  const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
+
+  function hexToRgba(hex, opacity) {
+    let h = String(hex || '').replace('#', '');
+    if (h.length === 3) h = h.split('').map(c => c + c).join('');
+    const r = parseInt(h.slice(0, 2), 16) || 0;
+    const g = parseInt(h.slice(2, 4), 16) || 0;
+    const b = parseInt(h.slice(4, 6), 16) || 0;
+    const a = clamp(Number(opacity) || 0, 0, 1);
+    return `rgba(${r},${g},${b},${a})`;
+  }
+
+  function toCssValue() {
+    if (!state.shadows.length) return 'none';
+    return state.shadows.map(s => {
+      const inset = s.inset ? 'inset ' : '';
+      return `${inset}${s.hOffset}px ${s.vOffset}px ${s.blur}px ${s.spread}px ${hexToRgba(s.color, s.opacity)}`;
+    }).join(', ');
+  }
+
+  function toTailwindValue() {
+    const v = toCssValue();
+    if (v === 'none') return 'shadow-none';
+    const tw = v.replace(/,\s*/g, ',').replace(/\s+/g, '_');
+    return `shadow-[${tw}]`;
+  }
+
+  function save() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (_) {}
+  }
+
+  function load() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return false;
+      const parsed = JSON.parse(raw);
+      if (!parsed || !Array.isArray(parsed.shadows) || parsed.shadows.length === 0) return false;
+      state.shadows = parsed.shadows.map(s => ({
+        id: uid(),
+        hOffset: clamp(Number(s.hOffset) || 0, -50, 50),
+        vOffset: clamp(Number(s.vOffset) || 0, -50, 50),
+        blur:    clamp(Number(s.blur) || 0, 0, 100),
+        spread:  clamp(Number(s.spread) || 0, -50, 50),
+        color:   /^#[0-9a-f]{6}$/i.test(s.color) ? s.color : '#000000',
+        opacity: clamp(Number(s.opacity) || 0, 0, 1),
+        inset:   Boolean(s.inset)
+      }));
+      state.previewBg = ['light','dark','checker'].includes(parsed.previewBg) ? parsed.previewBg : 'light';
+      return true;
+    } catch (_) { return false; }
+  }
+
+  function createShadow(overrides) {
+    return Object.assign({
+      id: uid(), hOffset: 0, vOffset: 4, blur: 12, spread: 0,
+      color: '#000000', opacity: 0.25, inset: false
+    }, overrides || {});
+  }
+
+  function resetToDefault() {
+    state.shadows = [createShadow()];
+  }
+
+  function snapshot() {
+    return JSON.stringify({ shadows: state.shadows, previewBg: state.previewBg });
+  }
+
+  function pushHistory() {
+    const snap = snapshot();
+    if (historyIndex >= 0 && history[historyIndex] === snap) return;
+    history = history.slice(0, historyIndex + 1);
+    history.push(snap);
+    if (history.length > MAX_HISTORY) history.shift();
+    historyIndex = history.length - 1;
+    updateHistoryButtons();
+  }
+
+  function restoreSnapshot(snap) {
+    const parsed = JSON.parse(snap);
+    state.shadows = parsed.shadows;
+    state.previewBg = parsed.previewBg;
+    renderControls();
+    updatePreview();
+    applyPreviewBg();
+    save();
+  }
+
+  function undo() {
+    if (historyIndex <= 0) return;
+    historyIndex--;
+    restoreSnapshot(history[historyIndex]);
+    updateHistoryButtons();
+    showToast('Undo');
+  }
+
+  function redo() {
+    if (historyIndex >= history.length - 1) return;
+    historyIndex++;
+    restoreSnapshot(history[historyIndex]);
+    updateHistoryButtons();
+    showToast('Redo');
+  }
+
+  function updateHistoryButtons() {
+    const u = $('undo'), r = $('redo');
+    if (u) u.disabled = historyIndex <= 0;
+    if (r) r.disabled = historyIndex >= history.length - 1;
+  }
+
+  function renderPresets() {
+    $('presets').innerHTML = Object.keys(PRESETS)
+      .map(n => `<button type="button" data-preset="${n}">${n}</button>`)
+      .join('');
+  }
+
+  function rangeGroup(shadow, prop, label, min, max, step) {
+    const val = Number(shadow[prop]);
+    const pct = ((val - min) / (max - min)) * 100;
+    const stepAttr = step !== 1 ? `step="${step}"` : '';
+    const display = step < 1 ? val.toFixed(2) : val;
+    return `
+      <div class="input-group">
+        <label for="range-${prop}-${shadow.id}">${label}</label>
+        <div class="slider-row">
+          <input type="range" id="range-${prop}-${shadow.id}" data-prop="${prop}" data-role="range"
+            min="${min}" max="${max}" ${stepAttr} value="${val}" style="--pct:${pct}%">
+          <input type="number" class="num-input" data-prop="${prop}" data-role="number"
+            min="${min}" max="${max}" ${stepAttr} value="${display}" aria-label="${label} value">
+        </div>
+      </div>`;
+  }
+
+  function renderControls() {
+    $('shadowControls').innerHTML = state.shadows.map((s, i) => {
+      const first = i === 0;
+      const last = i === state.shadows.length - 1;
+      return `
+        <article class="shadow-layer" data-id="${s.id}">
+          <header class="layer-header">
+            <button type="button" class="drag-handle" draggable="true"
+              title="Drag to reorder" aria-label="Drag layer to reorder">⠿</button>
+            <h3>Shadow Layer ${i + 1}</h3>
+            <div class="layer-actions">
+              <button type="button" data-action="up" aria-label="Move layer up" ${first ? 'disabled' : ''}>↑</button>
+              <button type="button" data-action="down" aria-label="Move layer down" ${last ? 'disabled' : ''}>↓</button>
+              <button type="button" data-action="duplicate" aria-label="Duplicate layer">⧉</button>
+              <button type="button" data-action="remove" aria-label="Remove layer">✕</button>
+            </div>
+          </header>
+          ${rangeGroup(s, 'hOffset', 'Horizontal Offset', -50, 50, 1)}
+          ${rangeGroup(s, 'vOffset', 'Vertical Offset',   -50, 50, 1)}
+          ${rangeGroup(s, 'blur',    'Blur Radius',         0,100, 1)}
+          ${rangeGroup(s, 'spread',  'Spread Radius',     -50, 50, 1)}
+          ${rangeGroup(s, 'opacity', 'Opacity',             0,  1, 0.01)}
+          <div class="input-group">
+            <label for="color-${s.id}">Color</label>
+            <div class="color-row">
+              <input type="color" id="color-${s.id}" data-prop="color" value="${s.color}">
+              <span class="hex">${s.color.toUpperCase()}</span>
+            </div>
+          </div>
+          <div class="input-group checkbox-group">
+            <label>
+              <input type="checkbox" data-prop="inset" ${s.inset ? 'checked' : ''}> Inset
+            </label>
+          </div>
+        </article>`;
+    }).join('');
+  }
+
+  function updatePreview() {
+    const v = toCssValue();
+    $('previewBox').style.boxShadow = v;
+    $('cssOutput').textContent = `box-shadow: ${v};`;
+  }
+
+  function applyPreviewBg() {
+    $('previewStage').dataset.bg = state.previewBg;
+    document.querySelectorAll('.bg-toggle button').forEach(b =>
+      b.classList.toggle('active', b.dataset.bg === state.previewBg));
+  }
+
+  function addShadow() {
+    state.shadows.push(createShadow());
+    renderControls(); updatePreview(); save(); pushHistory();
+  }
+
+  function removeShadow(id) {
+    if (state.shadows.length <= 1) { showToast('At least one layer is required'); return; }
+    state.shadows = state.shadows.filter(s => s.id !== id);
+    renderControls(); updatePreview(); save(); pushHistory();
+  }
+
+  function duplicateShadow(id) {
+    const i = state.shadows.findIndex(s => s.id === id);
+    if (i === -1) return;
+    state.shadows.splice(i + 1, 0, Object.assign({}, state.shadows[i], { id: uid() }));
+    renderControls(); updatePreview(); save(); pushHistory();
+  }
+
+  function moveShadow(id, dir) {
+    const i = state.shadows.findIndex(s => s.id === id);
+    const j = i + dir;
+    if (i === -1 || j < 0 || j >= state.shadows.length) return;
+    [state.shadows[i], state.shadows[j]] = [state.shadows[j], state.shadows[i]];
+    renderControls(); updatePreview(); save(); pushHistory();
+  }
+
+  function applyPreset(name) {
+    if (!PRESETS[name]) return;
+    state.shadows = PRESETS[name].map(p => createShadow(p));
+    renderControls(); updatePreview(); save(); pushHistory();
+    showToast(`Preset: ${name}`);
+  }
+
+  function randomize() {
+    const n = 1 + Math.floor(Math.random() * 3);
+    state.shadows = Array.from({ length: n }, () => createShadow({
+      hOffset: Math.floor(Math.random() * 21) - 10,
+      vOffset: Math.floor(Math.random() * 21) - 10,
+      blur:    Math.floor(Math.random() * 40),
+      spread:  Math.floor(Math.random() * 11) - 5,
+      color:   '#' + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, '0'),
+      opacity: Math.round((0.2 + Math.random() * 0.6) * 100) / 100,
+      inset:   Math.random() < 0.15
+    }));
+    renderControls(); updatePreview(); save(); pushHistory();
+    showToast('Randomized!');
+  }
+
+  async function copyText(text, okMsg) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        if (!ok) throw new Error('execCommand failed');
+      }
+      showToast(okMsg);
+    } catch (_) {
+      showToast('Copy failed — please copy manually');
+    }
+  }
+
+  let toastTimer = null;
+  function showToast(msg) {
+    const t = $('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
+  }
+
+  function applyInputToState(target) {
+    const prop = target.dataset.prop;
+    if (!prop) return;
+    const layer = target.closest('.shadow-layer');
+    if (!layer) return;
+    const id = Number(layer.dataset.id);
+    const shadow = state.shadows.find(s => s.id === id);
+    if (!shadow) return;
+
+    let value;
+    if (target.type === 'checkbox') value = target.checked;
+    else if (target.type === 'color') {
+      value = target.value;
+      const hex = layer.querySelector('.color-row .hex');
+      if (hex) hex.textContent = value.toUpperCase();
+    } else {
+      value = Number(target.value);
+      if (Number.isNaN(value)) value = 0;
+      if (target.min !== '') value = clamp(value, Number(target.min), Number(target.max));
+    }
+    shadow[prop] = value;
+
+    if (target.dataset.role) {
+      layer.querySelectorAll(`[data-prop="${prop}"][data-role]`).forEach(sib => {
+        if (sib === target) return;
+        sib.value = (prop === 'opacity') ? Number(value).toFixed(2) : value;
+        if (sib.dataset.role === 'range') {
+          const min = Number(sib.min), max = Number(sib.max);
+          const pct = ((Number(sib.value) - min) / (max - min)) * 100;
+          sib.style.setProperty('--pct', pct + '%');
+        }
+      });
+    }
+  }
+
+  function onControlsInput(e) {
+    if (!e.target.dataset.prop) return;
+    applyInputToState(e.target);
+    updatePreview();
+    save();
+  }
+
+  function onControlsChange(e) {
+    if (!e.target.dataset.prop) return;
+    applyInputToState(e.target);
+    updatePreview();
+    save();
+    pushHistory();
+  }
+
+  function onControlsClick(e) {
+    const btn = e.target.closest('button[data-action]');
+    if (!btn) return;
+    const layer = btn.closest('.shadow-layer');
+    if (!layer) return;
+    const id = Number(layer.dataset.id);
+    if (btn.dataset.action === 'remove')    removeShadow(id);
+    if (btn.dataset.action === 'duplicate') duplicateShadow(id);
+    if (btn.dataset.action === 'up')        moveShadow(id, -1);
+    if (btn.dataset.action === 'down')      moveShadow(id, 1);
+  }
+
+  function onDragStart(e) {
+    const handle = e.target.closest('.drag-handle');
+    if (!handle) return;
+    const layer = handle.closest('.shadow-layer');
+    if (!layer) return;
+    dragId = Number(layer.dataset.id);
+    e.dataTransfer.effectAllowed = 'move';
+    try { e.dataTransfer.setData('text/plain', String(dragId)); } catch (_) {}
+    layer.classList.add('dragging');
+  }
+
+  function onDragOver(e) {
+    if (dragId == null) return;
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    const layer = e.target.closest('.shadow-layer');
+    document.querySelectorAll('.shadow-layer.drag-over')
+      .forEach(el => el.classList.remove('drag-over'));
+    if (layer && Number(layer.dataset.id) !== dragId) {
+      layer.classList.add('drag-over');
+    }
+  }
+
+  function onDrop(e) {
+    if (dragId == null) return;
+    const layer = e.target.closest('.shadow-layer');
+    if (!layer) return;
+    e.preventDefault();
+    const targetId = Number(layer.dataset.id);
+    if (targetId === dragId) { cleanupDrag(); return; }
+    const from = state.shadows.findIndex(s => s.id === dragId);
+    const to = state.shadows.findIndex(s => s.id === targetId);
+    if (from === -1 || to === -1) { cleanupDrag(); return; }
+    const [moved] = state.shadows.splice(from, 1);
+    state.shadows.splice(to, 0, moved);
+    cleanupDrag();
+    renderControls(); updatePreview(); save(); pushHistory();
+  }
+
+  function onDragEnd() { cleanupDrag(); }
+
+  function cleanupDrag() {
+    dragId = null;
+    document.querySelectorAll('.shadow-layer.dragging, .shadow-layer.drag-over')
+      .forEach(el => el.classList.remove('dragging', 'drag-over'));
+  }
+
+  function init() {
+    renderPresets();
+    if (!load()) resetToDefault();
+
+    history = []; historyIndex = -1;
+    pushHistory();
+
+    renderControls();
+    updatePreview();
+    applyPreviewBg();
+
+    const sc = $('shadowControls');
+    sc.addEventListener('input', onControlsInput);
+    sc.addEventListener('change', onControlsChange);
+    sc.addEventListener('click', onControlsClick);
+    sc.addEventListener('dragstart', onDragStart);
+    sc.addEventListener('dragover', onDragOver);
+    sc.addEventListener('drop', onDrop);
+    sc.addEventListener('dragend', onDragEnd);
+
+    $('presets').addEventListener('click', e => {
+      const b = e.target.closest('button[data-preset]');
+      if (b) applyPreset(b.dataset.preset);
+    });
+
+    document.querySelector('.bg-toggle').addEventListener('click', e => {
+      const b = e.target.closest('button[data-bg]');
+      if (!b) return;
+      state.previewBg = b.dataset.bg;
+      applyPreviewBg(); save(); pushHistory();
+    });
+
+    $('addShadow').addEventListener('click', addShadow);
+    $('randomize').addEventListener('click', randomize);
+    $('reset').addEventListener('click', () => {
+      resetToDefault();
+      renderControls(); updatePreview(); save(); pushHistory();
+      showToast('Reset complete');
+    });
+
+    $('undo').addEventListener('click', undo);
+    $('redo').addEventListener('click', redo);
+
+    $('copyCss').addEventListener('click', () =>
+      copyText(`box-shadow: ${toCssValue()};`, 'CSS copied!'));
+    $('copyTailwind').addEventListener('click', () =>
+      copyText(toTailwindValue(), 'Tailwind class copied!'));
+
+    document.addEventListener('keydown', e => {
+      const tag = (e.target.tagName || '').toLowerCase();
+      const type = (e.target.type || '').toLowerCase();
+      const inTextInput =
+        tag === 'textarea' ||
+        (tag === 'input' && type !== 'range' && type !== 'checkbox' && type !== 'color');
+
+      const mod = e.ctrlKey || e.metaKey;
+      const key = e.key.toLowerCase();
+
+      if (mod && key === 'z' && !e.shiftKey && !inTextInput) {
+        e.preventDefault(); undo();
+      } else if (mod && ((key === 'z' && e.shiftKey) || key === 'y') && !inTextInput) {
+        e.preventDefault(); redo();
+      } else if (mod && e.key === 'Enter') {
+        e.preventDefault(); addShadow();
+      } else if (mod && e.shiftKey && key === 'r') {
+        e.preventDefault(); randomize();
+      }
+    });
+
+    updateHistoryButtons();
+  }
+
+  init();
+})();
+
+
+/* =====================================================
+   PLAYGROUND SCRIPT (66 effects)
+   ===================================================== */
+(function () {
+  'use strict';
+
+  const toast = document.getElementById('pgToast');
+  let toastTimer;
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 1700);
+  }
+
+  async function copyText(text) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return true;
+      }
+      throw new Error('clipboard unavailable');
+    } catch {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, ta.value.length);
+      let ok = false;
+      try { ok = document.execCommand('copy'); } catch { ok = false; }
+      document.body.removeChild(ta);
+      return ok;
+    }
+  }
+
+  const hoverCapable = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  document.querySelectorAll('#box .code').forEach(cell => {
+    const codeEl = cell.querySelector('code');
+    let lastTap = 0;
+    let suppressClick = false;
+
+    async function handleCopy() {
+      const text = codeEl.textContent.trim();
+      const ok = await copyText(text);
+      cell.classList.add('copied');
+      setTimeout(() => cell.classList.remove('copied'), 850);
+      showToast(ok ? '✅ Code copied!' : '⚠️ Copy failed — select & copy manually');
+    }
+
+    cell.addEventListener('dblclick', handleCopy);
+
+    cell.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        handleCopy();
+      }
+    });
+
+    cell.addEventListener('touchend', (e) => {
+      const now = Date.now();
+      if (now - lastTap < 350) {
+        e.preventDefault();
+        lastTap = 0;
+        suppressClick = true;
+        handleCopy();
+      } else {
+        lastTap = now;
+      }
+    }, { passive: false });
+
+    if (!hoverCapable) {
+      cell.addEventListener('click', () => {
+        if (suppressClick) { suppressClick = false; return; }
+        document.querySelectorAll('#box .code.show').forEach(c => {
+          if (c !== cell) c.classList.remove('show');
+        });
+        cell.classList.toggle('show');
+      });
+    }
+  });
+})();
+
+
+/* =====================================================
+   PAGE CHROME: progress, back to top, FAQ
+   ===================================================== */
+(function () {
+  'use strict';
+
+  const progress = document.getElementById('progress');
+  const toTop = document.getElementById('toTop');
+
+  function onScroll() {
+    const doc = document.documentElement;
+    const scrollTop = window.pageYOffset || doc.scrollTop;
+    const height = doc.scrollHeight - doc.clientHeight;
+    const pct = height > 0 ? (scrollTop / height) * 100 : 0;
+    progress.style.width = pct + '%';
+    if (scrollTop > 500) toTop.classList.add('show');
+    else toTop.classList.remove('show');
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  toTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* FAQ: only one open at a time */
+  const faqItems = document.querySelectorAll('.faq details');
+  faqItems.forEach(item => {
+    item.addEventListener('toggle', () => {
+      if (item.open) {
+        faqItems.forEach(other => {
+          if (other !== item) other.open = false;
+        });
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

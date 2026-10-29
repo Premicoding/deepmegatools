@@ -368,12 +368,18 @@ section { padding: 56px 0; }
   background-size: 24px 24px;
   background-position: 0 0, 0 12px, 12px -12px, -12px 0;
 }
+.preview-stage[data-bg="custom"] { background: var(--custom-bg, #ffffff); }
 .preview-box {
   width: clamp(140px, 40vw, 190px);
   height: clamp(140px, 40vw, 190px);
   background: #fff;
   border-radius: 12px;
   flex-shrink: 0;
+}
+
+/* Preview control cluster (keeps all background pickers on one horizontal row) */
+.bg-extras {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
 }
 
 .bg-toggle {
@@ -392,6 +398,27 @@ section { padding: 56px 0; }
 .bg-toggle button:focus-visible {
   outline: 3px solid rgba(67,56,202,.5);
   outline-offset: 1px;
+}
+
+/* Custom background color pickers */
+.bg-color-wrap {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 3px 4px 3px 10px;
+  background: #f1f5f9; border-radius: 8px;
+  border: 1px solid transparent;
+  transition: border-color .15s;
+  cursor: pointer;
+}
+.bg-color-wrap:hover { border-color: rgba(67,56,202,.35); }
+.bg-color-wrap:focus-within { border-color: var(--primary); }
+.bg-color-wrap span {
+  font-size: .78rem; font-weight: 600; color: var(--muted);
+  white-space: nowrap;
+}
+.bg-color-wrap input[type="color"] {
+  width: 34px; height: 26px; padding: 2px;
+  border: 1px solid var(--border); border-radius: 6px;
+  background: #fff; cursor: pointer;
 }
 
 /* Output */
@@ -497,44 +524,64 @@ section { padding: 56px 0; }
   box-shadow: 0 0 0 3px rgba(79,70,229,.22);
 }
 
-/* Range */
-input[type="range"] {
+ /* Range */
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: 1;
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(
+      to right,
+      var(--accent) 0%,
+      var(--accent) var(--pct, 50%),
+      var(--track) var(--pct, 50%),
+      var(--track) 100%
+    );
+    outline: none;
+    cursor: pointer;
+    min-width: 0;
+  }
+  input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
-  flex: 1;
-  height: 8px;
-  border-radius: 4px;
-  background: linear-gradient(
-    to right,
-    var(--primary) 0%,
-    var(--primary) var(--pct, 50%),
-    var(--track) var(--pct, 50%),
-    var(--track) 100%
-  );
-  outline: none;
-  cursor: pointer;
-  min-width: 0;
+  width: 100%;
+  height: 10px;
+  background: #d6c5ae;
+  border-radius: 20px;
+  box-shadow: inset 0 1px 3px #8b7355, 0 1px 0 #fcf3e0;
 }
+
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 22px; height: 22px;
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(circle, #e7cba5, #c2a16b);
   border-radius: 50%;
-  background: var(--primary);
-  border: 3px solid #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,.25);
+  border: 1px solid #744e2e;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3), inset 0 1px 1px rgba(255,255,200,0.8);
   cursor: pointer;
+  margin-top: -7px;
 }
-input[type="range"]::-webkit-slider-thumb:active { transform: scale(.95); }
-input[type="range"]::-moz-range-thumb {
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background: var(--primary);
-  border: 3px solid #fff;
-  box-shadow: 0 2px 6px rgba(0,0,0,.25);
-  cursor: pointer;
-}
-input[type="range"]:focus-visible { outline: 3px solid rgba(67,56,202,.5); outline-offset: 3px; }
 
+input[type="range"]::-webkit-slider-thumb:active {
+  transform: scale(0.95);
+}
+
+input[type="range"]::-moz-range-track {
+  height: 10px;
+  background: #d6c5ae;
+  border-radius: 20px;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(circle, #e7cba5, #c2a16b);
+  border-radius: 50%;
+  border: 1px solid #744e2e;
+  cursor: pointer;
+}
 /* Color */
 input[type="color"] {
   width: 56px; height: 34px;
@@ -1048,10 +1095,20 @@ code.inline {
         <div class="panel preview-panel">
           <div class="panel-header">
             <h2>Live Preview</h2>
-            <div class="bg-toggle" role="group" aria-label="Preview background">
-              <button type="button" data-bg="light" class="active">Light</button>
-              <button type="button" data-bg="dark">Dark</button>
-              <button type="button" data-bg="checker">Checker</button>
+            <div class="bg-extras">
+              <div class="bg-toggle" role="group" aria-label="Preview background">
+                <button type="button" data-bg="light" class="active">Light</button>
+                <button type="button" data-bg="dark">Dark</button>
+                <button type="button" data-bg="checker">Checker</button>
+              </div>
+              <label class="bg-color-wrap" for="bgColor" title="Custom background color">
+                <span>BG</span>
+                <input type="color" id="bgColor" value="#ffffff" aria-label="Custom preview background color">
+              </label>
+              <label class="bg-color-wrap" for="boxColor" title="Box background color">
+                <span>Box</span>
+                <input type="color" id="boxColor" value="#ffffff" aria-label="Preview box background color">
+              </label>
             </div>
           </div>
           <div class="preview-stage" id="previewStage" data-bg="light">
@@ -1661,7 +1718,7 @@ box-shadow:
   const STORAGE_KEY = 'boxShadowGenerator.v3';
   const MAX_HISTORY = 100;
   let nextId = 1;
-  const state = { shadows: [], previewBg: 'light' };
+  const state = { shadows: [], previewBg: 'light', previewColor: '#ffffff', boxColor: '#ffffff' };
   let history = [];
   let historyIndex = -1;
   let dragId = null;
@@ -1729,7 +1786,9 @@ box-shadow:
         opacity: clamp(Number(s.opacity) || 0, 0, 1),
         inset:   Boolean(s.inset)
       }));
-      state.previewBg = ['light','dark','checker'].includes(parsed.previewBg) ? parsed.previewBg : 'light';
+      state.previewBg = ['light','dark','checker','custom'].includes(parsed.previewBg) ? parsed.previewBg : 'light';
+      state.previewColor = /^#[0-9a-f]{6}$/i.test(parsed.previewColor) ? parsed.previewColor : '#ffffff';
+      state.boxColor = /^#[0-9a-f]{6}$/i.test(parsed.boxColor) ? parsed.boxColor : '#ffffff';
       return true;
     } catch (_) { return false; }
   }
@@ -1746,7 +1805,12 @@ box-shadow:
   }
 
   function snapshot() {
-    return JSON.stringify({ shadows: state.shadows, previewBg: state.previewBg });
+    return JSON.stringify({
+      shadows: state.shadows,
+      previewBg: state.previewBg,
+      previewColor: state.previewColor,
+      boxColor: state.boxColor
+    });
   }
 
   function pushHistory() {
@@ -1763,6 +1827,8 @@ box-shadow:
     const parsed = JSON.parse(snap);
     state.shadows = parsed.shadows;
     state.previewBg = parsed.previewBg;
+    state.previewColor = parsed.previewColor || '#ffffff';
+    state.boxColor = parsed.boxColor || '#ffffff';
     renderControls();
     updatePreview();
     applyPreviewBg();
@@ -1859,9 +1925,26 @@ box-shadow:
   }
 
   function applyPreviewBg() {
-    $('previewStage').dataset.bg = state.previewBg;
+    const stage = $('previewStage');
+    stage.dataset.bg = state.previewBg;
+    if (state.previewBg === 'custom') {
+      const c = state.previewColor || '#ffffff';
+      stage.style.setProperty('--custom-bg', c);
+      stage.style.backgroundColor = c;
+    } else {
+      stage.style.backgroundColor = '';
+    }
     document.querySelectorAll('.bg-toggle button').forEach(b =>
       b.classList.toggle('active', b.dataset.bg === state.previewBg));
+
+    const bgColor = $('bgColor');
+    if (bgColor && state.previewColor) bgColor.value = state.previewColor;
+
+    /* Preview box (the element whose shadow is shown) background */
+    const box = $('previewBox');
+    if (box) box.style.backgroundColor = state.boxColor || '#ffffff';
+    const boxColor = $('boxColor');
+    if (boxColor && state.boxColor) boxColor.value = state.boxColor;
   }
 
   function addShadow() {
@@ -2082,6 +2165,33 @@ box-shadow:
       state.previewBg = b.dataset.bg;
       applyPreviewBg(); save(); pushHistory();
     });
+
+    /* Custom background colour picker (stage) */
+    const bgColor = $('bgColor');
+    if (bgColor) {
+      bgColor.addEventListener('input', e => {
+        state.previewColor = e.target.value;
+        state.previewBg = 'custom';
+        applyPreviewBg();
+      });
+      bgColor.addEventListener('change', () => {
+        save();
+        pushHistory();
+      });
+    }
+
+    /* Custom background colour picker (preview box itself) */
+    const boxColor = $('boxColor');
+    if (boxColor) {
+      boxColor.addEventListener('input', e => {
+        state.boxColor = e.target.value;
+        applyPreviewBg();
+      });
+      boxColor.addEventListener('change', () => {
+        save();
+        pushHistory();
+      });
+    }
 
     $('addShadow').addEventListener('click', addShadow);
     $('randomize').addEventListener('click', randomize);

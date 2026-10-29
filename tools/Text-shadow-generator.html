@@ -1,0 +1,2210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Free live CSS text shadow generator with instant preview. Customize colors, offsets, blur, fonts, multiple shadow layers, and advanced backgrounds — copy the CSS in one click." />
+<title>Free Live Text Shadow Generator Online — Create CSS Text Shadows</title>
+
+<style>
+/* ============================================
+   PAGE-LEVEL RESET & BASE
+   ============================================ */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+:root {
+  --primary: #4f46e5;
+  --primary-dark: #3730a3;
+  --accent: #06b6d4;
+  --text-dark: #1f2937;
+  --text-medium: #4b5563;
+  --text-light: #6b7280;
+  --bg-light: #f9fafb;
+  --bg-white: #ffffff;
+  --border: #e5e7eb;
+  --code-bg: #0f172a;
+  --code-text: #e2e8f0;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  --radius: 10px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.75;
+  color: var(--text-dark);
+  background: var(--bg-light);
+  margin: 0;
+  padding: 0;
+}
+
+img { max-width: 100%; height: auto; }
+
+/* ============================================
+   PAGE WRAPPER
+   ============================================ */
+.page-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 30px 20px 80px;
+}
+
+/* ============================================
+   HERO HEADER
+   ============================================ */
+.article-header {
+  text-align: center;
+  margin-bottom: 35px;
+  padding: 50px 25px;
+  background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+  border-radius: var(--radius);
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+
+.article-header h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.3;
+  margin: 0 0 15px;
+}
+
+.article-header p {
+  font-size: 1.05rem;
+  opacity: 0.95;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   TOOL SECTION (wraps the generator)
+   ============================================ */
+.tool-section {
+  background: var(--bg-white);
+  padding: 28px 22px 32px;
+  border-radius: var(--radius);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+
+.tool-section .tool-heading {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin: 0 0 22px;
+  padding-bottom: 14px;
+  border-bottom: 3px solid var(--border);
+  position: relative;
+}
+
+.tool-section .tool-heading::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+/* ============================================
+   TOOL STYLES — scoped to #AABBC
+   ============================================ */
+#AABBC {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  font-family: inherit;
+  color: var(--text-dark);
+}
+
+#AABBC .container {
+  background: #fafbff;
+  padding: 18px 20px 22px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 10px rgba(79, 70, 229, 0.05);
+}
+
+#AABBC h2.tool-title {
+  text-align: center;
+  font-size: 18px;
+  margin: 0 0 15px;
+  color: #111;
+  text-shadow:
+    2px 2px 4px rgba(0, 0, 0, 0.3),
+    -2px -2px 4px rgba(255, 0, 0, 0.3),
+    0 0 6px rgba(0, 255, 0, 0.5);
+}
+
+#AABBC .controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#AABBC .controls > label,
+#AABBC .row > label,
+#AABBC .field > label {
+  font-weight: bold;
+  color: #b30059;
+}
+
+#AABBC input[type="text"] {
+  padding: 6px 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  font-family: inherit;
+}
+
+#AABBC .row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+#AABBC input[type="color"] {
+  width: 44px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  background: none;
+}
+
+#AABBC select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+/* Range inputs — WebKit + Firefox */
+#AABBC input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  width: 100%;
+  height: 0.8em;
+  border-radius: 0.8em;
+  background: linear-gradient(to right, #4f46e5 var(--fill, 0%), #e8e8e8 var(--fill, 0%));
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  vertical-align: middle;
+}
+#AABBC input[type="range"]:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+#AABBC input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 50%;
+  border: 1px solid #444;
+  background-color: #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+#AABBC input[type="range"]::-moz-range-track {
+  background: transparent;
+  height: 0.8em;
+  border: none;
+}
+#AABBC input[type="range"]::-moz-range-progress { background: transparent; }
+#AABBC input[type="range"]::-moz-range-thumb {
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 50%;
+  border: 1px solid #444;
+  background-color: #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+
+#AABBC input[type="number"] {
+  width: 64px;
+  padding: 2px 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: inherit;
+}
+
+#AABBC input[type="url"],
+#AABBC input[type="text"].css-input {
+  padding: 4px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: inherit;
+  flex: 1;
+  min-width: 150px;
+}
+
+#AABBC .value-display {
+  color: #0055cc;
+  font-weight: 900;
+  min-width: 48px;
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+
+#AABBC .shadow-control {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  background: #fff;
+}
+
+#AABBC .shadow-control .field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+#AABBC .shadow-control .field > label {
+  min-width: 115px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+}
+#AABBC .shadow-control .field input[type="range"] {
+  flex: 1;
+  min-width: 120px;
+}
+
+#AABBC button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+#AABBC .btn-primary {
+  width: 100%;
+  color: #fff;
+  font-weight: 700;
+  background: var(--primary);
+  border: 1px solid var(--primary-dark);
+  border-radius: 8px;
+  padding: 9px 0;
+  box-shadow: 2px 2px 6px rgba(79, 70, 229, 0.25);
+  transition: background 0.15s, transform 0.1s;
+}
+#AABBC .btn-primary:hover { background: var(--primary-dark); }
+#AABBC .btn-primary:active { transform: translateY(1px); }
+#AABBC .btn-primary:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+#AABBC #reset {
+  background: #6b7280;
+  border-color: #4b5563;
+}
+#AABBC #reset:hover { background: #4b5563; }
+
+#AABBC .btn-row {
+  display: flex;
+  gap: 8px;
+}
+
+#AABBC .remove-shadow {
+  background-color: #c62828;
+  color: #fff;
+  border: 1px solid #8e0000;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+}
+#AABBC .remove-shadow:hover { background-color: #8e0000; }
+
+#AABBC .shadow-control .actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 4px;
+  flex-wrap: wrap;
+}
+#AABBC .shadow-control .actions button {
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  border: 1px solid #999;
+  background: #eee;
+  color: #111;
+}
+#AABBC .shadow-control .actions button:hover { background: #ddd; }
+
+/* Background controls panel */
+#AABBC .bg-controls {
+  margin-top: 6px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+#AABBC .bg-controls > .bg-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+#AABBC .bg-controls > .bg-header > label {
+  font-weight: bold;
+  color: #b30059;
+}
+#AABBC .bg-option {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+#AABBC .bg-option.active { display: flex; }
+#AABBC .bg-option > label {
+  font-weight: 600;
+  color: #111;
+}
+#AABBC .bg-option input[type="range"] {
+  flex: 1;
+  min-width: 120px;
+}
+#AABBC .bg-preview-swatch {
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  border: 1px solid #999;
+  background: #fff;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Preview area */
+#AABBC .preview {
+  margin-top: 20px;
+  padding: 30px 15px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  text-align: center;
+  background: #ffffff;
+  background-size: cover;
+  background-position: center;
+  transition: background 0.2s;
+  overflow: hidden;
+  word-break: break-word;
+  min-height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#AABBC #text-preview {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0;
+  max-width: 100%;
+}
+
+#AABBC .code-output { margin-top: 15px; }
+#AABBC #css-code {
+  width: 100%;
+  height: 160px;
+  resize: vertical;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #f9f9f9;
+  color: #000;
+}
+
+/* Toast notification */
+#AABBC .toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120px);
+  background: #111;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+  pointer-events: none;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+#AABBC .toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* ============================================
+   ARTICLE TYPOGRAPHY
+   ============================================ */
+.article-content h2 {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin: 45px 0 18px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid var(--border);
+  position: relative;
+}
+.article-content h2::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 70px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 3px;
+}
+.article-content h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 30px 0 12px;
+}
+.article-content p {
+  font-size: 1.02rem;
+  color: var(--text-medium);
+  margin-bottom: 16px;
+}
+.article-content strong { color: var(--text-dark); }
+.article-content a {
+  color: var(--primary);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--primary);
+  transition: all 0.2s ease;
+}
+.article-content a:hover {
+  color: var(--primary-dark);
+  border-bottom-style: solid;
+}
+.article-content ul,
+.article-content ol {
+  margin: 15px 0 20px 25px;
+  color: var(--text-medium);
+}
+.article-content li {
+  margin-bottom: 10px;
+  padding-left: 5px;
+  font-size: 1.01rem;
+}
+.article-content ul li::marker { color: var(--primary); font-weight: bold; }
+.article-content ol li::marker { color: var(--primary); font-weight: 700; }
+
+/* Code blocks */
+.article-content pre {
+  background: var(--code-bg);
+  color: var(--code-text);
+  padding: 18px 22px;
+  border-radius: var(--radius);
+  overflow-x: auto;
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  margin: 16px 0 24px;
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--accent);
+}
+.article-content code {
+  font-family: "Consolas", "Monaco", "Courier New", monospace;
+  font-size: 0.9em;
+}
+.article-content p code,
+.article-content li code {
+  background: #eef2ff;
+  color: var(--primary-dark);
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-size: 0.88em;
+  border: 1px solid #dbeafe;
+}
+
+/* Callout */
+.callout {
+  background: #eef2ff;
+  border-left: 5px solid var(--primary);
+  padding: 18px 22px;
+  border-radius: 8px;
+  margin: 25px 0;
+  color: var(--text-dark);
+}
+.callout p { margin: 0; color: var(--text-dark); }
+
+/* Feature cards */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin: 25px 0;
+}
+.feature-card {
+  background: var(--bg-white);
+  padding: 22px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.15);
+}
+.feature-card h4 {
+  font-size: 1.05rem;
+  color: var(--primary-dark);
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+.feature-card p {
+  font-size: 0.95rem;
+  margin: 0;
+  color: var(--text-medium);
+}
+
+/* Steps */
+.steps {
+  counter-reset: step;
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 55px;
+  margin-bottom: 22px;
+  min-height: 40px;
+}
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+}
+.steps li strong {
+  display: block;
+  color: var(--text-dark);
+  font-size: 1.05rem;
+  margin-bottom: 4px;
+}
+
+/* FAQ */
+.faq-item {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+}
+.faq-item h3 {
+  margin: 0 0 8px;
+  color: var(--primary-dark);
+  font-size: 1.05rem;
+}
+.faq-item p { margin: 0; font-size: 0.98rem; }
+
+/* Conclusion box */
+.conclusion {
+  background: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+  color: #fff;
+  padding: 35px 28px;
+  border-radius: var(--radius);
+  margin-top: 45px;
+  box-shadow: var(--shadow);
+}
+.conclusion h2 {
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, 0.3);
+  margin-top: 0;
+}
+.conclusion h2::after { background: #fff; }
+.conclusion p { color: rgba(255, 255, 255, 0.95); }
+.cta-btn {
+  display: inline-block;
+  background: #fff;
+  color: var(--primary) !important;
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  border: none !important;
+  margin-top: 18px;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+.cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  color: var(--primary-dark) !important;
+}
+
+/* Table of contents */
+.toc {
+  background: var(--bg-white);
+  border-radius: var(--radius);
+  padding: 22px 26px;
+  margin: 0 0 35px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.toc h3 {
+  margin: 0 0 12px;
+  color: var(--primary-dark);
+  font-size: 1.1rem;
+}
+.toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  columns: 2;
+  column-gap: 25px;
+}
+.toc li {
+  margin-bottom: 8px;
+  padding-left: 0;
+  font-size: 0.95rem;
+}
+.toc a {
+  color: var(--text-medium);
+  border-bottom: none;
+  display: inline-block;
+  transition: color 0.2s;
+}
+.toc a:hover { color: var(--primary); }
+
+/* ============================================
+   PRESET SHOWCASE (article section)
+   ============================================ */
+.presets-showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 22px;
+  margin: 22px 0 30px;
+}
+.preset-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
+.preset-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.15);
+}
+.preset-card-preview {
+  padding: 32px 18px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.2;
+  word-break: break-word;
+}
+.preset-card-body {
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.preset-card-name {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin: 0 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #eef2ff;
+}
+.preset-card pre {
+  margin: 0;
+  font-size: 0.74rem;
+  line-height: 1.55;
+  padding: 12px 14px;
+  background: var(--code-bg);
+  color: var(--code-text);
+  border-radius: 6px;
+  border-left: 3px solid var(--accent);
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 640px) {
+  .page-wrapper { padding: 18px 14px 60px; }
+  .article-header { padding: 35px 18px; }
+  .article-header h1 { font-size: 1.55rem; }
+  .article-header p { font-size: 0.95rem; }
+  .tool-section { padding: 20px 14px 24px; }
+  .tool-section .tool-heading { font-size: 1.2rem; }
+  .article-content h2 { font-size: 1.35rem; }
+  .article-content h3 { font-size: 1.1rem; }
+  .article-content p,
+  .article-content li { font-size: 0.97rem; }
+  .toc ul { columns: 1; }
+  .feature-card { padding: 18px; }
+  #AABBC .container { padding: 14px 14px 18px; }
+  .presets-showcase { grid-template-columns: 1fr; }
+  .preset-card-preview { font-size: 24px; padding: 26px 14px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- ==================================================
+       HERO HEADER
+  ================================================== -->
+  <header class="article-header">
+    <h1>Free Live Text Shadow Generator Online</h1>
+    <p>
+      Create beautiful CSS text shadow effects for websites, landing pages,
+      headings, and buttons — with live preview and instant CSS code.
+    </p>
+  </header>
+
+  <main>
+
+    <!-- ==================================================
+         THE WORKING TOOL
+    ================================================== -->
+    <section class="tool-section" aria-labelledby="tool-heading">
+      <h2 class="tool-heading" id="tool-heading"> Live Text Shadow Generator</h2>
+
+      <div id="AABBC">
+        <div class="container">
+
+          <h2 class="tool-title">Live Text Shadow Generator</h2>
+
+          <div class="controls">
+            <label for="text-input">You can change this text.</label>
+            <input type="text" id="text-input" value="Hello World" />
+
+            <div class="row">
+              <label for="text-color">Text Color:</label>
+              <input type="color" id="text-color" value="#000000" />
+              <label for="font-size" style="margin-left:12px;">Font Size:</label>
+              <span class="value-display" id="font-size-value" aria-hidden="true">30px</span>
+            </div>
+            <input type="range" id="font-size" min="10" max="100" value="30" aria-label="Font size" />
+
+            <div class="row">
+              <label for="font-weight">Font Weight:</label>
+              <select id="font-weight">
+                <option value="normal">Normal</option>
+                <option value="bold" selected>Bold</option>
+                <option value="bolder">Bolder</option>
+                <option value="lighter">Lighter</option>
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="300">300</option>
+                <option value="400">400</option>
+                <option value="500">500</option>
+                <option value="600">600</option>
+                <option value="700">700</option>
+                <option value="800">800</option>
+                <option value="900">900</option>
+              </select>
+              <label for="font-family">Font Family:</label>
+              <select id="font-family">
+                <option value="Arial">Arial</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Courier New">Courier New</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Georgia">Georgia</option>
+              </select>
+            </div>
+
+            <div class="shadow-controls"></div>
+
+            <div class="btn-row">
+              <button type="button" class="btn-primary" id="add-shadow">Add Another Shadow</button>
+              <button type="button" class="btn-primary" id="reset">Reset</button>
+            </div>
+
+            <!-- Background customization -->
+            <div class="bg-controls">
+              <div class="bg-header">
+                <label for="bg-type">Preview Background:</label>
+                <select id="bg-type">
+                  <option value="white">White (default)</option>
+                  <option value="dark">Dark</option>
+                  <option value="custom-color">Custom Color</option>
+                  <option value="linear-gradient">Linear Gradient</option>
+                  <option value="radial-gradient">Radial Gradient</option>
+                  <option value="image">Image URL</option>
+                  <option value="custom-css">Custom CSS (Code)</option>
+                </select>
+                <span class="bg-preview-swatch" id="bg-preview-swatch" aria-hidden="true"></span>
+              </div>
+
+              <div class="bg-option" data-for="custom-color">
+                <label for="bg-color">Color:</label>
+                <input type="color" id="bg-color" value="#eef2ff" />
+              </div>
+
+              <div class="bg-option" data-for="linear-gradient radial-gradient">
+                <label for="bg-grad-color1">From:</label>
+                <input type="color" id="bg-grad-color1" value="#ff6b6b" />
+                <label for="bg-grad-color2">To:</label>
+                <input type="color" id="bg-grad-color2" value="#4ecdc4" />
+              </div>
+
+              <div class="bg-option" data-for="linear-gradient">
+                <label for="bg-grad-angle">Angle:</label>
+                <input type="range" id="bg-grad-angle" min="0" max="360" step="1" value="135" />
+                <span class="value-display" id="bg-grad-angle-val" aria-hidden="true">135°</span>
+              </div>
+
+              <div class="bg-option" data-for="image">
+                <label for="bg-image">Image URL:</label>
+                <input type="url" id="bg-image" placeholder="https://example.com/photo.jpg" />
+              </div>
+
+              <div class="bg-option" data-for="custom-css">
+                <label for="bg-custom-css">CSS Value:</label>
+                <input type="text" id="bg-custom-css" class="css-input" placeholder="e.g. linear-gradient(45deg, #ff9a9e, #fad0c4)" />
+              </div>
+            </div>
+            <!-- /Background customization -->
+          </div>
+
+          <div class="preview" id="preview">
+            <p id="text-preview">Hello World</p>
+          </div>
+
+          <div class="code-output">
+            <label for="css-code" style="font-weight:bold; display:block; margin-bottom:5px; color:#b30059;">Generated CSS:</label>
+            <textarea id="css-code" readonly></textarea>
+            <button type="button" class="btn-primary" id="copy-code" style="margin-top:8px;">Copy Code</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </section>
+
+    <!-- ==================================================
+         ARTICLE CONTENT
+    ================================================== -->
+    <article class="article-content">
+
+      <p>
+        The <strong>Live Text Shadow Generator</strong> is a free online tool that helps you
+        create beautiful text shadow effects for websites, landing pages, headings,
+        buttons, banners, and other web design projects. With this tool, you can
+        customize text colors, font sizes, font weights, shadow positions, blur
+        effects, transparency, and background styles in real time.
+      </p>
+
+      <p>
+        Instead of writing CSS code manually, you can adjust the available settings
+        and instantly see how your text looks. Once you are happy with the result,
+        simply copy the generated CSS code and use it in your HTML and CSS projects.
+      </p>
+
+      <p>
+        Whether you are a beginner learning CSS or an experienced web developer
+        looking to improve your website design, this online Text Shadow Generator
+        makes creating attractive text effects simple and convenient.
+      </p>
+       <div class="related-tools">
+            <h2>Related Tools</h2>
+            <ul>
+                <li><a href="/tools/barcode-generator.html">Barcode Generator</a></li>
+                <li><a href="/tools/qr-code-generator.html">QR Code Generator Tool</a></li>
+                <li><a href="/tools/color-contrast-analyzer.html">Color Contrast Analyzer</a></li>
+                <li><a href="/tools/image-resizer.html">Image Resizer Tool</a></li>
+                <li><a href="/tools/unlock-page.html">Unlock Page Generator</a></li>
+                <li><a href="/tools/auto-code-typing.html">Auto Code Typing</a></li>
+                <li><a href="/tools/code-editor.html">Live Code Editor</a></li>
+                   <li><a href="tools/css-box-shadow-generator.html">Box Shadow Generator</a></li>
+                   
+            </ul>
+            
+        </div>
+        
+
+      <!-- Table of Contents -->
+      <div class="toc">
+        <h3>📑 Table of Contents</h3>
+        <ul>
+          <li><a href="#what-is">What Is a CSS Text Shadow Generator?</a></li>
+          <li><a href="#features">Key Features</a></li>
+          <li><a href="#how-to-use">How to Use the Tool</a></li>
+          <li><a href="#css-property">Understanding text-shadow</a></li>
+          <li><a href="#examples">CSS Text Shadow Examples</a></li>
+          <li><a href="#presets">23 Ready-Made Presets</a></li>
+          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#who-can-use">Who Can Use It?</a></li>
+          <li><a href="#tips">Tips for Better Effects</a></li>
+          <li><a href="#faqs">FAQs</a></li>
+          <li><a href="#conclusion">Conclusion</a></li>
+        </ul>
+      </div>
+
+      <!-- What is -->
+      <h2 id="what-is">What Is a CSS Text Shadow Generator?</h2>
+      <p>
+        A <strong>CSS Text Shadow Generator</strong> is an online tool that allows you
+        to create and customize text shadow effects using CSS properties. The CSS
+        <code>text-shadow</code> property adds shadows to text, helping headings and
+        other text elements stand out visually.
+      </p>
+      <p>
+        With the right combination of horizontal offset, vertical offset, blur
+        radius, and shadow color, you can create subtle shadows, bold effects,
+        glowing text, and multiple-layer shadow designs.
+      </p>
+      <p>
+        Our Live Text Shadow Generator provides a visual interface where you can
+        experiment with different settings and preview your results instantly
+        without manually editing CSS code.
+      </p>
+
+      <!-- Features -->
+      <h2 id="features">Key Features of the Live Text Shadow Generator</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>1. Live Text Preview</h3>
+          <p>See your text shadow effects in real time as you change the settings.</p>
+        </div>
+        <div class="feature-card">
+          <h4>2. Custom Text Color</h4>
+          <p>Choose your preferred text color using the built-in color picker.</p>
+        </div>
+        <div class="feature-card">
+          <h4>3. Adjustable Font Size</h4>
+          <p>Change font size from 10px to 100px for any design element.</p>
+        </div>
+        <div class="feature-card">
+          <h4>4. Font Weight &amp; Family</h4>
+          <p>Choose from Arial, Times New Roman, Courier New, Verdana, and Georgia.</p>
+        </div>
+        <div class="feature-card">
+          <h4>5. Customizable Shadow Offsets</h4>
+          <p>Control horizontal offset, vertical offset, blur, color, and transparency.</p>
+        </div>
+        <div class="feature-card">
+          <h4>6. Multiple Text Shadows</h4>
+          <p>Add, reorder, or remove multiple shadow layers for complex effects.</p>
+        </div>
+        <div class="feature-card">
+          <h4>7. Custom Background Options</h4>
+          <p>Preview against solid colors, gradients, images, or custom CSS backgrounds.</p>
+        </div>
+        <div class="feature-card">
+          <h4>8. Auto-Generated CSS</h4>
+          <p>Copy the generated CSS code with a single click and use it instantly.</p>
+        </div>
+        <div class="feature-card">
+          <h4>9. Reset Settings</h4>
+          <p>Restore default settings anytime to start a new design from scratch.</p>
+        </div>
+        <div class="feature-card">
+          <h4>10. Auto Settings Restoration</h4>
+          <p>Your settings are saved in browser local storage for future visits.</p>
+        </div>
+        <div class="feature-card">
+          <h4>11. 23 Ready-Made Presets</h4>
+          <p>Copy fully-coded designs for neon, retro, fire, ice, gold, glitch, and more.</p>
+        </div>
+      </div>
+
+      <!-- How to use -->
+      <h2 id="how-to-use">How to Use the Free Text Shadow Generator</h2>
+      <p>Follow these simple steps to create your own CSS text shadow effect.</p>
+      <ol class="steps">
+        <li>
+          <strong>Enter Your Text</strong>
+          Type the text you want to customize in the text input field. You can use
+          a heading, title, short phrase, or any other text.
+        </li>
+        <li>
+          <strong>Choose a Text Color</strong>
+          Select a color for your text using the color picker. Choose a color that
+          complements your website design.
+        </li>
+        <li>
+          <strong>Adjust Font Size and Weight</strong>
+          Use the font size slider to change the text size and select a suitable
+          font weight and family.
+        </li>
+        <li>
+          <strong>Customize the Shadow</strong>
+          Adjust the horizontal offset, vertical offset, blur radius, shadow color,
+          and transparency to get the desired effect.
+        </li>
+        <li>
+          <strong>Add More Shadows</strong>
+          Click the <em>Add Another Shadow</em> button to create additional shadow
+          layers for more detailed effects.
+        </li>
+        <li>
+          <strong>Select a Background</strong>
+          Choose a white, dark, custom-color, gradient, image, or custom CSS
+          background to preview your design.
+        </li>
+        <li>
+          <strong>Copy the Generated CSS</strong>
+          When satisfied, click the <em>Copy Code</em> button and paste the code
+          into your website's stylesheet.
+        </li>
+      </ol>
+      <div class="callout">
+        <p>✅ Your customized text shadow is now ready to use in your web design projects!</p>
+      </div>
+
+      <!-- CSS property -->
+      <h2 id="css-property">Understanding the CSS Text Shadow Property</h2>
+      <p>The CSS <code>text-shadow</code> property adds one or more shadows to text. Its basic syntax is:</p>
+      <pre><code>selector {
+  text-shadow: horizontal-offset vertical-offset blur-radius color;
+}</code></pre>
+      <p>Here is what each value means:</p>
+      <ul>
+        <li><strong>Horizontal offset:</strong> Determines the shadow's horizontal position.</li>
+        <li><strong>Vertical offset:</strong> Determines the shadow's vertical position.</li>
+        <li><strong>Blur radius:</strong> Determines how blurred the shadow appears.</li>
+        <li><strong>Color:</strong> Defines the shadow color.</li>
+      </ul>
+      <p>For example:</p>
+      <pre><code>h1 {
+  color: #222222;
+  text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+}</code></pre>
+      <p>
+        In this example, the text shadow moves 3 pixels to the right and 3 pixels
+        downward. The 5-pixel blur radius creates a softer shadow, while the RGBA
+        color provides partial transparency.
+      </p>
+
+      <!-- Examples -->
+      <h2 id="examples">CSS Text Shadow Examples</h2>
+
+      <h3>Example 1: Simple Text Shadow</h3>
+      <p>A simple shadow can make headings stand out without making the design look too complicated.</p>
+      <pre><code>h1 {
+  color: #222222;
+  text-shadow: 2px 2px 4px #999999;
+}</code></pre>
+      <p>This style creates a subtle gray shadow behind the heading.</p>
+
+      <h3>Example 2: Soft Black Shadow</h3>
+      <p>Use a transparent black shadow for a clean and professional appearance.</p>
+      <pre><code>.heading {
+  color: #ffffff;
+  text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.5);
+}</code></pre>
+      <p>
+        This effect can work well on headings displayed over colored backgrounds or
+        images, provided the text remains readable.
+      </p>
+
+      <h3>Example 3: Glowing Text Effect</h3>
+      <p>
+        You can use a shadow with a matching color and a larger blur radius to
+        create a glowing appearance.
+      </p>
+      <pre><code>.glow-text {
+  color: #00e5ff;
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.9);
+}</code></pre>
+      <p>
+        This example creates a cyan glow effect that can be useful for creative
+        designs and futuristic interfaces.
+      </p>
+
+      <h3>Example 4: Multiple Text Shadows</h3>
+      <p>CSS allows you to apply multiple shadows by separating them with commas.</p>
+      <pre><code>.multiple-shadow {
+  color: #ffffff;
+  text-shadow:
+    2px 2px 3px #ff0000,
+    -2px -2px 3px #0000ff,
+    0 0 8px rgba(0, 0, 0, 0.5);
+}</code></pre>
+      <p>This example combines red, blue, and black shadows to create a layered visual effect.</p>
+
+      <h3>Example 5: Minimal Text Shadow</h3>
+      <p>For a subtle and modern design, use a small shadow with low opacity.</p>
+      <pre><code>.minimal-shadow {
+  color: #333333;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+}</code></pre>
+      <p>
+        This approach is suitable for interfaces where readability and a clean
+        appearance are important.
+      </p>
+
+      <!-- ============================================
+           NEW: 23 READY-MADE PRESETS (with code)
+      ============================================ -->
+      <h2 id="presets">23 Ready-Made Text Shadow Presets (Copy the Code)</h2>
+      <p>
+        Below are 23 hand-crafted text shadow presets, organized by category.
+        Each card shows a <strong>live preview</strong> followed by the
+        complete CSS code — just click inside the code block, select all, and
+        copy it into your own stylesheet. Feel free to tweak colors, sizes, and
+        offsets to match your design.
+      </p>
+
+      <h3>⚡ Neon Presets</h3>
+      <p>Bright, glowing effects that pop on dark backgrounds — perfect for futuristic interfaces, gaming UIs, and hero sections.</p>
+      <div class="presets-showcase">
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:#1a1a1a; color:#00e5ff; text-shadow: 0 0 5px #00e5ff, 0 0 12px #00e5ff, 0 0 25px rgba(0,229,255,0.9), 0 0 45px rgba(0,168,255,0.65);">Neon Cyan</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">1. Neon Cyan</h4>
+            <pre><code>.neon-cyan {
+  color: #00e5ff;
+  background: #1a1a1a;
+  text-shadow:
+    0 0 5px #00e5ff,
+    0 0 12px #00e5ff,
+    0 0 25px rgba(0, 229, 255, 0.9),
+    0 0 45px rgba(0, 168, 255, 0.65);
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:blue; color:white; text-shadow: 0 0 5px #ff2bd6, 0 0 15px rgba(255,43,214,0.9), 0 0 30px rgba(255,43,214,0.7), 0 0 50px rgba(217,0,184,0.5);">Neon Pink</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">2. Neon Pink</h4>
+            <pre><code>.neon-pink {
+  background:blue; color:white;  text-shadow:
+    0 0 5px #ff2bd6,
+    0 0 15px rgba(255, 43, 214, 0.9),
+    0 0 30px rgba(255, 43, 214, 0.7),
+    0 0 50px rgba(217, 0, 184, 0.5);
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:#1a1a1a; color:#39ff14; text-shadow: 0 0 5px #39ff14, 0 0 12px #39ff14, 0 0 25px rgba(57,255,20,0.85), 0 0 45px rgba(0,204,0,0.6);">Neon Green</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">3. Neon Green</h4>
+            <pre><code>.neon-green {
+  color: #39ff14;
+  background: #1a1a1a;
+  text-shadow:
+    0 0 5px #39ff14,
+    0 0 12px #39ff14,
+    0 0 25px rgba(57, 255, 20, 0.85),
+    0 0 45px rgba(0, 204, 0, 0.6);
+}</code></pre>
+          </div>
+        </div>
+
+      </div>
+
+      <h3>✨ Glow Presets</h3>
+      <p>Colorful glow effects inspired by nature and sci-fi — great for banners, titles, and creative landing pages.</p>
+      <div class="presets-showcase">
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:linear-gradient(135deg,#ff6a00,#ee0979); color:#fff3a0; text-shadow: 0 0 8px rgba(255,255,255,0.9), 0 0 18px rgba(255,0,110,0.8), 0 0 35px rgba(255,190,11,0.7), 0 0 55px rgba(131,56,236,0.5);">Sunset</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">4. Sunset</h4>
+            <pre><code>.sunset {
+  color: #fff3a0;
+  background: linear-gradient(135deg, #ff6a00, #ee0979);
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.9),
+    0 0 18px rgba(255, 0, 110, 0.8),
+    0 0 35px rgba(255, 190, 11, 0.7),
+    0 0 55px rgba(131, 56, 236, 0.5);
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:#1a0000; color:#ffe066; text-shadow: 0 -2px 6px #ff4500, 0 -4px 12px rgba(255,106,0,0.9), 0 -6px 25px rgba(255,165,0,0.8), 0 -8px 40px rgba(255,255,0,0.6);">Fire</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">5. Fire</h4>
+            <pre><code>.fire {
+  color: #ffe066;
+  background: #1a0000;
+  text-shadow:
+    0 -2px 6px #ff4500,
+    0 -4px 12px rgba(255, 106, 0, 0.9),
+    0 -6px 25px rgba(255, 165, 0, 0.8),
+    0 -8px 40px rgba(255, 255, 0, 0.6);
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:linear-gradient(135deg,#0b486b,#1e3c72); color:#e0f7ff; text-shadow: 0 0 6px #a5d8ff, 0 0 15px rgba(116,192,252,0.9), 0 0 30px rgba(77,171,247,0.7), 0 0 50px rgba(25,113,194,0.5);">Ice</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">6. Ice</h4>
+            <pre><code>.ice {
+  color: #e0f7ff;
+  background: linear-gradient(135deg, #0b486b, #1e3c72);
+  text-shadow:
+    0 0 6px #a5d8ff,
+    0 0 15px rgba(116, 192, 252, 0.9),
+    0 0 30px rgba(77, 171, 247, 0.7),
+    0 0 50px rgba(25, 113, 194, 0.5);
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:linear-gradient(135deg,#1a0033,#330066); color:#f0e8ff; text-shadow: 0 0 10px #9d4edd, 0 0 25px rgba(123,44,191,0.9), 0 0 45px rgba(60,9,108,0.75), 0 0 60px rgba(255,110,199,0.5);">Galaxy</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">7. Galaxy</h4>
+            <pre><code>.galaxy {
+  color: #f0e8ff;
+  background: linear-gradient(135deg, #1a0033, #330066);
+  text-shadow:
+    0 0 10px #9d4edd,
+    0 0 25px rgba(123, 44, 191, 0.9),
+    0 0 45px rgba(60, 9, 108, 0.75),
+    0 0 60px rgba(255, 110, 199, 0.5);
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:#1a0000; color:#ff3333; text-shadow: 0 0 8px #8b0000, 0 0 20px rgba(255,0,0,0.85), 0 0 40px rgba(102,0,0,0.65);">Blood Red</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">8. Blood Red</h4>
+            <pre><code>.blood-red {
+  color: #ff3333;
+  background: #1a0000;
+  text-shadow:
+    0 0 8px #8b0000,
+    0 0 20px rgba(255, 0, 0, 0.85),
+    0 0 40px rgba(102, 0, 0, 0.65);
+}</code></pre>
+          </div>
+        </div>
+
+      </div>
+
+      <h3>🥇 Metallic Presets</h3>
+      <p>Luxury and vintage metallic effects — perfect for logos, premium branding, and coffee-shop style websites.</p>
+      <div class="presets-showcase">
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:linear-gradient(135deg,#1a1a1a,#3d2c00); color:#fff3a0; text-shadow: 1px 1px 0 #b8860b, 2px 2px 3px rgba(139,105,20,0.85), 0 0 15px rgba(255,215,0,0.55), 0 0 30px rgba(255,237,78,0.35);">Gold</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">9. Gold</h4>
+            <pre><code>.gold {
+  color: #fff3a0;
+  background: linear-gradient(135deg, #1a1a1a, #3d2c00);
+  text-shadow:
+    1px 1px 0 #b8860b,
+    2px 2px 3px rgba(139, 105, 20, 0.85),
+    0 0 15px rgba(255, 215, 0, 0.55),
+    0 0 30px rgba(255, 237, 78, 0.35);
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:linear-gradient(135deg,#2c3e50,#000); color:#e8e8e8; text-shadow: 0 1px 0 rgba(255,255,255,0.9), 0 -1px 0 rgba(102,102,102,0.9), 0 2px 4px rgba(0,0,0,0.6), 0 0 8px rgba(255,255,255,0.3);">Chrome</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">10. Chrome</h4>
+            <pre><code>.chrome {
+  color: #e8e8e8;
+  background: linear-gradient(135deg, #2c3e50, #000000);
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9),
+    0 -1px 0 rgba(102, 102, 102, 0.9),
+    0 2px 4px rgba(0, 0, 0, 0.6),
+    0 0 8px rgba(255, 255, 255, 0.3);
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:linear-gradient(135deg,#3e2723,#6d4c41); color:#f5e6d3; text-shadow: 1px 1px 0 #d7b899, 2px 2px 4px rgba(78,52,46,0.9), 0 0 12px rgba(255,224,178,0.5);">Coffee</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">11. Coffee</h4>
+            <pre><code>.coffee {
+  color: #f5e6d3;
+  background: linear-gradient(135deg, #3e2723, #6d4c41);
+  text-shadow:
+    1px 1px 0 #d7b899,
+    2px 2px 4px rgba(78, 52, 46, 0.9),
+    0 0 12px rgba(255, 224, 178, 0.5);
+}</code></pre>
+          </div>
+        </div>
+
+      </div>
+
+      <h3>📼 Retro Presets</h3>
+      <p>Nostalgic layered shadows that recreate classic arcade, print, and 90s web aesthetics.</p>
+      <div class="presets-showcase">
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:#fff; color:#ffde00; text-shadow: 3px 3px 0 #e63946, 6px 6px 0 #457b9d, 9px 9px 0 #1d3557;">Retro 3D</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">12. Retro 3D</h4>
+            <pre><code>.retro-3d {
+  color: #ffde00;
+  background: #ffffff;
+  text-shadow:
+    3px 3px 0 #e63946,
+    6px 6px 0 #457b9d,
+    9px 9px 0 #1d3557;
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:linear-gradient(135deg,#2a1b3d,#44318d); color:#f4a261; text-shadow: 2px 2px 0 rgba(230,57,70,0.9), -2px -2px 0 rgba(69,123,157,0.9), 0 0 10px rgba(244,162,97,0.6);">Vintage</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">13. Vintage</h4>
+            <pre><code>.vintage {
+  color: #f4a261;
+  background: linear-gradient(135deg, #2a1b3d, #44318d);
+  text-shadow:
+    2px 2px 0 rgba(230, 57, 70, 0.9),
+    -2px -2px 0 rgba(69, 123, 157, 0.9),
+    0 0 10px rgba(244, 162, 97, 0.6);
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:linear-gradient(135deg,#4f46e5,#06b6d4); color:#ffffff; text-shadow: 1px 1px 0 #3730a3, 2px 2px 0 #3730a3, 3px 3px 0 #3730a3, 4px 4px 0 #3730a3, 5px 5px 0 #3730a3, 6px 6px 0 #3730a3, 7px 7px 0 #3730a3, 8px 8px 0 #3730a3;">Long Shadow</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">14. Long Shadow</h4>
+            <pre><code>.long-shadow {
+  color: #ffffff;
+  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+  text-shadow:
+    1px 1px 0 #3730a3,
+    2px 2px 0 #3730a3,
+    3px 3px 0 #3730a3,
+    4px 4px 0 #3730a3,
+    5px 5px 0 #3730a3,
+    6px 6px 0 #3730a3,
+    7px 7px 0 #3730a3,
+    8px 8px 0 #3730a3;
+}</code></pre>
+          </div>
+        </div>
+
+      </div>
+
+      <h3>🎯 Classic Presets</h3>
+      <p>Clean, timeless shadow styles that work well for body text, buttons, and every kind of UI.</p>
+      <div class="presets-showcase">
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:#ffffff; color:#222222; text-shadow: 2px 2px 4px rgba(0,0,0,0.6);">Classic</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">15. Classic</h4>
+            <pre><code>.classic {
+  color: #222222;
+  background: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:#ffffff; color:#333333; text-shadow: 0 4px 8px rgba(0,0,0,0.3), 0 8px 20px rgba(0,0,0,0.15);">Soft</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">16. Soft</h4>
+            <pre><code>.soft {
+  color: #333333;
+  background: #ffffff;
+  text-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.3),
+    0 8px 20px rgba(0, 0, 0, 0.15);
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:#ffffff; color:#1a1a1a; text-shadow: 0 1px 2px rgba(0,0,0,0.15);">Minimal</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">17. Minimal</h4>
+            <pre><code>.minimal {
+  color: #1a1a1a;
+  background: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:linear-gradient(135deg,#bdc3c7,#2c3e50); color:#d0d0d0; text-shadow: -1px -1px 1px rgba(255,255,255,0.8), 1px 1px 1px rgba(0,0,0,0.8);">Emboss</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">18. Emboss</h4>
+            <pre><code>.emboss {
+  color: #d0d0d0;
+  background: linear-gradient(135deg, #bdc3c7, #2c3e50);
+  text-shadow:
+    -1px -1px 1px rgba(255, 255, 255, 0.8),
+    1px 1px 1px rgba(0, 0, 0, 0.8);
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:linear-gradient(135deg,#667eea,#764ba2); color:#ffffff; text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000, 0 0 4px rgba(0,0,0,0.7);">Outline</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">19. Outline</h4>
+            <pre><code>.outline {
+  color: #ffffff;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  text-shadow:
+    -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000,
+    0 0 4px rgba(0, 0, 0, 0.7);
+}</code></pre>
+          </div>
+        </div>
+
+      </div>
+
+      <h3>🎨 Creative Presets</h3>
+      <p>Playful, artistic, and unexpected designs for hero sections, event titles, and experimental layouts.</p>
+      <div class="presets-showcase">
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:#1a1a1a; color:#ffffff; text-shadow: 2px 2px 5px rgba(255,0,0,0.85), -2px 2px 5px rgba(0,255,0,0.85), 2px -2px 5px rgba(0,0,255,0.85), -2px -2px 5px rgba(255,255,0,0.85), 0 0 20px rgba(255,0,255,0.55);">Rainbow</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">20. Rainbow</h4>
+            <pre><code>.rainbow {
+  color: #ffffff;
+  background: #1a1a1a;
+  text-shadow:
+    2px 2px 5px rgba(255, 0, 0, 0.85),
+    -2px 2px 5px rgba(0, 255, 0, 0.85),
+    2px -2px 5px rgba(0, 0, 255, 0.85),
+    -2px -2px 5px rgba(255, 255, 0, 0.85),
+    0 0 20px rgba(255, 0, 255, 0.55);
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:#1a1a1a; color:#ffffff; text-shadow: -3px 0 0 rgba(255,0,255,0.9), 3px 0 0 rgba(0,255,255,0.9), -1px 1px 2px rgba(255,0,0,0.7), 1px -1px 2px rgba(0,0,255,0.7);">Glitch</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">21. Glitch</h4>
+            <pre><code>.glitch {
+  color: #ffffff;
+  background: #1a1a1a;
+  text-shadow:
+    -3px 0 0 rgba(255, 0, 255, 0.9),
+    3px 0 0 rgba(0, 255, 255, 0.9),
+    -1px 1px 2px rgba(255, 0, 0, 0.7),
+    1px -1px 2px rgba(0, 0, 255, 0.7);
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:#ffffff; color:#ffcc00; text-shadow: 1px 1px 0 #000, 2px 2px 0 #000, 3px 3px 0 #000, 4px 4px 0 #000, 5px 5px 0 #000, 6px 6px 0 #000, 7px 7px 0 #000, 8px 8px 0 #000;">3D Block</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">22. 3D Block</h4>
+            <pre><code>.block-3d {
+  color: #ffcc00;
+  background: #ffffff;
+  text-shadow:
+    1px 1px 0 #000,
+    2px 2px 0 #000,
+    3px 3px 0 #000,
+    4px 4px 0 #000,
+    5px 5px 0 #000,
+    6px 6px 0 #000,
+    7px 7px 0 #000,
+    8px 8px 0 #000;
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="preset-card">
+          <div class="preset-card-preview" style="background:linear-gradient(135deg,#87ceeb,#4682b4); color:#ffffff; text-shadow: 0 0 8px rgba(255,255,255,0.85), 0 0 15px rgba(255,255,255,0.6), 0 0 30px rgba(255,255,255,0.4), 0 0 50px rgba(255,255,255,0.2);">Cloud</div>
+          <div class="preset-card-body">
+            <h4 class="preset-card-name">23. Cloud</h4>
+            <pre><code>.cloud {
+  color: #ffffff;
+  background: linear-gradient(135deg, #87ceeb, #4682b4);
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.85),
+    0 0 15px rgba(255, 255, 255, 0.6),
+    0 0 30px rgba(255, 255, 255, 0.4),
+    0 0 50px rgba(255, 255, 255, 0.2);
+}</code></pre>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="callout">
+        <p>💡 <strong>Tip:</strong> Copy any preset above, then tweak the color, blur, or offsets to make it yours — or use the tool at the top of this page to experiment with your own custom shadow.</p>
+      </div>
+
+      <!-- Benefits -->
+      <h2 id="benefits">Benefits of Using an Online CSS Text Shadow Generator</h2>
+      <p>
+        Creating CSS effects manually can take time, especially when you are
+        experimenting with several shadow values. An online generator simplifies
+        this process by providing visual controls and instant feedback.
+      </p>
+      <ul>
+        <li>Saves time when creating CSS text effects.</li>
+        <li>Helps beginners understand the <code>text-shadow</code> property.</li>
+        <li>Makes experimenting with different shadow settings easier.</li>
+        <li>Generates CSS code that can be copied into your projects.</li>
+        <li>Supports multiple shadow layers.</li>
+        <li>Allows you to preview effects against different backgrounds.</li>
+        <li>Helps developers maintain consistent text styling.</li>
+        <li>Reduces the need to repeatedly edit CSS values by hand.</li>
+      </ul>
+      <p>The tool is useful for both learning and practical web development.</p>
+
+      <!-- Who can use -->
+      <h2 id="who-can-use">Who Can Use This Text Shadow Generator?</h2>
+      <p>The Live Text Shadow Generator can be useful for a wide range of users.</p>
+      <ul>
+        <li><strong>Web Developers:</strong> Create CSS text effects for websites, web applications, and landing pages.</li>
+        <li><strong>UI/UX Designers:</strong> Experiment with text styling while designing interfaces and prototypes.</li>
+        <li><strong>Students:</strong> Learn how CSS shadows work through practical examples and visual experimentation.</li>
+        <li><strong>Bloggers:</strong> Customize headings and decorative text for blog layouts.</li>
+        <li><strong>Frontend Developers:</strong> Quickly generate CSS values for use in existing projects.</li>
+        <li><strong>Digital Creators:</strong> Create text styling ideas for banners, promotional designs, and other digital content.</li>
+      </ul>
+
+      <!-- Tips -->
+      <h2 id="tips">Tips for Creating Better Text Shadow Effects</h2>
+      <p>To get the best results from your text shadow designs, keep the following tips in mind.</p>
+
+      <h3>1. Keep Text Readable</h3>
+      <p>
+        A shadow should improve the appearance of text without making the letters
+        difficult to read. Avoid excessive blur or too many shadow layers for
+        normal body text.
+      </p>
+
+      <h3>2. Choose Suitable Shadow Colors</h3>
+      <p>
+        Select colors that complement your text and background. A subtle black
+        shadow often works well on light text over images, while colored shadows
+        can create decorative effects.
+      </p>
+
+      <h3>3. Use Blur Carefully</h3>
+      <p>
+        A smaller blur radius produces a sharper shadow, while a larger radius
+        creates a softer effect. Choose the value according to your design
+        requirements.
+      </p>
+
+      <h3>4. Experiment with Multiple Shadows</h3>
+      <p>
+        Multiple shadows can create attractive layered effects, but too many
+        layers may make your design look cluttered. Use them selectively.
+      </p>
+
+      <h3>5. Check Color Contrast</h3>
+      <p>
+        Always ensure that the text remains readable against its background. A
+        shadow does not automatically guarantee sufficient color contrast or
+        accessibility.
+      </p>
+
+      <h3>6. Test Your Design on Different Screens</h3>
+      <p>
+        Preview your text on mobile and desktop layouts. Large shadow effects may
+        look different depending on font size, screen size, and surrounding
+        content.
+      </p>
+
+      <!-- FAQ -->
+      <h2 id="faqs">Frequently Asked Questions (FAQs)</h2>
+
+      <div class="faq-item">
+        <h3>1. What is a Text Shadow Generator?</h3>
+        <p>
+          A Text Shadow Generator is an online tool that helps you create CSS text
+          shadow effects by adjusting settings such as shadow position, blur,
+          color, and transparency.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>2. Is the Live Text Shadow Generator free?</h3>
+        <p>
+          Yes. The tool is designed to let you customize text shadow effects and
+          generate CSS code without requiring a paid subscription.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>3. Do I need coding knowledge to use this tool?</h3>
+        <p>
+          No. You can customize the text and shadow settings using the available
+          controls. Basic knowledge of HTML and CSS is helpful when adding the
+          generated code to a website.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>4. Can I create multiple text shadows?</h3>
+        <p>
+          Yes. You can add multiple shadow layers, customize each one
+          independently, change their order, and remove layers you no longer need.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>5. Can I use the 23 preset designs shown above?</h3>
+        <p>
+          Absolutely. Each preset is shown with its full CSS code — just copy it
+          into your stylesheet and adjust colors, sizes, or offsets as needed.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>6. Can I change the background in the preview?</h3>
+        <p>
+          Yes. You can select a white or dark background, choose a custom color,
+          create linear or radial gradients, use an image URL, or enter a custom
+          CSS background value.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>7. How do I copy the generated CSS code?</h3>
+        <p>
+          After customizing your text, click the <em>Copy Code</em> button below
+          the generated CSS output. You can then paste the code into your website
+          or project.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>8. What does the blur radius do in CSS text shadows?</h3>
+        <p>
+          The blur radius controls how soft the shadow appears. A value of 0
+          produces a sharp shadow, while larger values create a more blurred
+          effect.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>9. What is the difference between horizontal and vertical offsets?</h3>
+        <p>
+          The horizontal offset controls the shadow's left-to-right position,
+          while the vertical offset controls its up-and-down position. Positive
+          values move the shadow right or down, and negative values move it left
+          or up.
+        </p>
+      </div>
+
+      <div class="faq-item">
+        <h3>10. Can I use generated CSS in any website?</h3>
+        <p>
+          The generated CSS can generally be used in websites and applications
+          that support CSS. You may need to adjust the selector to match your HTML
+          elements and adapt the code to your project's existing styles.
+        </p>
+      </div>
+
+      <!-- Conclusion -->
+      <div class="conclusion" id="conclusion">
+        <h2>Conclusion</h2>
+        <p>
+          The <strong>Free Live Text Shadow Generator</strong> is a convenient tool
+          for creating customized CSS text effects without manually writing every
+          shadow value. With its live preview, adjustable typography, multiple
+          shadow layers, customizable backgrounds, and automatic CSS generation,
+          it makes experimenting with text styling easier for beginners and
+          experienced developers alike.
+        </p>
+        <p>
+          Plus, with <strong>23 ready-made preset designs</strong> complete with
+          code, you can copy a proven effect in seconds and adapt it to your own
+          project.
+        </p>
+        <p>
+          Try the Live Text Shadow Generator, customize your text, and copy the
+          generated CSS to use in your next web development project.
+        </p>
+        <a href="#tool-heading" class="cta-btn">🚀 Try the Text Shadow Generator</a>
+      </div>
+
+    </article>
+  </main>
+</div>
+
+<!-- ==================================================
+     TOOL JAVASCRIPT (unchanged — no presets in tool)
+================================================== -->
+<script>
+(function () {
+  'use strict';
+
+  const textInput       = document.getElementById('text-input');
+  const textColor       = document.getElementById('text-color');
+  const fontSize        = document.getElementById('font-size');
+  const fontSizeValue   = document.getElementById('font-size-value');
+  const fontWeight      = document.getElementById('font-weight');
+  const fontFamily      = document.getElementById('font-family');
+  const shadowControls  = document.querySelector('.shadow-controls');
+  const addShadowButton = document.getElementById('add-shadow');
+  const resetButton     = document.getElementById('reset');
+  const textPreview     = document.getElementById('text-preview');
+  const preview         = document.getElementById('preview');
+  const cssCode         = document.getElementById('css-code');
+  const copyCodeButton  = document.getElementById('copy-code');
+  const toast           = document.getElementById('toast');
+
+  const bgType        = document.getElementById('bg-type');
+  const bgColor       = document.getElementById('bg-color');
+  const bgGradColor1  = document.getElementById('bg-grad-color1');
+  const bgGradColor2  = document.getElementById('bg-grad-color2');
+  const bgGradAngle   = document.getElementById('bg-grad-angle');
+  const bgGradAngleVal= document.getElementById('bg-grad-angle-val');
+  const bgImage       = document.getElementById('bg-image');
+  const bgCustomCss   = document.getElementById('bg-custom-css');
+  const bgSwatch      = document.getElementById('bg-preview-swatch');
+
+  const STORAGE_KEY = 'textShadowGenerator.v5';
+  let shadows = [];
+  let uniqueId = 0;
+
+  /* ---- Helpers ---- */
+  function hexToRgba(hex, alpha) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    const a = (alpha === undefined ? 1 : Number(alpha));
+    if (a >= 1) return hex;
+    return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + a.toFixed(3) + ')';
+  }
+
+  function updateSliderFill(slider) {
+    if (!slider) return;
+    const min = parseFloat(slider.min) || 0;
+    const max = parseFloat(slider.max) || 100;
+    const val = parseFloat(slider.value) || 0;
+    const pct = max > min ? ((val - min) / (max - min)) * 100 : 0;
+    slider.style.setProperty('--fill', pct + '%');
+  }
+
+  let toastTimer;
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 1800);
+  }
+
+  /* ---- Background ---- */
+  function buildBackgroundCss() {
+    const type = bgType.value;
+    if (type === 'white') return '#ffffff';
+    if (type === 'dark')  return '#1a1a1a';
+    if (type === 'custom-color') return bgColor.value;
+    if (type === 'linear-gradient') {
+      return 'linear-gradient(' + bgGradAngle.value + 'deg, ' +
+             bgGradColor1.value + ', ' + bgGradColor2.value + ')';
+    }
+    if (type === 'radial-gradient') {
+      return 'radial-gradient(circle, ' +
+             bgGradColor1.value + ', ' + bgGradColor2.value + ')';
+    }
+    if (type === 'image') {
+      const url = bgImage.value.trim();
+      if (!url) return '#ffffff';
+      const safe = url.replace(/"/g, '\\"');
+      return 'url("' + safe + '") center/cover no-repeat';
+    }
+    if (type === 'custom-css') {
+      const cssStr = bgCustomCss.value.trim();
+      return cssStr ? cssStr : '#ffffff';
+    }
+    return '#ffffff';
+  }
+
+  function updateBgOptionVisibility() {
+    const type = bgType.value;
+    document.querySelectorAll('#AABBC .bg-option').forEach(function (el) {
+      const types = (el.dataset.for || '').split(' ');
+      el.classList.toggle('active', types.indexOf(type) !== -1);
+    });
+  }
+
+  function updateBackground() {
+    const bg = buildBackgroundCss();
+    preview.style.background = bg;
+    preview.style.backgroundSize = '';
+    preview.style.backgroundPosition = '';
+    preview.style.backgroundRepeat = '';
+    bgSwatch.style.background = bg;
+    updateSliderFill(bgGradAngle);
+    bgGradAngleVal.textContent = bgGradAngle.value + '°';
+    updateBgOptionVisibility();
+  }
+
+  /* ---- Build CSS ---- */
+  function buildShadowCss() {
+    if (shadows.length === 0) return 'none';
+    return shadows.map(function (s) {
+      const color = hexToRgba(s.color, s.alpha);
+      return s.h + 'px ' + s.v + 'px ' + s.blur + 'px ' + color;
+    }).join(', ');
+  }
+
+  function updatePreview() {
+    const shadowCss = buildShadowCss();
+
+    textPreview.textContent = textInput.value || ' ';
+    textPreview.style.textShadow = shadowCss === 'none' ? 'none' : shadowCss;
+    textPreview.style.color = textColor.value;
+    textPreview.style.fontSize = fontSize.value + 'px';
+    textPreview.style.fontWeight = fontWeight.value;
+    textPreview.style.fontFamily = '"' + fontFamily.value + '"';
+
+    updateSliderFill(fontSize);
+    fontSizeValue.textContent = fontSize.value + 'px';
+
+    updateBackground();
+
+    const bgCss = buildBackgroundCss();
+
+    cssCode.value =
+      '#text-preview {\n' +
+      '  text-shadow: ' + shadowCss + ';\n' +
+      '  color: ' + textColor.value + ';\n' +
+      '  font-size: ' + fontSize.value + 'px;\n' +
+      '  font-weight: ' + fontWeight.value + ';\n' +
+      '  font-family: "' + fontFamily.value + '";\n' +
+      '  background: ' + bgCss + ';\n' +
+      '}';
+
+    saveState();
+  }
+
+  /* ---- Shadow controls ---- */
+  function createShadowControl(shadow) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'shadow-control';
+    wrapper.dataset.id = shadow.id;
+
+    wrapper.innerHTML =
+      '<div class="field">' +
+        '<label for="h-' + shadow.id + '">Horizontal Offset</label>' +
+        '<input type="range" class="h-offset" id="h-' + shadow.id + '" min="-50" max="50" step="1" value="' + shadow.h + '">' +
+        '<input type="number" class="h-offset-num" min="-50" max="50" step="1" value="' + shadow.h + '" aria-label="Horizontal offset numeric">' +
+        '<span class="value-display" aria-hidden="true">' + shadow.h + 'px</span>' +
+      '</div>' +
+      '<div class="field">' +
+        '<label for="v-' + shadow.id + '">Vertical Offset</label>' +
+        '<input type="range" class="v-offset" id="v-' + shadow.id + '" min="-50" max="50" step="1" value="' + shadow.v + '">' +
+        '<input type="number" class="v-offset-num" min="-50" max="50" step="1" value="' + shadow.v + '" aria-label="Vertical offset numeric">' +
+        '<span class="value-display" aria-hidden="true">' + shadow.v + 'px</span>' +
+      '</div>' +
+      '<div class="field">' +
+        '<label for="b-' + shadow.id + '">Blur</label>' +
+        '<input type="range" class="blur" id="b-' + shadow.id + '" min="0" max="50" step="1" value="' + shadow.blur + '">' +
+        '<input type="number" class="blur-num" min="0" max="50" step="1" value="' + shadow.blur + '" aria-label="Blur numeric">' +
+        '<span class="value-display" aria-hidden="true">' + shadow.blur + 'px</span>' +
+      '</div>' +
+      '<div class="field">' +
+        '<label for="c-' + shadow.id + '">Shadow Color</label>' +
+        '<input type="color" class="shadow-color" id="c-' + shadow.id + '" value="' + shadow.color + '">' +
+        '<label for="a-' + shadow.id + '" style="min-width:auto; margin-left:8px;">Alpha</label>' +
+        '<input type="range" class="shadow-alpha" id="a-' + shadow.id + '" min="0" max="1" step="0.01" value="' + shadow.alpha + '">' +
+        '<span class="value-display" aria-hidden="true">' + Number(shadow.alpha).toFixed(2) + '</span>' +
+      '</div>' +
+      '<div class="actions">' +
+        '<button type="button" class="move-up">↑ Move Up</button>' +
+        '<button type="button" class="move-down">↓ Move Down</button>' +
+        '<button type="button" class="remove-shadow">Remove Shadow</button>' +
+      '</div>';
+
+    const hSlider = wrapper.querySelector('.h-offset');
+    const hNum    = wrapper.querySelector('.h-offset-num');
+    const hDisp   = hSlider.parentElement.querySelector('.value-display');
+    const vSlider = wrapper.querySelector('.v-offset');
+    const vNum    = wrapper.querySelector('.v-offset-num');
+    const vDisp   = vSlider.parentElement.querySelector('.value-display');
+    const blurS   = wrapper.querySelector('.blur');
+    const blurN   = wrapper.querySelector('.blur-num');
+    const blurD   = blurS.parentElement.querySelector('.value-display');
+    const alphaS  = wrapper.querySelector('.shadow-alpha');
+    const alphaD  = alphaS.parentElement.querySelector('.value-display');
+    const colorIn = wrapper.querySelector('.shadow-color');
+
+    function bindPair(slider, number, display, key, suffix) {
+      function sync(val, source) {
+        let n = Number(val);
+        const min = Number(slider.min);
+        const max = Number(slider.max);
+        if (isNaN(n)) n = min;
+        if (n < min) n = min;
+        if (n > max) n = max;
+        shadow[key] = n;
+        if (source !== 'range') slider.value = n;
+        if (source !== 'number') number.value = n;
+        updateSliderFill(slider);
+        display.textContent = n + suffix;
+        updatePreview();
+      }
+      slider.addEventListener('input', function (e) { sync(e.target.value, 'range'); });
+      number.addEventListener('input', function (e) { sync(e.target.value, 'number'); });
+      updateSliderFill(slider);
+    }
+
+    bindPair(hSlider, hNum, hDisp, 'h', 'px');
+    bindPair(vSlider, vNum, vDisp, 'v', 'px');
+    bindPair(blurS, blurN, blurD, 'blur', 'px');
+
+    function syncAlpha(val) {
+      let n = Math.max(0, Math.min(1, Number(val)));
+      if (isNaN(n)) n = 1;
+      shadow.alpha = n;
+      alphaS.value = n;
+      alphaD.textContent = n.toFixed(2);
+      updateSliderFill(alphaS);
+      updatePreview();
+    }
+    alphaS.addEventListener('input', function (e) { syncAlpha(e.target.value); });
+    updateSliderFill(alphaS);
+
+    colorIn.addEventListener('input', function (e) {
+      shadow.color = e.target.value;
+      updatePreview();
+    });
+
+    wrapper.querySelector('.remove-shadow').addEventListener('click', function () {
+      const idx = shadows.findIndex(function (s) { return s.id === shadow.id; });
+      if (idx !== -1) shadows.splice(idx, 1);
+      wrapper.remove();
+      updatePreview();
+    });
+
+    wrapper.querySelector('.move-up').addEventListener('click', function () {
+      const idx = shadows.findIndex(function (s) { return s.id === shadow.id; });
+      if (idx > 0) {
+        const tmp = shadows[idx - 1];
+        shadows[idx - 1] = shadows[idx];
+        shadows[idx] = tmp;
+        shadowControls.insertBefore(wrapper, shadowControls.children[idx - 1]);
+        updatePreview();
+      }
+    });
+
+    wrapper.querySelector('.move-down').addEventListener('click', function () {
+      const idx = shadows.findIndex(function (s) { return s.id === shadow.id; });
+      if (idx !== -1 && idx < shadows.length - 1) {
+        const tmp = shadows[idx + 1];
+        shadows[idx + 1] = shadows[idx];
+        shadows[idx] = tmp;
+        shadowControls.insertBefore(wrapper, shadowControls.children[idx + 1].nextSibling);
+        updatePreview();
+      }
+    });
+
+    return wrapper;
+  }
+
+  function addShadow(data) {
+    uniqueId += 1;
+    const shadow = {
+      id: 's' + Date.now() + '-' + uniqueId,
+      h: 0, v: 0, blur: 5, color: '#000000', alpha: 1
+    };
+    if (data) {
+      if (typeof data.h === 'number') shadow.h = data.h;
+      if (typeof data.v === 'number') shadow.v = data.v;
+      if (typeof data.blur === 'number') shadow.blur = data.blur;
+      if (typeof data.color === 'string') shadow.color = data.color;
+      if (typeof data.alpha === 'number') shadow.alpha = data.alpha;
+    }
+    shadows.push(shadow);
+    shadowControls.appendChild(createShadowControl(shadow));
+    return shadow;
+  }
+
+  /* ---- Persistence ---- */
+  function saveState() {
+    try {
+      const state = {
+        text: textInput.value,
+        textColor: textColor.value,
+        fontSize: fontSize.value,
+        fontWeight: fontWeight.value,
+        fontFamily: fontFamily.value,
+        background: {
+          type: bgType.value,
+          color: bgColor.value,
+          gradColor1: bgGradColor1.value,
+          gradColor2: bgGradColor2.value,
+          gradAngle: bgGradAngle.value,
+          image: bgImage.value,
+          customCss: bgCustomCss.value
+        },
+        shadows: shadows.map(function (s) {
+          return { h: s.h, v: s.v, blur: s.blur, color: s.color, alpha: s.alpha };
+        })
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) { /* quota / privacy errors */ }
+  }
+
+  function loadState() {
+    let raw;
+    try { raw = localStorage.getItem(STORAGE_KEY); } catch (e) { return false; }
+    if (!raw) return false;
+
+    let state;
+    try { state = JSON.parse(raw); } catch (e) { return false; }
+    if (!state || typeof state !== 'object') return false;
+
+    if (typeof state.text === 'string') textInput.value = state.text;
+    if (typeof state.textColor === 'string') textColor.value = state.textColor;
+    if (state.fontSize) fontSize.value = state.fontSize;
+    if (state.fontWeight) fontWeight.value = state.fontWeight;
+    if (state.fontFamily) fontFamily.value = state.fontFamily;
+
+    if (state.background && typeof state.background === 'object') {
+      const bg = state.background;
+      if (bg.type) bgType.value = bg.type;
+      if (bg.color) bgColor.value = bg.color;
+      if (bg.gradColor1) bgGradColor1.value = bg.gradColor1;
+      if (bg.gradColor2) bgGradColor2.value = bg.gradColor2;
+      if (bg.gradAngle != null) bgGradAngle.value = bg.gradAngle;
+      if (typeof bg.image === 'string') bgImage.value = bg.image;
+      if (typeof bg.customCss === 'string') bgCustomCss.value = bg.customCss;
+    }
+
+    if (Array.isArray(state.shadows)) {
+      shadows = [];
+      shadowControls.innerHTML = '';
+      state.shadows.forEach(function (s) { addShadow(s); });
+    }
+    return true;
+  }
+
+  /* ---- Top-level controls ---- */
+  textInput.addEventListener('input', updatePreview);
+  textColor.addEventListener('input', updatePreview);
+  fontSize.addEventListener('input', updatePreview);
+  fontWeight.addEventListener('input', updatePreview);
+  fontFamily.addEventListener('input', updatePreview);
+
+  addShadowButton.addEventListener('click', function () { addShadow(); updatePreview(); });
+
+  resetButton.addEventListener('click', function () {
+    if (!window.confirm('Reset all settings?')) return;
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+
+    shadows = [];
+    shadowControls.innerHTML = '';
+    textInput.value = 'Hello World';
+    textColor.value = '#000000';
+    fontSize.value = '30';
+    fontWeight.value = 'bold';
+    fontFamily.value = 'Arial';
+
+    bgType.value = 'white';
+    bgColor.value = '#eef2ff';
+    bgGradColor1.value = '#ff6b6b';
+    bgGradColor2.value = '#4ecdc4';
+    bgGradAngle.value = '135';
+    bgImage.value = '';
+    bgCustomCss.value = '';
+
+    addShadow();
+    updatePreview();
+    showToast('Reset complete');
+  });
+
+  bgType.addEventListener('change', updatePreview);
+  bgColor.addEventListener('input', updatePreview);
+  bgGradColor1.addEventListener('input', updatePreview);
+  bgGradColor2.addEventListener('input', updatePreview);
+  bgGradAngle.addEventListener('input', updatePreview);
+  bgImage.addEventListener('input', updatePreview);
+  bgCustomCss.addEventListener('input', updatePreview);
+
+  copyCodeButton.addEventListener('click', async function () {
+    const text = cssCode.value;
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        cssCode.select();
+        document.execCommand('copy');
+        if (window.getSelection) window.getSelection().removeAllRanges();
+      }
+      showToast('Copied to clipboard!');
+    } catch (err) {
+      showToast('Copy failed — select and copy manually.');
+    }
+  });
+
+  /* ---- Init ---- */
+  const restored = loadState();
+  if (!restored || shadows.length === 0) {
+    if (shadows.length === 0) addShadow();
+  }
+  document.querySelectorAll('#AABBC input[type="range"]').forEach(updateSliderFill);
+  updateBgOptionVisibility();
+  updatePreview();
+})();
+</script>
+</body>
+</html>

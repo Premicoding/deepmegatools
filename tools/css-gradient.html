@@ -1,0 +1,3851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CSS Gradient Generator & Guide — Learn, Create & Copy Beautiful Gradients</title>
+<meta name="description" content="Learn CSS gradients — linear, radial, conic and repeating — with syntax, examples, best practices, an interactive generator and a 150+ gradient gallery." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   1. DESIGN TOKENS  (article + merged accents)
+   ============================================================ */
+:root{
+  --ink:#0f172a;
+  --ink-2:#334155;
+  --muted:#64748b;
+  --line:#e2e8f0;
+  --bg:#f6f8fc;
+  --card:#ffffff;
+
+  --brand-1:#5a67d8; 
+  --brand-2:#764ba2;
+  --brand-3:#d6006b; 
+  --brand-4:#0077b6; 
+
+  --code-bg:#0f172a;
+  --code-fg:#e6edf7;
+
+  --radius:18px;
+  --radius-sm:12px;
+
+  --shadow-sm:0 1px 2px rgba(15,23,42,.06), 0 2px 6px rgba(15,23,42,.05);
+  --shadow-md:0 10px 30px -14px rgba(15,23,42,.28);
+  --shadow-lg:0 30px 70px -30px rgba(15,23,42,.45);
+
+  --maxw:1060px;
+}
+
+/* ============================================================
+   2. RESET & BASE
+   ============================================================ */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+
+body{
+  margin:0;
+  font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.75;
+  font-size:16.5px;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  background:
+    radial-gradient(900px 500px at 8% -8%, rgba(102,126,234,.12), transparent 65%),
+    radial-gradient(800px 500px at 100% 0%, rgba(255,0,128,.09), transparent 60%),
+    radial-gradient(700px 500px at 50% 110%, rgba(0,198,255,.10), transparent 60%);
+}
+
+img{ max-width:100%; display:block; }
+
+a{
+  color:var(--brand-2);
+  text-decoration:none;
+  border-bottom:2px solid rgba(118,75,162,.25);
+  transition:border-color .2s ease, color .2s ease;
+}
+a:hover{ color:var(--brand-3); border-bottom-color:var(--brand-3); }
+
+:focus-visible{
+  outline:3px solid var(--ink);
+  outline-offset:3px;
+  border-radius:6px;
+}
+
+.skip-link{
+  position:absolute;
+  left:-9999px;
+  top:8px;
+  background:#fff;
+  color:var(--ink);
+  padding:10px 16px;
+  border-radius:8px;
+  font-weight:700;
+  z-index:9999;
+  text-decoration:none;
+  border:2px solid var(--ink);
+}
+.skip-link:focus{ left:8px; }
+
+/* ============================================================
+   3. HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  text-align:center;
+  padding:clamp(64px,9vw,120px) 22px clamp(56px,7vw,96px);
+  color:#fff;
+  background:linear-gradient(120deg,#5a67d8 0%, #764ba2 28%, #d6006b 60%, #0077b6 100%);
+  background-size:300% 300%;
+  animation:heroShift 20s ease infinite;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:
+    radial-gradient(600px 300px at 20% 10%, rgba(255,255,255,.22), transparent 60%),
+    linear-gradient(180deg, rgba(15,23,42,.18), rgba(15,23,42,.42));
+}
+
+@keyframes heroShift{
+  0%,100%{ background-position:0% 50%; }
+  50%    { background-position:100% 50%; }
+}
+
+.hero__badge{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  font-size:.8rem;
+  font-weight:700;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  padding:8px 16px;
+  border-radius:999px;
+  background:rgba(15,23,42,.6); /* Changed for contrast */
+  border:1px solid rgba(255,255,255,.35);
+  backdrop-filter:blur(8px);
+  margin-bottom:22px;
+}
+
+.hero__dot{
+  width:9px; height:9px;
+  border-radius:50%;
+  background:#7dffb2;
+  box-shadow:0 0 0 4px rgba(125,255,178,.28);
+}
+
+.hero h1{
+  margin:0 auto 18px;
+  max-width:16ch;
+  font-size:clamp(2rem, 6.2vw, 3.6rem);
+  line-height:1.1;
+  font-weight:900;
+  letter-spacing:-.03em;
+  text-shadow:0 6px 30px rgba(0,0,0,.28);
+}
+
+.hero h1 span{
+  background:linear-gradient(90deg,#ffffff,#ffe9f5 40%,#d6f6ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  margin:0 auto;
+  max-width:60ch;
+  font-size:clamp(.98rem,2vw,1.12rem);
+  color:rgba(255,255,255,.93);
+  text-shadow:0 2px 12px rgba(0,0,0,.25);
+}
+
+.hero__stats{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  margin-top:32px;
+}
+
+.hero__stat{
+  padding:10px 18px;
+  border-radius:999px;
+  background:rgba(15,23,42,.6); /* Changed for contrast */
+  border:1px solid rgba(255,255,255,.3);
+  font-size:.85rem;
+  font-weight:600;
+  backdrop-filter:blur(8px);
+}
+
+/* ============================================================
+   4. LAYOUT
+   ============================================================ */
+.wrap{
+  position:relative;
+  z-index:1;
+  max-width:var(--maxw);
+  margin:0 auto;
+  padding:0 20px;
+}
+
+main{ padding:clamp(40px,6vw,72px) 0 90px; }
+
+/* ============================================================
+   5. TOC
+   ============================================================ */
+.toc{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:26px 26px 22px;
+  box-shadow:var(--shadow-md);
+  margin-bottom:clamp(36px,5vw,56px);
+  position:relative;
+  overflow:hidden;
+}
+
+.toc::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto 0;
+  height:5px;
+  background:linear-gradient(90deg,#5a67d8,#764ba2,#d6006b,#0077b6);
+}
+
+.toc h2{
+  margin:6px 0 18px;
+  font-size:1.05rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:800;
+}
+
+.toc ol{
+  list-style:none;
+  counter-reset:toc;
+  margin:0;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:8px 20px;
+}
+
+.toc li{ counter-increment:toc; }
+
+.toc a{
+  display:flex;
+  gap:10px;
+  align-items:baseline;
+  padding:7px 0;
+  font-size:.94rem;
+  font-weight:500;
+  color:var(--ink-2);
+  border-bottom:1px dashed transparent;
+}
+.toc a::before{
+  content:counter(toc,decimal-leading-zero);
+  font-family:"JetBrains Mono",monospace;
+  font-size:.75rem;
+  font-weight:700;
+  color:var(--brand-1);
+  flex:none;
+}
+.toc a:hover{ color:var(--brand-2); border-bottom-color:var(--brand-2); }
+
+/* ============================================================
+   6. SECTIONS
+   ============================================================ */
+.section{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:clamp(22px,4vw,38px);
+  margin-bottom:26px;
+  box-shadow:var(--shadow-sm);
+  scroll-margin-top:24px;
+}
+
+.section--plain{
+  background:transparent;
+  border:none;
+  box-shadow:none;
+  padding-left:0;
+  padding-right:0;
+}
+
+.section h2{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin:0 0 16px;
+  font-size:clamp(1.25rem,2.8vw,1.6rem);
+  line-height:1.3;
+  font-weight:800;
+  letter-spacing:-.02em;
+  color:var(--ink);
+}
+
+.num{
+  flex:none;
+  display:inline-grid;
+  place-items:center;
+  width:40px;
+  height:40px;
+  border-radius:13px;
+  background:linear-gradient(135deg,var(--brand-1),var(--brand-2));
+  color:#fff;
+  font-size:.95rem;
+  font-weight:800;
+  box-shadow:0 8px 20px -8px rgba(90,103,216,.95);
+}
+
+.section h3{
+  margin:30px 0 10px;
+  font-size:1.03rem;
+  font-weight:800;
+  color:var(--ink);
+  letter-spacing:.01em;
+}
+
+.section h3:first-of-type{ margin-top:22px; }
+
+.section h3::after{
+  content:"";
+  display:block;
+  width:44px;
+  height:3px;
+  margin-top:8px;
+  border-radius:3px;
+  background:linear-gradient(90deg,var(--brand-1),var(--brand-3));
+}
+
+.section p{
+  margin:0 0 14px;
+  color:var(--ink-2);
+}
+.section p:last-child{ margin-bottom:0; }
+
+.lead{
+  font-size:1.05rem;
+  color:var(--ink-2);
+}
+
+/* ============================================================
+   7. CODE BLOCKS
+   ============================================================ */
+pre{
+  position:relative;
+  margin:16px 0 20px;
+  padding:20px 22px;
+  border-radius:var(--radius-sm);
+  background:var(--code-bg);
+  background-image:
+    radial-gradient(600px 200px at 0% 0%, rgba(90,103,216,.28), transparent 65%),
+    radial-gradient(500px 200px at 100% 100%, rgba(214,0,107,.22), transparent 65%);
+  color:var(--code-fg);
+  overflow-x:auto;
+  font-size:.855rem;
+  line-height:1.85;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:var(--shadow-lg);
+  tab-size:2;
+}
+
+pre code{
+  font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-weight:400;
+  background:none;
+  padding:0;
+  color:inherit;
+  white-space:pre;
+}
+
+p code, li code, td code{
+  font-family:"JetBrains Mono", monospace;
+  font-size:.84em;
+  background:linear-gradient(135deg, rgba(102,126,234,.14), rgba(255,0,128,.10));
+  color:#4c1d95;
+  padding:2px 7px;
+  border-radius:7px;
+  border:1px solid rgba(118,75,162,.18);
+  white-space:nowrap;
+}
+
+/* ============================================================
+   8. CALLOUTS / LISTS
+   ============================================================ */
+.note{
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  padding:16px 18px;
+  border-radius:var(--radius-sm);
+  background:linear-gradient(135deg, rgba(102,126,234,.09), rgba(0,198,255,.07));
+  border:1px solid rgba(102,126,234,.22);
+  border-left:4px solid var(--brand-1);
+  margin:18px 0;
+  font-size:.94rem;
+  color:var(--ink-2);
+}
+.note strong{ color:var(--ink); }
+
+ul.clean, ol.clean{
+  margin:12px 0 18px;
+  padding-left:0;
+  list-style:none;
+}
+
+ul.clean li{
+  position:relative;
+  padding-left:30px;
+  margin-bottom:9px;
+  color:var(--ink-2);
+}
+ul.clean li::before{
+  content:"";
+  position:absolute;
+  left:6px;
+  top:.72em;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--brand-1),var(--brand-3));
+  box-shadow:0 0 0 3px rgba(90,103,216,.16);
+}
+
+ol.steps{
+  counter-reset:step;
+  list-style:none;
+  margin:16px 0 8px;
+  padding:0;
+}
+ol.steps li{
+  counter-increment:step;
+  position:relative;
+  padding:12px 0 12px 54px;
+  border-bottom:1px dashed var(--line);
+  color:var(--ink-2);
+}
+ol.steps li:last-child{ border-bottom:none; }
+ol.steps li::before{
+  content:counter(step);
+  position:absolute;
+  left:0;
+  top:12px;
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  border-radius:10px;
+  font-size:.85rem;
+  font-weight:800;
+  color:#fff;
+  background:linear-gradient(135deg,#0077b6,#0056b3);
+  box-shadow:0 8px 18px -8px rgba(0,86,179,.9);
+}
+ol.steps li strong{ color:var(--ink); display:block; margin-bottom:2px; }
+
+/* ============================================================
+   9. DEMO BOXES
+   ============================================================ */
+.demo{
+  height:150px;
+  border-radius:var(--radius-sm);
+  box-shadow:var(--shadow-md);
+  margin:16px 0 6px;
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-weight:700;
+  letter-spacing:.06em;
+  font-size:.8rem;
+  text-transform:uppercase;
+  text-shadow:0 2px 10px rgba(0,0,0,.35);
+  text-align:center;
+  padding:0 12px;
+}
+
+.demo--round{
+  border-radius:50%;
+  width:170px;
+  height:170px;
+  margin-inline:auto;
+  text-align:center;
+}
+
+/* ============================================================
+   10. FEATURED (curated) SWATCH GALLERY
+   ============================================================ */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;
+  margin-top:22px;
+}
+
+.swatch{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+  transition:transform .25s ease, box-shadow .25s ease;
+  display:flex;
+  flex-direction:column;
+}
+
+.swatch:hover,
+.swatch:focus-within{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow-md);
+}
+
+.swatch__preview{
+  height:118px;
+  position:relative;
+  display:grid;
+  place-items:center;
+}
+
+.swatch__preview span{
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.95);
+  background:rgba(15,23,42,.34);
+  border:1px solid rgba(255,255,255,.35);
+  padding:5px 12px;
+  border-radius:999px;
+  backdrop-filter:blur(6px);
+}
+
+.swatch__body{
+  padding:16px 16px 18px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  flex:1;
+}
+
+.swatch__body h3{
+  margin:0;
+  font-size:1rem;
+  font-weight:800;
+  letter-spacing:-.01em;
+}
+
+.swatch__body p{
+  margin:0;
+  font-size:.855rem;
+  color:var(--muted);
+  line-height:1.6;
+  flex:1;
+}
+
+.swatch__body code{
+  display:block;
+  font-family:"JetBrains Mono", monospace;
+  font-size:.72rem;
+  color:#4c1d95;
+  background:rgba(102,126,234,.10);
+  border:1px solid rgba(118,75,162,.16);
+  border-radius:8px;
+  padding:7px 9px;
+  overflow-x:auto;
+  white-space:nowrap;
+}
+
+/* ============================================================
+   11. BUTTON DEMO
+   ============================================================ */
+.btn-demo{
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px;
+  align-items:center;
+  padding:26px;
+  border-radius:var(--radius-sm);
+  background:
+    radial-gradient(500px 200px at 10% 0%, rgba(102,126,234,.12), transparent 60%),
+    #f1f5fb;
+  border:1px dashed rgba(102,126,234,.35);
+  margin:16px 0;
+}
+
+.gradient-button{
+  appearance:none;
+  border:none;
+  cursor:pointer;
+  padding:15px 30px;
+  border-radius:11px;
+  font-family:inherit;
+  font-size:1rem;
+  font-weight:800;
+  letter-spacing:.01em;
+  color:#fff;
+  background:linear-gradient(135deg,#5a67d8,#764ba2);
+  box-shadow:0 14px 28px -14px rgba(90,103,216,1);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.gradient-button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 20px 34px -16px rgba(90,103,216,1);
+}
+.gradient-button:active{ transform:translateY(0); }
+.gradient-button:focus-visible{
+  outline:3px solid #222;
+  outline-offset:3px;
+}
+
+/* ============================================================
+   12. FAQ
+   ============================================================ */
+details{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius-sm);
+  margin-bottom:11px;
+  overflow:hidden;
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+details[open]{
+  border-color:rgba(102,126,234,.45);
+  box-shadow:var(--shadow-sm);
+}
+summary{
+  cursor:pointer;
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:16px 20px;
+  font-weight:700;
+  font-size:.97rem;
+  color:var(--ink);
+}
+summary::-webkit-details-marker{ display:none; }
+summary::after{
+  content:"+";
+  flex:none;
+  display:grid;
+  place-items:center;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  font-size:1.15rem;
+  font-weight:700;
+  line-height:1;
+  color:#fff;
+  background:linear-gradient(135deg,var(--brand-1),var(--brand-2));
+  transition:transform .25s ease;
+}
+details[open] summary::after{ transform:rotate(45deg); }
+details p{
+  margin:0;
+  padding:0 20px 18px;
+  color:var(--ink-2);
+  font-size:.94rem;
+}
+
+/* ============================================================
+   13. FOOTER
+   ============================================================ */
+.site-footer{
+  position:relative;
+  z-index:1;
+  margin-top:20px;
+  padding:52px 20px;
+  text-align:center;
+  color:#fff;
+  background:linear-gradient(120deg,#232526,#414345 45%,#1a1a2e);
+  border-top:4px solid transparent;
+  border-image:linear-gradient(90deg,#5a67d8,#764ba2,#d6006b,#0077b6) 1;
+}
+.site-footer p{
+  margin:0 auto;
+  max-width:56ch;
+  font-size:.92rem;
+  color:rgba(255,255,255,.78);
+}
+.site-footer strong{ color:#fff; }
+
+.footer-strip{
+  height:8px;
+  background:linear-gradient(90deg,#5a67d8,#764ba2,#d6006b,#0077b6,#5a67d8);
+  background-size:200% 100%;
+  animation:heroShift 12s linear infinite;
+}
+
+/* ============================================================
+   14. RESPONSIVE
+   ============================================================ */
+@media (max-width:640px){
+  body{ font-size:16px; }
+  .section{ border-radius:14px; }
+  pre{ font-size:.78rem; padding:16px; }
+  .num{ width:34px; height:34px; font-size:.85rem; border-radius:11px; }
+  .section h2{ gap:11px; }
+  .btn-demo{ padding:18px; }
+  .gradient-button{ width:100%; }
+}
+
+/* ============================================================
+   15. MOTION / PRINT
+   ============================================================ */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+
+@media print{
+  .hero{ animation:none; }
+  body::before{ display:none; }
+  .section{ box-shadow:none; break-inside:avoid; }
+  pre{ box-shadow:none; }
+}
+
+/* ============================================================
+   PART B — INTERACTIVE GENERATOR  (scoped to #ZZTY)
+   ============================================================ */
+#ZZTY{
+  font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color:#222;
+  box-sizing:border-box;
+  margin:20px 0 0;
+}
+#ZZTY *, #ZZTY *::before, #ZZTY *::after{ box-sizing:border-box; }
+
+#ZZTY .container{
+  max-width:1200px;
+  margin:0 auto;
+  background:#fff;
+  padding:22px;
+  border-radius:var(--radius);
+  border:1px solid var(--line);
+  box-shadow:var(--shadow-md);
+}
+
+/* tabs */
+#ZZTY .tab-buttons{
+  display:flex;
+  justify-content:center;
+  gap:6px;
+  margin-bottom:18px;
+  flex-wrap:wrap;
+}
+#ZZTY .tab-button{
+  padding:9px 20px;
+  background:#eef1f7;
+  border:1px solid #cfd6e3;
+  border-radius:9px;
+  cursor:pointer;
+  font:inherit;
+  font-weight:700;
+  font-size:.92rem;
+  color:#444;
+  transition:background .15s,color .15s,border-color .15s;
+}
+#ZZTY .tab-button:hover{ background:#e2e7f0; }
+#ZZTY .tab-button:focus-visible{ outline:3px solid #ffb300; outline-offset:2px; }
+#ZZTY .tab-button.active{
+  background:#d81b60;
+  color:#fff;
+  border-color:#ad1457;
+  box-shadow:0 2px 8px rgba(216,27,96,.35);
+}
+
+#ZZTY .tab-content{ display:none; }
+#ZZTY .tab-content.active{ display:block; }
+
+/* layout */
+#ZZTY .controls{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+  margin-bottom:16px;
+}
+@media (max-width:780px){
+  #ZZTY .controls{ grid-template-columns:1fr; gap:16px; }
+  #ZZTY .container{ padding:14px; }
+}
+
+/* form */
+#ZZTY label{
+  display:block;
+  margin-bottom:6px;
+  font-weight:700;
+  font-size:.82rem;
+  letter-spacing:.2px;
+  color:#444;
+}
+#ZZTY select,
+#ZZTY input[type="text"],
+#ZZTY input[type="number"]{
+  width:100%;
+  padding:8px 10px;
+  margin-bottom:12px;
+  border:1px solid #ccc;
+  border-radius:7px;
+  font:inherit;
+  font-size:.88rem;
+  background:#fff;
+  color:#222;
+  transition:border-color .15s,box-shadow .15s;
+}
+#ZZTY select:focus,
+#ZZTY input[type="text"]:focus,
+#ZZTY input[type="number"]:focus{
+  outline:none;
+  border-color:#d81b60;
+  box-shadow:0 0 0 3px rgba(216,27,96,.15);
+}
+#ZZTY input.invalid{
+  border-color:#d32f2f;
+  background:#ffebee;
+  box-shadow:0 0 0 3px rgba(211,47,47,.15);
+}
+#ZZTY input[type="color"]{
+  width:50px;
+  height:34px;
+  padding:0;
+  border:1px solid #ccc;
+  border-radius:6px;
+  background:none;
+  cursor:pointer;
+  flex:0 0 auto;
+}
+#ZZTY input[type="color"]::-webkit-color-swatch-wrapper{ padding:2px; }
+#ZZTY input[type="color"]::-webkit-color-swatch{ border:none; border-radius:4px; }
+
+/* range */
+#ZZTY input[type="range"]{
+  -webkit-appearance:none;
+  appearance:none;
+  width:100%;
+  height:18px;
+  background:transparent;
+  margin:6px 0;
+  cursor:pointer;
+}
+#ZZTY input[type="range"]::-webkit-slider-runnable-track{
+  height:6px;
+  border-radius:3px;
+  background:linear-gradient(to right,#d81b60 var(--fill,0%),#ddd var(--fill,0%));
+}
+#ZZTY input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  width:18px;
+  height:18px;
+  margin-top:-6px;
+  border-radius:50%;
+  background:#fff;
+  border:2px solid #d81b60;
+  box-shadow:0 1px 3px rgba(0,0,0,.35);
+  transition:transform .12s;
+}
+#ZZTY input[type="range"]:active::-webkit-slider-thumb{ transform:scale(1.15); }
+#ZZTY input[type="range"]::-moz-range-track{
+  height:6px; border-radius:3px; background:#ddd;
+}
+#ZZTY input[type="range"]::-moz-range-progress{
+  height:6px; border-radius:3px; background:#d81b60;
+}
+#ZZTY input[type="range"]::-moz-range-thumb{
+  width:14px; height:14px; border-radius:50%;
+  background:#fff; border:2px solid #d81b60;
+  box-shadow:0 1px 3px rgba(0,0,0,.35);
+}
+#ZZTY input[type="range"]:focus-visible{
+  outline:3px solid #ffb300; outline-offset:3px;
+}
+
+#ZZTY .value-label{
+  display:inline-block;
+  min-width:46px;
+  text-align:right;
+  font-size:.78rem;
+  font-weight:700;
+  color:#555;
+  font-variant-numeric:tabular-nums;
+}
+#ZZTY .hint{
+  font-size:.78rem;
+  color:#666;
+  line-height:1.55;
+  text-align:left;
+  margin:4px 0 0;
+  background:#f4f6fa;
+  border-left:3px solid #d81b60;
+  padding:9px 11px;
+  border-radius:0 6px 6px 0;
+}
+
+/* layer card */
+#ZZTY .gradient-controls{
+  border:1px solid #e3e6ee;
+  border-radius:12px;
+  padding:16px;
+  margin-bottom:16px;
+  background:#fafbfd;
+  transition:box-shadow .15s;
+}
+#ZZTY .gradient-controls:hover{ box-shadow:0 2px 10px rgba(15,23,42,.06); }
+#ZZTY .gradient-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:14px;
+  gap:10px;
+}
+#ZZTY .gradient-title{ font-weight:800; color:#333; font-size:.95rem; }
+#ZZTY .layer-actions{ display:flex; gap:6px; }
+#ZZTY .layer-bg-controls{
+  border-top:1px dashed #ddd;
+  padding-top:14px;
+  margin-bottom:0;
+}
+
+/* icon buttons */
+#ZZTY .icon-btn{
+  width:30px;
+  height:30px;
+  border-radius:7px;
+  border:1px solid #ccc;
+  background:#fff;
+  color:#333;
+  font-size:15px;
+  line-height:1;
+  padding:0;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:background .12s,transform .12s;
+  flex:0 0 auto;
+}
+#ZZTY .icon-btn:hover:not(:disabled){ background:#eee; }
+#ZZTY .icon-btn:active:not(:disabled){ transform:scale(.92); }
+#ZZTY .icon-btn:disabled{ opacity:.35; cursor:not-allowed; }
+#ZZTY .icon-btn:focus-visible{ outline:3px solid #ffb300; outline-offset:2px; }
+#ZZTY .icon-btn.remove-color,
+#ZZTY .icon-btn.remove-specific{
+  background:#d32f2f; color:#fff; border-color:#b71c1c;
+}
+#ZZTY .icon-btn.remove-color:hover,
+#ZZTY .icon-btn.remove-specific:hover{ background:#b71c1c; }
+
+/* color stops */
+#ZZTY .color-stops-container{ margin-bottom:10px; }
+#ZZTY .color-stop{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:10px;
+  padding:9px 10px;
+  margin-bottom:8px;
+  background:#fff;
+  border:1px solid #e6e8ef;
+  border-radius:8px;
+}
+#ZZTY .color-stop .stop-field{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  flex:1 1 150px;
+  min-width:130px;
+}
+#ZZTY .color-stop .stop-field input[type="range"]{
+  flex:1 1 auto; min-width:60px;
+}
+#ZZTY .mini-label{
+  font-size:.68rem;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.4px;
+  color:#475569;
+  flex:0 0 auto;
+}
+
+/* generator buttons */
+#ZZTY button{ font:inherit; cursor:pointer; }
+#ZZTY .buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:8px;
+}
+#ZZTY .buttons button{
+  border:none;
+  color:#fff;
+  padding:10px 16px;
+  border-radius:8px;
+  font-weight:700;
+  font-size:.85rem;
+  transition:background .15s,transform .12s,box-shadow .15s;
+  box-shadow:0 1px 4px rgba(0,0,0,.15);
+}
+#ZZTY .buttons button:hover{ box-shadow:0 3px 10px rgba(0,0,0,.2); }
+#ZZTY .buttons button:active{ transform:translateY(1px); }
+#ZZTY .buttons button:focus-visible{ outline:3px solid #ffb300; outline-offset:2px; }
+#ZZTY .add-color         { background:#1976D2; }
+#ZZTY .add-color:hover   { background:#1565C0; }
+#ZZTY .remove-color      { background:#d32f2f; }
+#ZZTY .remove-color:hover{ background:#c62828; }
+#ZZTY .add-gradient      { background:#8e24aa; }
+#ZZTY .add-gradient:hover{ background:#7b1fa2; }
+#ZZTY .remove-gradient   { background:#b34700; } /* Changed for contrast */
+#ZZTY .remove-gradient:hover{ background:#993d00; } /* Changed for contrast */
+#ZZTY .reset-btn         { background:#455a64; }
+#ZZTY .reset-btn:hover   { background:#37474f; }
+#ZZTY .random-btn        { background:#00695c; }
+#ZZTY .random-btn:hover  { background:#004d40; }
+#ZZTY .copy-btn          { background:#37474F; }
+#ZZTY .copy-btn:hover    { background:#1C262B; }
+#ZZTY #RRTT{ justify-content:center; margin-bottom:18px; }
+#ZZTY #DSJ { justify-content:center; }
+
+/* preview */
+#ZZTY .gradient-preview{
+  height:300px;
+  border-radius:11px;
+  margin-bottom:20px;
+  border:1px solid #ddd;
+  background-repeat:no-repeat;
+  background-color:#ffffff;
+  transition:height .15s;
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.04);
+}
+
+/* generated code */
+#ZZTY .code-output{
+  background:#0f172a;
+  color:#d4d4d4;
+  padding:14px 16px;
+  border-radius:9px;
+  font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size:.82rem;
+  line-height:1.6;
+  white-space:pre-wrap;
+  word-break:break-word;
+  margin-bottom:16px;
+  max-height:280px;
+  overflow:auto;
+  border:1px solid #1e293b;
+}
+#ZZTY .code-output::-webkit-scrollbar{ width:9px; height:9px; }
+#ZZTY .code-output::-webkit-scrollbar-thumb{ background:#475569; border-radius:5px; }
+
+/* ============================================================
+   PART C — EXTENDED GALLERY  (scoped to #gallery)
+   full-width dark accent section
+   ============================================================ */
+#gallery{
+  scroll-margin-top:24px;
+  position:relative;
+  z-index:1;
+  margin:32px 0;
+  padding:56px 0 64px;
+  color:#e6e6f0;
+  background:
+    radial-gradient(900px 400px at 10% 0%, rgba(102,126,234,.18), transparent 60%),
+    radial-gradient(800px 400px at 90% 100%, rgba(255,0,128,.14), transparent 60%),
+    linear-gradient(180deg,#0a0e1a 0%, #0f172a 100%);
+  border-top:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  font-family:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+#gallery .extended-gallery__inner{
+  max-width:1300px;
+  margin:0 auto;
+  padding:0 20px;
+}
+
+#gallery .extended-gallery__title{
+  text-align:center;
+  font-size:clamp(1.5rem,3.6vw,2.05rem);
+  font-weight:800;
+  letter-spacing:-.02em;
+  margin:0 0 8px;
+  background:linear-gradient(90deg,#7fdbff,#c4b5fd,#ffb1d9,#7fdbff);
+  background-size:200% auto;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:heroShift 8s linear infinite;
+}
+
+#gallery .extended-gallery__hint{
+  text-align:center;
+  color:rgba(255,255,255,.6);
+  font-size:.9rem;
+  margin:0 0 28px;
+  line-height:1.6;
+}
+#gallery .extended-gallery__hint b{ color:#7fdbff; }
+
+/* category heading */
+#gallery .okp{
+  background:linear-gradient(to bottom left, #5a67d8 50%, #764ba2 50%);
+  color:#fff;
+  text-align:center;
+  font-weight:900;
+  font-size:1.02rem;
+  letter-spacing:.4px;
+  border:2px solid rgba(90,103,216,.45);
+  border-radius:14px;
+  padding:12px 12px;
+  margin:36px 0 16px;
+  -webkit-text-stroke:.4px rgba(0,119,182,.35);
+  box-shadow:0 8px 24px -12px rgba(90,103,216,.55);
+}
+#gallery .okp:first-of-type{ margin-top:8px; }
+
+/* grid containers */
+#gallery [id^="box"]{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(275px, 1fr));
+  grid-gap:8px;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  padding:10px;
+  margin:0 auto;
+  background:rgba(255,255,255,.015);
+}
+
+/* cards */
+#gallery [id^="box"] > div{
+  position:relative;
+  min-height:150px;
+  cursor:pointer;
+  user-select:none;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+  transition:transform .18s ease, box-shadow .18s ease;
+  border-radius:10px;
+  overflow:hidden;
+}
+#gallery [id^="box"] > div:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 18px rgba(0,0,0,.5);
+}
+#gallery [id^="box"] > div:focus-visible{
+  outline:3px solid #7fdbff;
+  outline-offset:2px;
+}
+
+#gallery [id^="box"] > div::before{
+  content:"tap · dbl=copy";
+  position:absolute;
+  top:6px;
+  right:8px;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.5px;
+  color:rgba(255,255,255,.85);
+  background:rgba(0,0,0,.5);
+  padding:2px 7px;
+  border-radius:5px;
+  pointer-events:none;
+  z-index:3;
+  transition:opacity .25s;
+}
+#gallery [id^="box"] > div.showing::before{ opacity:0; }
+
+/* code panel */
+#gallery code{
+  display:block;
+  width:100%;
+  height:150px;
+  padding:6px 8px;
+  color:#e6edf7;
+  background:rgba(8,8,24,.94);
+  opacity:0;
+  transition:opacity .3s ease;
+  font-family:"JetBrains Mono", ui-monospace, Consolas, monospace;
+  font-size:12px;
+  line-height:1.5;
+  font-weight:600;
+  overflow:auto;
+  white-space:pre-wrap;
+  word-break:break-word;
+  pointer-events:none;
+}
+#gallery code.visible{ opacity:1; pointer-events:auto; }
+
+/* label */
+#gallery .label{
+  position:absolute;
+  bottom:8px;
+  left:10px;
+  background:rgba(0,0,0,.55);
+  color:#fff;
+  padding:3px 10px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.3px;
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  pointer-events:none;
+  z-index:2;
+  transition:opacity .25s;
+  text-shadow:0 1px 3px rgba(0,0,0,.4);
+}
+#gallery [id^="box"] > div.showing .label{ opacity:0; }
+
+/* toast */
+#gallery .toast{
+  position:fixed;
+  bottom:24px;
+  left:50%;
+  transform:translateX(-50%) translateY(120px);
+  background:#0a0a18;
+  color:#7fdbff;
+  padding:14px 26px;
+  border-radius:10px;
+  font-weight:700;
+  font-size:14px;
+  letter-spacing:.5px;
+  box-shadow:0 6px 28px rgba(0,0,0,.6);
+  border:2px solid #7fdbff;
+  opacity:0;
+  transition:transform .35s ease, opacity .35s ease;
+  z-index:10000;
+  pointer-events:none;
+  white-space:nowrap;
+}
+#gallery .toast.show{
+  transform:translateX(-50%) translateY(0);
+  opacity:1;
+}
+
+/* ============================================================
+   BOX 1 — LINEAR (63 examples)
+   ============================================================ */
+#box .code{ color:#fff; border:1px solid rgba(255,255,255,.16); }
+#box .code:nth-child(1)  { background:linear-gradient(red,yellow,hotpink); }
+#box .code:nth-child(2)  { background:linear-gradient(to top right,cyan,green,blue); }
+#box .code:nth-child(3)  { background:linear-gradient(to bottom left,hsl(330deg,50%,40%),rgb(20,30,30),blue); }
+#box .code:nth-child(4)  { background:linear-gradient(to bottom right,hotpink,orange,blue); }
+#box .code:nth-child(5)  { background:linear-gradient(to top left,red,yellow,blue); }
+#box .code:nth-child(6)  { background:linear-gradient(55deg,red,yellow,blue); }
+#box .code:nth-child(7)  { background:linear-gradient(to bottom right,
+    red 20%, orange 20% 40%, yellow 40% 60%, green 60% 80%, blue 80%); }
+#box .code:nth-child(8)  { background:repeating-linear-gradient(hotpink,yellow 10%,cyan 20%); }
+#box .code:nth-child(9)  {
+  background:
+    linear-gradient(324deg, #3c3b6e 4%, transparent 4%) -0.7in 0.43in,
+    linear-gradient(36deg,  #3c3b6e 4%, transparent 4%)  0.3in 0.43in,
+    linear-gradient(72deg,  #fff 8.5%,    transparent 8.5%) 0.3in 0.43in,
+    linear-gradient(288deg, #fff 8.5%,    transparent 8.5%) -0.7in 0.43in,
+    linear-gradient(216deg, #fff 7.5%,    transparent 7.5%) -0.7in 0.23in,
+    linear-gradient(144deg, #fff 7.5%,    transparent 7.5%)  0.3in 0.23in,
+    linear-gradient(324deg, #3c3b6e 4%, transparent 4%) -0.2in 0.93in,
+    linear-gradient(36deg,  #3c3b6e 4%, transparent 4%)  0.8in 0.93in,
+    linear-gradient(72deg,  #fff 8.5%,    transparent 8.5%) 0.8in 0.93in,
+    linear-gradient(288deg, #fff 8.5%,    transparent 8.5%) -0.2in 0.93in,
+    linear-gradient(216deg, #fff 7.5%,    transparent 7.5%) -0.2in 0.73in,
+    linear-gradient(144deg, #fff 7.5%,    transparent 7.5%)  0.8in 0.73in,
+    #3c3b6e;
+  background-size:1in 1in;
+}
+#box .code:nth-child(10) { background:-webkit-repeating-linear-gradient(45deg,red,blue 21px); }
+#box .code:nth-child(11) { background:linear-gradient(145deg, rgb(153,153,164), rgb(96,96,107)); }
+#box .code:nth-child(12) { background:linear-gradient(145deg, rgb(255,255,255), rgb(7,248,249)); }
+#box .code:nth-child(13) { background:linear-gradient(145deg, rgb(253,21,251), rgb(234,237,238)); }
+#box .code:nth-child(14) { background:linear-gradient(145deg, rgb(230,41,118), rgb(255,102,164)); }
+#box .code:nth-child(15) { background:linear-gradient(145deg, rgb(56,1,82), rgb(153,3,227)); }
+#box .code:nth-child(16) { background:linear-gradient(145deg, rgb(248,216,0), rgb(253,235,113)); }
+#box .code:nth-child(17) { background:linear-gradient(145deg, rgb(0,255,161), rgb(0,255,255)); }
+#box .code:nth-child(18) { background:linear-gradient(145deg, rgb(217,224,33), rgb(251,135,43)); }
+#box .code:nth-child(19) { background:linear-gradient(145deg, rgb(133,45,145), rgb(49,42,108)); }
+#box .code:nth-child(20) { background:linear-gradient(145deg, rgb(107,115,255), rgb(0,13,255)); }
+#box .code:nth-child(21) { background:linear-gradient(145deg,#ffdf40,#ff8359); }
+#box .code:nth-child(22) { background:linear-gradient(145deg,#65799B,#5E2563); }
+#box .code:nth-child(23) { background:linear-gradient(145deg,#59c2ff,#1270e3); }
+#box .code:nth-child(24) { background:linear-gradient(145deg,#5496ff,#8739e5); }
+#box .code:nth-child(25) { background:linear-gradient(145deg,#aff57a,#54d159); }
+#box .code:nth-child(26) { background:linear-gradient(145deg,#46eeaa,#2cbfc7); }
+#box .code:nth-child(27) { background:linear-gradient(145deg,#15eded,#029cf5); }
+#box .code:nth-child(28) { background:linear-gradient(145deg,#ff63de,#b122e5); }
+#box .code:nth-child(29) { background:linear-gradient(145deg,#ff7c6e,#f5317f); }
+#box .code:nth-child(30) { background:linear-gradient(145deg,#f02fc2,#6094ea); }
+#box .code:nth-child(31) { background:linear-gradient(145deg,#65799b,#5e2563); }
+#box .code:nth-child(32) { background:linear-gradient(145deg,#184e68,#57ca85); }
+#box .code:nth-child(33) { background:linear-gradient(145deg,#5b247a,#1bcedf); }
+#box .code:nth-child(34) { background:linear-gradient(145deg,#ffe530,#ff2525); }
+#box .code:nth-child(35) { background:linear-gradient(145deg,#00cdff,#4218d8); }
+#box .code:nth-child(36) { background:linear-gradient(145deg,#ff9897,#f650a0); }
+#box .code:nth-child(37) { background:linear-gradient(145deg,#92ffc0,#002661); }
+#box .code:nth-child(38) { background:linear-gradient(145deg,#f05f57,#360940); }
+#box .code:nth-child(39) { background:linear-gradient(145deg,#fad7a1,#e96d71); }
+#box .code:nth-child(40) { background:linear-gradient(145deg,#fff6b7,#f6416c); }
+#box .code:nth-child(41) { background:linear-gradient(145deg,#b6c0c5,#112d60); }
+#box .code:nth-child(42) { background:linear-gradient(145deg,#ffe998,#57370d); }
+#box .code:nth-child(43) { background:linear-gradient(145deg,#9f879f,#f9bfda); }
+#box .code:nth-child(44) { background:linear-gradient(145deg,#05999e,#cbe7e3); }
+#box .code:nth-child(45) { background:linear-gradient(145deg,#58126a,#f6b2e1); }
+#box .code:nth-child(46) { background:linear-gradient(145deg,#5b146f,#ff009c); }
+#box .code:nth-child(47) { background:linear-gradient(145deg,#7F00FF,#E100FF); }
+#box .code:nth-child(48) { background:linear-gradient(145deg,#232526,#414345); }
+#box .code:nth-child(49) { background:linear-gradient(145deg,#EB3349,#F45C43); }
+#box .code:nth-child(50) { background:linear-gradient(145deg,#69C4FF,#5AF9D4); }
+#box .code:nth-child(51) { background:linear-gradient(145deg,#EC9F05,#FF4E00); }
+#box .code:nth-child(52) { background:linear-gradient(145deg,#B91372,#6B0F1A); }
+#box .code:nth-child(53) { background:linear-gradient(145deg,#5AFF15,#00B712); }
+#box .code:nth-child(54) { background:linear-gradient(145deg,#5F72BE,#9921E8); }
+#box .code:nth-child(55) { background:linear-gradient(145deg,#DB3445,#F71735); }
+#box .code:nth-child(56) { background:linear-gradient(145deg,#6D17CB,#2876F9); }
+#box .code:nth-child(57) { background:linear-gradient(145deg,#24F794,#20BA3E); }
+#box .code:nth-child(58) { background:linear-gradient(145deg,#56ab2f,#a8e063); }
+#box .code:nth-child(59) { background:linear-gradient(145deg,#aa076b,#61045f); }
+#box .code:nth-child(60) { background:linear-gradient(145deg,#A1C4FD,#C2E9FB); }
+#box .code:nth-child(61) { background:linear-gradient(145deg,#42E695,#3BB2B8); }
+#box .code:nth-child(62) { background:linear-gradient(145deg,#13F1FC,#0470DC); }
+#box .code:nth-child(63) { background:linear-gradient(145deg,#F5515F,#A1051D); }
+
+/* ============================================================
+   BOX 2 — RADIAL (12 examples)
+   ============================================================ */
+#box2 .cod{ border:1px solid rgba(255,255,255,.16); color:#fff; }
+#box2 .cod:nth-child(1)  { background:radial-gradient(red,yellow,blue); }
+#box2 .cod:nth-child(2)  { background:radial-gradient(red 10%,yellow 30%,blue); }
+#box2 .cod:nth-child(3)  { background:radial-gradient(circle,cyan,yellow,blue); }
+#box2 .cod:nth-child(4)  { background:repeating-radial-gradient(ellipse,red,yellow 10%,hotpink 30%); }
+#box2 .cod:nth-child(5)  { background:radial-gradient(closest-side at 30% 50%,red,yellow,blue); }
+#box2 .cod:nth-child(6)  { background:radial-gradient(farthest-side at 30% 50%,red,yellow,blue); }
+#box2 .cod:nth-child(7)  { background:radial-gradient(closest-corner at 50% 50%,
+    red 20%,orange 20% 40%,yellow 40% 60%,green 60% 80%,blue 80%); }
+#box2 .cod:nth-child(8)  { background:radial-gradient(farthest-corner at 50% 40%,hotpink,yellow,cyan); }
+#box2 .cod:nth-child(9)  {
+  background:
+    radial-gradient(blue,  blue  50%, transparent 50%, transparent 100%),
+    radial-gradient(cyan,  cyan  50%, transparent 50%, transparent 100%),
+    radial-gradient(yellow,purple 40%, transparent 40%, transparent 100%),
+    floralwhite;
+  background-size:8em 8em, 6em 6em, 1em 1em;
+  background-blend-mode:multiply;
+  background-position:0 0, -33% -33%, -200% -200%;
+}
+#box2 .cod:nth-child(10) { background-image:repeating-radial-gradient(black,blue 10%,plum 15%); }
+#box2 .cod:nth-child(11) {
+  background:
+    radial-gradient(rgba(255,255,255,.2) 20%, rgba(128,0,128,.4) 31%, rgba(128,0,128,.4) 35%, rgba(255,255,255,.2) 36%, rgba(255,255,255,.2) 40%, rgba(128,0,128,.4) 51%, rgba(128,0,128,.4) 55%, rgba(255,255,255,.2) 56%),
+    radial-gradient(rgba(255,255,255,.2) 20%, rgba(0,0,139,.4) 31%, rgba(0,0,139,.4) 35%, rgba(255,255,255,.2) 36%, rgba(255,255,255,.2) 40%, rgba(0,0,139,.4) 51%, rgba(0,0,139,.4) 55%, rgba(255,255,255,.2) 56%),
+    radial-gradient(rgba(255,255,255,.2) 20%, rgba(220,20,60,.4) 31%, rgba(220,20,60,.4) 35%, rgba(255,255,255,.2) 36%, rgba(255,255,255,.2) 40%, rgba(220,20,60,.4) 51%, rgba(220,20,60,.4) 55%, rgba(255,255,255,.2) 56%),
+    radial-gradient(rgba(255,255,255,.2) 20%, rgba(255,69,0,.4) 31%, rgba(255,69,0,.4) 35%, rgba(255,255,255,.2) 36%, rgba(255,255,255,.2) 40%, rgba(255,69,0,.4) 51%, rgba(255,69,0,.4) 55%, rgba(255,255,255,.2) 56%),
+    radial-gradient(rgba(255,255,255,.2) 20%, rgba(255,215,0,.4) 31%, rgba(255,215,0,.4) 35%, rgba(255,255,255,.2) 36%, rgba(255,255,255,.2) 40%, rgba(255,215,0,.4) 51%, rgba(255,215,0,.4) 55%, rgba(255,255,255,.2) 56%),
+    radial-gradient(rgba(255,255,255,.2) 20%, rgba(154,205,50,.4) 31%, rgba(154,205,50,.4) 35%, rgba(255,255,255,.2) 36%, rgba(255,255,255,.2) 40%, rgba(154,205,50,.4) 51%, rgba(154,205,50,.4) 55%, rgba(255,255,255,.2) 56%),
+    radial-gradient(rgba(255,255,255,.2) 20%, rgba(70,130,180,.4) 31%, rgba(70,130,180,.4) 35%, rgba(255,255,255,.2) 36%, rgba(255,255,255,.2) 40%, rgba(70,130,180,.4) 51%, rgba(70,130,180,.4) 55%, rgba(255,255,255,.2) 56%),
+    orangered;
+  background-size:13em 13em, 11em 11em, 5em 5em, 11em 11em, 7em 7em, 5em 5em, 3em 3em, 1em 1em;
+  background-position:50% 50%, 20% 20%, 30% 30%, 70% 70%;
+  background-blend-mode:overlay, normal, hard-light, overlay, multiply, soft-light;
+}
+#box2 .cod:nth-child(12) { background:radial-gradient(circle at 50% 50%, #ffffff 0%, #667eea 30%, #764ba2 60%, #1a1a2e 100%); }
+
+/* ============================================================
+   BOX 3 — CONIC (12 examples)
+   ============================================================ */
+#box3 .co{ border:1px solid rgba(255,255,255,.16); color:#fff; }
+#box3 .co:nth-child(1)  { background:conic-gradient(red,yellow,hotpink); }
+#box3 .co:nth-child(2)  { background:conic-gradient(from 90deg,red,green,blue); }
+#box3 .co:nth-child(3)  { background:conic-gradient(at 50% 75%,purple,cyan,gold); }
+#box3 .co:nth-child(4)  { background:conic-gradient(from 90deg at 20% 80%,red,yellow,blue); }
+#box3 .co:nth-child(5)  { background-image:repeating-conic-gradient(red 0deg 30deg,yellow 30deg 60deg,blue 60deg 90deg); }
+#box3 .co:nth-child(6)  { background:repeating-conic-gradient(from 3deg at 25% 25%,green,blue 2deg 5deg,green,yellow 15deg 18deg,green 20deg); }
+#box3 .co:nth-child(7)  { background-image:conic-gradient(red 0deg,red 90deg,yellow 90deg,yellow 180deg,hotpink 180deg,hotpink 270deg,blue 270deg); }
+#box3 .co:nth-child(8)  { background:conic-gradient(from 90deg,red 0deg,red 45deg,yellow 45deg,yellow 90deg,blue 90deg,blue 180deg,hotpink 180deg,hotpink 360deg); }
+#box3 .co:nth-child(9)  {
+  background:conic-gradient(
+    #fff 0.25turn, #000 0.25turn 0.5turn,
+    #fff 0.5turn 0.75turn, #000 0.75turn
+  ) top left / 25% 25% repeat;
+}
+#box3 .co:nth-child(10) { background:conic-gradient(from 45deg, #ff6b6b, #feca57, #43e97b, #4facfe, #ff6b6b); }
+#box3 .co:nth-child(11) { background:repeating-conic-gradient(from 0deg, #667eea 0deg 15deg, #764ba2 15deg 30deg); }
+#box3 .co:nth-child(12) { background:conic-gradient(from 180deg at 50% 100%, #43e97b, #f9d423, #f83600, #f83600, #f9d423, #43e97b); }
+
+/* ============================================================
+   BOX 4 — MULTIPLE (16 examples)
+   ============================================================ */
+#box4 .c{ border:1px solid rgba(255,255,255,.16); color:#fff; }
+#box4 .c:nth-child(1) {
+  background:
+    linear-gradient(30deg,  #f0f8ff 12%, transparent 12.5%, transparent 87%, #f0f8ff 87.5%, #f0f8ff),
+    linear-gradient(150deg, #f0f8ff 12%, transparent 12.5%, transparent 87%, #f0f8ff 87.5%, #f0f8ff),
+    linear-gradient(30deg,  #f0f8ff 12%, transparent 12.5%, transparent 87%, #f0f8ff 87.5%, #f0f8ff),
+    linear-gradient(150deg, #f0f8ff 12%, transparent 12.5%, transparent 87%, #f0f8ff 87.5%, #f0f8ff),
+    linear-gradient(60deg,  #87ceeb 25%, transparent 25.5%, transparent 75%, #87ceeb 75%, #87ceeb),
+    linear-gradient(60deg,  #87ceeb 25%, transparent 25.5%, transparent 75%, #87ceeb 75%, #87ceeb) #c1e1ec;
+  background-size:80px 140px;
+  background-position:0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+}
+#box4 .c:nth-child(2) {
+  background:
+    repeating-linear-gradient(-45deg, transparent 0, transparent 60px, #C37E18 60px, #C37E18 75px),
+    repeating-linear-gradient(45deg,  transparent 0, transparent 60px, #C37E18 60px, #C37E18 75px),
+    #E1A041;
+  background-size:212px 212px;
+}
+#box4 .c:nth-child(3) {
+  background:
+    radial-gradient(circle closest-side, transparent 66%, red 0),
+    conic-gradient(
+      #4e79a7 0, #4e79a7 14.3%, #f28e2c 0, #f28e2c 28.6%,
+      #0000ff 0, #0000ff 42.9%, #76b7b2 0, #76b7b2 57.2%,
+      #59a14f 0, #59a14f 71.5%, #edc949 0, #edc949 85.8%,
+      #af7aa1 0, #af7aa1 100%);
+}
+#box4 .c:nth-child(4) {
+  background:
+    repeating-linear-gradient(50deg, #F7A37B, #F7A37B 1em, #FFDEA8 1em, #FFDEA8 2em, #D0E4B0 2em, #D0E4B0 3em, #7CC5D0 3em, #7CC5D0 4em, #00A2E1 4em, #00A2E1 5em, #0085C8 5em, #0085C8 6em),
+    repeating-linear-gradient(-50deg, #F7A37B, #F7A37B 1em, #FFDEA8 1em, #FFDEA8 2em, #D0E4B0 2em, #D0E4B0 3em, #7CC5D0 3em, #7CC5D0 4em, #00A2E1 4em, #00A2E1 5em, #0085C8 5em, #0085C8 6em);
+  background-blend-mode:multiply;
+}
+#box4 .c:nth-child(5) {
+  background:
+    repeating-radial-gradient(circle, transparent, transparent 3.5em, tomato 3.5em, tomato 4.5em),
+    repeating-radial-gradient(circle, transparent, transparent 3.5em, dodgerblue 3.5em, dodgerblue 4.5em),
+    repeating-radial-gradient(circle, transparent, transparent 2.5em, gold 2.5em, gold 2.75em),
+    floralwhite;
+  background-blend-mode:multiply;
+  background-size:10em 10em;
+  background-position:0 0, 5em 5em, 10em 5em;
+}
+#box4 .c:nth-child(6) {
+  background:
+    radial-gradient(yellow,  yellow  50%, transparent 50%, transparent 100%),
+    radial-gradient(cyan,    cyan    50%, transparent 50%, transparent 100%),
+    radial-gradient(magenta, magenta 40%, transparent 40%, transparent 100%),
+    floralwhite;
+  background-size:8em 8em, 6em 6em, 2em 2em;
+  background-blend-mode:multiply;
+  background-position:0 0, -33% -33%, -200% -200%;
+}
+#box4 .c:nth-child(7) {
+  background:
+    radial-gradient(transparent 0, transparent 2em, lightblue 2em, lightblue 2.5em, transparent 2.5em, transparent 100%),
+    radial-gradient(transparent 0, transparent 2em, aquamarine 2em, aquamarine 2.5em, transparent 2.5em, transparent 100%),
+    radial-gradient(transparent 0, transparent 2em, khaki 2em, khaki 2.5em, transparent 2.5em, transparent 100%),
+    radial-gradient(transparent 0, transparent 2em, pink 2em, pink 2.5em, transparent 2.5em, transparent 100%),
+    linen;
+  background-blend-mode:multiply;
+  background-size:5em 5em;
+  background-position:0 2.5em, 2.5em 0, 2.5em 2.5em, 0 0;
+}
+#box4 .c:nth-child(8) {
+  background:
+    radial-gradient(at bottom right,
+      dodgerblue 0, dodgerblue 1em, lightskyblue 1em, lightskyblue 2em,
+      deepskyblue 2em, deepskyblue 3em, gainsboro 3em, gainsboro 4em,
+      lightsteelblue 4em, lightsteelblue 5em, deepskyblue 5em, deepskyblue 6em,
+      lightskyblue 6em, lightskyblue 7em, transparent 7em, transparent 8em),
+    radial-gradient(at top left,
+      transparent 0, transparent 1em, lightskyblue 1em, lightskyblue 2em,
+      deepskyblue 2em, deepskyblue 3em, lightsteelblue 3em, lightsteelblue 4em,
+      gainsboro 4em, gainsboro 5em, deepskyblue 5em, deepskyblue 6em,
+      skyblue 6em, skyblue 7em, dodgerblue 7em, dodgerblue 8em,
+      transparent 8em, transparent 20em),
+    radial-gradient(circle at center bottom, coral, darkslateblue);
+  background-blend-mode:overlay;
+  background-size:8em 8em, 8em 8em, cover;
+}
+#box4 .c:nth-child(9) {
+  background-image:
+    repeating-linear-gradient(90deg, firebrick, firebrick 20px, beige 0, beige 25px, forestgreen 0, forestgreen 35px, gold 0, gold 40px, crimson 0, crimson 60px),
+    repeating-linear-gradient(firebrick, firebrick 20px, beige 0, beige 25px, forestgreen 0, forestgreen 35px, gold 0, gold 40px, crimson 0, crimson 60px);
+  background-blend-mode:multiply;
+}
+#box4 .c:nth-child(10) {
+  background:
+    radial-gradient(circle closest-side,
+      red 0, brown 10%, lightblue 0, green 20%, yellow 0,
+      hotpink 30.6%, white 0, black 50%,
+      transparent 33.6%, transparent 98%, cyan 0),
+    conic-gradient(from 183deg,
+      #4e79a7 0, #4e79a7 14.3%, #f28e2c 0, #f28e2c 28.6%,
+      #0000ff 0, #0000ff 42.9%, #76b7b2 0, #76b7b2 57.2%,
+      #59a14f 0, #59a14f 71.5%, #edc949 0, #edc949 85.8%,
+      #af7aa1 0, #af7aa1 100%);
+}
+#box4 .c:nth-child(11) {
+  background:
+    linear-gradient(to bottom right,
+      red 0, brown 10%, lightblue 0, green 20%, yellow 0,
+      hotpink 30.6%, white 0, black 50%,
+      transparent 33.6%, transparent 80%, cyan 0%),
+    conic-gradient(from 183deg,
+      #4e79a7 0, #4e79a7 14.3%, #f28e2c 0, #f28e2c 28.6%,
+      #0000ff 0, #0000ff 42.9%, #76b7b2 0, #76b7b2 57.2%,
+      #59a14f 0, #59a14f 71.5%, #edc949 0, #edc949 85.8%,
+      #af7aa1 0, #af7aa1 100%);
+}
+#box4 .c:nth-child(12) {
+  background:
+    radial-gradient(circle closest-side,
+      red 0, brown 10%, lightblue 0, green 20%, yellow 0,
+      hotpink 30.6%, white 0, black 50%, cyan 0%,
+      purple 70%, white 0%, red 85%,
+      transparent 33.6%, transparent 98%, cyan 0),
+    conic-gradient(from 183deg,
+      #4e79a7 0, #4e79a7 14.3%, #f28e2c 0, #f28e2c 28.6%,
+      #0000ff 0, #0000ff 42.9%, #76b7b2 0, #76b7b2 57.2%,
+      #59a14f 0, #59a14f 71.5%, #edc949 0, #edc949 85.8%,
+      #af7aa1 0, #af7aa1 100%);
+}
+#box4 .c:nth-child(13) {
+  background:
+    radial-gradient(red 20%, blue 20% 40%, hotpink 40% 60%, green 60% 80%, yellow 80% 100%, transparent 50%, transparent 100%),
+    radial-gradient(circle, red, yellow, blue) repeat;
+  background-size:30px 30px, 200px 200px;
+}
+#box4 .c:nth-child(14) {
+  background:
+    radial-gradient(red 0, brown 10%, lightblue 0, green 20%, yellow 0,
+      hotpink 30.6%, white 0, black 50%, cyan 0%,
+      purple 70%, white 0%, red 85%, cyan 0, green 100%),
+    radial-gradient(circle, red, yellow, blue) repeat;
+  background-size:40px 40px, 20px 20px;
+}
+#box4 .c:nth-child(15) {
+  background:
+    repeating-linear-gradient(360deg, rgba(0,255,255,0) 58%, rgba(255,0,0,0) 71%, rgba(255,0,255,0) 100%, rgba(0,0,255,0) 47%, rgba(0,255,255,0) 9%) 322px,
+    radial-gradient(ellipse farthest-corner at center, rgba(255,0,0,.23) 72%, rgba(255,255,0,0) 4%, rgba(0,255,0,0) 80%, rgba(0,255,255,1) 16%),
+    linear-gradient(to right, rgba(255,0,0,1) 100%, rgba(255,255,0,1) 100%, rgba(0,255,0,1) 100%),
+    rgba(0,0,0,.07);
+  background-blend-mode:lighten;
+  background-size:100px 100px, 15px 15px;
+  background-position:center;
+}
+#box4 .c:nth-child(16) {
+  background:
+    repeating-linear-gradient(360deg, rgba(0,255,255,0) 58%, rgba(255,0,0,0) 71%, rgba(255,0,255,0) 100%, rgba(0,0,255,0) 47%, rgba(0,255,255,0) 9%) 322px,
+    radial-gradient(ellipse farthest-corner at center, rgba(255,255,255,.87) 36%, rgba(255,255,0,.34) 4%, rgba(0,255,0,.84) 80%, rgba(255,0,0,1) 6%),
+    repeating-radial-gradient(circle closest-side at center, rgba(255,0,0,.17) 13%, rgba(255,255,255,.36) 16%, rgba(255,255,0,.36) 31%) 117px,
+    rgba(0,0,0,.07);
+  background-blend-mode:lighten;
+  background-size:100px 100px, 20px 20px;
+  background-position:center;
+}
+
+/* ============================================================
+   BOX 5 — MODERN & MINIMAL
+   ============================================================ */
+#box5 > div{ border:1px solid rgba(255,255,255,.12); }
+#box5 > div:nth-child(1){ background:
+  radial-gradient(ellipse at 20% 30%, rgba(240,147,251,.7) 0%, transparent 55%),
+  radial-gradient(ellipse at 80% 70%, rgba(102,126,234,.7) 0%, transparent 55%),
+  linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+#box5 > div:nth-child(2){ background:
+  radial-gradient(circle at 30% 20%, rgba(255,255,255,.5) 0%, transparent 40%),
+  radial-gradient(circle at 70% 80%, rgba(0,242,254,.6) 0%, transparent 50%),
+  linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+#box5 > div:nth-child(3){ background:
+  radial-gradient(circle at 30% 30%, rgba(255,255,255,.45) 0%, transparent 40%),
+  radial-gradient(circle at 80% 70%, rgba(56,249,215,.55) 0%, transparent 50%),
+  linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+#box5 > div:nth-child(4){ background:
+  radial-gradient(circle at 80% 20%, rgba(254,225,64,.75) 0%, transparent 50%),
+  radial-gradient(circle at 20% 80%, rgba(250,112,154,.55) 0%, transparent 50%),
+  linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+#box5 > div:nth-child(5){ background:
+  radial-gradient(circle at 30% 40%, rgba(251,194,235,.65) 0%, transparent 60%),
+  radial-gradient(circle at 70% 60%, rgba(255,255,255,.35) 0%, transparent 50%),
+  linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%); }
+#box5 > div:nth-child(6){ background:
+  radial-gradient(circle at 70% 30%, rgba(255,255,255,.55) 0%, transparent 40%),
+  radial-gradient(circle at 20% 80%, rgba(255,236,210,.55) 0%, transparent 50%),
+  linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); }
+#box5 > div:nth-child(7){ background:
+  radial-gradient(circle at 20% 80%, rgba(255,60,60,.35) 0%, transparent 50%),
+  radial-gradient(circle at 80% 20%, rgba(255,255,200,.5) 0%, transparent 50%),
+  linear-gradient(135deg, #f6d365 0%, #fda085 100%); }
+#box5 > div:nth-child(8){ background:
+  radial-gradient(circle at 80% 30%, rgba(255,255,255,.5) 0%, transparent 40%),
+  radial-gradient(circle at 20% 70%, rgba(56,249,215,.35) 0%, transparent 50%),
+  linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%); }
+
+/* ============================================================
+   BOX 6 — NATURE
+   ============================================================ */
+#box6 > div{ border:1px solid rgba(0,0,0,.35); }
+#box6 > div:nth-child(1){ background:
+  radial-gradient(circle at 20% 80%, rgba(255,99,71,.65) 0%, transparent 50%),
+  radial-gradient(circle at 80% 20%, rgba(255,165,0,.55) 0%, transparent 50%),
+  linear-gradient(135deg, #5a0a0a 0%, #c0392b 40%, #e67e22 70%, #f1c40f 100%); }
+#box6 > div:nth-child(2){ background:
+  radial-gradient(circle at 30% 30%, rgba(0,188,212,.45) 0%, transparent 50%),
+  radial-gradient(circle at 70% 80%, rgba(0,96,100,.55) 0%, transparent 50%),
+  linear-gradient(180deg, #00bcd4 0%, #00838f 30%, #004d40 70%, #001f1c 100%); }
+#box6 > div:nth-child(3){ background:
+  radial-gradient(circle at 40% 20%, rgba(255,255,255,.45) 0%, transparent 40%),
+  radial-gradient(circle at 70% 70%, rgba(52,152,219,.45) 0%, transparent 50%),
+  linear-gradient(135deg, #1abc9c 0%, #16a085 40%, #2980b9 100%); }
+#box6 > div:nth-child(4){ background:
+  radial-gradient(circle at 50% 100%, rgba(255,180,50,.75) 0%, transparent 55%),
+  radial-gradient(circle at 80% 20%, rgba(155,89,182,.5) 0%, transparent 50%),
+  linear-gradient(180deg, #2c3e50 0%, #c0392b 40%, #e67e22 70%, #f4d03f 100%); }
+#box6 > div:nth-child(5){ background:
+  radial-gradient(circle at 30% 30%, rgba(255,255,255,.55) 0%, transparent 40%),
+  radial-gradient(circle at 70% 70%, rgba(255,182,193,.45) 0%, transparent 50%),
+  linear-gradient(135deg, #fbe9e7 0%, #ffccbc 30%, #f8bbd0 70%, #f48fb1 100%); }
+#box6 > div:nth-child(6){ background:
+  radial-gradient(circle at 30% 30%, rgba(46,204,113,.55) 0%, transparent 50%),
+  radial-gradient(circle at 70% 70%, rgba(0,0,0,.35) 0%, transparent 50%),
+  linear-gradient(135deg, #134e5e 0%, #2c7873 40%, #27ae60 70%, #16a085 100%); }
+#box6 > div:nth-child(7){ background:
+  radial-gradient(circle at 50% 100%, rgba(255,215,0,.75) 0%, transparent 60%),
+  radial-gradient(circle at 20% 20%, rgba(255,69,0,.45) 0%, transparent 50%),
+  linear-gradient(180deg, #6a0dad 0%, #e91e63 40%, #ff9800 70%, #ffeb3b 100%); }
+#box6 > div:nth-child(8){ background:
+  radial-gradient(circle at 30% 30%, rgba(0,255,178,.55) 0%, transparent 50%),
+  radial-gradient(circle at 70% 70%, rgba(155,89,182,.55) 0%, transparent 50%),
+  linear-gradient(135deg, #0f2027 0%, #203a43 30%, #2c5364 60%, #4b0082 100%); }
+
+/* ============================================================
+   BOX 7 — NEON & CYBERPUNK
+   ============================================================ */
+#box7 > div{ border:1px solid rgba(255,255,255,.18); }
+#box7 > div:nth-child(1){ background:
+  radial-gradient(circle at 50% 100%, rgba(255,0,128,.85) 0%, transparent 55%),
+  radial-gradient(circle at 20% 20%, rgba(0,200,255,.45) 0%, transparent 50%),
+  linear-gradient(180deg, #1a0033 0%, #4a00e0 50%, #ff00ff 100%); }
+#box7 > div:nth-child(2){ background:
+  radial-gradient(circle at 30% 30%, rgba(255,113,206,.65) 0%, transparent 50%),
+  radial-gradient(circle at 70% 70%, rgba(1,205,254,.65) 0%, transparent 50%),
+  linear-gradient(135deg, #ff6ec7 0%, #7873f5 50%, #01cdfe 100%); }
+#box7 > div:nth-child(3){ background:
+  radial-gradient(circle at 50% 50%, rgba(0,255,255,.45) 0%, transparent 60%),
+  linear-gradient(0deg, rgba(0,255,255,.15) 1px, transparent 1px) 0 0/30px 30px,
+  linear-gradient(90deg, rgba(0,255,255,.15) 1px, transparent 1px) 0 0/30px 30px,
+  linear-gradient(180deg, #000814 0%, #001d3d 50%, #003566 100%); }
+#box7 > div:nth-child(4){ background:
+  radial-gradient(circle at 50% 50%, rgba(255,0,110,.9) 0%, transparent 60%),
+  radial-gradient(circle at 20% 80%, rgba(255,0,200,.5) 0%, transparent 50%),
+  linear-gradient(135deg, #2b0014 0%, #6a0032 50%, #ff006e 100%); }
+#box7 > div:nth-child(5){ background:
+  radial-gradient(circle at 30% 30%, rgba(193,53,132,.7) 0%, transparent 50%),
+  radial-gradient(circle at 70% 70%, rgba(138,43,226,.7) 0%, transparent 50%),
+  linear-gradient(135deg, #0f0524 0%, #391463 50%, #8a2be2 100%); }
+#box7 > div:nth-child(6){ background:
+  radial-gradient(circle at 20% 30%, rgba(255,0,128,.65) 0%, transparent 40%),
+  radial-gradient(circle at 80% 20%, rgba(0,255,255,.65) 0%, transparent 40%),
+  radial-gradient(circle at 50% 80%, rgba(255,255,0,.55) 0%, transparent 40%),
+  radial-gradient(circle at 30% 70%, rgba(138,43,226,.55) 0%, transparent 40%),
+  #1a0033; }
+#box7 > div:nth-child(7){ background:
+  radial-gradient(circle at 50% 50%, rgba(57,255,20,.9) 0%, transparent 60%),
+  radial-gradient(circle at 20% 80%, rgba(0,255,178,.5) 0%, transparent 50%),
+  linear-gradient(135deg, #001a00 0%, #003300 50%, #39ff14 100%); }
+#box7 > div:nth-child(8){ background:
+  radial-gradient(circle at 30% 30%, rgba(138,43,226,.6) 0%, transparent 40%),
+  radial-gradient(circle at 70% 70%, rgba(255,0,128,.45) 0%, transparent 40%),
+  radial-gradient(circle at 50% 50%, rgba(0,200,255,.35) 0%, transparent 60%),
+  #0a001a; }
+
+/* ============================================================
+   BOX 8 — PASTEL DREAMS
+   ============================================================ */
+#box8 > div{ border:1px solid rgba(255,255,255,.4); }
+#box8 > div:nth-child(1){ background:
+  radial-gradient(circle at 30% 30%, rgba(255,182,193,.75) 0%, transparent 50%),
+  radial-gradient(circle at 70% 70%, rgba(173,216,230,.75) 0%, transparent 50%),
+  linear-gradient(135deg, #ffc3d3 0%, #e0c3fc 50%, #8ec5fc 100%); }
+#box8 > div:nth-child(2){ background:
+  radial-gradient(circle at 70% 30%, rgba(255,255,255,.55) 0%, transparent 40%),
+  linear-gradient(135deg, #e0c3fc 0%, #c2a0e8 50%, #9c88ff 100%); }
+#box8 > div:nth-child(3){ background:
+  radial-gradient(circle at 30% 40%, rgba(255,255,255,.65) 0%, transparent 40%),
+  radial-gradient(circle at 80% 80%, rgba(255,204,188,.65) 0%, transparent 50%),
+  linear-gradient(135deg, #ffe0d3 0%, #ffb88c 50%, #ff8a65 100%); }
+#box8 > div:nth-child(4){ background:
+  radial-gradient(circle at 70% 30%, rgba(255,255,255,.65) 0%, transparent 40%),
+  linear-gradient(135deg, #c7f9cc 0%, #80ed99 50%, #57cc99 100%); }
+#box8 > div:nth-child(5){ background:
+  radial-gradient(circle at 30% 30%, rgba(255,255,255,.55) 0%, transparent 40%),
+  linear-gradient(135deg, #ffdde1 0%, #ee9ca7 50%, #d980a3 100%); }
+#box8 > div:nth-child(6){ background:
+  radial-gradient(circle at 70% 70%, rgba(255,255,255,.55) 0%, transparent 40%),
+  linear-gradient(135deg, #d4fcff 0%, #a0e7f5 50%, #6dd5ed 100%); }
+#box8 > div:nth-child(7){ background:
+  radial-gradient(circle at 30% 60%, rgba(255,255,255,.65) 0%, transparent 40%),
+  linear-gradient(135deg, #fffacd 0%, #ffeb99 50%, #ffd93d 100%); }
+#box8 > div:nth-child(8){ background:
+  radial-gradient(circle at 50% 30%, rgba(255,255,255,.55) 0%, transparent 40%),
+  linear-gradient(135deg, #ffb6c1 0%, #ff69b4 50%, #ff1493 100%); }
+
+/* ============================================================
+   BOX 9 — METALLIC & LUXE
+   ============================================================ */
+#box9 > div{ border:1px solid rgba(0,0,0,.4); }
+#box9 > div:nth-child(1){ background:
+  linear-gradient(45deg, transparent 40%, rgba(255,255,255,.55) 50%, transparent 60%),
+  linear-gradient(135deg, #b8860b 0%, #daa520 25%, #ffd700 50%, #daa520 75%, #b8860b 100%); }
+#box9 > div:nth-child(2){ background:
+  linear-gradient(45deg, transparent 40%, rgba(255,255,255,.45) 50%, transparent 60%),
+  linear-gradient(135deg, #b76e79 0%, #e8b4b8 25%, #f7cad0 50%, #e8b4b8 75%, #b76e79 100%); }
+#box9 > div:nth-child(3){ background:
+  linear-gradient(45deg, transparent 40%, rgba(255,255,255,.75) 50%, transparent 60%),
+  linear-gradient(180deg, #757f9a 0%, #d7dde8 25%, #ffffff 50%, #d7dde8 75%, #757f9a 100%); }
+#box9 > div:nth-child(4){ background:
+  linear-gradient(45deg, transparent 40%, rgba(255,255,255,.45) 50%, transparent 60%),
+  linear-gradient(135deg, #8b4513 0%, #cd7f32 30%, #e8a87c 50%, #cd7f32 70%, #8b4513 100%); }
+#box9 > div:nth-child(5){ background:
+  radial-gradient(circle at 30% 30%, rgba(255,255,255,.85) 0%, transparent 40%),
+  radial-gradient(circle at 70% 70%, rgba(255,192,203,.45) 0%, transparent 50%),
+  linear-gradient(135deg, #f5f5f7 0%, #e8e8e8 50%, #f5f5f7 100%); }
+#box9 > div:nth-child(6){ background:
+  linear-gradient(45deg, transparent 40%, rgba(255,255,255,.35) 50%, transparent 60%),
+  linear-gradient(180deg, #2c3e50 0%, #4a5a6e 25%, #7b8a9e 50%, #4a5a6e 75%, #2c3e50 100%); }
+
+/* ============================================================
+   BOX 10 — MESH & AURORA
+   ============================================================ */
+#box10 > div{ border:1px solid rgba(255,255,255,.15); }
+#box10 > div:nth-child(1){ background:
+  radial-gradient(ellipse at 20% 50%, rgba(0,255,178,.55) 0%, transparent 40%),
+  radial-gradient(ellipse at 50% 30%, rgba(0,200,255,.55) 0%, transparent 40%),
+  radial-gradient(ellipse at 80% 60%, rgba(155,89,182,.55) 0%, transparent 40%),
+  linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); }
+#box10 > div:nth-child(2){ background:
+  radial-gradient(ellipse at 30% 30%, rgba(255,0,128,.55) 0%, transparent 40%),
+  radial-gradient(ellipse at 70% 60%, rgba(138,43,226,.55) 0%, transparent 40%),
+  radial-gradient(ellipse at 50% 90%, rgba(0,200,255,.45) 0%, transparent 40%),
+  #0a001a; }
+#box10 > div:nth-child(3){ background:
+  radial-gradient(ellipse at 20% 30%, rgba(255,255,255,.7) 0%, transparent 20%),
+  radial-gradient(ellipse at 80% 60%, rgba(255,255,255,.45) 0%, transparent 15%),
+  radial-gradient(ellipse at 50% 50%, rgba(255,0,255,.35) 0%, transparent 50%),
+  radial-gradient(ellipse at 70% 20%, rgba(0,200,255,.45) 0%, transparent 40%),
+  linear-gradient(135deg, #0a001a 0%, #1a0033 50%, #0a001a 100%); }
+#box10 > div:nth-child(4){ background:
+  radial-gradient(ellipse at 40% 30%, rgba(255,182,193,.55) 0%, transparent 40%),
+  radial-gradient(ellipse at 60% 70%, rgba(138,43,226,.55) 0%, transparent 40%),
+  radial-gradient(ellipse at 30% 80%, rgba(0,200,255,.45) 0%, transparent 40%),
+  linear-gradient(135deg, #1a0033 0%, #2d1b4e 100%); }
+#box10 > div:nth-child(5){ background:
+  radial-gradient(ellipse at 20% 80%, rgba(255,69,0,.65) 0%, transparent 50%),
+  radial-gradient(ellipse at 80% 20%, rgba(255,0,128,.55) 0%, transparent 50%),
+  radial-gradient(ellipse at 50% 50%, rgba(255,215,0,.45) 0%, transparent 60%),
+  linear-gradient(135deg, #2c0e37 0%, #7b0f3e 50%, #ff4500 100%); }
+#box10 > div:nth-child(6){ background:
+  radial-gradient(ellipse at 30% 30%, rgba(255,255,255,.65) 0%, transparent 40%),
+  radial-gradient(ellipse at 70% 70%, rgba(173,216,230,.55) 0%, transparent 50%),
+  radial-gradient(ellipse at 50% 50%, rgba(176,224,230,.45) 0%, transparent 60%),
+  linear-gradient(135deg, #b0e0e6 0%, #87ceeb 50%, #4682b4 100%); }
+
+/* ============================================================
+   BOX 11 — PATTERNS & TEXTURES
+   ============================================================ */
+#box11 > div{ border:1px solid rgba(0,0,0,.22); }
+#box11 > div:nth-child(1){ background:
+  repeating-linear-gradient(45deg,
+    #ff6b6b 0 20px, #feca57 20px 40px,
+    #48dbfb 40px 60px, #ff9ff3 60px 80px); }
+#box11 > div:nth-child(2){ background:
+  conic-gradient(from 0deg, #ffb6c1 25%, #add8e6 0 50%, #ffb6c1 0 75%, #add8e6 0);
+  background-size:80px 80px; }
+#box11 > div:nth-child(3){ background:
+  radial-gradient(circle, #ff6b6b 25%, transparent 26%) 0 0 / 40px 40px,
+  radial-gradient(circle, #ff6b6b 25%, transparent 26%) 20px 20px / 40px 40px,
+  #fff5f5; }
+#box11 > div:nth-child(4){ background:
+  linear-gradient(45deg, transparent 45%, #333 45% 55%, transparent 55%),
+  linear-gradient(-45deg, transparent 45%, #333 45% 55%, transparent 55%),
+  #f5f5f5;
+  background-size:40px 40px; }
+#box11 > div:nth-child(5){ background:
+  linear-gradient(135deg, #667eea 25%, transparent 25%) -20px 0,
+  linear-gradient(225deg, #667eea 25%, transparent 25%) -20px 0,
+  linear-gradient(315deg, #764ba2 25%, transparent 25%),
+  linear-gradient(45deg, #764ba2 25%, transparent 25%);
+  background-size:40px 40px; }
+#box11 > div:nth-child(6){ background:
+  linear-gradient(30deg, #f0c04f 12%, transparent 12.5%, transparent 87%, #f0c04f 87.5%, #f0c04f),
+  linear-gradient(150deg, #f0c04f 12%, transparent 12.5%, transparent 87%, #f0c04f 87.5%, #f0c04f),
+  linear-gradient(30deg, #f0c04f 12%, transparent 12.5%, transparent 87%, #f0c04f 87.5%, #f0c04f),
+  linear-gradient(150deg, #f0c04f 12%, transparent 12.5%, transparent 87%, #f0c04f 87.5%, #f0c04f),
+  linear-gradient(60deg, #f7e8a0 25%, transparent 25.5%, transparent 75%, #f7e8a0 75%, #f7e8a0),
+  linear-gradient(60deg, #f7e8a0 25%, transparent 25.5%, transparent 75%, #f7e8a0 75%, #f7e8a0) #fff8dc;
+  background-size:80px 140px;
+  background-position:0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px; }
+#box11 > div:nth-child(7){ background:
+  repeating-linear-gradient(0deg, transparent 0 20px, rgba(255,107,107,.65) 20px 25px),
+  repeating-linear-gradient(90deg, transparent 0 20px, rgba(72,219,251,.65) 20px 25px),
+  #1e3a5f; }
+#box11 > div:nth-child(8){ background:
+  linear-gradient(135deg, #667eea 25%, transparent 25%) -20px 0,
+  linear-gradient(225deg, #667eea 25%, transparent 25%) -20px 0,
+  linear-gradient(315deg, #667eea 25%, transparent 25%),
+  linear-gradient(45deg, #667eea 25%, transparent 25%);
+  background-size:40px 40px;
+  background-color:#764ba2; }
+#box11 > div:nth-child(9){ background:
+  repeating-radial-gradient(circle at 50% 100%,
+    #4facfe 0 15px, #00f2fe 15px 30px, #0080ff 30px 45px); }
+#box11 > div:nth-child(10){ background:
+  linear-gradient(#8e2f24 2px, transparent 2px) 0 0 / 60px 40px,
+  linear-gradient(90deg, #8e2f24 2px, transparent 2px) 0 0 / 60px 40px,
+  linear-gradient(90deg, #8e2f24 2px, transparent 2px) 30px 20px / 60px 40px,
+  #c0392b; }
+
+/* ============================================================
+   RESPONSIVE for extended gallery
+   ============================================================ */
+@media (max-width:640px){
+  #gallery{ padding:40px 0 48px; }
+  #gallery [id^="box"]{ grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); }
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <span class="hero__badge"><span class="hero__dot"></span> CSS Gradient Guide</span>
+  <h1>Create <span>Beautiful CSS Gradients</span> Without Images</h1>
+  <p>
+    Learn linear, radial, conic and repeating gradients — complete syntax,
+    practical examples, a ready-to-use gradient gallery, and best practices
+    for modern web design. Includes a live generator and 150+ copy-paste ready examples.
+  </p>
+  <div class="hero__stats">
+    <span class="hero__stat">🎨 4 Gradient Types</span>
+    <span class="hero__stat">⚡ Live Generator</span>
+    <span class="hero__stat">📋 150+ Examples</span>
+  </div>
+</header>
+
+<main id="main-content">
+
+  <div class="wrap">
+
+    <!-- ============ TOC ============ -->
+    <nav class="toc" aria-label="Table of contents">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#what-is">What Is a CSS Gradient?</a></li>
+        <li><a href="#generator">Interactive Generator</a></li>
+        <li><a href="#benefits">Benefits</a></li>
+        <li><a href="#linear">CSS Linear Gradient</a></li>
+        <li><a href="#radial">CSS Radial Gradient</a></li>
+        <li><a href="#conic">CSS Conic Gradient</a></li>
+        <li><a href="#repeating">Repeating Gradients</a></li>
+        <li><a href="#multiple">Multiple Gradients</a></li>
+        <li><a href="#color-stops">Color Stops</a></li>
+        <li><a href="#online-tool">Using an Online Tool</a></li>
+        <li><a href="#featured-gradients">Featured Gradients</a></li>
+        <li><a href="#gallery">Extended Gallery (150+)</a></li>
+        <li><a href="#buttons">Gradients for Buttons</a></li>
+        <li><a href="#backgrounds">Gradients for Backgrounds</a></li>
+        <li><a href="#text">Gradients for Text</a></li>
+        <li><a href="#best-practices">Best Practices</a></li>
+        <li><a href="#mistakes">Common Mistakes</a></li>
+        <li><a href="#faq">FAQs</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
+      </ol>
+    </nav>
+
+    <!-- ============ INTRO ============ -->
+    <section class="section section--plain" id="what-is">
+      <h2><span class="num">?</span> What Is a CSS Gradient?</h2>
+      <p class="lead">
+        A CSS gradient is a CSS feature that creates a smooth transition between
+        two or more colors — no image file required.
+      </p>
+      <p>
+        Gradients are commonly used in website backgrounds, navigation bars,
+        buttons, hero sections, cards, text effects, and other design elements.
+        CSS provides three main gradient types: <strong>linear</strong>,
+        <strong>radial</strong>, and <strong>conic</strong>. You can also create
+        repeating gradients and combine multiple gradients to produce more
+        advanced background patterns.
+      </p>
+      <div class="note">
+        <div>
+          <strong>Why it matters:</strong> gradients are rendered by the browser,
+          so they scale perfectly on any screen, need no HTTP requests, and can be
+          changed with a single line of code.
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INTERACTIVE GENERATOR ============ -->
+    <section class="section section--plain" id="generator">
+      <h2><span class="num">⚙</span> Try the Interactive Gradient Generator</h2>
+      <p>
+        Use the live tool below to build gradients in real time — pick colors,
+        drag stops, switch between linear / radial / conic / repeating, stack
+        multiple layers, and copy the generated CSS with a single click.
+      </p>
+
+      <div id="ZZTY">
+        <div class="container">
+          <div class="tab-buttons" role="tablist" aria-label="Generator sections">
+            <button type="button" class="tab-button active" role="tab" id="tab-gradients"
+                    data-tab="gradients" aria-selected="true" aria-controls="gradients-tab">Gradients</button>
+            <button type="button" class="tab-button" role="tab" id="tab-background"
+                    data-tab="background" aria-selected="false" aria-controls="background-tab" tabindex="-1">Background</button>
+          </div>
+
+          <div class="tab-content active" id="gradients-tab" role="tabpanel" aria-labelledby="tab-gradients">
+            <div id="gradient-controls-container"></div>
+            <div class="buttons" id="RRTT">
+              <button type="button" class="add-gradient" id="add-gradient">+ Add Gradient Layer</button>
+              <button type="button" class="remove-gradient" id="remove-gradient">− Remove Last Layer</button>
+              <button type="button" class="random-btn" id="randomize">🎲 Randomize Colors</button>
+              <button type="button" class="reset-btn" id="reset-all">↺ Reset</button>
+            </div>
+          </div>
+
+          <div class="tab-content" id="background-tab" role="tabpanel" aria-labelledby="tab-background">
+            <div class="controls">
+              <div>
+                <label for="background-color">Background Color</label>
+                <input type="color" id="background-color" value="#ffffff">
+
+                <label for="background-opacity">Background Color Opacity</label>
+                <input type="range" id="background-opacity" min="0" max="100" value="100">
+                <span id="background-opacity-value" class="value-label">100%</span>
+              </div>
+              <div>
+                <label for="preview-height">Preview / Element Height (px)</label>
+                <input type="number" id="preview-height" min="50" max="1200" step="10" value="300">
+                <p class="hint">
+                  Blend mode, size, position and repeat are set
+                  <strong>per gradient layer</strong> inside the Gradients tab.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="gradient-preview" id="gradient-preview" role="img" aria-label="Gradient preview"></div>
+
+          <label for="css-code">Generated CSS</label>
+          <div class="code-output" id="css-code" role="region" aria-live="polite">/* CSS will appear here */</div>
+
+          <div class="buttons" id="DSJ">
+            <button type="button" class="copy-btn" id="copy-css">Copy CSS</button>
+            <button type="button" class="copy-btn" id="copy-html">Copy HTML</button>
+          </div>
+        </div>
+      </div>
+    </section>
+ <div class="related-tools">
+            <h2>Related Tools</h2>
+            <ul>
+                <li><a href="/tools/barcode-generator.html">Barcode Generator</a></li>
+                <li><a href="/tools/qr-code-generator.html">QR Code Generator Tool</a></li>
+                <li><a href="/tools/color-contrast-analyzer.html">Color Contrast Analyzer</a></li>
+                <li><a href="/tools/image-resizer.html">Image Resizer Tool</a></li>
+                <li><a href="/tools/unlock-page.html">Unlock Page Generator</a></li>
+                <li><a href="/tools/auto-code-typing.html">Auto Code Typing</a></li>
+                <li><a href="/tools/code-editor.html">Live Code Editor</a></li>
+                   <li><a href="tools/css-box-shadow-generator.html">Box Shadow Generator</a></li>
+                   
+            </ul>
+            
+        </div>
+
+
+    <!-- ============ BENEFITS ============ -->
+    <section class="section section--plain" id="benefits">
+      <h2><span class="num">★</span> Benefits of Using a Gradient Generator</h2>
+      <ul class="clean">
+        <li>Create attractive backgrounds quickly.</li>
+        <li>Experiment with different color combinations.</li>
+        <li>Customize gradient directions and color stops.</li>
+        <li>Preview designs before using them on a website.</li>
+        <li>Copy ready-to-use CSS code.</li>
+        <li>Build modern interfaces without external background images.</li>
+        <li>Save development time when designing buttons, cards, and banners.</li>
+      </ul>
+    </section>
+
+    <!-- ============ 1. LINEAR ============ -->
+    <section class="section" id="linear">
+      <h2><span class="num">1</span> CSS Linear Gradient</h2>
+      <p>
+        A linear gradient creates a smooth transition between colors along a
+        straight line. You can control the direction of the transition using
+        keywords or an angle.
+      </p>
+
+      <h3>Syntax</h3>
+      <pre><code>background: linear-gradient(direction, color1, color2);</code></pre>
+
+      <h3>Example 1 — Simple Linear Gradient</h3>
+      <pre><code>.gradient-box {
+  background: linear-gradient(to right, red, blue);
+  height: 200px;
+  border-radius: 12px;
+}</code></pre>
+      <div class="demo" style="background:linear-gradient(to right, red, blue);">Red → Blue</div>
+
+      <h3>Example 2 — Three-Color Gradient</h3>
+      <pre><code>.gradient-box {
+  background: linear-gradient(
+    to right,
+    #ff0080,
+    #7928ca,
+    #00c6ff
+  );
+  height: 200px;
+}</code></pre>
+      <div class="demo" style="background:linear-gradient(to right,#ff0080,#7928ca,#00c6ff);">Pink → Purple → Cyan</div>
+
+      <h3>Example 3 — Diagonal Gradient</h3>
+      <pre><code>.gradient-box {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  height: 200px;
+}</code></pre>
+      <div class="demo" style="background:linear-gradient(135deg,#667eea,#764ba2);">135° Diagonal</div>
+
+      <div class="note">
+        <div>
+          Linear gradients are useful for website headers, call-to-action buttons,
+          hero sections, and modern UI components.
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2. RADIAL ============ -->
+    <section class="section" id="radial">
+      <h2><span class="num">2</span> CSS Radial Gradient</h2>
+      <p>
+        A radial gradient creates a transition between colors that spreads
+        outward from a central point. By default it uses an elliptical shape, but
+        you can specify a circular shape.
+      </p>
+
+      <h3>Syntax</h3>
+      <pre><code>background: radial-gradient(shape, color1, color2);</code></pre>
+
+      <h3>Example 1 — Basic Radial Gradient</h3>
+      <pre><code>.gradient-box {
+  background: radial-gradient(circle, yellow, red);
+  height: 200px;
+}</code></pre>
+      <div class="demo" style="background:radial-gradient(circle, yellow, red);">Yellow Center → Red Edge</div>
+
+      <h3>Example 2 — Multiple Colors</h3>
+      <pre><code>.gradient-box {
+  background: radial-gradient(
+    circle,
+    #ffffff,
+    #667eea,
+    #764ba2,
+    #1a1a2e
+  );
+  height: 200px;
+}</code></pre>
+      <div class="demo" style="background:radial-gradient(circle,#ffffff,#667eea,#764ba2,#1a1a2e);">Multi-Color Glow</div>
+
+      <h3>Example 3 — Custom Radial Position</h3>
+      <pre><code>.gradient-box {
+  background: radial-gradient(
+    circle at top left,
+    #00c6ff,
+    #0072ff,
+    #001f54
+  );
+  height: 200px;
+}</code></pre>
+      <div class="demo" style="background:radial-gradient(circle at top left,#00c6ff,#0072ff,#001f54);">Top-Left Spotlight</div>
+
+      <div class="note">
+        <div>
+          Radial gradients are useful for glowing effects, decorative backgrounds,
+          spotlight effects, and colorful website sections.
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. CONIC ============ -->
+    <section class="section" id="conic">
+      <h2><span class="num">3</span> CSS Conic Gradient</h2>
+      <p>
+        A conic gradient creates a color transition around a central point,
+        similar to the arrangement of colors on a color wheel.
+      </p>
+
+      <h3>Syntax</h3>
+      <pre><code>background: conic-gradient(color1, color2, color3);</code></pre>
+
+      <h3>Example 1 — Basic Conic Gradient</h3>
+      <pre><code>.gradient-box {
+  background: conic-gradient(red, yellow, green, blue, red);
+  height: 200px;
+  border-radius: 50%;
+}</code></pre>
+      <div class="demo demo--round" style="background:conic-gradient(red, yellow, green, blue, red);"></div>
+
+      <h3>Example 2 — Conic Gradient with an Angle</h3>
+      <pre><code>.gradient-box {
+  background: conic-gradient(
+    from 90deg,
+    #ff0080,
+    #7928ca,
+    #00c6ff,
+    #ff0080
+  );
+  height: 200px;
+  border-radius: 50%;
+}</code></pre>
+      <div class="demo demo--round" style="background:conic-gradient(from 90deg,#ff0080,#7928ca,#00c6ff,#ff0080);"></div>
+
+      <h3>Example 3 — Color Segments</h3>
+      <pre><code>.gradient-box {
+  background: conic-gradient(
+    red    0deg 90deg,
+    yellow 90deg 180deg,
+    blue   180deg 270deg,
+    green  270deg 360deg
+  );
+  height: 200px;
+  border-radius: 50%;
+}</code></pre>
+      <div class="demo demo--round" style="background:conic-gradient(red 0deg 90deg, yellow 90deg 180deg, blue 180deg 270deg, green 270deg 360deg);"></div>
+
+      <div class="note">
+        <div>
+          Conic gradients are useful for decorative circles, color wheels,
+          pie-chart-style visuals, and creative UI designs.
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. REPEATING ============ -->
+    <section class="section" id="repeating">
+      <h2><span class="num">4</span> CSS Repeating Gradients</h2>
+      <p>
+        Repeating gradients repeat a gradient pattern across an element. They can
+        be used to create stripes, rings, and other decorative patterns.
+      </p>
+
+      <h3>Example 1 — Repeating Linear Gradient</h3>
+      <pre><code>.gradient-box {
+  background: repeating-linear-gradient(
+    45deg,
+    #ff0080 0px,
+    #ff0080 10px,
+    #7928ca 10px,
+    #7928ca 20px
+  );
+  height: 200px;
+}</code></pre>
+      <div class="demo" style="background:repeating-linear-gradient(45deg,#ff0080 0px,#ff0080 10px,#7928ca 10px,#7928ca 20px);">Diagonal Stripes</div>
+
+      <h3>Example 2 — Repeating Radial Gradient</h3>
+      <pre><code>.gradient-box {
+  background: repeating-radial-gradient(
+    circle,
+    #00c6ff 0px,
+    #00c6ff 10px,
+    #001f54 10px,
+    #001f54 20px
+  );
+  height: 200px;
+}</code></pre>
+      <div class="demo" style="background:repeating-radial-gradient(circle,#00c6ff 0px,#00c6ff 10px,#001f54 10px,#001f54 20px);">Rings</div>
+
+      <h3>Example 3 — Repeating Conic Gradient</h3>
+      <pre><code>.gradient-box {
+  background: repeating-conic-gradient(
+    #667eea 0deg 15deg,
+    #764ba2 15deg 30deg
+  );
+  height: 200px;
+  border-radius: 50%;
+}</code></pre>
+      <div class="demo demo--round" style="background:repeating-conic-gradient(#667eea 0deg 15deg,#764ba2 15deg 30deg);"></div>
+    </section>
+
+    <!-- ============ 5. MULTIPLE ============ -->
+    <section class="section" id="multiple">
+      <h2><span class="num">5</span> How to Use Multiple CSS Gradients</h2>
+      <p>
+        You can combine multiple gradients in a single <code>background</code>
+        declaration. Each gradient layer is separated by a comma.
+      </p>
+
+      <h3>Example — Multiple Gradient Background</h3>
+      <pre><code>.gradient-box {
+  background:
+    linear-gradient(135deg, rgba(255,0,128,.7), transparent),
+    linear-gradient(45deg, #667eea, #764ba2);
+  height: 250px;
+  border-radius: 16px;
+}</code></pre>
+      <div class="demo" style="background:linear-gradient(135deg,rgba(255,0,128,.7),transparent),linear-gradient(45deg,#667eea,#764ba2);">Two Layers Combined</div>
+    </section>
+
+    <!-- ============ 6. COLOR STOPS ============ -->
+    <section class="section" id="color-stops">
+      <h2><span class="num">6</span> Understanding Color Stops</h2>
+      <p>
+        Color stops define the colors used in a gradient and where those colors
+        appear along the gradient line.
+      </p>
+
+      <h3>Example — Custom Color Stops</h3>
+      <pre><code>.gradient-box {
+  background: linear-gradient(
+    to right,
+    red    0%,
+    orange 25%,
+    yellow 50%,
+    green  75%,
+    blue   100%
+  );
+  height: 200px;
+}</code></pre>
+      <div class="demo" style="background:linear-gradient(to right,red 0%,orange 25%,yellow 50%,green 75%,blue 100%);">0% → 100%</div>
+
+      <p>Using the same position for adjacent color stops creates a sharp color boundary instead of a smooth transition.</p>
+
+      <pre><code>/* Sharp boundary at 50% */
+background: linear-gradient(to right, #667eea 50%, #ff0080 50%);</code></pre>
+      <div class="demo" style="background:linear-gradient(to right,#667eea 50%,#ff0080 50%);">Hard Edge</div>
+    </section>
+
+    <!-- ============ 7. ONLINE TOOL ============ -->
+    <section class="section" id="online-tool">
+      <h2><span class="num">7</span> Create a Gradient Using an Online Tool</h2>
+      <p>Follow these steps to create a custom gradient with the generator above.</p>
+
+      <ol class="steps">
+        <li><strong>Open the CSS Gradient Generator</strong> Use the interactive tool near the top of this page.</li>
+        <li><strong>Choose your colors</strong> Select the starting and ending color, and add more colors for a multi-color gradient.</li>
+        <li><strong>Select the gradient type</strong> Pick linear, radial, conic, or repeating.</li>
+        <li><strong>Adjust the direction</strong> For linear gradients, change the angle until it looks right.</li>
+        <li><strong>Customize color stops</strong> Move the color positions to control the transition.</li>
+        <li><strong>Preview your design</strong> Check the preview and refine until it matches your requirements.</li>
+        <li><strong>Copy the CSS code</strong> Click <em>Copy CSS</em> and paste it into your stylesheet.</li>
+        <li><strong>Apply it to an element</strong> Use the generated <code>background</code> on the element you want to style.</li>
+      </ol>
+
+      <pre><code>.hero-section {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 60px 20px;
+  border-radius: 16px;
+}</code></pre>
+    </section>
+
+    <!-- ============ 8. FEATURED GRADIENTS ============ -->
+    <section class="section" id="featured-gradients">
+      <h2><span class="num">8</span> Featured Gradients</h2>
+      <p>
+        Hand-picked combinations that work well together. Browse, pick one
+        that fits your project, and copy the CSS.
+      </p>
+
+      <div class="gallery">
+
+        <article class="swatch">
+          <div class="swatch__preview" style="background:linear-gradient(135deg,#667eea,#764ba2);">
+            <span>Purple Dream</span>
+          </div>
+          <div class="swatch__body">
+            <h3>Purple Dream</h3>
+            <p>Best for modern landing pages, cards, and website headers.</p>
+            <code>linear-gradient(135deg,#667eea,#764ba2)</code>
+          </div>
+        </article>
+
+        <article class="swatch">
+          <div class="swatch__preview" style="background:linear-gradient(135deg,#ff7e5f,#feb47b);">
+            <span>Sunset Glow</span>
+          </div>
+          <div class="swatch__body">
+            <h3>Sunset Glow</h3>
+            <p>Useful for warm, vibrant backgrounds and promotional sections.</p>
+            <code>linear-gradient(135deg,#ff7e5f,#feb47b)</code>
+          </div>
+        </article>
+
+        <article class="swatch">
+          <div class="swatch__preview" style="background:linear-gradient(135deg,#2193b0,#6dd5ed);">
+            <span>Ocean Blue</span>
+          </div>
+          <div class="swatch__body">
+            <h3>Ocean Blue</h3>
+            <p>Suitable for clean, modern, and technology-focused designs.</p>
+            <code>linear-gradient(135deg,#2193b0,#6dd5ed)</code>
+          </div>
+        </article>
+
+        <article class="swatch">
+          <div class="swatch__preview" style="background:linear-gradient(135deg,#ff61d2,#fe9090);">
+            <span>Pink Paradise</span>
+          </div>
+          <div class="swatch__body">
+            <h3>Pink Paradise</h3>
+            <p>Works well for creative websites and colorful interface elements.</p>
+            <code>linear-gradient(135deg,#ff61d2,#fe9090)</code>
+          </div>
+        </article>
+
+        <article class="swatch">
+          <div class="swatch__preview" style="background:linear-gradient(135deg,#232526,#414345);">
+            <span>Deep Night</span>
+          </div>
+          <div class="swatch__body">
+            <h3>Deep Night</h3>
+            <p>Useful for dark themes, cards, and elegant backgrounds.</p>
+            <code>linear-gradient(135deg,#232526,#414345)</code>
+          </div>
+        </article>
+
+        <article class="swatch">
+          <div class="swatch__preview" style="background:linear-gradient(135deg,#56ab2f,#a8e063);">
+            <span>Fresh Green</span>
+          </div>
+          <div class="swatch__body">
+            <h3>Fresh Green</h3>
+            <p>Suitable for nature-inspired designs, success messages, and fresh UI.</p>
+            <code>linear-gradient(135deg,#56ab2f,#a8e063)</code>
+          </div>
+        </article>
+
+        <article class="swatch">
+          <div class="swatch__preview" style="background:linear-gradient(135deg,#f12711,#f5af19);">
+            <span>Fire</span>
+          </div>
+          <div class="swatch__body">
+            <h3>Fire Gradient</h3>
+            <p>Creates a warm combination of red and orange-yellow.</p>
+            <code>linear-gradient(135deg,#f12711,#f5af19)</code>
+          </div>
+        </article>
+
+        <article class="swatch">
+          <div class="swatch__preview" style="background:linear-gradient(135deg,#00c6ff,#0072ff);">
+            <span>Electric Blue</span>
+          </div>
+          <div class="swatch__body">
+            <h3>Electric Blue</h3>
+            <p>Useful for technology websites, buttons, and modern banners.</p>
+            <code>linear-gradient(135deg,#00c6ff,#0072ff)</code>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="note" style="margin-top:22px;">
+        <div>Customize any example by changing the colors, direction, and color-stop positions.</div>
+      </div>
+    </section>
+
+  </div><!-- /wrap -->
+
+  <!-- ============ EXTENDED GALLERY (full width) ============ -->
+  <section id="gallery" aria-labelledby="extended-gallery-title">
+    <div class="extended-gallery__inner">
+      <h2 id="extended-gallery-title" class="extended-gallery__title">Extended Gallery — 150+ Ready-to-Use Gradients</h2>
+      <p class="extended-gallery__hint">
+        <b>Tap once</b> to show code · <b>Double-tap</b> to copy it ·
+        Keyboard: <b>Enter</b> = toggle · <b>Shift+Enter</b> = copy
+      </p>
+
+      <!-- 1. LINEAR -->
+      <h3 class="okp">CSS linear-gradient — 63 Examples</h3>
+      <div id="box">
+        <div class="code"><code>background:linear-gradient(red,yellow,hotpink);</code></div>
+        <div class="code"><code>background:linear-gradient(to top right,cyan,green,blue);</code></div>
+        <div class="code"><code>background:linear-gradient(to bottom left,hsl(330deg,50%,40%),rgb(20,30,30),blue);</code></div>
+        <div class="code"><code>background:linear-gradient(to bottom right,hotpink,orange,blue);</code></div>
+        <div class="code"><code>background:linear-gradient(to top left,red,yellow,blue);</code></div>
+        <div class="code"><code>background:linear-gradient(55deg,red,yellow,blue);</code></div>
+        <div class="code"><code>background:linear-gradient(to bottom right,
+    red 20%, orange 20% 40%, yellow 40% 60%, green 60% 80%, blue 80%);</code></div>
+        <div class="code"><code>background:repeating-linear-gradient(hotpink,yellow 10%,cyan 20%);</code></div>
+        <div class="code"><code>background:
+  linear-gradient(324deg, #3c3b6e 4%, transparent 4%) -0.7in 0.43in,
+  linear-gradient(36deg,  #3c3b6e 4%, transparent 4%)  0.3in 0.43in,
+  linear-gradient(72deg,  #fff 8.5%, transparent 8.5%) 0.3in 0.43in,
+  linear-gradient(288deg, #fff 8.5%, transparent 8.5%) -0.7in 0.43in,
+  linear-gradient(216deg, #fff 7.5%, transparent 7.5%) -0.7in 0.23in,
+  linear-gradient(144deg, #fff 7.5%, transparent 7.5%)  0.3in 0.23in,
+  linear-gradient(324deg, #3c3b6e 4%, transparent 4%) -0.2in 0.93in,
+  linear-gradient(36deg,  #3c3b6e 4%, transparent 4%)  0.8in 0.93in,
+  linear-gradient(72deg,  #fff 8.5%, transparent 8.5%) 0.8in 0.93in,
+  linear-gradient(288deg, #fff 8.5%, transparent 8.5%) -0.2in 0.93in,
+  linear-gradient(216deg, #fff 7.5%, transparent 7.5%) -0.2in 0.73in,
+  linear-gradient(144deg, #fff 7.5%, transparent 7.5%)  0.8in 0.73in,
+  #3c3b6e;
+background-size: 1in 1in;</code></div>
+        <div class="code"><code>background:-webkit-repeating-linear-gradient(45deg,red,blue 21px);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg, rgb(153, 153, 164), rgb(96, 96, 107));</code></div>
+        <div class="code"><code>background:linear-gradient(145deg, rgb(255, 255, 255), rgb(7, 248, 249));</code></div>
+        <div class="code"><code>background:linear-gradient(145deg, rgb(253, 21, 251), rgb(234, 237, 238));</code></div>
+        <div class="code"><code>background:linear-gradient(145deg, rgb(230, 41, 118), rgb(255, 102, 164));</code></div>
+        <div class="code"><code>background:linear-gradient(145deg, rgb(56, 1, 82), rgb(153, 3, 227));</code></div>
+        <div class="code"><code>background:linear-gradient(145deg, rgb(248, 216, 0), rgb(253, 235, 113));</code></div>
+        <div class="code"><code>background:linear-gradient(145deg, rgb(0, 255, 161), rgb(0, 255, 255));</code></div>
+        <div class="code"><code>background:linear-gradient(145deg, rgb(217, 224, 33), rgb(251, 135, 43));</code></div>
+        <div class="code"><code>background:linear-gradient(145deg, rgb(133, 45, 145), rgb(49, 42, 108));</code></div>
+        <div class="code"><code>background:linear-gradient(145deg, rgb(107, 115, 255), rgb(0, 13, 255));</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#ffdf40,#ff8359);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#65799B,#5E2563);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#59c2ff,#1270e3);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#5496ff,#8739e5);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#aff57a,#54d159);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#46eeaa,#2cbfc7);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#15eded,#029cf5);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#ff63de,#b122e5);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#ff7c6e,#f5317f);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#f02fc2,#6094ea);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#65799b,#5e2563);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#184e68,#57ca85);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#5b247a,#1bcedf);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#ffe530,#ff2525);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#00cdff,#4218d8);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#ff9897,#f650a0);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#92ffc0,#002661);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#f05f57,#360940);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#fad7a1,#e96d71);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#fff6b7,#f6416c);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#b6c0c5,#112d60);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#ffe998,#57370d);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#9f879f,#f9bfda);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#05999e,#cbe7e3);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#58126a,#f6b2e1);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#5b146f,#ff009c);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#7F00FF,#E100FF);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#232526,#414345);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#EB3349,#F45C43);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#69C4FF,#5AF9D4);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#EC9F05,#FF4E00);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#B91372,#6B0F1A);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#5AFF15,#00B712);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#5F72BE,#9921E8);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#DB3445,#F71735);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#6D17CB,#2876F9);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#24F794,#20BA3E);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#56ab2f,#a8e063);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#aa076b,#61045f);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#A1C4FD,#C2E9FB);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#42E695,#3BB2B8);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#13F1FC,#0470DC);</code></div>
+        <div class="code"><code>background:linear-gradient(145deg,#F5515F,#A1051D);</code></div>
+      </div>
+
+      <!-- 2. RADIAL -->
+      <h3 class="okp">CSS radial-gradient — 12 Examples</h3>
+      <div id="box2">
+        <div class="cod"><code>background:radial-gradient(red,yellow,blue);</code></div>
+        <div class="cod"><code>background:radial-gradient(red 10%,yellow 30%,blue);</code></div>
+        <div class="cod"><code>background:radial-gradient(circle,cyan,yellow,blue);</code></div>
+        <div class="cod"><code>background:repeating-radial-gradient(ellipse,red,yellow 10%,hotpink 30%);</code></div>
+        <div class="cod"><code>background:radial-gradient(closest-side at 30% 50%,red,yellow,blue);</code></div>
+        <div class="cod"><code>background:radial-gradient(farthest-side at 30% 50%,red,yellow,blue);</code></div>
+        <div class="cod"><code>background:radial-gradient(closest-corner at 50% 50%,
+    red 20%, orange 20% 40%, yellow 40% 60%, green 60% 80%, blue 80%);</code></div>
+        <div class="cod"><code>background:radial-gradient(farthest-corner at 50% 40%,hotpink,yellow,cyan);</code></div>
+        <div class="cod"><code>background:
+    radial-gradient(blue,  blue  50%, transparent 50%, transparent 100%),
+    radial-gradient(cyan,  cyan  50%, transparent 50%, transparent 100%),
+    radial-gradient(yellow,purple 40%, transparent 40%, transparent 100%),
+    floralwhite;
+background-size: 8em 8em, 6em 6em, 1em 1em;
+background-blend-mode: multiply;
+background-position: 0 0, -33% -33%, -200% -200%;</code></div>
+        <div class="cod"><code>background-image: repeating-radial-gradient(black, blue 10%, plum 15%);</code></div>
+        <div class="cod"><code>background:
+    radial-gradient(rgba(255,255,255,.2) 20%, rgba(128,0,128,.4) 31%, rgba(128,0,128,.4) 35%, rgba(255,255,255,.2) 36%, rgba(255,255,255,.2) 40%, rgba(128,0,128,.4) 51%, rgba(128,0,128,.4) 55%, rgba(255,255,255,.2) 56%),
+    radial-gradient(rgba(255,255,255,.2) 20%, rgba(0,0,139,.4) 31%, rgba(0,0,139,.4) 35%, rgba(255,255,255,.2) 36%, rgba(255,255,255,.2) 40%, rgba(0,0,139,.4) 51%, rgba(0,0,139,.4) 55%, rgba(255,255,255,.2) 56%),
+    radial-gradient(rgba(255,255,255,.2) 20%, rgba(220,20,60,.4) 31%, rgba(220,20,60,.4) 35%, rgba(255,255,255,.2) 36%, rgba(255,255,255,.2) 40%, rgba(220,20,60,.4) 51%, rgba(220,20,60,.4) 55%, rgba(255,255,255,.2) 56%),
+    radial-gradient(rgba(255,255,255,.2) 20%, rgba(255,69,0,.4) 31%, rgba(255,69,0,.4) 35%, rgba(255,255,255,.2) 36%, rgba(255,255,255,.2) 40%, rgba(255,69,0,.4) 51%, rgba(255,69,0,.4) 55%, rgba(255,255,255,.2) 56%),
+    radial-gradient(rgba(255,255,255,.2) 20%, rgba(255,215,0,.4) 31%, rgba(255,215,0,.4) 35%, rgba(255,255,255,.2) 36%, rgba(255,255,255,.2) 40%, rgba(255,215,0,.4) 51%, rgba(255,215,0,.4) 55%, rgba(255,255,255,.2) 56%),
+    radial-gradient(rgba(255,255,255,.2) 20%, rgba(154,205,50,.4) 31%, rgba(154,205,50,.4) 35%, rgba(255,255,255,.2) 36%, rgba(255,255,255,.2) 40%, rgba(154,205,50,.4) 51%, rgba(154,205,50,.4) 55%, rgba(255,255,255,.2) 56%),
+    radial-gradient(rgba(255,255,255,.2) 20%, rgba(70,130,180,.4) 31%, rgba(70,130,180,.4) 35%, rgba(255,255,255,.2) 36%, rgba(255,255,255,.2) 40%, rgba(70,130,180,.4) 51%, rgba(70,130,180,.4) 55%, rgba(255,255,255,.2) 56%),
+    orangered;
+background-size: 13em 13em, 11em 11em, 5em 5em, 11em 11em, 7em 7em, 5em 5em, 3em 3em, 1em 1em;
+background-position: 50% 50%, 20% 20%, 30% 30%, 70% 70%;
+background-blend-mode: overlay, normal, hard-light, overlay, multiply, soft-light;</code></div>
+        <div class="cod"><code>background:radial-gradient(circle at 50% 50%, #ffffff 0%, #667eea 30%, #764ba2 60%, #1a1a2e 100%);</code></div>
+      </div>
+
+      <!-- 3. CONIC -->
+      <h3 class="okp">CSS conic-gradient — 12 Examples</h3>
+      <div id="box3">
+        <div class="co"><code>background:conic-gradient(red,yellow,hotpink);</code></div>
+        <div class="co"><code>background:conic-gradient(from 90deg,red,green,blue);</code></div>
+        <div class="co"><code>background:conic-gradient(at 50% 75%,purple,cyan,gold);</code></div>
+        <div class="co"><code>background:conic-gradient(from 90deg at 20% 80%,red,yellow,blue);</code></div>
+        <div class="co"><code>background-image: repeating-conic-gradient(red 0deg 30deg, yellow 30deg 60deg, blue 60deg 90deg);</code></div>
+        <div class="co"><code>background: repeating-conic-gradient( from 3deg at 25% 25%, green, blue 2deg 5deg, green, yellow 15deg 18deg, green 20deg );</code></div>
+        <div class="co"><code>background-image: conic-gradient(red 0deg, red 90deg, yellow 90deg, yellow 180deg, hotpink 180deg,hotpink 270deg, blue 270deg);</code></div>
+        <div class="co"><code>background:conic-gradient(from 90deg,red 0deg,red 45deg,yellow 45deg,yellow 90deg,blue 90deg,blue 180deg,hotpink 180deg,hotpink 360deg);</code></div>
+        <div class="co"><code>background:conic-gradient(
+      #fff 0.25turn,
+      #000 0.25turn 0.5turn,
+      #fff 0.5turn 0.75turn,
+      #000 0.75turn
+    )
+    top left / 25% 25% repeat;</code></div>
+        <div class="co"><code>background:conic-gradient(from 45deg, #ff6b6b, #feca57, #43e97b, #4facfe, #ff6b6b);</code></div>
+        <div class="co"><code>background:repeating-conic-gradient(from 0deg, #667eea 0deg 15deg, #764ba2 15deg 30deg);</code></div>
+        <div class="co"><code>background:conic-gradient(from 180deg at 50% 100%, #43e97b, #f9d423, #f83600, #f83600, #f9d423, #43e97b);</code></div>
+      </div>
+
+      <!-- 4. MULTIPLE -->
+      <h3 class="okp">CSS multiple-gradient — 16 Examples</h3>
+      <div id="box4">
+        <div class="c"><code>background:linear-gradient(30deg, #f0f8ff 12%, transparent 12.5%, transparent 87%, #f0f8ff 87.5%, #f0f8ff),
+linear-gradient(150deg, #f0f8ff 12%, transparent 12.5%, transparent 87%, #f0f8ff 87.5%, #f0f8ff),
+linear-gradient(30deg, #f0f8ff 12%, transparent 12.5%, transparent 87%, #f0f8ff 87.5%, #f0f8ff),
+linear-gradient(150deg, #f0f8ff 12%, transparent 12.5%, transparent 87%, #f0f8ff 87.5%, #f0f8ff),
+linear-gradient(60deg, #87ceeb 25%, transparent 25.5%, transparent 75%, #87ceeb 75%, #87ceeb),
+linear-gradient(60deg, #87ceeb 25%, transparent 25.5%, transparent 75%, #87ceeb 75%, #87ceeb) #c1e1ec;
+background-size: 80px 140px;
+background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;</code></div>
+        <div class="c"><code>background: repeating-linear-gradient(-45deg, transparent 0, transparent 60px, #C37E18 60px, #C37E18 75px), repeating-linear-gradient(45deg, transparent 0, transparent 60px, #C37E18 60px, #C37E18 75px), #E1A041;
+background-size: 212px 212px;</code></div>
+        <div class="c"><code>background:
+  radial-gradient(circle closest-side, transparent 66%, red 0),
+  conic-gradient(
+    #4e79a7 0, #4e79a7 14.3%, #f28e2c 0, #f28e2c 28.6%,
+    #0000ff 0, #0000ff 42.9%, #76b7b2 0, #76b7b2 57.2%,
+    #59a14f 0, #59a14f 71.5%, #edc949 0, #edc949 85.8%,
+    #af7aa1 0, #af7aa1 100%);</code></div>
+        <div class="c"><code>background:
+  repeating-linear-gradient(50deg, #F7A37B, #F7A37B 1em, #FFDEA8 1em, #FFDEA8 2em, #D0E4B0 2em, #D0E4B0 3em, #7CC5D0 3em, #7CC5D0 4em, #00A2E1 4em, #00A2E1 5em, #0085C8 5em, #0085C8 6em),
+  repeating-linear-gradient(-50deg, #F7A37B, #F7A37B 1em, #FFDEA8 1em, #FFDEA8 2em, #D0E4B0 2em, #D0E4B0 3em, #7CC5D0 3em, #7CC5D0 4em, #00A2E1 4em, #00A2E1 5em, #0085C8 5em, #0085C8 6em);
+background-blend-mode: multiply;</code></div>
+        <div class="c"><code>background:
+  repeating-radial-gradient(circle, transparent, transparent 3.5em, tomato 3.5em, tomato 4.5em),
+  repeating-radial-gradient(circle, transparent, transparent 3.5em, dodgerblue 3.5em, dodgerblue 4.5em),
+  repeating-radial-gradient(circle, transparent, transparent 2.5em, gold 2.5em, gold 2.75em),
+  floralwhite;
+background-blend-mode: multiply;
+background-size: 10em 10em;
+background-position: 0 0, 5em 5em, 10em 5em;</code></div>
+        <div class="c"><code>background:
+  radial-gradient(yellow,  yellow  50%, transparent 50%, transparent 100%),
+  radial-gradient(cyan,    cyan    50%, transparent 50%, transparent 100%),
+  radial-gradient(magenta, magenta 40%, transparent 40%, transparent 100%),
+  floralwhite;
+background-size: 8em 8em, 6em 6em, 2em 2em;
+background-blend-mode: multiply;
+background-position: 0 0, -33% -33%, -200% -200%;</code></div>
+        <div class="c"><code>background:
+  radial-gradient(transparent 0, transparent 2em, lightblue 2em, lightblue 2.5em, transparent 2.5em, transparent 100%),
+  radial-gradient(transparent 0, transparent 2em, aquamarine 2em, aquamarine 2.5em, transparent 2.5em, transparent 100%),
+  radial-gradient(transparent 0, transparent 2em, khaki 2em, khaki 2.5em, transparent 2.5em, transparent 100%),
+  radial-gradient(transparent 0, transparent 2em, pink 2em, pink 2.5em, transparent 2.5em, transparent 100%),
+  linen;
+background-blend-mode: multiply;
+background-size: 5em 5em;
+background-position: 0 2.5em, 2.5em 0, 2.5em 2.5em, 0 0;</code></div>
+        <div class="c"><code>background:
+  radial-gradient(at bottom right,
+    dodgerblue 0, dodgerblue 1em, lightskyblue 1em, lightskyblue 2em,
+    deepskyblue 2em, deepskyblue 3em, gainsboro 3em, gainsboro 4em,
+    lightsteelblue 4em, lightsteelblue 5em, deepskyblue 5em, deepskyblue 6em,
+    lightskyblue 6em, lightskyblue 7em, transparent 7em, transparent 8em),
+  radial-gradient(at top left,
+    transparent 0, transparent 1em, lightskyblue 1em, lightskyblue 2em,
+    deepskyblue 2em, deepskyblue 3em, lightsteelblue 3em, lightsteelblue 4em,
+    gainsboro 4em, gainsboro 5em, deepskyblue 5em, deepskyblue 6em,
+    skyblue 6em, skyblue 7em, dodgerblue 7em, dodgerblue 8em,
+    transparent 8em, transparent 20em),
+  radial-gradient(circle at center bottom, coral, darkslateblue);
+background-blend-mode: overlay;
+background-size: 8em 8em, 8em 8em, cover;</code></div>
+        <div class="c"><code>background-image:
+  repeating-linear-gradient(90deg, firebrick, firebrick 20px, beige 0, beige 25px, forestgreen 0, forestgreen 35px, gold 0, gold 40px, crimson 0, crimson 60px),
+  repeating-linear-gradient(firebrick, firebrick 20px, beige 0, beige 25px, forestgreen 0, forestgreen 35px, gold 0, gold 40px, crimson 0, crimson 60px);
+background-blend-mode: multiply;</code></div>
+        <div class="c"><code>background:
+  radial-gradient(circle closest-side,
+    red 0, brown 10%, lightblue 0, green 20%, yellow 0,
+    hotpink 30.6%, white 0, black 50%,
+    transparent 33.6%, transparent 98%, cyan 0),
+  conic-gradient(from 183deg,
+    #4e79a7 0, #4e79a7 14.3%, #f28e2c 0, #f28e2c 28.6%,
+    #0000ff 0, #0000ff 42.9%, #76b7b2 0, #76b7b2 57.2%,
+    #59a14f 0, #59a14f 71.5%, #edc949 0, #edc949 85.8%,
+    #af7aa1 0, #af7aa1 100%);</code></div>
+        <div class="c"><code>background:
+  linear-gradient(to bottom right,
+    red 0, brown 10%, lightblue 0, green 20%, yellow 0,
+    hotpink 30.6%, white 0, black 50%,
+    transparent 33.6%, transparent 80%, cyan 0%),
+  conic-gradient(from 183deg,
+    #4e79a7 0, #4e79a7 14.3%, #f28e2c 0, #f28e2c 28.6%,
+    #0000ff 0, #0000ff 42.9%, #76b7b2 0, #76b7b2 57.2%,
+    #59a14f 0, #59a14f 71.5%, #edc949 0, #edc949 85.8%,
+    #af7aa1 0, #af7aa1 100%);</code></div>
+        <div class="c"><code>background:
+  radial-gradient(circle closest-side,
+    red 0, brown 10%, lightblue 0, green 20%, yellow 0,
+    hotpink 30.6%, white 0, black 50%, cyan 0%,
+    purple 70%, white 0%, red 85%,
+    transparent 33.6%, transparent 98%, cyan 0),
+  conic-gradient(from 183deg,
+    #4e79a7 0, #4e79a7 14.3%, #f28e2c 0, #f28e2c 28.6%,
+    #0000ff 0, #0000ff 42.9%, #76b7b2 0, #76b7b2 57.2%,
+    #59a14f 0, #59a14f 71.5%, #edc949 0, #edc949 85.8%,
+    #af7aa1 0, #af7aa1 100%);</code></div>
+        <div class="c"><code>background:
+  radial-gradient(red 20%, blue 20% 40%, hotpink 40% 60%, green 60% 80%, yellow 80% 100%, transparent 50%, transparent 100%),
+  radial-gradient(circle, red, yellow, blue) repeat;
+background-size: 30px 30px, 200px 200px;</code></div>
+        <div class="c"><code>background:
+  radial-gradient(red 0, brown 10%, lightblue 0, green 20%, yellow 0,
+    hotpink 30.6%, white 0, black 50%, cyan 0%,
+    purple 70%, white 0%, red 85%, cyan 0, green 100%),
+  radial-gradient(circle, red, yellow, blue) repeat;
+background-size: 40px 40px, 20px 20px;</code></div>
+        <div class="c"><code>background:
+  repeating-linear-gradient(360deg, rgba(0,255,255,0) 58%, rgba(255,0,0,0) 71%, rgba(255,0,255,0) 100%, rgba(0,0,255,0) 47%, rgba(0,255,255,0) 9%) 322px,
+  radial-gradient(ellipse farthest-corner at center, rgba(255,0,0,.23) 72%, rgba(255,255,0,0) 4%, rgba(0,255,0,0) 80%, rgba(0,255,255,1) 16%),
+  linear-gradient(to right, rgba(255,0,0,1) 100%, rgba(255,255,0,1) 100%, rgba(0,255,0,1) 100%),
+  rgba(0,0,0,.07);
+background-blend-mode: lighten;
+background-size: 100px 100px, 15px 15px;
+background-position: center;</code></div>
+        <div class="c"><code>background:
+  repeating-linear-gradient(360deg, rgba(0,255,255,0) 58%, rgba(255,0,0,0) 71%, rgba(255,0,255,0) 100%, rgba(0,0,255,0) 47%, rgba(0,255,255,0) 9%) 322px,
+  radial-gradient(ellipse farthest-corner at center, rgba(255,255,255,.87) 36%, rgba(255,255,0,.34) 4%, rgba(0,255,0,.84) 80%, rgba(255,0,0,1) 6%),
+  repeating-radial-gradient(circle closest-side at center, rgba(255,0,0,.17) 13%, rgba(255,255,255,.36) 16%, rgba(255,255,0,.36) 31%) 117px,
+  rgba(0,0,0,.07);
+background-blend-mode: lighten;
+background-size: 100px 100px, 20px 20px;
+background-position: center;</code></div>
+      </div>
+
+      <!-- 5. MODERN -->
+      <h3 class="okp">✨ Modern &amp; Minimal — Beautiful</h3>
+      <div id="box5">
+        <div><span class="label">Aurora Veil</span><code>background:
+  radial-gradient(ellipse at 20% 30%, rgba(240,147,251,.7) 0%, transparent 55%),
+  radial-gradient(ellipse at 80% 70%, rgba(102,126,234,.7) 0%, transparent 55%),
+  linear-gradient(135deg, #667eea 0%, #764ba2 100%);</code></div>
+        <div><span class="label">Crystal Clear</span><code>background:
+  radial-gradient(circle at 30% 20%, rgba(255,255,255,.5) 0%, transparent 40%),
+  radial-gradient(circle at 70% 80%, rgba(0,242,254,.6) 0%, transparent 50%),
+  linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);</code></div>
+        <div><span class="label">Mint Cloud</span><code>background:
+  radial-gradient(circle at 30% 30%, rgba(255,255,255,.45) 0%, transparent 40%),
+  radial-gradient(circle at 80% 70%, rgba(56,249,215,.55) 0%, transparent 50%),
+  linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);</code></div>
+        <div><span class="label">Peach Sky</span><code>background:
+  radial-gradient(circle at 80% 20%, rgba(254,225,64,.75) 0%, transparent 50%),
+  radial-gradient(circle at 20% 80%, rgba(250,112,154,.55) 0%, transparent 50%),
+  linear-gradient(135deg, #fa709a 0%, #fee140 100%);</code></div>
+        <div><span class="label">Lavender Haze</span><code>background:
+  radial-gradient(circle at 30% 40%, rgba(251,194,235,.65) 0%, transparent 60%),
+  radial-gradient(circle at 70% 60%, rgba(255,255,255,.35) 0%, transparent 50%),
+  linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);</code></div>
+        <div><span class="label">Rose Water</span><code>background:
+  radial-gradient(circle at 70% 30%, rgba(255,255,255,.55) 0%, transparent 40%),
+  radial-gradient(circle at 20% 80%, rgba(255,236,210,.55) 0%, transparent 50%),
+  linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);</code></div>
+        <div><span class="label">Amber Glow</span><code>background:
+  radial-gradient(circle at 20% 80%, rgba(255,60,60,.35) 0%, transparent 50%),
+  radial-gradient(circle at 80% 20%, rgba(255,255,200,.5) 0%, transparent 50%),
+  linear-gradient(135deg, #f6d365 0%, #fda085 100%);</code></div>
+        <div><span class="label">Spring Green</span><code>background:
+  radial-gradient(circle at 80% 30%, rgba(255,255,255,.5) 0%, transparent 40%),
+  radial-gradient(circle at 20% 70%, rgba(56,249,215,.35) 0%, transparent 50%),
+  linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);</code></div>
+      </div>
+
+      <!-- 6. NATURE -->
+      <h3 class="okp">🌿 Nature Inspired — Beautiful</h3>
+      <div id="box6">
+        <div><span class="label">Autumn Fire</span><code>background:
+  radial-gradient(circle at 20% 80%, rgba(255,99,71,.65) 0%, transparent 50%),
+  radial-gradient(circle at 80% 20%, rgba(255,165,0,.55) 0%, transparent 50%),
+  linear-gradient(135deg, #5a0a0a 0%, #c0392b 40%, #e67e22 70%, #f1c40f 100%);</code></div>
+        <div><span class="label">Ocean Trench</span><code>background:
+  radial-gradient(circle at 30% 30%, rgba(0,188,212,.45) 0%, transparent 50%),
+  radial-gradient(circle at 70% 80%, rgba(0,96,100,.55) 0%, transparent 50%),
+  linear-gradient(180deg, #00bcd4 0%, #00838f 30%, #004d40 70%, #001f1c 100%);</code></div>
+        <div><span class="label">Mountain Lake</span><code>background:
+  radial-gradient(circle at 40% 20%, rgba(255,255,255,.45) 0%, transparent 40%),
+  radial-gradient(circle at 70% 70%, rgba(52,152,219,.45) 0%, transparent 50%),
+  linear-gradient(135deg, #1abc9c 0%, #16a085 40%, #2980b9 100%);</code></div>
+        <div><span class="label">Desert Sunset</span><code>background:
+  radial-gradient(circle at 50% 100%, rgba(255,180,50,.75) 0%, transparent 55%),
+  radial-gradient(circle at 80% 20%, rgba(155,89,182,.5) 0%, transparent 50%),
+  linear-gradient(180deg, #2c3e50 0%, #c0392b 40%, #e67e22 70%, #f4d03f 100%);</code></div>
+        <div><span class="label">Cherry Blossom</span><code>background:
+  radial-gradient(circle at 30% 30%, rgba(255,255,255,.55) 0%, transparent 40%),
+  radial-gradient(circle at 70% 70%, rgba(255,182,193,.45) 0%, transparent 50%),
+  linear-gradient(135deg, #fbe9e7 0%, #ffccbc 30%, #f8bbd0 70%, #f48fb1 100%);</code></div>
+        <div><span class="label">Emerald Forest</span><code>background:
+  radial-gradient(circle at 30% 30%, rgba(46,204,113,.55) 0%, transparent 50%),
+  radial-gradient(circle at 70% 70%, rgba(0,0,0,.35) 0%, transparent 50%),
+  linear-gradient(135deg, #134e5e 0%, #2c7873 40%, #27ae60 70%, #16a085 100%);</code></div>
+        <div><span class="label">Golden Hour</span><code>background:
+  radial-gradient(circle at 50% 100%, rgba(255,215,0,.75) 0%, transparent 60%),
+  radial-gradient(circle at 20% 20%, rgba(255,69,0,.45) 0%, transparent 50%),
+  linear-gradient(180deg, #6a0dad 0%, #e91e63 40%, #ff9800 70%, #ffeb3b 100%);</code></div>
+        <div><span class="label">Aurora Sky</span><code>background:
+  radial-gradient(circle at 30% 30%, rgba(0,255,178,.55) 0%, transparent 50%),
+  radial-gradient(circle at 70% 70%, rgba(155,89,182,.55) 0%, transparent 50%),
+  linear-gradient(135deg, #0f2027 0%, #203a43 30%, #2c5364 60%, #4b0082 100%);</code></div>
+      </div>
+
+      <!-- 7. NEON -->
+      <h3 class="okp">⚡ Neon &amp; Cyberpunk — Beautiful</h3>
+      <div id="box7">
+        <div><span class="label">Synthwave</span><code>background:
+  radial-gradient(circle at 50% 100%, rgba(255,0,128,.85) 0%, transparent 55%),
+  radial-gradient(circle at 20% 20%, rgba(0,200,255,.45) 0%, transparent 50%),
+  linear-gradient(180deg, #1a0033 0%, #4a00e0 50%, #ff00ff 100%);</code></div>
+        <div><span class="label">Vaporwave</span><code>background:
+  radial-gradient(circle at 30% 30%, rgba(255,113,206,.65) 0%, transparent 50%),
+  radial-gradient(circle at 70% 70%, rgba(1,205,254,.65) 0%, transparent 50%),
+  linear-gradient(135deg, #ff6ec7 0%, #7873f5 50%, #01cdfe 100%);</code></div>
+        <div><span class="label">Tron Grid</span><code>background:
+  radial-gradient(circle at 50% 50%, rgba(0,255,255,.45) 0%, transparent 60%),
+  linear-gradient(0deg, rgba(0,255,255,.15) 1px, transparent 1px) 0 0/30px 30px,
+  linear-gradient(90deg, rgba(0,255,255,.15) 1px, transparent 1px) 0 0/30px 30px,
+  linear-gradient(180deg, #000814 0%, #001d3d 50%, #003566 100%);</code></div>
+        <div><span class="label">Neon Pulse</span><code>background:
+  radial-gradient(circle at 50% 50%, rgba(255,0,110,.9) 0%, transparent 60%),
+  radial-gradient(circle at 20% 80%, rgba(255,0,200,.5) 0%, transparent 50%),
+  linear-gradient(135deg, #2b0014 0%, #6a0032 50%, #ff006e 100%);</code></div>
+        <div><span class="label">Electric Purple</span><code>background:
+  radial-gradient(circle at 30% 30%, rgba(193,53,132,.7) 0%, transparent 50%),
+  radial-gradient(circle at 70% 70%, rgba(138,43,226,.7) 0%, transparent 50%),
+  linear-gradient(135deg, #0f0524 0%, #391463 50%, #8a2be2 100%);</code></div>
+        <div><span class="label">Holographic</span><code>background:
+  radial-gradient(circle at 20% 30%, rgba(255,0,128,.65) 0%, transparent 40%),
+  radial-gradient(circle at 80% 20%, rgba(0,255,255,.65) 0%, transparent 40%),
+  radial-gradient(circle at 50% 80%, rgba(255,255,0,.55) 0%, transparent 40%),
+  radial-gradient(circle at 30% 70%, rgba(138,43,226,.55) 0%, transparent 40%),
+  #1a0033;</code></div>
+        <div><span class="label">Acid Green</span><code>background:
+  radial-gradient(circle at 50% 50%, rgba(57,255,20,.9) 0%, transparent 60%),
+  radial-gradient(circle at 20% 80%, rgba(0,255,178,.5) 0%, transparent 50%),
+  linear-gradient(135deg, #001a00 0%, #003300 50%, #39ff14 100%);</code></div>
+        <div><span class="label">Deep Void</span><code>background:
+  radial-gradient(circle at 30% 30%, rgba(138,43,226,.6) 0%, transparent 40%),
+  radial-gradient(circle at 70% 70%, rgba(255,0,128,.45) 0%, transparent 40%),
+  radial-gradient(circle at 50% 50%, rgba(0,200,255,.35) 0%, transparent 60%),
+  #0a001a;</code></div>
+      </div>
+
+      <!-- 8. PASTEL -->
+      <h3 class="okp">🌸 Pastel Dreams — Beautiful</h3>
+      <div id="box8">
+        <div><span class="label">Cotton Candy</span><code>background:
+  radial-gradient(circle at 30% 30%, rgba(255,182,193,.75) 0%, transparent 50%),
+  radial-gradient(circle at 70% 70%, rgba(173,216,230,.75) 0%, transparent 50%),
+  linear-gradient(135deg, #ffc3d3 0%, #e0c3fc 50%, #8ec5fc 100%);</code></div>
+        <div><span class="label">Lavender Sky</span><code>background:
+  radial-gradient(circle at 70% 30%, rgba(255,255,255,.55) 0%, transparent 40%),
+  linear-gradient(135deg, #e0c3fc 0%, #c2a0e8 50%, #9c88ff 100%);</code></div>
+        <div><span class="label">Peach Cream</span><code>background:
+  radial-gradient(circle at 30% 40%, rgba(255,255,255,.65) 0%, transparent 40%),
+  radial-gradient(circle at 80% 80%, rgba(255,204,188,.65) 0%, transparent 50%),
+  linear-gradient(135deg, #ffe0d3 0%, #ffb88c 50%, #ff8a65 100%);</code></div>
+        <div><span class="label">Mint Sherbet</span><code>background:
+  radial-gradient(circle at 70% 30%, rgba(255,255,255,.65) 0%, transparent 40%),
+  linear-gradient(135deg, #c7f9cc 0%, #80ed99 50%, #57cc99 100%);</code></div>
+        <div><span class="label">Rose Quartz</span><code>background:
+  radial-gradient(circle at 30% 30%, rgba(255,255,255,.55) 0%, transparent 40%),
+  linear-gradient(135deg, #ffdde1 0%, #ee9ca7 50%, #d980a3 100%);</code></div>
+        <div><span class="label">Sky Breeze</span><code>background:
+  radial-gradient(circle at 70% 70%, rgba(255,255,255,.55) 0%, transparent 40%),
+  linear-gradient(135deg, #d4fcff 0%, #a0e7f5 50%, #6dd5ed 100%);</code></div>
+        <div><span class="label">Lemon Sorbet</span><code>background:
+  radial-gradient(circle at 30% 60%, rgba(255,255,255,.65) 0%, transparent 40%),
+  linear-gradient(135deg, #fffacd 0%, #ffeb99 50%, #ffd93d 100%);</code></div>
+        <div><span class="label">Bubblegum</span><code>background:
+  radial-gradient(circle at 50% 30%, rgba(255,255,255,.55) 0%, transparent 40%),
+  linear-gradient(135deg, #ffb6c1 0%, #ff69b4 50%, #ff1493 100%);</code></div>
+      </div>
+
+      <!-- 9. METALLIC -->
+      <h3 class="okp">💎 Metallic &amp; Luxe — Beautiful</h3>
+      <div id="box9">
+        <div><span class="label">Gold Foil</span><code>background:
+  linear-gradient(45deg, transparent 40%, rgba(255,255,255,.55) 50%, transparent 60%),
+  linear-gradient(135deg, #b8860b 0%, #daa520 25%, #ffd700 50%, #daa520 75%, #b8860b 100%);</code></div>
+        <div><span class="label">Rose Gold</span><code>background:
+  linear-gradient(45deg, transparent 40%, rgba(255,255,255,.45) 50%, transparent 60%),
+  linear-gradient(135deg, #b76e79 0%, #e8b4b8 25%, #f7cad0 50%, #e8b4b8 75%, #b76e79 100%);</code></div>
+        <div><span class="label">Chrome</span><code>background:
+  linear-gradient(45deg, transparent 40%, rgba(255,255,255,.75) 50%, transparent 60%),
+  linear-gradient(180deg, #757f9a 0%, #d7dde8 25%, #ffffff 50%, #d7dde8 75%, #757f9a 100%);</code></div>
+        <div><span class="label">Bronze</span><code>background:
+  linear-gradient(45deg, transparent 40%, rgba(255,255,255,.45) 50%, transparent 60%),
+  linear-gradient(135deg, #8b4513 0%, #cd7f32 30%, #e8a87c 50%, #cd7f32 70%, #8b4513 100%);</code></div>
+        <div><span class="label">Pearl</span><code>background:
+  radial-gradient(circle at 30% 30%, rgba(255,255,255,.85) 0%, transparent 40%),
+  radial-gradient(circle at 70% 70%, rgba(255,192,203,.45) 0%, transparent 50%),
+  linear-gradient(135deg, #f5f5f7 0%, #e8e8e8 50%, #f5f5f7 100%);</code></div>
+        <div><span class="label">Gunmetal</span><code>background:
+  linear-gradient(45deg, transparent 40%, rgba(255,255,255,.35) 50%, transparent 60%),
+  linear-gradient(180deg, #2c3e50 0%, #4a5a6e 25%, #7b8a9e 50%, #4a5a6e 75%, #2c3e50 100%);</code></div>
+      </div>
+
+      <!-- 10. MESH & AURORA -->
+      <h3 class="okp">🌌 Mesh &amp; Aurora — Beautiful</h3>
+      <div id="box10">
+        <div><span class="label">Aurora Borealis</span><code>background:
+  radial-gradient(ellipse at 20% 50%, rgba(0,255,178,.55) 0%, transparent 40%),
+  radial-gradient(ellipse at 50% 30%, rgba(0,200,255,.55) 0%, transparent 40%),
+  radial-gradient(ellipse at 80% 60%, rgba(155,89,182,.55) 0%, transparent 40%),
+  linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);</code></div>
+        <div><span class="label">Nebula</span><code>background:
+  radial-gradient(ellipse at 30% 30%, rgba(255,0,128,.55) 0%, transparent 40%),
+  radial-gradient(ellipse at 70% 60%, rgba(138,43,226,.55) 0%, transparent 40%),
+  radial-gradient(ellipse at 50% 90%, rgba(0,200,255,.45) 0%, transparent 40%),
+  #0a001a;</code></div>
+        <div><span class="label">Galaxy</span><code>background:
+  radial-gradient(ellipse at 20% 30%, rgba(255,255,255,.7) 0%, transparent 20%),
+  radial-gradient(ellipse at 80% 60%, rgba(255,255,255,.45) 0%, transparent 15%),
+  radial-gradient(ellipse at 50% 50%, rgba(255,0,255,.35) 0%, transparent 50%),
+  radial-gradient(ellipse at 70% 20%, rgba(0,200,255,.45) 0%, transparent 40%),
+  linear-gradient(135deg, #0a001a 0%, #1a0033 50%, #0a001a 100%);</code></div>
+        <div><span class="label">Cosmic Dust</span><code>background:
+  radial-gradient(ellipse at 40% 30%, rgba(255,182,193,.55) 0%, transparent 40%),
+  radial-gradient(ellipse at 60% 70%, rgba(138,43,226,.55) 0%, transparent 40%),
+  radial-gradient(ellipse at 30% 80%, rgba(0,200,255,.45) 0%, transparent 40%),
+  linear-gradient(135deg, #1a0033 0%, #2d1b4e 100%);</code></div>
+        <div><span class="label">Sunset Mesh</span><code>background:
+  radial-gradient(ellipse at 20% 80%, rgba(255,69,0,.65) 0%, transparent 50%),
+  radial-gradient(ellipse at 80% 20%, rgba(255,0,128,.55) 0%, transparent 50%),
+  radial-gradient(ellipse at 50% 50%, rgba(255,215,0,.45) 0%, transparent 60%),
+  linear-gradient(135deg, #2c0e37 0%, #7b0f3e 50%, #ff4500 100%);</code></div>
+        <div><span class="label">Frozen Mist</span><code>background:
+  radial-gradient(ellipse at 30% 30%, rgba(255,255,255,.65) 0%, transparent 40%),
+  radial-gradient(ellipse at 70% 70%, rgba(173,216,230,.55) 0%, transparent 50%),
+  radial-gradient(ellipse at 50% 50%, rgba(176,224,230,.45) 0%, transparent 60%),
+  linear-gradient(135deg, #b0e0e6 0%, #87ceeb 50%, #4682b4 100%);</code></div>
+      </div>
+
+      <!-- 11. PATTERNS -->
+      <h3 class="okp">🎨 Patterns &amp; Textures — Beautiful</h3>
+      <div id="box11">
+        <div><span class="label">Diagonal Rainbow</span><code>background: repeating-linear-gradient(45deg,
+  #ff6b6b 0 20px, #feca57 20px 40px,
+  #48dbfb 40px 60px, #ff9ff3 60px 80px);</code></div>
+        <div><span class="label">Pastel Checker</span><code>background: conic-gradient(from 0deg,
+  #ffb6c1 25%, #add8e6 0 50%,
+  #ffb6c1 0 75%, #add8e6 0);
+background-size: 80px 80px;</code></div>
+        <div><span class="label">Polka Dots</span><code>background:
+  radial-gradient(circle, #ff6b6b 25%, transparent 26%) 0 0 / 40px 40px,
+  radial-gradient(circle, #ff6b6b 25%, transparent 26%) 20px 20px / 40px 40px,
+  #fff5f5;</code></div>
+        <div><span class="label">Diamond Grid</span><code>background:
+  linear-gradient(45deg, transparent 45%, #333 45% 55%, transparent 55%),
+  linear-gradient(-45deg, transparent 45%, #333 45% 55%, transparent 55%),
+  #f5f5f5;
+background-size: 40px 40px;</code></div>
+        <div><span class="label">Herringbone</span><code>background:
+  linear-gradient(135deg, #667eea 25%, transparent 25%) -20px 0,
+  linear-gradient(225deg, #667eea 25%, transparent 25%) -20px 0,
+  linear-gradient(315deg, #764ba2 25%, transparent 25%),
+  linear-gradient(45deg, #764ba2 25%, transparent 25%);
+background-size: 40px 40px;</code></div>
+        <div><span class="label">Honeycomb</span><code>background:
+  linear-gradient(30deg, #f0c04f 12%, transparent 12.5%, transparent 87%, #f0c04f 87.5%, #f0c04f),
+  linear-gradient(150deg, #f0c04f 12%, transparent 12.5%, transparent 87%, #f0c04f 87.5%, #f0c04f),
+  linear-gradient(30deg, #f0c04f 12%, transparent 12.5%, transparent 87%, #f0c04f 87.5%, #f0c04f),
+  linear-gradient(150deg, #f0c04f 12%, transparent 12.5%, transparent 87%, #f0c04f 87.5%, #f0c04f),
+  linear-gradient(60deg, #f7e8a0 25%, transparent 25.5%, transparent 75%, #f7e8a0 75%, #f7e8a0),
+  linear-gradient(60deg, #f7e8a0 25%, transparent 25.5%, transparent 75%, #f7e8a0 75%, #f7e8a0) #fff8dc;
+background-size: 80px 140px;
+background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;</code></div>
+        <div><span class="label">Plaid</span><code>background:
+  repeating-linear-gradient(0deg, transparent 0 20px, rgba(255,107,107,.65) 20px 25px),
+  repeating-linear-gradient(90deg, transparent 0 20px, rgba(72,219,251,.65) 20px 25px),
+  #1e3a5f;</code></div>
+        <div><span class="label">Zigzag</span><code>background:
+  linear-gradient(135deg, #667eea 25%, transparent 25%) -20px 0,
+  linear-gradient(225deg, #667eea 25%, transparent 25%) -20px 0,
+  linear-gradient(315deg, #667eea 25%, transparent 25%),
+  linear-gradient(45deg, #667eea 25%, transparent 25%);
+background-size: 40px 40px;
+background-color: #764ba2;</code></div>
+        <div><span class="label">Waves</span><code>background: repeating-radial-gradient(circle at 50% 100%,
+  #4facfe 0 15px, #00f2fe 15px 30px, #0080ff 30px 45px);</code></div>
+        <div><span class="label">Brick</span><code>background:
+  linear-gradient(#8e2f24 2px, transparent 2px) 0 0 / 60px 40px,
+  linear-gradient(90deg, #8e2f24 2px, transparent 2px) 0 0 / 60px 40px,
+  linear-gradient(90deg, #8e2f24 2px, transparent 2px) 30px 20px / 60px 40px,
+  #c0392b;</code></div>
+      </div>
+
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <div class="wrap">
+
+    <!-- ============ 9. BUTTONS ============ -->
+    <section class="section" id="buttons">
+      <h2><span class="num">9</span> CSS Gradients for Buttons</h2>
+      <p>
+        Gradient backgrounds can make buttons more visually attractive. However,
+        ensure the text stays readable and the button has a clear interactive
+        state.
+      </p>
+
+      <div class="btn-demo">
+        <button class="gradient-button" type="button">Get Started</button>
+      </div>
+
+      <pre><code>&lt;button class="gradient-button"&gt;Get Started&lt;/button&gt;</code></pre>
+
+      <pre><code>.gradient-button {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .2s ease;
+}
+.gradient-button:hover { transform: translateY(-2px); }
+.gradient-button:focus-visible { outline: 3px solid #222; outline-offset: 3px; }</code></pre>
+    </section>
+
+    <!-- ============ 10. BACKGROUNDS ============ -->
+    <section class="section" id="backgrounds">
+      <h2><span class="num">10</span> CSS Gradients for Website Backgrounds</h2>
+      <p>
+        Gradients are useful for creating visually interesting website
+        backgrounds. You can use them on the body, hero sections, cards, and other
+        elements.
+      </p>
+
+      <h3>Example — Full-Page Gradient Background</h3>
+      <pre><code>body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #0f2027,
+    #203a43,
+    #2c5364
+  );
+  color: white;
+}</code></pre>
+
+      <div class="demo" style="background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);">Dark Blue-Green Background</div>
+    </section>
+
+    <!-- ============ 11. TEXT ============ -->
+    <section class="section" id="text">
+      <h2><span class="num">11</span> CSS Gradients for Text Effects</h2>
+      <p>
+        You can apply a gradient to text using <code>background-clip: text</code>
+        and a transparent text color.
+      </p>
+
+      <div class="demo" style="background:#0f172a;font-size:clamp(1.1rem,3.4vw,1.9rem);text-transform:none;letter-spacing:-.02em;">
+        <span style="background:linear-gradient(90deg,#ff0080,#7928ca,#00c6ff);-webkit-background-clip:text;background-clip:text;color:transparent;">
+          Create Beautiful Designs
+        </span>
+      </div>
+
+      <pre><code>&lt;h1 class="gradient-text"&gt;Create Beautiful Designs&lt;/h1&gt;</code></pre>
+
+      <pre><code>.gradient-text {
+  background: linear-gradient(90deg, #ff0080, #7928ca, #00c6ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}</code></pre>
+    </section>
+
+    <!-- ============ 12. BEST PRACTICES ============ -->
+    <section class="section" id="best-practices">
+      <h2><span class="num">12</span> Best Practices</h2>
+      <ul class="clean">
+        <li><strong>Choose suitable colors:</strong> match your website's theme and purpose.</li>
+        <li><strong>Maintain readability:</strong> ensure text and interactive elements stay easy to see.</li>
+        <li><strong>Use gradients consistently:</strong> avoid too many unrelated gradient styles on one page.</li>
+        <li><strong>Optimize performance:</strong> gradients need no downloads, but complex designs and animations can still affect rendering.</li>
+        <li><strong>Test on different screens:</strong> check mobile, tablet, and desktop displays.</li>
+        <li><strong>Consider accessibility:</strong> verify text contrast, provide visible focus indicators, and respect reduced-motion preferences.</li>
+        <li><strong>Use responsive layouts:</strong> make sure backgrounds work with changing element sizes.</li>
+        <li><strong>Test browser support:</strong> confirm the CSS features you use are supported by your target browsers.</li>
+      </ul>
+    </section>
+
+    <!-- ============ 13. MISTAKES ============ -->
+    <section class="section" id="mistakes">
+      <h2><span class="num">13</span> Common CSS Gradient Mistakes</h2>
+      <ul class="clean">
+        <li>Using too many colors without a clear design purpose.</li>
+        <li>Choosing colors that make text difficult to read.</li>
+        <li>Forgetting to specify an element's height or content when testing a background.</li>
+        <li>Using incorrect gradient syntax.</li>
+        <li>Adding unnecessary gradient layers that make the design hard to maintain.</li>
+        <li>Using animated gradients without considering users who prefer reduced motion.</li>
+        <li>Assuming that a gradient automatically provides sufficient text contrast.</li>
+      </ul>
+    </section>
+
+    <!-- ============ 14. FAQ ============ -->
+    <section class="section" id="faq">
+      <h2><span class="num">14</span> Frequently Asked Questions</h2>
+
+      <details>
+        <summary>What is a CSS Gradient Generator?</summary>
+        <p>A CSS Gradient Generator is a tool that helps you create custom gradient backgrounds and generate the CSS code needed to use them on a website.</p>
+      </details>
+
+      <details>
+        <summary>What are the main types of CSS gradients?</summary>
+        <p>The three main types are linear gradients, radial gradients, and conic gradients. CSS also supports repeating versions of these gradient types.</p>
+      </details>
+
+      <details>
+        <summary>How do I create a linear gradient in CSS?</summary>
+        <p>Use the <code>linear-gradient()</code> function with a direction and two or more colors.</p>
+        <pre><code>background: linear-gradient(to right, red, blue);</code></pre>
+      </details>
+
+      <details>
+        <summary>Can I use more than two colors in a CSS gradient?</summary>
+        <p>Yes. You can use multiple colors and control their positions with color stops.</p>
+        <pre><code>background: linear-gradient(90deg, red, orange, yellow, green, blue);</code></pre>
+      </details>
+
+      <details>
+        <summary>Are CSS gradients better than background images?</summary>
+        <p>CSS gradients can be a good alternative when you need a simple color transition or pattern. Complex illustrations or photographic backgrounds may still require images.</p>
+      </details>
+
+      <details>
+        <summary>Can CSS gradients be animated?</summary>
+        <p>Yes. You can animate suitable CSS properties or use techniques involving background positioning and pseudo-elements. Always test for performance and accessibility.</p>
+      </details>
+
+      <details>
+        <summary>Do CSS gradients work on mobile devices?</summary>
+        <p>CSS gradients are supported by modern mobile browsers. Test your designs on the devices and browsers relevant to your audience.</p>
+      </details>
+    </section>
+
+    <!-- ============ CONCLUSION ============ -->
+    <section class="section" id="conclusion">
+      <h2><span class="num">✓</span> Conclusion</h2>
+      <p class="lead">
+        CSS gradients are a useful way to create modern and attractive website
+        designs.
+      </p>
+      <p>
+        With linear, radial, conic, and repeating gradients, developers can build
+        colorful backgrounds, buttons, cards, banners, and text effects using pure
+        CSS.
+      </p>
+      <p>
+        A CSS Gradient Generator simplifies the process — and the one on this
+        page lets you experiment with colors, adjust settings, preview your
+        design, and copy the resulting code in seconds.
+      </p>
+      <div class="note">
+        <div>
+          Experiment with different color combinations, keep accessibility in
+          mind, and choose gradient styles that improve your website's overall
+          user experience.
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /wrap -->
+
+</main>
+
+<div class="footer-strip" aria-hidden="true"></div>
+
+<footer class="site-footer">
+  <p>
+    <strong>CSS Gradient Generator &amp; Guide</strong> — Learn, create and copy
+    beautiful CSS gradients: linear, radial, conic and repeating. Built with
+    semantic HTML, modern CSS, and an accessible interactive generator.
+  </p>
+</footer>
+
+<!-- ============================================================
+     SCRIPT 1 — INTERACTIVE GENERATOR
+     ============================================================ -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    'use strict';
+
+    const $$ = (sel, ctx) => Array.prototype.slice.call((ctx || document).querySelectorAll(sel));
+
+    const layerContainer      = document.getElementById('gradient-controls-container');
+    const addGradientBtn      = document.getElementById('add-gradient');
+    const removeGradientBtn   = document.getElementById('remove-gradient');
+    const randomizeBtn        = document.getElementById('randomize');
+    const resetBtn            = document.getElementById('reset-all');
+    const gradientPreview     = document.getElementById('gradient-preview');
+    const cssCode             = document.getElementById('css-code');
+    const copyCssBtn          = document.getElementById('copy-css');
+    const copyHtmlBtn         = document.getElementById('copy-html');
+    const backgroundColor     = document.getElementById('background-color');
+    const backgroundOpacity   = document.getElementById('background-opacity');
+    const backgroundOpacityEl = document.getElementById('background-opacity-value');
+    const previewHeight       = document.getElementById('preview-height');
+    const tabButtons          = $$('.tab-button');
+    const tabContents         = $$('.tab-content');
+
+    if (!layerContainer) return; // safety guard
+
+    const GRADIENT_TYPES = [
+        ['linear-gradient',            'Linear Gradient'],
+        ['repeating-linear-gradient',  'Repeating Linear Gradient'],
+        ['radial-gradient',            'Radial Gradient'],
+        ['repeating-radial-gradient',  'Repeating Radial Gradient'],
+        ['conic-gradient',             'Conic Gradient'],
+        ['repeating-conic-gradient',   'Repeating Conic Gradient']
+    ];
+
+    const DIRECTIONS = [
+        ['to right',        'To Right'],
+        ['to left',         'To Left'],
+        ['to bottom',       'To Bottom'],
+        ['to top',          'To Top'],
+        ['to right bottom', 'To Right Bottom'],
+        ['to right top',    'To Right Top'],
+        ['to left bottom',  'To Left Bottom'],
+        ['to left top',     'To Left Top'],
+        ['custom-angle',    'Custom Angle']
+    ];
+
+    const BLEND_MODES = [
+        'normal', 'multiply', 'screen', 'overlay', 'darken', 'lighten',
+        'color-dodge', 'color-burn', 'hard-light', 'soft-light',
+        'difference', 'exclusion', 'hue', 'saturation', 'color', 'luminosity'
+    ];
+
+    const CSS_VALUE_RE = /^[a-zA-Z0-9%.,\s\/()\-]+$/;
+
+    let layerCounter = 0;
+
+    function optionsHtml(list) {
+        return list.map(pair => '<option value="' + pair[0] + '">' + pair[1] + '</option>').join('');
+    }
+
+    function hexToRgb(hex) {
+        let h = String(hex || '#000000').replace('#', '');
+        if (h.length === 3) h = h.split('').map(c => c + c).join('');
+        if (h.length !== 6) h = '000000';
+        return [
+            parseInt(h.slice(0, 2), 16) || 0,
+            parseInt(h.slice(2, 4), 16) || 0,
+            parseInt(h.slice(4, 6), 16) || 0
+        ];
+    }
+
+    function round2(n) { return Math.round(n * 100) / 100; }
+
+    function safeCss(value, fallback) {
+        const v = String(value || '').trim();
+        if (!v) return fallback;
+        return CSS_VALUE_RE.test(v) ? v : fallback;
+    }
+
+    function hslToHex(h, s, l) {
+        h = ((h % 360) + 360) % 360;
+        s /= 100; l /= 100;
+        const c = (1 - Math.abs(2 * l - 1)) * s;
+        const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+        const m = l - c / 2;
+        let r = 0, g = 0, b = 0;
+        if (h < 60)       { r = c; g = x; b = 0; }
+        else if (h < 120) { r = x; g = c; b = 0; }
+        else if (h < 180) { r = 0; g = c; b = x; }
+        else if (h < 240) { r = 0; g = x; b = c; }
+        else if (h < 300) { r = x; g = 0; b = c; }
+        else              { r = c; g = 0; b = x; }
+        const to = v => Math.round((v + m) * 255).toString(16).padStart(2, '0');
+        return '#' + to(r) + to(g) + to(b);
+    }
+
+    function defaultStops() {
+        return [
+            { color: '#ff0000', position: 0,   opacity: 100 },
+            { color: '#ffff00', position: 50,  opacity: 100 },
+            { color: '#00ff00', position: 100, opacity: 100 }
+        ];
+    }
+
+    function updateRangeFill(input) {
+        if (!input || input.type !== 'range') return;
+        const min = parseFloat(input.min);
+        const max = parseFloat(input.max);
+        const val = parseFloat(input.value);
+        const lo = isNaN(min) ? 0 : min;
+        const hi = isNaN(max) ? 100 : max;
+        const v  = isNaN(val) ? lo : val;
+        const pct = hi > lo ? ((v - lo) / (hi - lo)) * 100 : 0;
+        input.style.setProperty('--fill', pct + '%');
+    }
+
+    function addColorStop(layer, color, position, opacity) {
+        const row = document.createElement('div');
+        row.className = 'color-stop';
+        row.innerHTML =
+            '<input type="color" class="color" value="' + color + '" aria-label="Color stop color">' +
+            '<div class="stop-field">' +
+                '<span class="mini-label">Pos</span>' +
+                '<input type="range" class="position" min="0" max="100" value="' + position + '" aria-label="Color stop position">' +
+                '<span class="value-label position-value">' + Math.round(position) + '%</span>' +
+            '</div>' +
+            '<div class="stop-field">' +
+                '<span class="mini-label">Opacity</span>' +
+                '<input type="range" class="opacity" min="0" max="100" value="' + opacity + '" aria-label="Color stop opacity">' +
+                '<span class="value-label opacity-value">' + Math.round(opacity) + '%</span>' +
+            '</div>' +
+            '<button type="button" class="icon-btn remove-color" title="Remove this color stop" aria-label="Remove this color stop">×</button>';
+
+        layer.querySelector('.color-stops-container').appendChild(row);
+        updateRangeFill(row.querySelector('.position'));
+        updateRangeFill(row.querySelector('.opacity'));
+        return row;
+    }
+
+    function addColorAtLargestGap(layer) {
+        const rows = $$('.color-stop', layer);
+        const positions = rows.map(r => parseFloat(r.querySelector('.position').value) || 0);
+        const points = Array.from(new Set([0].concat(positions, [100]))).sort((a, b) => a - b);
+        let bestGap = -1;
+        let insertAt = 50;
+        for (let i = 0; i < points.length - 1; i++) {
+            const gap = points[i + 1] - points[i];
+            if (gap > bestGap) {
+                bestGap = gap;
+                insertAt = (points[i] + points[i + 1]) / 2;
+            }
+        }
+        addColorStop(layer, '#0000ff', Math.round(insertAt), 100);
+    }
+
+    function updateValueLabels(layer) {
+        const angle = layer.querySelector('.angle');
+        if (angle) {
+            const out = layer.querySelector('.angle-value');
+            if (out) out.textContent = angle.value + 'deg';
+        }
+        const conicAngle = layer.querySelector('.conic-angle');
+        if (conicAngle) {
+            const out = layer.querySelector('.conic-angle-value');
+            if (out) out.textContent = conicAngle.value + 'deg';
+        }
+        const repeating = layer.querySelector('.repeating-size');
+        if (repeating) {
+            const type = layer.querySelector('.gradient-type').value;
+            const unit = type.indexOf('conic') !== -1 ? 'deg' : 'px';
+            const out = layer.querySelector('.repeating-size-value');
+            if (out) out.textContent = repeating.value + unit;
+        }
+        $$('.color-stop', layer).forEach(function (row) {
+            const p = row.querySelector('.position');
+            const o = row.querySelector('.opacity');
+            const pOut = row.querySelector('.position-value');
+            const oOut = row.querySelector('.opacity-value');
+            if (pOut) pOut.textContent = p.value + '%';
+            if (oOut) oOut.textContent = o.value + '%';
+        });
+        $$('input[type="range"]', layer).forEach(updateRangeFill);
+    }
+
+    function syncRepeatingUnit(layer) {
+        const repeating = layer.querySelector('.repeating-size');
+        if (!repeating) return;
+        const isConic = layer.querySelector('.gradient-type').value.indexOf('conic') !== -1;
+        if (isConic) {
+            repeating.min = '10';
+            repeating.max = '360';
+            if (parseFloat(repeating.value) > 360) repeating.value = '360';
+        } else {
+            repeating.min = '10';
+            repeating.max = '500';
+        }
+    }
+
+    function updateOptionsVisibility(layer) {
+        const type = layer.querySelector('.gradient-type').value;
+        layer.querySelector('.linear-options').style.display    = type.indexOf('linear') !== -1 ? 'block' : 'none';
+        layer.querySelector('.radial-options').style.display    = type.indexOf('radial') !== -1 ? 'block' : 'none';
+        layer.querySelector('.conic-options').style.display     = type.indexOf('conic')  !== -1 ? 'block' : 'none';
+        layer.querySelector('.repeating-options').style.display = type.indexOf('repeating') === 0 ? 'block' : 'none';
+        syncRepeatingUnit(layer);
+    }
+
+    function renumberLayers() {
+        const layers = $$('.gradient-controls', layerContainer);
+        layers.forEach(function (layer, i) {
+            const idx = layer.querySelector('.layer-index');
+            if (idx) idx.textContent = i + 1;
+            const up = layer.querySelector('.move-up');
+            const down = layer.querySelector('.move-down');
+            const del = layer.querySelector('.remove-specific');
+            if (up)   up.disabled = (i === 0);
+            if (down) down.disabled = (i === layers.length - 1);
+            if (del)  del.disabled = (layers.length <= 1);
+        });
+    }
+
+    function createLayer(opts) {
+        opts = opts || {};
+        const id = 'g' + (++layerCounter);
+        const el = document.createElement('div');
+        el.className = 'gradient-controls';
+        el.dataset.id = id;
+
+        el.innerHTML =
+            '<div class="gradient-header">' +
+                '<div class="gradient-title">Layer <span class="layer-index"></span></div>' +
+                '<div class="layer-actions">' +
+                    '<button type="button" class="icon-btn move-up" title="Move layer up" aria-label="Move layer up">↑</button>' +
+                    '<button type="button" class="icon-btn move-down" title="Move layer down" aria-label="Move layer down">↓</button>' +
+                    '<button type="button" class="icon-btn remove-specific" title="Delete this layer" aria-label="Delete this layer">×</button>' +
+                '</div>' +
+            '</div>' +
+            '<div class="controls">' +
+                '<div>' +
+                    '<label for="type-'+id+'">Gradient Type</label>' +
+                    '<select id="type-'+id+'" class="gradient-type">' + optionsHtml(GRADIENT_TYPES) + '</select>' +
+                    '<div class="gradient-options linear-options">' +
+                        '<label for="dir-'+id+'">Direction</label>' +
+                        '<select id="dir-'+id+'" class="direction">' + optionsHtml(DIRECTIONS) + '</select>' +
+                        '<div class="angle-control" style="display:none">' +
+                            '<label for="angle-'+id+'">Angle</label>' +
+                            '<input type="range" id="angle-'+id+'" class="angle" min="0" max="360" value="90" aria-label="Gradient angle">' +
+                            '<span class="value-label angle-value">90deg</span>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="gradient-options radial-options" style="display:none">' +
+                        '<label for="shape-'+id+'">Shape</label>' +
+                        '<select id="shape-'+id+'" class="radial-shape">' +
+                            '<option value="ellipse">Ellipse</option>' +
+                            '<option value="circle">Circle</option>' +
+                        '</select>' +
+                        '<label for="size-'+id+'">Size</label>' +
+                        '<select id="size-'+id+'" class="radial-size">' +
+                            '<option value="farthest-corner">Farthest Corner</option>' +
+                            '<option value="farthest-side">Farthest Side</option>' +
+                            '<option value="closest-side">Closest Side</option>' +
+                            '<option value="closest-corner">Closest Corner</option>' +
+                        '</select>' +
+                        '<label for="radial-pos-'+id+'">Position</label>' +
+                        '<input type="text" id="radial-pos-'+id+'" class="radial-position validate-css" value="center" placeholder="e.g. center, 50% 30%">' +
+                    '</div>' +
+                    '<div class="gradient-options conic-options" style="display:none">' +
+                        '<label for="conic-pos-'+id+'">Position</label>' +
+                        '<input type="text" id="conic-pos-'+id+'" class="conic-position validate-css" value="center" placeholder="e.g. center, 50% 50%">' +
+                        '<label for="conic-angle-'+id+'">Starting Angle</label>' +
+                        '<input type="range" id="conic-angle-'+id+'" class="conic-angle" min="0" max="360" value="0" aria-label="Conic starting angle">' +
+                        '<span class="value-label conic-angle-value">0deg</span>' +
+                    '</div>' +
+                    '<div class="gradient-options repeating-options" style="display:none">' +
+                        '<label for="repeat-size-'+id+'">Repeating Period</label>' +
+                        '<input type="range" id="repeat-size-'+id+'" class="repeating-size" min="10" max="500" value="100" aria-label="Repeating period">' +
+                        '<span class="value-label repeating-size-value">100px</span>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="color-stops">' +
+                    '<label>Color Stops</label>' +
+                    '<div class="color-stops-container"></div>' +
+                    '<div class="buttons">' +
+                        '<button type="button" class="add-color">+ Add Color</button>' +
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+            '<div class="controls layer-bg-controls">' +
+                '<div>' +
+                    '<label for="blend-'+id+'">Layer Blend Mode</label>' +
+                    '<select id="blend-'+id+'" class="layer-blend">' +
+                        optionsHtml(BLEND_MODES.map(m => [m, m])) +
+                    '</select>' +
+                    '<label for="repeat-'+id+'">Layer Repeat</label>' +
+                    '<select id="repeat-'+id+'" class="layer-repeat">' +
+                        '<option value="no-repeat">no-repeat</option>' +
+                        '<option value="repeat">repeat</option>' +
+                        '<option value="repeat-x">repeat-x</option>' +
+                        '<option value="repeat-y">repeat-y</option>' +
+                        '<option value="space">space</option>' +
+                        '<option value="round">round</option>' +
+                    '</select>' +
+                '</div>' +
+                '<div>' +
+                    '<label for="layer-size-'+id+'">Layer Size</label>' +
+                    '<input type="text" id="layer-size-'+id+'" class="layer-size validate-css" value="auto" placeholder="auto, cover, 100% 100%">' +
+                    '<label for="layer-pos-'+id+'">Layer Position</label>' +
+                    '<input type="text" id="layer-pos-'+id+'" class="layer-position validate-css" value="center" placeholder="center, top left">' +
+                '</div>' +
+            '</div>';
+
+        layerContainer.appendChild(el);
+        el.querySelector('.gradient-type').value = opts.type || 'linear-gradient';
+        updateOptionsVisibility(el);
+
+        const stops = opts.stops || defaultStops();
+        stops.forEach(s => addColorStop(el, s.color, s.position, s.opacity));
+
+        updateValueLabels(el);
+        renumberLayers();
+        return el;
+    }
+
+    function buildGradient(layer) {
+        const type        = layer.querySelector('.gradient-type').value;
+        const isRepeating = type.indexOf('repeating') === 0;
+        const isConic     = type.indexOf('conic') !== -1;
+
+        const period = isRepeating ? (parseFloat(layer.querySelector('.repeating-size').value) || 100) : 0;
+
+        const stops = $$('.color-stop', layer).map(row => ({
+            color:    row.querySelector('.color').value,
+            position: parseFloat(row.querySelector('.position').value) || 0,
+            opacity:  (parseFloat(row.querySelector('.opacity').value) || 0) / 100
+        })).sort((a, b) => a.position - b.position);
+
+        const stopStrings = stops.map(function (s) {
+            const rgb = hexToRgb(s.color);
+            const col = 'rgba(' + rgb[0] + ', ' + rgb[1] + ', ' + rgb[2] + ', ' + round2(s.opacity) + ')';
+            let pos;
+            if (isRepeating) {
+                const v = round2((s.position / 100) * period);
+                pos = isConic ? (v + 'deg') : (v + 'px');
+            } else {
+                pos = round2(s.position) + '%';
+            }
+            return col + ' ' + pos;
+        });
+
+        if (type.indexOf('linear') !== -1) {
+            let dir = layer.querySelector('.direction').value;
+            if (dir === 'custom-angle') dir = layer.querySelector('.angle').value + 'deg';
+            return type + '(' + dir + ', ' + stopStrings.join(', ') + ')';
+        }
+        if (type.indexOf('radial') !== -1) {
+            const shape = layer.querySelector('.radial-shape').value;
+            const size  = layer.querySelector('.radial-size').value;
+            const pos   = safeCss(layer.querySelector('.radial-position').value, 'center');
+            return type + '(' + shape + ' ' + size + ' at ' + pos + ', ' + stopStrings.join(', ') + ')';
+        }
+        if (type.indexOf('conic') !== -1) {
+            const pos   = safeCss(layer.querySelector('.conic-position').value, 'center');
+            const angle = layer.querySelector('.conic-angle').value;
+            return type + '(from ' + angle + 'deg at ' + pos + ', ' + stopStrings.join(', ') + ')';
+        }
+        return 'linear-gradient(to right, #ff0000, #00ff00)';
+    }
+
+    function updatePreview() {
+        const layers = $$('.gradient-controls', layerContainer);
+        const images = [], blends = [], sizes = [], positions = [], repeats = [];
+        layers.forEach(function (layer) {
+            images.push(buildGradient(layer));
+            blends.push(layer.querySelector('.layer-blend').value);
+            sizes.push(safeCss(layer.querySelector('.layer-size').value, 'auto'));
+            positions.push(safeCss(layer.querySelector('.layer-position').value, 'center'));
+            repeats.push(layer.querySelector('.layer-repeat').value);
+        });
+
+        const rgb   = hexToRgb(backgroundColor.value);
+        const alpha = round2((parseInt(backgroundOpacity.value, 10) || 0) / 100);
+        const bgColor = 'rgba(' + rgb[0] + ', ' + rgb[1] + ', ' + rgb[2] + ', ' + alpha + ')';
+
+        const height = Math.min(1200, Math.max(50, parseInt(previewHeight.value, 10) || 300));
+        gradientPreview.style.height = height + 'px';
+
+        if (images.length) {
+            gradientPreview.style.backgroundImage    = images.join(', ');
+            gradientPreview.style.backgroundBlendMode = blends.join(', ');
+            gradientPreview.style.backgroundSize      = sizes.join(', ');
+            gradientPreview.style.backgroundPosition  = positions.join(', ');
+            gradientPreview.style.backgroundRepeat    = repeats.join(', ');
+        } else {
+            gradientPreview.style.backgroundImage = 'none';
+        }
+        gradientPreview.style.backgroundColor = bgColor;
+
+        const lines = [];
+        lines.push('background-image: ' + (images.length ? images.join(', ') : 'none') + ';');
+        lines.push('background-color: ' + bgColor + ';');
+        if (images.length) {
+            lines.push('background-blend-mode: ' + blends.join(', ') + ';');
+            lines.push('background-size: ' + sizes.join(', ') + ';');
+            lines.push('background-position: ' + positions.join(', ') + ';');
+            lines.push('background-repeat: ' + repeats.join(', ') + ';');
+        }
+        cssCode.textContent = lines.join('\n');
+    }
+
+    function validateField(input) {
+        const v = input.value.trim();
+        const ok = (v === '') || CSS_VALUE_RE.test(v);
+        input.classList.toggle('invalid', !ok);
+        return ok;
+    }
+
+    async function copyText(text) {
+        try {
+            if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(text);
+                return true;
+            }
+            throw new Error('clipboard API unavailable');
+        } catch (err) {
+            try {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.setAttribute('readonly', '');
+                ta.style.position = 'fixed';
+                ta.style.top = '-1000px';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                ta.setSelectionRange(0, ta.value.length);
+                const ok = document.execCommand('copy');
+                document.body.removeChild(ta);
+                return ok;
+            } catch (err2) { return false; }
+        }
+    }
+
+    function flashButton(btn, message) {
+        if (!btn.dataset.originalText) btn.dataset.originalText = btn.textContent;
+        btn.textContent = message;
+        clearTimeout(btn._flashTimer);
+        btn._flashTimer = setTimeout(function () {
+            btn.textContent = btn.dataset.originalText;
+        }, 1600);
+    }
+
+    function onControlEvent(e) {
+        const layer = e.target.closest('.gradient-controls');
+        if (!layer) return;
+        const t = e.target;
+        if (t.classList.contains('gradient-type')) updateOptionsVisibility(layer);
+        if (t.classList.contains('direction')) {
+            const angleControl = layer.querySelector('.angle-control');
+            angleControl.style.display = (t.value === 'custom-angle') ? 'block' : 'none';
+        }
+        if (t.classList.contains('validate-css')) validateField(t);
+        updateValueLabels(layer);
+        updatePreview();
+    }
+
+    layerContainer.addEventListener('input',  onControlEvent);
+    layerContainer.addEventListener('change', onControlEvent);
+
+    layerContainer.addEventListener('click', function (e) {
+        const btn = e.target.closest('button');
+        if (!btn || btn.disabled) return;
+        const layer = btn.closest('.gradient-controls');
+        if (!layer) return;
+
+        if (btn.classList.contains('add-color')) {
+            addColorAtLargestGap(layer);
+            updateValueLabels(layer);
+            updatePreview();
+            return;
+        }
+        if (btn.classList.contains('remove-color')) {
+            const rows = $$('.color-stop', layer);
+            if (rows.length > 2) {
+                btn.closest('.color-stop').remove();
+                updateValueLabels(layer);
+                updatePreview();
+            } else {
+                flashButton(btn, '2 min');
+            }
+            return;
+        }
+        if (btn.classList.contains('remove-specific')) {
+            if ($$('.gradient-controls', layerContainer).length > 1) {
+                layer.remove();
+                renumberLayers();
+                updatePreview();
+            }
+            return;
+        }
+        if (btn.classList.contains('move-up')) {
+            const prev = layer.previousElementSibling;
+            if (prev && prev.classList.contains('gradient-controls')) {
+                layerContainer.insertBefore(layer, prev);
+                renumberLayers();
+                updatePreview();
+            }
+            return;
+        }
+        if (btn.classList.contains('move-down')) {
+            const next = layer.nextElementSibling;
+            if (next && next.classList.contains('gradient-controls')) {
+                layerContainer.insertBefore(next, layer);
+                renumberLayers();
+                updatePreview();
+            }
+            return;
+        }
+    });
+
+    addGradientBtn.addEventListener('click', function () {
+        const el = createLayer({ type: 'linear-gradient' });
+        updateValueLabels(el);
+        updatePreview();
+    });
+
+    removeGradientBtn.addEventListener('click', function () {
+        const layers = $$('.gradient-controls', layerContainer);
+        if (layers.length > 1) {
+            layers[layers.length - 1].remove();
+            renumberLayers();
+            updatePreview();
+        }
+    });
+
+    randomizeBtn.addEventListener('click', function () {
+        const layers = $$('.gradient-controls', layerContainer);
+        layers.forEach(function (layer) {
+            const count = 2 + Math.floor(Math.random() * 3);
+            const container = layer.querySelector('.color-stops-container');
+            container.innerHTML = '';
+            const baseHue = Math.random() * 360;
+            const step = 40 + Math.random() * 80;
+            for (let i = 0; i < count; i++) {
+                const p = (i / (count - 1)) * 100;
+                const hue = baseHue + i * step;
+                const color = hslToHex(hue, 65 + Math.random() * 30, 45 + Math.random() * 20);
+                addColorStop(layer, color, Math.round(p), 100);
+            }
+            layer.querySelector('.layer-blend').value =
+                Math.random() < 0.5 ? 'normal' : BLEND_MODES[Math.floor(Math.random() * BLEND_MODES.length)];
+            updateValueLabels(layer);
+        });
+        updatePreview();
+    });
+
+    resetBtn.addEventListener('click', function () {
+        layerContainer.innerHTML = '';
+        layerCounter = 0;
+        backgroundColor.value = '#ffffff';
+        backgroundOpacity.value = '100';
+        backgroundOpacityEl.textContent = '100%';
+        updateRangeFill(backgroundOpacity);
+        previewHeight.value = '300';
+        const el = createLayer({ type: 'linear-gradient' });
+        updateValueLabels(el);
+        updatePreview();
+    });
+
+    copyCssBtn.addEventListener('click', async function () {
+        const ok = await copyText(cssCode.textContent);
+        flashButton(copyCssBtn, ok ? '✓ Copied!' : '✗ Failed');
+    });
+
+    copyHtmlBtn.addEventListener('click', async function () {
+        const props = cssCode.textContent.split('\n').map(l => l.trim()).filter(Boolean).join(' ');
+        const height = Math.min(1200, Math.max(50, parseInt(previewHeight.value, 10) || 300));
+        const html = '<div style="width: 100%; height: ' + height + 'px; border-radius: 8px; ' + props + '"></div>';
+        const ok = await copyText(html);
+        flashButton(copyHtmlBtn, ok ? '✓ Copied!' : '✗ Failed');
+    });
+
+    [backgroundColor, backgroundOpacity, previewHeight].forEach(function (el) {
+        el.addEventListener('input', function () {
+            if (el === backgroundOpacity) {
+                backgroundOpacityEl.textContent = backgroundOpacity.value + '%';
+                updateRangeFill(backgroundOpacity);
+            }
+            if (el === previewHeight) {
+                const v = parseInt(previewHeight.value, 10);
+                if (isNaN(v) || v < 50 || v > 1200) previewHeight.classList.add('invalid');
+                else previewHeight.classList.remove('invalid');
+            }
+            updatePreview();
+        });
+    });
+
+    function activateTab(tabId) {
+        tabButtons.forEach(function (btn) {
+            const isActive = btn.dataset.tab === tabId;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            btn.tabIndex = isActive ? 0 : -1;
+        });
+        tabContents.forEach(function (content) {
+            content.classList.toggle('active', content.id === tabId + '-tab');
+        });
+    }
+
+    tabButtons.forEach(function (btn, index) {
+        btn.addEventListener('click', function () { activateTab(this.dataset.tab); });
+        btn.addEventListener('keydown', function (e) {
+            let newIndex = null;
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') newIndex = (index + 1) % tabButtons.length;
+            else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') newIndex = (index - 1 + tabButtons.length) % tabButtons.length;
+            else if (e.key === 'Home') newIndex = 0;
+            else if (e.key === 'End')  newIndex = tabButtons.length - 1;
+            if (newIndex !== null) {
+                e.preventDefault();
+                tabButtons[newIndex].focus();
+                activateTab(tabButtons[newIndex].dataset.tab);
+            }
+        });
+    });
+
+    (function init() {
+        updateRangeFill(backgroundOpacity);
+        const first = createLayer({ type: 'linear-gradient', stops: defaultStops() });
+        updateValueLabels(first);
+        updatePreview();
+    })();
+});
+</script>
+
+<!-- ============================================================
+     SCRIPT 2 — EXTENDED GALLERY
+     ============================================================ -->
+<script>
+(function () {
+  var toast = document.getElementById('toast');
+  if (!toast) return;
+
+  var toastTimer;
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 1800);
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text)
+        .then(function () { return true; })
+        .catch(function () { return legacyCopy(text); });
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+
+  function legacyCopy(text) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return ok;
+    } catch (e) { return false; }
+  }
+
+  function getCode(container) {
+    var c = container.querySelector('code');
+    return c ? c.textContent.trim() : '';
+  }
+
+  var cards = document.querySelectorAll('#gallery [id^="box"] > div');
+
+  cards.forEach(function (card) {
+    card.tabIndex = 0;
+    var sx = 0, sy = 0, lastTap = 0;
+
+    card.addEventListener('pointerdown', function (e) {
+      sx = e.clientX; sy = e.clientY;
+    });
+
+    card.addEventListener('pointerup', function (e) {
+      if (Math.hypot(e.clientX - sx, e.clientY - sy) > 10) return;
+      var codeEl = card.querySelector('code');
+      if (!codeEl) return;
+      var now = Date.now();
+      var isDouble = lastTap !== 0 && (now - lastTap) < 350;
+      if (isDouble) {
+        var text = getCode(card);
+        lastTap = 0;
+        if (!text) { showToast('⚠️ No code to copy'); return; }
+        copyText(text).then(function (ok) {
+          if (ok) {
+            showToast('✅ Code copied!');
+            codeEl.classList.add('visible');
+            card.classList.add('showing');
+          } else {
+            showToast('❌ Copy failed');
+          }
+        });
+      } else {
+        codeEl.classList.toggle('visible');
+        card.classList.toggle('showing', codeEl.classList.contains('visible'));
+        lastTap = now;
+      }
+    });
+
+    card.addEventListener('pointercancel', function () { lastTap = 0; });
+
+    card.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      e.preventDefault();
+      var codeEl = card.querySelector('code');
+      if (!codeEl) return;
+      if (e.shiftKey) {
+        var text = getCode(card);
+        if (!text) { showToast('⚠️ No code to copy'); return; }
+        copyText(text).then(function (ok) {
+          showToast(ok ? '✅ Code copied!' : '❌ Copy failed');
+          if (ok) {
+            codeEl.classList.add('visible');
+            card.classList.add('showing');
+          }
+        });
+      } else {
+        codeEl.classList.toggle('visible');
+        card.classList.toggle('showing', codeEl.classList.contains('visible'));
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

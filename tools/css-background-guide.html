@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSS Background Properties — Complete Guide with Live Demos (2026)</title>
+<meta name="description" content="Complete guide to CSS background properties with live interactive demos: background-color, image, size, position, repeat, clip, blend-mode, shorthand and much more.">
+<style>
+/* =========================================================
+   1. TOKENS & RESET
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --bg: #f5f7fb;
+  --surface: #ffffff;
+  --surface-2: #f8fafc;
+  --text: #334155;
+  --heading: #0f172a;
+  /* darkened for WCAG AA contrast on light surfaces */
+  --muted: #475569;
+  --brand: #2563eb;
+  --brand-2: #9333ea;
+  --border: #e2e8f0;
+  --shadow: 0 1px 2px rgba(15,23,42,.05), 0 14px 36px -20px rgba(15,23,42,.35);
+  --radius: 16px;
+  --code-bg: #0f172a;
+  --code-text: #e2e8f0;
+  --inline-bg: rgba(37,99,235,.10);
+  --inline-fg: #1d4ed8;
+  --chip-bg: rgba(147,51,234,.10);
+  --chip-fg: #7e22ce;
+  --chip-border: rgba(147,51,234,.22);
+
+  /* Self-contained demo placeholder image (SVG data URI) */
+  --demo-img: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Crect width='100' height='100' fill='%232563eb'/%3E%3Ccircle cx='50' cy='50' r='28' fill='%23fbbf24'/%3E%3Crect x='10' y='10' width='18' height='18' rx='3' fill='%23ef4444'/%3E%3C/svg%3E");
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #070d18;
+    --surface: #0f172a;
+    --surface-2: #131f36;
+    --text: #cbd5e1;
+    --heading: #f1f5f9;
+    --muted: #94a3b8;
+    --brand: #60a5fa;
+    --brand-2: #c084fc;
+    --border: #1e293b;
+    --shadow: 0 1px 2px rgba(0,0,0,.5), 0 16px 40px -20px rgba(0,0,0,.9);
+    --code-bg: #020617;
+    --code-text: #e2e8f0;
+    --inline-bg: rgba(96,165,250,.14);
+    --inline-fg: #93c5fd;
+    --chip-bg: rgba(192,132,252,.14);
+    --chip-fg: #d8b4fe;
+    --chip-border: rgba(192,132,252,.28);
+  }
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================================
+   2. HERO
+   ========================================================= */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 1.25rem 5.5rem;
+  text-align: center;
+  color: #fff;
+  background:
+    radial-gradient(900px 420px at 12% -10%, rgba(147,51,234,.55), transparent 62%),
+    radial-gradient(760px 400px at 88% 0%, rgba(37,99,235,.60), transparent 62%),
+    linear-gradient(135deg, #1e3a8a 0%, #4c1d95 55%, #312e81 100%);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(circle at 50% 30%, #000 0%, transparent 78%);
+  -webkit-mask-image: radial-gradient(circle at 50% 30%, #000 0%, transparent 78%);
+  pointer-events: none;
+}
+
+.hero__inner { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; }
+
+.badge {
+  display: inline-block;
+  padding: .38rem .95rem;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #e0e7ff;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.28);
+  backdrop-filter: blur(6px);
+}
+
+.hero h1 {
+  margin: 1.4rem 0 .8rem;
+  font-size: clamp(2rem, 1.4rem + 3.4vw, 3.4rem);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  font-weight: 800;
+  background: linear-gradient(100deg, #ffffff 20%, #c7d2fe 55%, #e9d5ff 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero__sub {
+  max-width: 660px;
+  margin: 0 auto;
+  font-size: clamp(1rem, .95rem + .35vw, 1.15rem);
+  color: #cbd5e1;
+}
+
+.hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .6rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero__meta li {
+  padding: .4rem .9rem;
+  font-size: .82rem;
+  font-weight: 600;
+  border-radius: 999px;
+  color: #e2e8f0;
+  background: rgba(255,255,255,.10);
+  border: 1px solid rgba(255,255,255,.20);
+}
+
+/* =========================================================
+   3. LAYOUT — single column, always top → bottom
+   ========================================================= */
+.layout {
+  display: block;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 5rem;
+}
+
+@media (max-width: 920px) {
+  .layout { padding-top: 2rem; }
+}
+
+/* =========================================================
+   4. TOC — horizontal flex bar (desktop + mobile)
+   ========================================================= */
+.toc {
+  position: static;
+  max-height: none;
+  overflow: visible;
+  padding: 1.1rem 1.2rem 1.2rem;
+  margin-bottom: 1.6rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  font-size: .9rem;
+}
+
+.toc h2 {
+  margin: 0 0 .85rem;
+  font-size: .78rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.toc ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: toc;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+}
+
+.toc li {
+  counter-increment: toc;
+  margin: 0;
+  min-width: 0;
+}
+
+.toc a {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .38rem .78rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  text-decoration: none;
+  font-size: .8rem;
+  line-height: 1.3;
+  white-space: nowrap;
+  transition: background .18s ease, color .18s ease, border-color .18s ease;
+}
+
+.toc a::before {
+  content: counter(toc);
+  font-size: .68rem;
+  font-weight: 700;
+  color: var(--brand);
+  min-width: .9rem;
+  flex-shrink: 0;
+  padding-top: .1rem;
+}
+
+.toc li.toc--plain { counter-increment: none; }
+.toc li.toc--plain a::before { content: "•"; }
+
+.toc a:hover {
+  background: var(--inline-bg);
+  color: var(--inline-fg);
+  border-color: var(--inline-fg);
+}
+
+/* =========================================================
+   5. CARDS / SECTIONS
+   ========================================================= */
+main { counter-reset: sec; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.7rem 1.9rem;
+  margin-bottom: 1.6rem;
+  box-shadow: var(--shadow);
+  scroll-margin-top: 1.5rem;
+}
+
+@media (max-width: 560px) {
+  .card { padding: 1.3rem 1.15rem; border-radius: 14px; }
+}
+
+.card > p:first-of-type { margin-top: 0; }
+
+.card h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.15rem, 1rem + .55vw, 1.42rem);
+  line-height: 1.4;
+  color: var(--heading);
+  font-weight: 800;
+  letter-spacing: -.01em;
+}
+
+.num { counter-increment: sec; }
+
+.num > h2::before {
+  content: counter(sec);
+  display: inline-grid;
+  place-items: center;
+  width: 1.85rem;
+  height: 1.85rem;
+  margin-right: .6rem;
+  border-radius: 9px;
+  font-size: .85rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #2563eb, #9333ea);
+  vertical-align: -.28em;
+  box-shadow: 0 6px 14px -8px rgba(37,99,235,.9);
+}
+
+.card h3 {
+  margin: 1.7rem 0 .6rem;
+  padding-left: .7rem;
+  border-left: 3px solid var(--brand);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--heading);
+}
+
+.lead { font-size: 1.05rem; color: var(--text); }
+
+/* =========================================================
+   6. TEXT ELEMENTS
+   ========================================================= */
+a { color: var(--brand); }
+
+:not(pre) > code {
+  padding: .12em .45em;
+  border-radius: 6px;
+  font-size: .88em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: var(--inline-bg);
+  color: var(--inline-fg);
+  white-space: nowrap;
+}
+
+.card h2 code { font-size: .82em; }
+
+.card ul:not(.chips),
+.card ol {
+  margin: .85rem 0;
+  padding-left: 1.25rem;
+}
+
+.card ul:not(.chips) li,
+.card ol li { margin-bottom: .45rem; }
+
+.card ul:not(.chips) li::marker { color: var(--brand); }
+.card ol li::marker { color: var(--brand); font-weight: 700; }
+
+/* =========================================================
+   7. CODE BLOCKS
+   ========================================================= */
+pre {
+  position: relative;
+  margin: 1rem 0 1.2rem;
+  padding: 1.15rem 1.25rem;
+  border-radius: 13px;
+  background: var(--code-bg);
+  color: var(--code-text);
+  border: 1px solid rgba(148,163,184,.18);
+  overflow-x: auto;
+  font-size: .875rem;
+  line-height: 1.65;
+  tab-size: 2;
+}
+
+pre code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New", monospace;
+  white-space: pre;
+}
+
+.copy-btn {
+  position: absolute;
+  top: .55rem;
+  right: .6rem;
+  padding: .22rem .62rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  border-radius: 7px;
+  cursor: pointer;
+  color: #94a3b8;
+  background: #1e293b;
+  border: 1px solid #334155;
+  opacity: 0;
+  transition: opacity .2s ease, color .2s ease;
+}
+
+pre:hover .copy-btn,
+.copy-btn:focus-visible { opacity: 1; }
+.copy-btn:hover { color: #fff; }
+
+/* =========================================================
+   8. TABLES
+   ========================================================= */
+.table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .92rem;
+  min-width: 420px;
+}
+
+thead th {
+  text-align: left;
+  padding: .75rem 1rem;
+  font-weight: 700;
+  color: var(--heading);
+  background: var(--inline-bg);
+  border-bottom: 1px solid var(--border);
+}
+
+tbody td {
+  padding: .68rem 1rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: var(--surface-2); }
+tbody td:first-child { white-space: nowrap; }
+
+/* =========================================================
+   9. CHIPS
+   ========================================================= */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin: .9rem 0 1.1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.chips li {
+  padding: .3rem .75rem;
+  font-size: .82rem;
+  font-weight: 700;
+  border-radius: 999px;
+  color: var(--chip-fg);
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
+}
+
+/* =========================================================
+   10. COMPARISON
+   ========================================================= */
+.compare {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 1.2rem;
+}
+
+.compare__item {
+  padding: 1.1rem 1.2rem;
+  border-radius: 13px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--brand);
+}
+
+.compare__item:last-child { border-top-color: var(--brand-2); }
+
+.compare__item h4 {
+  margin: 0 0 .35rem;
+  font-size: .95rem;
+  font-weight: 800;
+  color: var(--heading);
+}
+
+.compare__item h4 code {
+  background: none;
+  color: inherit;
+  padding: 0;
+  font-size: 1em;
+}
+
+.compare__item p { margin: 0; font-size: .92rem; color: var(--muted); }
+
+/* =========================================================
+   11. NOTE CALLOUT
+   ========================================================= */
+.note {
+  margin: 1rem 0;
+  padding: .85rem 1.1rem;
+  border-radius: 11px;
+  font-size: .93rem;
+  color: var(--text);
+  background: var(--inline-bg);
+  border-left: 3px solid var(--brand);
+}
+
+.note strong { color: var(--heading); }
+
+/* =========================================================
+   12. LIVE DEMO CONTAINERS
+   ========================================================= */
+.demo {
+  margin: 1.2rem 0 .4rem;
+  padding: 1rem 1.1rem 1.15rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+}
+
+.demo__label {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  /* chip-fg keeps >= 4.5:1 on the chip background */
+  color: var(--chip-fg);
+  margin-bottom: .9rem;
+  padding: .22rem .65rem;
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
+  border-radius: 999px;
+}
+
+.demo__label::before {
+  content: "";
+  width: .45rem;
+  height: .45rem;
+  border-radius: 50%;
+  background: var(--brand-2);
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: .35; transform: scale(.75); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .demo__label::before { animation: none; }
+}
+
+.demo__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: .7rem;
+}
+
+.demo__cell {
+  min-height: 120px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-size: .82rem;
+  font-weight: 700;
+  padding: .5rem;
+  overflow: hidden;
+  color: var(--text);
+  background-color: var(--surface);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* --- Color demo cells --- */
+.demo__cell--color { color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,.6); }
+
+/* Solid label plate guarantees contrast on any demo colour */
+.demo__cell--color span {
+  display: inline-block;
+  max-width: 100%;
+  padding: .12rem .5rem;
+  border-radius: 6px;
+  background: rgba(255,255,255,.94);
+  color: #0f172a;
+  text-shadow: none;
+  font-size: .74rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.demo__cell--checker {
+  background-image:
+    linear-gradient(45deg, var(--border) 25%, transparent 25%, transparent 75%, var(--border) 75%),
+    linear-gradient(45deg, var(--border) 25%, transparent 25%, transparent 75%, var(--border) 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 8px 8px;
+  color: var(--heading);
+  text-shadow: none;
+}
+
+/* --- Origin demo --- */
+.origin-demo {
+  border: 8px dashed var(--brand-2);
+  padding: 1rem;
+  background-color: var(--surface);
+  background-image: var(--demo-img);
+  background-repeat: no-repeat;
+  background-size: 55px;
+  border-radius: 10px;
+  min-height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .2rem;
+  font-size: .88rem;
+}
+.origin-demo strong { color: var(--heading); }
+.origin-demo span   { color: var(--muted); font-size: .82rem; }
+.origin-demo--padding { background-origin: padding-box; }
+.origin-demo--border  { background-origin: border-box; }
+.origin-demo--content { background-origin: content-box; }
+
+/* --- Repeat demo --- */
+.demo__cell--rep {
+  background-image: var(--demo-img);
+  background-size: 40px;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,.7);
+  border-color: var(--brand-2);
+}
+.rep-no     { background-repeat: no-repeat; }
+.rep-repeat { background-repeat: repeat; }
+.rep-x      { background-repeat: repeat-x; }
+.rep-y      { background-repeat: repeat-y; }
+.rep-space  { background-repeat: space; }
+.rep-round  { background-repeat: round; }
+
+/* --- Clip demo --- */
+.clip-demo {
+  border: 8px dotted var(--brand-2);
+  padding: 1.1rem;
+  background-color: #bfdbfe;
+  color: #0f172a;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 700;
+  font-size: .92rem;
+}
+.clip-demo + .clip-demo { margin-top: .7rem; }
+.clip-border  { background-clip: border-box; }
+.clip-padding { background-clip: padding-box; }
+.clip-content { background-clip: content-box; }
+.clip-text {
+  background: repeating-conic-gradient(from 0deg,
+    #2563eb 0deg, #9333ea 30deg, #ef4444 60deg, #fbbf24 90deg, #2563eb 120deg);
+  background-size: 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  border-color: var(--brand-2);
+  font-size: 1.6rem;
+  font-weight: 900;
+  padding: 1rem;
+}
+
+/* --- Position demo --- */
+.demo__cell--pos {
+  background-image: var(--demo-img);
+  background-size: 45px;
+  border-color: #10b981;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,.7);
+  font-size: .78rem;
+}
+
+/* --- Attachment demo --- */
+.attach-demo {
+  height: 220px;
+  border: 3px solid var(--brand);
+  border-radius: 10px;
+  padding: .85rem;
+  overflow: auto;
+  background-color: var(--surface);
+  background-image: var(--demo-img);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100px;
+  font-size: .85rem;
+  color: var(--heading);
+}
+.attach-demo p {
+  margin: 0 0 .55rem;
+  background: rgba(255,255,255,.92);
+  color: #0f172a;
+  padding: .25rem .5rem;
+  border-radius: 5px;
+  display: inline-block;
+}
+@media (prefers-color-scheme: dark) {
+  .attach-demo p { background: rgba(15,23,42,.92); color: #e2e8f0; }
+}
+.attach-demo + .attach-demo { margin-top: .7rem; }
+.attach-fixed  { background-attachment: fixed; }
+.attach-scroll { background-attachment: scroll; }
+.attach-local  { background-attachment: local; }
+
+/* --- Size demo --- */
+.demo__cell--size {
+  background-image: var(--demo-img);
+  border-color: #ef4444;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,.8);
+  font-size: .78rem;
+}
+.sz-auto    { background-size: auto; }
+.sz-cover   { background-size: cover; }
+.sz-contain { background-size: contain; }
+.sz-70      { background-size: 70%; }
+.sz-50px    { background-size: 50px; }
+.sz-200x100 { background-size: 200px 100px; }
+
+/* --- Blend mode demo --- */
+.blend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: .6rem;
+}
+.blend-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .35rem;
+}
+.blend-preview {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-image:
+    linear-gradient(135deg, #fbbf24 0%, #ef4444 55%, #8b5cf6 100%),
+    linear-gradient(45deg, #06b6d4 0%, #10b981 100%);
+  background-size: 100% 100%;
+}
+.blend-item span {
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--muted);
+  font-family: ui-monospace, monospace;
+}
+.bl-normal     { background-blend-mode: normal; }
+.bl-multiply   { background-blend-mode: multiply; }
+.bl-screen     { background-blend-mode: screen; }
+.bl-overlay    { background-blend-mode: overlay; }
+.bl-darken     { background-blend-mode: darken; }
+.bl-lighten    { background-blend-mode: lighten; }
+.bl-color      { background-blend-mode: color; }
+.bl-hue        { background-blend-mode: hue; }
+.bl-saturation { background-blend-mode: saturation; }
+.bl-luminosity { background-blend-mode: luminosity; }
+.bl-hard-light { background-blend-mode: hard-light; }
+
+/* --- Shorthand demo --- */
+.sh-demo {
+  height: 180px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0,0,0,.7);
+  font-weight: 800;
+  font-size: .92rem;
+}
+.sh-image {
+  background: var(--demo-img) cyan no-repeat center scroll;
+  background-size: 150px;
+}
+.sh-gradient {
+  background: linear-gradient(135deg, #ec4899, #ef4444, #06b6d4) #0f172a no-repeat center scroll;
+}
+
+/* --- Multiple background demo --- */
+.multi-img-demo {
+  min-height: 300px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, #ef4444, #f97316) top left no-repeat,
+    linear-gradient(135deg, #3b82f6, #06b6d4) top right no-repeat,
+    linear-gradient(135deg, #10b981, #22c55e) bottom left no-repeat,
+    linear-gradient(135deg, #eab308, #f97316) bottom right no-repeat,
+    var(--demo-img) center no-repeat;
+  background-size: 110px 90px, 110px 90px, 110px 90px, 110px 90px, 180px;
+  background-color: rgba(236,72,153,.15);
+}
+.multi-grad-demo {
+  min-height: 300px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background:
+    linear-gradient(145deg, #f43f5e, #fafafa),
+    linear-gradient(145deg, #ffffff, #06b6d4),
+    linear-gradient(145deg, #10b981, #06b6d4),
+    linear-gradient(145deg, #0891b2, #cbe7e3),
+    conic-gradient(from 45deg, #10b981, #3b82f6, #eab308, #10b981);
+  background-size: 200px 150px, 150px 150px, 150px 150px, 200px 150px, 240px 200px;
+  background-repeat: no-repeat;
+  background-position: top left, top right, bottom left, bottom right, center;
+  background-blend-mode: hard-light;
+}
+
+/* --- Transition demo --- */
+.transition-demo {
+  height: 180px;
+  border: 2px solid var(--brand-2);
+  border-radius: 10px;
+  background: var(--demo-img) no-repeat left center;
+  background-size: 90px;
+  transition: background-position .6s ease, background-size .6s ease;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 800;
+  text-shadow: 0 2px 6px rgba(0,0,0,.7);
+  font-size: .95rem;
+  cursor: pointer;
+}
+.transition-demo:hover,
+.transition-demo:focus {
+  background-position: right center;
+  background-size: 140px;
+  outline: none;
+}
+.transition-demo:focus-visible {
+  outline: 2px dashed var(--brand);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   13. FAQ
+   ========================================================= */
+details {
+  margin-bottom: .7rem;
+  padding: .85rem 1.1rem;
+  border-radius: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  transition: background .2s ease;
+}
+
+details[open] { background: var(--surface); }
+
+summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--heading);
+  list-style: none;
+}
+
+summary::-webkit-details-marker { display: none; }
+
+summary::after {
+  content: "+";
+  font-size: 1.3rem;
+  line-height: 1;
+  color: var(--brand);
+  transition: transform .2s ease;
+}
+
+details[open] summary::after { content: "−"; }
+
+details p { margin: .8rem 0 .2rem; font-size: .95rem; }
+
+/* =========================================================
+   14. CONCLUSION
+   ========================================================= */
+.finale {
+  text-align: center;
+  background:
+    radial-gradient(600px 260px at 50% 0%, rgba(147,51,234,.14), transparent 70%),
+    var(--surface);
+}
+
+.finale h2 { justify-content: center; display: block; }
+
+.finale .signoff {
+  margin-top: 1.4rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  background: linear-gradient(100deg, #2563eb, #9333ea);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* =========================================================
+   15. BACK TO TOP
+   ========================================================= */
+#toTop {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.15rem;
+  color: #fff;
+  background: linear-gradient(135deg, #2563eb, #9333ea);
+  box-shadow: 0 12px 26px -10px rgba(37,99,235,.9);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(14px);
+  transition: opacity .28s ease, transform .28s ease;
+}
+
+#toTop.show { opacity: 1; pointer-events: auto; transform: none; }
+
+/* =========================================================
+   16. FOOTER
+   ========================================================= */
+footer {
+  padding: 2.5rem 1.25rem 3rem;
+  text-align: center;
+  font-size: .88rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="hero__inner">
+    <span class="badge">CSS Guide · 2026</span>
+    <h1>CSS Background Properties</h1>
+    <p class="hero__sub">
+      Complete guide with <strong>live interactive demos</strong> — colours, images,
+      gradients, patterns, blending and creative visual effects, with practical code snippets.
+    </p>
+    <ul class="hero__meta">
+      <li>15 Sections</li>
+      <li>20+ Live Demos</li>
+      <li>25+ Code Examples</li>
+      <li>Beginner → Advanced</li>
+    </ul>
+  </div>
+</header>
+
+<!-- ================= LAYOUT ================= -->
+<div class="layout">
+
+  <!-- ---------- TOC (horizontal flex bar) ---------- -->
+  <aside class="toc">
+    <h2>On this page</h2>
+    <ol>
+      <li class="toc--plain"><a href="#intro">Introduction</a></li>
+      <li><a href="#bg-color">background-color</a></li>
+      <li><a href="#bg-image">background-image</a></li>
+      <li><a href="#bg-origin">background-origin</a></li>
+      <li><a href="#bg-repeat">background-repeat</a></li>
+      <li><a href="#bg-clip">background-clip</a></li>
+      <li><a href="#bg-position">background-position</a></li>
+      <li><a href="#bg-attachment">background-attachment</a></li>
+      <li><a href="#bg-size">background-size</a></li>
+      <li><a href="#bg-blend">background-blend-mode</a></li>
+      <li><a href="#bg-shorthand">Shorthand Property</a></li>
+      <li><a href="#bg-multiple">Multiple Images</a></li>
+      <li><a href="#bg-gradients">Multiple Gradients</a></li>
+      <li><a href="#bg-transition">Transition Effects</a></li>
+      <li><a href="#practical">Practical Uses</a></li>
+      <li><a href="#best-practices">Best Practices</a></li>
+      <li class="toc--plain"><a href="#faq">FAQs</a></li>
+      <li class="toc--plain"><a href="#conclusion">Conclusion</a></li>
+    </ol>
+  </aside>
+
+  <!-- ---------- MAIN CONTENT ---------- -->
+  <main>
+
+    <!-- ========== INTRO ========== -->
+    <section class="card" id="intro">
+      <h2>What Are CSS Background Properties?</h2>
+      <p class="lead">
+        CSS (Cascading Style Sheets) provides powerful background properties that allow
+        developers to customize the appearance of HTML elements — background colours,
+        images, gradients, patterns and creative visual effects.
+      </p>
+      <p>
+        Whether you are a beginner learning CSS or an experienced frontend developer,
+        understanding CSS Background Properties is essential for creating attractive,
+        modern and responsive websites.
+      </p>
+      <p>
+        <strong>CSS Background Properties</strong> are used to control the background
+        appearance of HTML elements. They allow you to apply colours, images, gradients
+        and different visual effects to elements such as sections, containers, buttons,
+        cards and entire web pages.
+      </p>
+      <div class="note">
+        <strong>About the live demos below:</strong> every demo uses a
+        self-contained CSS-generated placeholder image — a blue square with a yellow
+        circle and a red corner mark — so you can clearly see how each property affects
+        positioning, repeating, sizing and blending. No external files are loaded.
+      </div>
+    </section>
+
+    <!-- ========== 1. background-color ========== -->
+    <section class="card num" id="bg-color">
+      <h2>CSS <code>background-color</code></h2>
+      <p>
+        The <code>background-color</code> property is used to set the background colour of
+        an HTML element. CSS supports different colour formats, including colour names,
+        HEX, RGB, RGBA, HSL and HSLA.
+      </p>
+
+      <h3>Example</h3>
+      <pre><code>.box {
+  background-color: #2563eb;
+  color: white;
+  padding: 20px;
+}</code></pre>
+
+      <h3>Different Colour Values</h3>
+      <pre><code>.box1 { background-color: red; }
+.box2 { background-color: #2563eb; }
+.box3 { background-color: rgb(0, 128, 255); }
+.box4 { background-color: rgba(0, 128, 255, 0.5); }
+.box5 { background-color: transparent; }</code></pre>
+
+      <div class="demo">
+        <span class="demo__label">Live Demo</span>
+        <div class="demo__grid">
+          <div class="demo__cell demo__cell--color" style="background-color: hotpink;"><span>hotpink</span></div>
+          <div class="demo__cell demo__cell--color" style="background-color: #2563eb;"><span>#2563eb</span></div>
+          <div class="demo__cell demo__cell--color" style="background-color: rgb(0,128,255);"><span>rgb(0,128,255)</span></div>
+          <div class="demo__cell demo__cell--color" style="background-color: rgba(0,128,255,.5);"><span>rgba(0,128,255,.5)</span></div>
+          <div class="demo__cell demo__cell--color" style="background-color: hsla(300,80%,50%,.6);"><span>hsla(300,80%,50%,.6)</span></div>
+          <div class="demo__cell demo__cell--checker">transparent</div>
+        </div>
+      </div>
+
+      <h3>Common Values</h3>
+      <ul>
+        <li><code>red</code> — sets a red background.</li>
+        <li><code>#2563eb</code> — uses HEX colour notation.</li>
+        <li><code>rgb()</code> — defines a colour using RGB values.</li>
+        <li><code>rgba()</code> — defines an RGB colour with transparency.</li>
+        <li><code>hsl()</code> — defines colour using Hue, Saturation and Lightness.</li>
+        <li><code>transparent</code> — creates a transparent background.</li>
+      </ul>
+    </section>
+
+    <!-- ========== 2. background-image ========== -->
+    <section class="card num" id="bg-image">
+      <h2>CSS <code>background-image</code></h2>
+      <p>
+        The <code>background-image</code> property allows you to add an image or gradient
+        to an HTML element. It is commonly used for website banners, hero sections,
+        landing pages and decorative backgrounds.
+      </p>
+
+      <h3>Example</h3>
+      <pre><code>.hero {
+  background-image: url("background.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}</code></pre>
+
+      <h3>Using a Linear Gradient</h3>
+      <pre><code>.hero {
+  background-image: linear-gradient(
+    to right,
+    #2563eb,
+    #9333ea
+  );
+}</code></pre>
+
+      <div class="demo">
+        <span class="demo__label">Live Demo</span>
+        <div class="demo__grid">
+          <div class="demo__cell" style="background-image: var(--demo-img); background-size: 60px;">url("image.jpg")</div>
+          <div class="demo__cell" style="background-image: linear-gradient(135deg,#2563eb,#9333ea); color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.5);">linear-gradient</div>
+          <div class="demo__cell" style="background-image: radial-gradient(circle,#fbbf24,#ef4444); color:#0f172a;">radial-gradient</div>
+          <div class="demo__cell" style="background-image: conic-gradient(#2563eb,#9333ea,#fbbf24,#2563eb); color:#fff; text-shadow:0 1px 3px rgba(0,0,0,.5);">conic-gradient</div>
+        </div>
+      </div>
+
+      <div class="note">
+        You can also use <code>radial-gradient()</code> and <code>conic-gradient()</code>
+        to create different background effects — no image files required.
+      </div>
+    </section>
+
+    <!-- ========== 3. background-origin ========== -->
+    <section class="card num" id="bg-origin">
+      <h2>CSS <code>background-origin</code></h2>
+      <p>
+        The <code>background-origin</code> property specifies the positioning area from
+        which a background image is placed. It has three main values:
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Value</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>border-box</code></td><td>Background positioning starts from the border edge.</td></tr>
+            <tr><td><code>padding-box</code></td><td>Background positioning starts from the padding edge (default).</td></tr>
+            <tr><td><code>content-box</code></td><td>Background positioning starts from the content edge.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Example</h3>
+      <pre><code>.box {
+  border: 10px dashed purple;
+  padding: 25px;
+  background-image: url("image.jpg");
+  background-origin: content-box;
+  background-repeat: no-repeat;
+}</code></pre>
+
+      <div class="demo">
+        <span class="demo__label">Live Demo</span>
+        <div class="demo__grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+          <div class="origin-demo origin-demo--padding">
+            <strong>padding-box</strong>
+            <span>default</span>
+          </div>
+          <div class="origin-demo origin-demo--border">
+            <strong>border-box</strong>
+            <span>starts at border</span>
+          </div>
+          <div class="origin-demo origin-demo--content">
+            <strong>content-box</strong>
+            <span>starts at content</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        Useful when you need precise control over background image placement inside an
+        element with thick borders or padding.
+      </div>
+    </section>
+
+    <!-- ========== 4. background-repeat ========== -->
+    <section class="card num" id="bg-repeat">
+      <h2>CSS <code>background-repeat</code></h2>
+      <p>
+        The <code>background-repeat</code> property controls whether and how a background
+        image repeats inside an element.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Value</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>repeat</code></td><td>Repeats the image horizontally and vertically (default).</td></tr>
+            <tr><td><code>no-repeat</code></td><td>Displays the image only once.</td></tr>
+            <tr><td><code>repeat-x</code></td><td>Repeats the image horizontally.</td></tr>
+            <tr><td><code>repeat-y</code></td><td>Repeats the image vertically.</td></tr>
+            <tr><td><code>space</code></td><td>Distributes repeated images with spacing.</td></tr>
+            <tr><td><code>round</code></td><td>Adjusts image sizes to fit without gaps.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <pre><code>.box {
+  background-image: url("pattern.png");
+  background-repeat: repeat-x;
+}</code></pre>
+
+      <div class="demo">
+        <span class="demo__label">Live Demo</span>
+        <div class="demo__grid">
+          <div class="demo__cell demo__cell--rep rep-no">no-repeat</div>
+          <div class="demo__cell demo__cell--rep rep-repeat">repeat</div>
+          <div class="demo__cell demo__cell--rep rep-x">repeat-x</div>
+          <div class="demo__cell demo__cell--rep rep-y">repeat-y</div>
+          <div class="demo__cell demo__cell--rep rep-space">space</div>
+          <div class="demo__cell demo__cell--rep rep-round">round</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 5. background-clip ========== -->
+    <section class="card num" id="bg-clip">
+      <h2>CSS <code>background-clip</code></h2>
+      <p>
+        The <code>background-clip</code> property determines how far the background
+        extends within an element.
+      </p>
+
+      <h3>Available Values</h3>
+      <ul class="chips">
+        <li>border-box</li>
+        <li>padding-box</li>
+        <li>content-box</li>
+        <li>text</li>
+      </ul>
+
+      <pre><code>h1 {
+  background: linear-gradient(90deg, red, blue, cyan);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}</code></pre>
+
+      <div class="demo">
+        <span class="demo__label">Live Demo</span>
+        <div class="clip-demo clip-border">background-clip: <strong>border-box</strong></div>
+        <div class="clip-demo clip-padding">background-clip: <strong>padding-box</strong></div>
+        <div class="clip-demo clip-content">background-clip: <strong>content-box</strong></div>
+        <div class="clip-demo clip-text">GRADIENT TEXT</div>
+      </div>
+
+      <p>
+        The <code>background-clip: text</code> technique creates gradient-coloured text by
+        displaying the background through the text characters. It is commonly used for
+        modern headings, logos and creative website designs.
+      </p>
+    </section>
+
+    <!-- ========== 6. background-position ========== -->
+    <section class="card num" id="bg-position">
+      <h2>CSS <code>background-position</code></h2>
+      <p>
+        The <code>background-position</code> property controls the position of a background
+        image inside an element. You can position an image using keywords, percentages or
+        pixel values.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Value</th><th>Position</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>left top</code></td><td>Top-left corner</td></tr>
+            <tr><td><code>right top</code></td><td>Top-right corner</td></tr>
+            <tr><td><code>center</code></td><td>Center position</td></tr>
+            <tr><td><code>left bottom</code></td><td>Bottom-left corner</td></tr>
+            <tr><td><code>right bottom</code></td><td>Bottom-right corner</td></tr>
+            <tr><td><code>10% 40%</code></td><td>Percentage-based position</td></tr>
+            <tr><td><code>50px 100px</code></td><td>Pixel-based position</td></tr>
+            <tr><td><code>right 20px bottom 30px</code></td><td>4-value syntax with offsets</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <pre><code>.box {
+  background-image: url("image.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Separate axes */
+.box {
+  background-position-x: right;
+  background-position-y: top;
+}</code></pre>
+
+      <div class="demo">
+        <span class="demo__label">Live Demo</span>
+        <div class="demo__grid">
+          <div class="demo__cell demo__cell--pos" style="background-position:left top;">left top</div>
+          <div class="demo__cell demo__cell--pos" style="background-position:left center;">left center</div>
+          <div class="demo__cell demo__cell--pos" style="background-position:left bottom;">left bottom</div>
+          <div class="demo__cell demo__cell--pos" style="background-position:right top;">right top</div>
+          <div class="demo__cell demo__cell--pos" style="background-position:right center;">right center</div>
+          <div class="demo__cell demo__cell--pos" style="background-position:right bottom;">right bottom</div>
+          <div class="demo__cell demo__cell--pos" style="background-position:center top;">center top</div>
+          <div class="demo__cell demo__cell--pos" style="background-position:10% 40%;">10% 40%</div>
+          <div class="demo__cell demo__cell--pos" style="background-position:50px 100px;">50px 100px</div>
+          <div class="demo__cell demo__cell--pos" style="background-position:center;">center</div>
+          <div class="demo__cell demo__cell--pos" style="background-position:right 20px bottom 30px;">right 20px bottom 30px</div>
+          <div class="demo__cell demo__cell--pos" style="background-position:calc(100% - 20px) center;">calc(100% − 20px) center</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 7. background-attachment ========== -->
+    <section class="card num" id="bg-attachment">
+      <h2>CSS <code>background-attachment</code></h2>
+      <p>
+        The <code>background-attachment</code> property determines how a background image
+        behaves when the page or element is scrolled.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Value</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>scroll</code></td><td>Background scrolls normally with the page (default).</td></tr>
+            <tr><td><code>fixed</code></td><td>Background remains fixed relative to the viewport.</td></tr>
+            <tr><td><code>local</code></td><td>Background scrolls with the element's content.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <pre><code>body {
+  background-image: url("background.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}</code></pre>
+
+      <div class="demo">
+        <span class="demo__label">Live Demo — scroll inside each box</span>
+        <h3 style="margin-top:0;">fixed</h3>
+        <div class="attach-demo attach-fixed">
+          <p>Scroll inside — image stays fixed.</p>
+          <p>Scroll inside — image stays fixed.</p>
+          <p>Scroll inside — image stays fixed.</p>
+          <p>Scroll inside — image stays fixed.</p>
+          <p>Scroll inside — image stays fixed.</p>
+          <p>Scroll inside — image stays fixed.</p>
+        </div>
+
+        <h3>scroll (default)</h3>
+        <div class="attach-demo attach-scroll">
+          <p>Scroll — image scrolls with page.</p>
+          <p>Scroll — image scrolls with page.</p>
+          <p>Scroll — image scrolls with page.</p>
+          <p>Scroll — image scrolls with page.</p>
+          <p>Scroll — image scrolls with page.</p>
+          <p>Scroll — image scrolls with page.</p>
+        </div>
+
+        <h3>local</h3>
+        <div class="attach-demo attach-local">
+          <p>Scroll inside — image moves with content.</p>
+          <p>Scroll inside — image moves with content.</p>
+          <p>Scroll inside — image moves with content.</p>
+          <p>Scroll inside — image moves with content.</p>
+          <p>Scroll inside — image moves with content.</p>
+          <p>Scroll inside — image moves with content.</p>
+        </div>
+      </div>
+
+      <div class="note">
+        <code>fixed</code> can create attractive parallax-like scrolling effects, but
+        may behave inconsistently on some mobile browsers.
+      </div>
+    </section>
+
+    <!-- ========== 8. background-size ========== -->
+    <section class="card num" id="bg-size">
+      <h2>CSS <code>background-size</code></h2>
+      <p>
+        The <code>background-size</code> property controls the width and height of a
+        background image. It helps you fit images into different containers without
+        changing the HTML structure.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Value</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>auto</code></td><td>Uses the image's original dimensions (default).</td></tr>
+            <tr><td><code>cover</code></td><td>Covers the entire container.</td></tr>
+            <tr><td><code>contain</code></td><td>Fits the entire image inside the container.</td></tr>
+            <tr><td><code>100% 100%</code></td><td>Stretches the image to the container dimensions.</td></tr>
+            <tr><td><code>50px</code></td><td>Sets the image width to 50px, keeping aspect ratio.</td></tr>
+            <tr><td><code>200px 100px</code></td><td>Sets a specific width and height.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <pre><code>.hero {
+  background-image: url("banner.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}</code></pre>
+
+      <div class="demo">
+        <span class="demo__label">Live Demo</span>
+        <div class="demo__grid">
+          <div class="demo__cell demo__cell--size sz-auto">auto</div>
+          <div class="demo__cell demo__cell--size sz-cover">cover</div>
+          <div class="demo__cell demo__cell--size sz-contain">contain</div>
+          <div class="demo__cell demo__cell--size sz-70">70%</div>
+          <div class="demo__cell demo__cell--size sz-50px">50px</div>
+          <div class="demo__cell demo__cell--size sz-200x100">200px 100px</div>
+        </div>
+      </div>
+
+      <h3>Difference Between Cover and Contain</h3>
+      <div class="compare">
+        <div class="compare__item">
+          <h4><code>cover</code></h4>
+          <p>Fills the entire container, but some parts of the image may be cropped.</p>
+        </div>
+        <div class="compare__item">
+          <h4><code>contain</code></h4>
+          <p>Displays the complete image, but empty spaces may remain inside the container.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 9. background-blend-mode ========== -->
+    <section class="card num" id="bg-blend">
+      <h2>CSS <code>background-blend-mode</code></h2>
+      <p>
+        The <code>background-blend-mode</code> property controls how multiple background
+        layers blend together. It is useful for creating creative colour effects, image
+        overlays and modern website backgrounds.
+      </p>
+
+      <pre><code>.box {
+  background-image: url("image.jpg"),
+                    linear-gradient(red, blue);
+  background-blend-mode: multiply;
+}</code></pre>
+
+      <div class="demo">
+        <span class="demo__label">Live Demo — image + gradient blend</span>
+        <div class="blend-grid">
+          <div class="blend-item"><div class="blend-preview bl-normal"></div><span>normal</span></div>
+          <div class="blend-item"><div class="blend-preview bl-multiply"></div><span>multiply</span></div>
+          <div class="blend-item"><div class="blend-preview bl-screen"></div><span>screen</span></div>
+          <div class="blend-item"><div class="blend-preview bl-overlay"></div><span>overlay</span></div>
+          <div class="blend-item"><div class="blend-preview bl-darken"></div><span>darken</span></div>
+          <div class="blend-item"><div class="blend-preview bl-lighten"></div><span>lighten</span></div>
+          <div class="blend-item"><div class="blend-preview bl-color"></div><span>color</span></div>
+          <div class="blend-item"><div class="blend-preview bl-hue"></div><span>hue</span></div>
+          <div class="blend-item"><div class="blend-preview bl-saturation"></div><span>saturation</span></div>
+          <div class="blend-item"><div class="blend-preview bl-luminosity"></div><span>luminosity</span></div>
+          <div class="blend-item"><div class="blend-preview bl-hard-light"></div><span>hard-light</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 10. Shorthand ========== -->
+    <section class="card num" id="bg-shorthand">
+      <h2>CSS Background Shorthand Property</h2>
+      <p>
+        The <code>background</code> shorthand property allows you to combine multiple
+        background-related settings into a single declaration. Instead of writing each
+        property separately, you can use one shorter CSS statement.
+      </p>
+
+      <h3>Longhand Example</h3>
+      <pre><code>.box {
+  background-color: cyan;
+  background-image: url("image.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: scroll;
+  background-size: cover;
+}</code></pre>
+
+      <h3>Shorthand Example</h3>
+      <pre><code>.box {
+  background: cyan url("image.jpg") no-repeat center / cover scroll;
+}</code></pre>
+
+      <div class="demo">
+        <span class="demo__label">Live Demo</span>
+        <div class="demo__grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+          <div class="sh-demo sh-image">background: url("image") cyan …</div>
+          <div class="sh-demo sh-gradient">background: linear-gradient(…) black …</div>
+        </div>
+      </div>
+
+      <div class="note">
+        Using shorthand properties makes your CSS shorter, cleaner and easier to maintain.
+      </div>
+    </section>
+
+    <!-- ========== 11. Multiple Images ========== -->
+    <section class="card num" id="bg-multiple">
+      <h2>CSS Multiple Background Images</h2>
+      <p>
+        CSS allows you to apply multiple background images to a single HTML element.
+        You can separate different background layers using commas.
+      </p>
+
+      <pre><code>.box {
+  background-image:
+    url("image1.png"),
+    url("image2.png"),
+    url("image3.png");
+  background-position: top left, top right, bottom center;
+  background-repeat: no-repeat;
+  background-size: 100px, 100px, 150px;
+}</code></pre>
+
+      <div class="demo">
+        <span class="demo__label">Live Demo — 5 stacked layers</span>
+        <div class="multi-img-demo"></div>
+      </div>
+
+      <div class="note">
+        The first background image is displayed on the <strong>top layer</strong>, with
+        subsequent images layered below. Multiple backgrounds are useful for creating
+        complex banners, decorative sections and advanced UI designs.
+      </div>
+    </section>
+
+    <!-- ========== 12. Multiple Gradients ========== -->
+    <section class="card num" id="bg-gradients">
+      <h2>CSS Multiple Gradient Backgrounds</h2>
+      <p>
+        CSS also allows you to combine multiple gradients in a single element. You can use
+        linear, radial and conic gradients together to create colourful background designs.
+      </p>
+
+      <pre><code>.box {
+  background:
+    linear-gradient(45deg, red, transparent),
+    linear-gradient(135deg, blue, cyan),
+    radial-gradient(circle, yellow, transparent);
+}</code></pre>
+
+      <div class="demo">
+        <span class="demo__label">Live Demo — 5 gradients with blend mode</span>
+        <div class="multi-grad-demo"></div>
+      </div>
+
+      <div class="note">
+        This technique is useful for creating modern backgrounds without downloading any
+        additional image files.
+      </div>
+    </section>
+
+    <!-- ========== 13. Transition ========== -->
+    <section class="card num" id="bg-transition">
+      <h2>CSS Background Transition Effects</h2>
+      <p>
+        CSS transitions allow you to animate background-related properties smoothly when
+        an element changes state. For example, you can move a background image from left to
+        right when a user hovers over an element.
+      </p>
+
+      <pre><code>.box {
+  height: 200px;
+  background-image: url("image.jpg");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: left center;
+  transition: background-position 0.6s ease,
+              background-size 0.6s ease;
+}
+
+.box:hover {
+  background-position: right center;
+  background-size: 160px;
+}</code></pre>
+
+      <div class="demo">
+        <span class="demo__label">Live Demo — hover / focus the box</span>
+        <div class="transition-demo" tabindex="0">Hover or focus me 👆</div>
+      </div>
+
+      <p>This creates a smooth background animation when the user interacts with the element.</p>
+    </section>
+
+    <!-- ========== 14. Practical Uses ========== -->
+    <section class="card num" id="practical">
+      <h2>Practical Uses of CSS Background Properties</h2>
+      <p>CSS Background Properties are widely used in modern web development. Some common applications include:</p>
+      <ul>
+        <li><strong>Website Banners:</strong> create attractive hero sections with background images and gradients.</li>
+        <li><strong>Landing Pages:</strong> design colourful and professional page backgrounds.</li>
+        <li><strong>Cards &amp; Containers:</strong> add background colours, images and patterns.</li>
+        <li><strong>Buttons:</strong> create gradient backgrounds and hover effects.</li>
+        <li><strong>Portfolio Websites:</strong> make personal websites more visually appealing.</li>
+        <li><strong>Background Animations:</strong> add smooth visual effects using CSS transitions.</li>
+        <li><strong>Responsive Designs:</strong> adjust background images for different screen sizes.</li>
+        <li><strong>Text Effects:</strong> create gradient text using <code>background-clip: text</code>.</li>
+      </ul>
+    </section>
+
+    <!-- ========== 15. Best Practices ========== -->
+    <section class="card num" id="best-practices">
+      <h2>Best Practices for Using CSS Background Properties</h2>
+      <p>Follow these tips to create better website designs and maintain clean CSS code:</p>
+      <ul>
+        <li>Use <code>background-size: cover</code> for full-width hero sections.</li>
+        <li>Use <code>background-repeat: no-repeat</code> when an image should appear only once.</li>
+        <li>Choose background colours that provide sufficient text contrast.</li>
+        <li>Optimize background images to improve website loading speed.</li>
+        <li>Use CSS gradients when you do not need an actual image.</li>
+        <li>Avoid unnecessarily large background images.</li>
+        <li>Test background behaviour on mobile devices and desktop screens.</li>
+        <li>Use shorthand properties when they improve code readability.</li>
+      </ul>
+    </section>
+
+    <!-- ========== FAQ ========== -->
+    <section class="card" id="faq">
+      <h2>Frequently Asked Questions (FAQs)</h2>
+
+      <details>
+        <summary>Q1. What are CSS Background Properties?</summary>
+        <p>CSS Background Properties are used to customize the background of HTML elements with colours, images, gradients and different visual effects.</p>
+      </details>
+
+      <details>
+        <summary>Q2. How do I add a background image in CSS?</summary>
+        <p>You can use the <code>background-image</code> property:</p>
+        <pre><code>body {
+  background-image: url("background.jpg");
+}</code></pre>
+      </details>
+
+      <details>
+        <summary>Q3. What is the difference between background-size: cover and contain?</summary>
+        <p><code>cover</code> fills the entire container and may crop parts of the image, while <code>contain</code> displays the complete image and may leave empty spaces.</p>
+      </details>
+
+      <details>
+        <summary>Q4. How do I prevent a background image from repeating?</summary>
+        <p>Use the following CSS:</p>
+        <pre><code>.box {
+  background-repeat: no-repeat;
+}</code></pre>
+      </details>
+
+      <details>
+        <summary>Q5. Can I use multiple background images in CSS?</summary>
+        <p>Yes. CSS supports multiple background images using comma-separated values in the <code>background</code> or <code>background-image</code> property.</p>
+      </details>
+
+      <details>
+        <summary>Q6. What is the purpose of background-blend-mode?</summary>
+        <p>It controls how different background layers blend together to create visual effects.</p>
+      </details>
+
+      <details>
+        <summary>Q7. Which CSS background property is used to control image position?</summary>
+        <p>The <code>background-position</code> property controls the horizontal and vertical position of a background image.</p>
+      </details>
+
+      <details>
+        <summary>Q8. Can CSS backgrounds use gradients without images?</summary>
+        <p>Yes. CSS provides <code>linear-gradient()</code>, <code>radial-gradient()</code> and <code>conic-gradient()</code> functions to create backgrounds without external image files.</p>
+      </details>
+    </section>
+
+    <!-- ========== CONCLUSION ========== -->
+    <section class="card finale" id="conclusion">
+      <h2>Conclusion</h2>
+      <p>
+        CSS Background Properties are an important part of modern web design. They give
+        developers complete control over the appearance of HTML elements by allowing them
+        to use colours, images, gradients, blending effects and animations.
+      </p>
+      <p>
+        By understanding properties such as <code>background-color</code>,
+        <code>background-image</code>, <code>background-size</code>,
+        <code>background-position</code>, <code>background-repeat</code> and
+        <code>background-blend-mode</code>, you can create attractive and responsive
+        website designs.
+      </p>
+      <p>Practice the examples in this guide and experiment with different combinations to improve your CSS skills.</p>
+      <p class="signoff">Keep Learning, Keep Coding! 🚀</p>
+    </section>
+
+  </main>
+   <div class="related-tools">
+            <h2>Related Tools</h2>
+            <ul>
+                <li><a href="/tools/barcode-generator.html">Barcode Generator</a></li>
+                <li><a href="/tools/qr-code-generator.html">QR Code Generator Tool</a></li>
+                <li><a href="/tools/color-contrast-analyzer.html">Color Contrast Analyzer</a></li>
+                <li><a href="/tools/image-resizer.html">Image Resizer Tool</a></li>
+                <li><a href="/tools/unlock-page.html">Unlock Page Generator</a></li>
+                <li><a href="/tools/auto-code-typing.html">Auto Code Typing</a></li>
+                <li><a href="/tools/code-editor.html">Live Code Editor</a></li>
+                   <li><a href="tools/css-box-shadow-generator.html">Box Shadow Generator</a></li>
+                    <li><a href="/tools/Text-shadow-generator.html">Text Shadow Generator</a></li>
+                    
+                   
+            </ul>
+            
+        </div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <p>© 2026 · CSS Background Properties — Complete Guide with Live Demos</p>
+</footer>
+
+<button id="toTop" aria-label="Back to top">↑</button>
+
+<script>
+/* ---- Copy button for every code block ---- */
+document.querySelectorAll('pre').forEach(function (pre) {
+  var btn = document.createElement('button');
+  btn.className = 'copy-btn';
+  btn.type = 'button';
+  btn.textContent = 'Copy';
+
+  btn.addEventListener('click', function () {
+    var code = pre.querySelector('code');
+    var text = code ? code.innerText : pre.innerText;
+    navigator.clipboard.writeText(text).then(function () {
+      btn.textContent = 'Copied!';
+      setTimeout(function () { btn.textContent = 'Copy'; }, 1500);
+    }).catch(function () {
+      btn.textContent = 'Error';
+      setTimeout(function () { btn.textContent = 'Copy'; }, 1500);
+    });
+  });
+
+  pre.appendChild(btn);
+});
+
+/* ---- Back to top button ---- */
+var toTop = document.getElementById('toTop');
+
+window.addEventListener('scroll', function () {
+  toTop.classList.toggle('show', window.scrollY > 600);
+}, { passive: true });
+
+toTop.addEventListener('click', function () {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+
+</body>
+</html>

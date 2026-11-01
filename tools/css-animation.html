@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complete Guide to CSS Animations</title>
+  <meta name="description" content="Learn CSS animations with live interactive examples. Complete guide covering animation duration, delay, timing functions, iteration count, direction, fill mode, and play state.">
+<meta name="keywords" content="CSS animation, CSS keyframes, animation duration, animation delay, timing functions, CSS guide">
+  <style>
+    /* ================= GLOBAL TYPOGRAPHY ================= */
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.65;
+      color: #1e293b;
+      background: #f1f5f9;
+    }
+
+    h1 {
+      color: #0f172a;
+      border-bottom: 3px solid #5e27cd;
+      padding-bottom: 10px;
+      margin-bottom: 8px;
+      font-size: 28px;
+    }
+.H2{color:white;
+font-weight:900;}
+    h2 {
+      color: #5e27cd;
+      margin-top: 36px;
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #e2e8f0;
+      scroll-margin-top: 20px;
+      font-size: 22px;
+    }
+
+    h3 {
+      color: #334155;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      font-size: 17px;
+    }
+
+    p { margin: 10px 0; }
+    ul { padding-left: 22px; }
+    li { margin: 4px 0; }
+    strong { color: #0f172a; }
+
+    pre {
+      background: #0f172a;
+      color: #e2e8f0;
+      padding: 14px 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-size: 13.5px;
+      line-height: 1.5;
+      margin: 12px 0;
+    }
+
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+      font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+    }
+
+    code {
+      background: #ede9fe;
+      color: #6d28d9;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.92em;
+      font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+    }
+
+    /* ================= TOC ================= */
+    .toc {
+      background: #fff;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+
+    .toc strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 16px;
+      color: #5e27cd;
+    }
+
+    .toc ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 4px 16px;
+    }
+
+    .toc a {
+      color: #1e3a8a;
+      text-decoration: none;
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: block;
+      font-size: 14px;
+      transition: background 0.15s;
+    }
+
+    .toc a:hover {
+      background: #ede9fe;
+      color: #5e27cd;
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 640px) {
+      body { padding: 12px; }
+      h1 { font-size: 22px; }
+      h2 { font-size: 18px; }
+      h3 { font-size: 15px; }
+      pre { font-size: 12px; padding: 10px; }
+      .toc ul { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ✅ FIX: Added main landmark -->
+<main>
+
+  <h1>Complete Guide to CSS Animations</h1>
+  <p>Learn how to create engaging animations using only CSS.</p>
+
+  <nav class="toc">
+    <strong>📚 On this page</strong>
+    <ul>
+      <li><a href="#intro">Introduction</a></li>
+      <li><a href="#properties">Animation Properties</a></li>
+      <li><a href="#shorthand">Shorthand &amp; Defaults</a></li>
+      <li><a href="#name">Animation Name</a></li>
+      <li><a href="#keyframes">@keyframes</a></li>
+      <li><a href="#duration">Duration</a></li>
+      <li><a href="#timing">Timing Functions</a></li>
+      <li><a href="#delay">Delay</a></li>
+      <li><a href="#iteration">Iteration Count</a></li>
+      <li><a href="#direction">Direction</a></li>
+      <li><a href="#fill">Fill Mode</a></li>
+      <li><a href="#play">Play State</a></li>
+      <li><a href="#bonus">Bonus Tips</a></li>
+    </ul>
+  </nav>
+
+  <!-- ================= INTRO ================= -->
+  <h2 id="intro">Introduction to CSS Animations</h2>
+  <p>
+    CSS animations let you animate transitions from one CSS style configuration to another.
+    They consist of two components: a <strong>style</strong> describing the animation, and a
+    set of <strong>keyframes</strong> that indicate the start, end, and intermediate states of
+    the animation.
+  </p>
+  <pre><code>/* Basic animation syntax */
+@keyframes example {
+  from { background-color: red; }
+  to   { background-color: yellow; }
+}
+
+.element {
+  animation-name: example;
+  animation-duration: 4s;
+}</code></pre>
+
+  <!-- ================= PROPERTIES ================= -->
+  <h2 id="properties">Animation Properties</h2>
+  <p>CSS animations are controlled with the following properties:</p>
+  <ul>
+    <li><strong>@keyframes:</strong> Defines the animation name along with CSS property values at each step.</li>
+    <li><strong>animation-name:</strong> Specifies the name of the <code>@keyframes</code> rule.</li>
+    <li><strong>animation-duration:</strong> Defines how long the animation takes to complete one cycle.</li>
+    <li><strong>animation-timing-function:</strong> Specifies the speed curve of the animation.</li>
+    <li><strong>animation-delay:</strong> Specifies a delay before the animation starts.</li>
+    <li><strong>animation-iteration-count:</strong> Defines how many times the animation runs.</li>
+    <li><strong>animation-direction:</strong> Specifies whether the animation plays in reverse on alternate cycles.</li>
+    <li><strong>animation-fill-mode:</strong> Specifies the styles applied to the element before and after the animation runs.</li>
+    <li><strong>animation-play-state:</strong> Specifies whether the animation is running or paused.</li>
+  </ul>
+
+  <!-- ================= SHORTHAND + DEFAULTS ================= -->
+  <h2 id="shorthand">Animation Shorthand &amp; Default Values</h2>
+  <p>
+    The <code>animation</code> shorthand combines all sub-properties into one declaration.
+    Its default value is:
+  </p>
+  <pre><code>.element {
+  animation: name duration timing-function delay iteration-count direction fill-mode play-state;
+}
+
+/* Default value */
+animation: none 0 ease 0 1 normal none running;</code></pre>
+  <p>This expands to the following individual defaults:</p>
+  <ul>
+    <li><strong>animation-name:</strong> <code>none</code> — no animation is applied</li>
+    <li><strong>animation-duration:</strong> <code>0s</code> — animation plays instantly</li>
+    <li><strong>animation-timing-function:</strong> <code>ease</code> — slow start, fast middle, slow end</li>
+    <li><strong>animation-delay:</strong> <code>0s</code> — animation starts immediately</li>
+    <li><strong>animation-iteration-count:</strong> <code>1</code> — animation plays once</li>
+    <li><strong>animation-direction:</strong> <code>normal</code> — plays forwards</li>
+    <li><strong>animation-fill-mode:</strong> <code>none</code> — no styles applied before or after execution</li>
+    <li><strong>animation-play-state:</strong> <code>running</code> — animation is playing</li>
+  </ul>
+
+  <!-- Interactive Demo: Shorthand vs Longhand -->
+  <div class="sd-demo">
+    <style>
+      .sd-demo {
+        border: 2px double green;
+        padding: 0 0 1px 0;
+        margin: 16px 0;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+                    rgba(0, 0, 0, 0.12) 0px -12px 30px,
+                    rgba(0, 0, 0, 0.12) 0px 4px 6px,
+                    rgba(0, 0, 0, 0.17) 0px 12px 13px,
+                    rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        background: #ffffff;
+      }
+
+      .sd-demo :is(.sd-longhand, .sd-shorthand) {
+        font-weight: 900;
+        white-space: pre;
+        /* ✅ FIX: Removed text-stroke (causes contrast fail) */
+        color: white; 
+        font: 900 15px fantasy;
+        padding: 9px;
+        background: blue;
+      }
+
+      .sd-demo .sd-shorthand { white-space: pre-line; }
+
+      .sd-demo .sd-stage .sd-plane {
+        font: italic small-caps bold 23px/30px Verdana;
+        color: white;
+        -webkit-text-stroke: 0.4px black;
+      }
+
+      .sd-demo .sd-plane {
+        animation: sdTech 3s linear 1s infinite reverse forwards running;
+      }
+
+      @keyframes sdTech { 100% { margin-left: 97%; } }
+
+      .sd-demo .sd-op {
+        display: flex;
+        justify-content: center;
+        background: blue;
+        padding: 12px 0;
+      }
+
+      .sd-demo .sd-controls { text-align: center; color: white; }
+      .sd-demo .sd-controls h2 { font-size: 17px; margin-bottom: 8px; }
+
+      .sd-demo button {
+        font-weight: 900;
+        padding: 6px 13px;
+        font-size: 15px;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        border: 2px solid white;
+        border-radius: 4px;
+        background: #5e27cd;
+        color: white;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .sd-demo button:hover { filter: brightness(1.15); }
+    </style>
+
+    <div class="sd-longhand"><b>&#8595; longhand &#8595;</b>
+animation-name: sdTech;
+animation-duration: 3s;
+animation-timing-function: linear;
+animation-delay: 1s;
+animation-iteration-count: infinite;
+animation-direction: reverse;
+animation-fill-mode: forwards;
+animation-play-state: running;</div>
+
+    <div class="sd-shorthand"><hr>
+<b>&#8595; shorthand &#8595;</b>
+animation: sdTech 3s linear 1s infinite reverse forwards running;
+    </div>
+
+    <div class="sd-stage"><hr>
+      <div class="sd-plane">&#128151;</div><hr>
+      <div class="sd-op">
+        <div class="sd-controls">
+          <h2 class="H2">Control All Animations</h2>
+          <div class="sd-buttons">
+            <button class="sd-reset" aria-label="Reset all animations">Reset All</button>
+            <button class="sd-pause" aria-label="Pause all animations">Pause All</button>
+            <button class="sd-play" aria-label="Play all animations">Play All</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const root = document.currentScript.parentElement;
+        const items = root.querySelectorAll('.sd-plane');
+        const flash = (btn, color) => {
+          btn.style.background = color;
+          setTimeout(() => { btn.style.background = '#5e27cd'; }, 500);
+        };
+        root.querySelector('.sd-reset').addEventListener('click', function () {
+          items.forEach(item => {
+            item.style.animation = 'none';
+            void item.offsetWidth;
+            item.style.animation = '';
+            item.style.animationPlayState = 'running';
+          });
+          flash(this, '#1dd1a1');
+        });
+        root.querySelector('.sd-pause').addEventListener('click', function () {
+          items.forEach(item => { item.style.animationPlayState = 'paused'; });
+          flash(this, '#ff5252');
+        });
+        root.querySelector('.sd-play').addEventListener('click', function () {
+          items.forEach(item => { item.style.animationPlayState = 'running'; });
+          flash(this, '#48dbfb');
+        });
+      })();
+    </script>
+  </div>
+
+  <!-- ================= NAME ================= -->
+  <h2 id="name">Animation Name</h2>
+  <p>This property links an element to a specific <code>@keyframes</code> rule by name.</p>
+  <pre><code>animation-name: myAnimation;</code></pre>
+  <p>
+    Each element can point to a <strong>different</strong> <code>@keyframes</code> rule.
+    Below, three planes share the same markup but use three different
+    <code>animation-name</code> values — each one plays a completely different motion.
+  </p>
+
+  <!-- Interactive Demo: Animation Name -->
+  <div class="an-demo">
+    <style>
+      .an-demo * { margin: 0; box-sizing: border-box; }
+
+      .an-demo {
+        border: 2px solid red;
+        padding: 6px;
+        margin: 16px 0;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+        border-radius: 12px;
+        background: #ffffff;
+      }
+
+      .an-demo h3 {
+        margin: 6px 5px;
+        color: #1e3a8a;
+        font-size: 15px;
+        letter-spacing: 0.3px;
+      }
+
+      .an-demo .an-track {
+        position: relative;
+        height: 42px;
+        border: 2px solid yellow;
+        margin: 3px 0;
+        background: blue;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .an-demo .an-plane {
+        position: absolute;
+        top: 50%;
+        left: 6px;
+        width: 30px;
+        text-align: center;
+        font-size: 16px;
+        color: white;
+        transform: translateY(-50%);
+      }
+
+      @keyframes anFly {
+        from { left: 6px; }
+        to   { left: calc(100% - 36px); }
+      }
+
+      @keyframes anSpin {
+        from { transform: translateY(-50%) rotate(0deg); }
+        to   { transform: translateY(-50%) rotate(360deg); }
+      }
+
+      @keyframes anZoom {
+        0%, 100% { transform: translateY(-50%) scale(1); }
+        50%      { transform: translateY(-50%) scale(1.8); }
+      }
+
+      .an-demo .an-fly  { animation: anFly  3s ease-in-out infinite alternate; }
+      .an-demo .an-spin { animation: anSpin 2s linear infinite; left: calc(50% - 15px); }
+      .an-demo .an-zoom { animation: anZoom 2s ease-in-out infinite; left: calc(50% - 15px); }
+
+      .an-demo .an-op {
+        display: flex;
+        justify-content: center;
+        background: blue;
+        padding: 12px 0;
+        border-radius: 10px;
+        margin-top: 8px;
+      }
+
+      .an-demo .an-controls { text-align: center; color: white; }
+      .an-demo .an-controls h2 { font-size: 17px; margin-bottom: 8px; }
+
+      .an-demo button {
+        font-weight: 900;
+        padding: 6px 13px;
+        font-size: 15px;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        border: 2px solid white;
+        border-radius: 4px;
+        background: #5e27cd;
+        color: white;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .an-demo button:hover { filter: brightness(1.15); }
+    </style>
+
+    <h3>animation-name: anFly;</h3>
+    <div class="an-track"><div class="an-plane an-fly">✈</div></div>
+
+    <h3>animation-name: anSpin;</h3>
+    <div class="an-track"><div class="an-plane an-spin">✈</div></div>
+
+    <h3>animation-name: anZoom;</h3>
+    <div class="an-track"><div class="an-plane an-zoom">✈</div></div>
+
+    <div class="an-op">
+      <div class="an-controls">
+     <h2 class="H2">Control All Animations</h2>
+                 <div class="an-buttons">
+          <button class="an-reset" aria-label="Reset all animations">Reset All</button>
+          <button class="an-pause" aria-label="Pause all animations">Pause All</button>
+          <button class="an-play" aria-label="Play all animations">Play All</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const root = document.currentScript.parentElement;
+        const items = root.querySelectorAll('.an-plane');
+        const flash = (btn, color) => {
+          btn.style.background = color;
+          setTimeout(() => { btn.style.background = '#5e27cd'; }, 500);
+        };
+        root.querySelector('.an-reset').addEventListener('click', function () {
+          items.forEach(item => {
+            item.style.animation = 'none';
+            void item.offsetWidth;
+            item.style.animation = '';
+            item.style.animationPlayState = 'running';
+          });
+          flash(this, '#1dd1a1');
+        });
+        root.querySelector('.an-pause').addEventListener('click', function () {
+          items.forEach(item => { item.style.animationPlayState = 'paused'; });
+          flash(this, '#ff5252');
+        });
+        root.querySelector('.an-play').addEventListener('click', function () {
+          items.forEach(item => { item.style.animationPlayState = 'running'; });
+          flash(this, '#48dbfb');
+        });
+      })();
+    </script>
+  </div>
+
+  <!-- ================= KEYFRAMES ================= -->
+  <h2 id="keyframes">What are CSS @keyframes?</h2>
+  <p>
+    <code>@keyframes</code> let you define styles at various points during the animation
+    sequence. You specify what styles the element has at certain times, and the browser
+    fills in the transitions between those keyframes.
+  </p>
+  <pre><code>@keyframes animation-name {
+  from { /* starting styles */ }
+  to   { /* ending styles   */ }
+}
+
+/* Equivalent syntax using percentages */
+@keyframes animation-name {
+  0%   { /* styles at 0%   */ }
+  100% { /* styles at 100% */ }
+}
+
+/* Multiple intermediate steps */
+@keyframes animation-name {
+  0%   { /* styles at 0%   */ }
+  50%  { /* styles at 50%  */ }
+  100% { /* styles at 100% */ }
+}</code></pre>
+
+  <p>
+    Below is a live demo of a keyframe rule with <strong>five steps</strong> (0%, 25%, 50%, 75%, 100%).
+    The plane slides left–right twice, and its hue shifts at each keyframe so you can
+    clearly see every stop point.
+  </p>
+
+  <!-- Interactive Demo: Multi-Step Keyframes -->
+  <div class="kf-demo">
+    <style>
+      .kf-demo * { margin: 0; box-sizing: border-box; }
+
+      .kf-demo {
+        border: 2px solid red;
+        padding: 6px;
+        margin: 16px 0;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+        border-radius: 12px;
+        background: #ffffff;
+      }
+
+      .kf-demo h3 {
+        margin: 6px 5px;
+        color: #1e3a8a;
+        font-size: 15px;
+        letter-spacing: 0.3px;
+      }
+
+      .kf-demo .kf-track {
+        position: relative;
+        height: 42px;
+        border: 2px solid yellow;
+        margin: 3px 0;
+        background: blue;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .kf-demo .kf-plane {
+        position: absolute;
+        top: 50%;
+        left: 6px;
+        width: 30px;
+        text-align: center;
+        font-size: 16px;
+        color: white;
+        transform: translateY(-50%);
+      }
+
+      .kf-demo .kf-wave {
+        animation: kfZigzag 6s ease-in-out infinite;
+      }
+
+      @keyframes kfZigzag {
+        0%   { left: 6px;                 filter: hue-rotate(0deg);   }
+        25%  { left: calc(50% - 15px);    filter: hue-rotate(90deg);  }
+        50%  { left: 6px;                 filter: hue-rotate(180deg); }
+        75%  { left: calc(100% - 36px);   filter: hue-rotate(270deg); }
+        100% { left: 6px;                 filter: hue-rotate(360deg); }
+      }
+
+      .kf-demo .kf-op {
+        display: flex;
+        justify-content: center;
+        background: blue;
+        padding: 12px 0;
+        border-radius: 10px;
+        margin-top: 8px;
+      }
+
+      .kf-demo .kf-controls { text-align: center; color: white; }
+      .kf-demo .kf-controls h2 { font-size: 17px; margin-bottom: 8px; }
+
+      .kf-demo button {
+        font-weight: 900;
+        padding: 6px 13px;
+        font-size: 15px;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        border: 2px solid white;
+        border-radius: 4px;
+        background: #5e27cd;
+        color: white;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .kf-demo button:hover { filter: brightness(1.15); }
+    </style>
+
+    <h3>0% → 25% → 50% → 75% → 100%</h3>
+    <div class="kf-track"><div class="kf-plane kf-wave">✈</div></div>
+
+    <div class="kf-op">
+      <div class="kf-controls">
+      <h2 class="H2">Control All Animations</h2>
+        <div class="kf-buttons">
+          <button class="kf-reset" aria-label="Reset animation">Reset</button>
+          <button class="kf-pause" aria-label="Pause animation">Pause</button>
+          <button class="kf-play" aria-label="Play animation">Play</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const root = document.currentScript.parentElement;
+        const items = root.querySelectorAll('.kf-plane');
+        const flash = (btn, color) => {
+          btn.style.background = color;
+          setTimeout(() => { btn.style.background = '#5e27cd'; }, 500);
+        };
+        root.querySelector('.kf-reset').addEventListener('click', function () {
+          items.forEach(item => {
+            item.style.animation = 'none';
+            void item.offsetWidth;
+            item.style.animation = '';
+            item.style.animationPlayState = 'running';
+          });
+          flash(this, '#1dd1a1');
+        });
+        root.querySelector('.kf-pause').addEventListener('click', function () {
+          items.forEach(item => { item.style.animationPlayState = 'paused'; });
+          flash(this, '#ff5252');
+        });
+        root.querySelector('.kf-play').addEventListener('click', function () {
+          items.forEach(item => { item.style.animationPlayState = 'running'; });
+          flash(this, '#48dbfb');
+        });
+      })();
+    </script>
+  </div>
+
+  <!-- ================= DURATION ================= -->
+  <h2 id="duration">CSS Animation Duration</h2>
+  <p>
+    Sets how long the animation takes to complete one cycle. A value of <code>2s</code>
+    means the animation finishes in 2 seconds; <code>3s</code> means 3 seconds, and so on.
+  </p>
+  <pre><code>animation-duration: 1s;</code></pre>
+
+  <!-- Interactive Demo: Animation Duration -->
+  <div class="dur-demo">
+    <style>
+      .dur-demo * { margin: 0; box-sizing: border-box; }
+
+      .dur-demo {
+        border: 2px solid red;
+        padding: 12px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.25);
+        border-radius: 12px;
+        background: #ffffff;
+        margin: 16px 0;
+      }
+
+      .dur-demo h3 {
+        margin: 10px 5px 4px;
+        color: #1e3a8a;
+        font-size: 15px;
+        letter-spacing: 0.3px;
+      }
+
+      .dur-demo .dur-track {
+        position: relative;
+        height: 42px;
+        border: 2px solid yellow;
+        margin: 3px 0 14px;
+        background: blue;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .dur-demo .dur-plane {
+        position: absolute;
+        top: 50%;
+        left: 6px;
+        width: 24px;
+        text-align: center;
+        font-size: 15px;
+        color: white;
+        transform: translateY(-50%);
+      }
+
+      @keyframes durSlide {
+        from { left: 6px; }
+        to   { left: calc(100% - 30px); }
+      }
+
+      .dur-demo .dur-1s { animation: durSlide 1s linear infinite; }
+      .dur-demo .dur-2s { animation: durSlide 2s linear infinite; }
+      .dur-demo .dur-3s { animation: durSlide 3s linear infinite; }
+      .dur-demo .dur-4s { animation: durSlide 4s linear infinite; }
+
+      .dur-demo .dur-controls-box {
+        display: flex;
+        justify-content: center;
+        background: blue;
+        padding: 12px 0;
+        border-radius: 10px;
+        margin-top: 8px;
+      }
+
+      .dur-demo .dur-controls { text-align: center; color: white; }
+      .dur-demo .dur-controls h2 { font-size: 17px; margin-bottom: 8px; }
+
+      .dur-demo .dur-buttons {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+      }
+
+      .dur-demo button {
+        font-weight: 900;
+        padding: 6px 13px;
+        font-size: 14px;
+        border: 2px solid white;
+        border-radius: 4px;
+        background: #5e27cd;
+        color: white;
+        cursor: pointer;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        transition: background 0.2s;
+      }
+
+      .dur-demo button:hover { filter: brightness(1.15); }
+    </style>
+
+    <h3>animation-duration: 1s;</h3>
+    <div class="dur-track"><div class="dur-plane dur-1s">✈</div></div>
+
+    <h3>animation-duration: 2s;</h3>
+    <div class="dur-track"><div class="dur-plane dur-2s">✈</div></div>
+
+    <h3>animation-duration: 3s;</h3>
+    <div class="dur-track"><div class="dur-plane dur-3s">✈</div></div>
+
+    <h3>animation-duration: 4s;</h3>
+    <div class="dur-track"><div class="dur-plane dur-4s">✈</div></div>
+
+    <div class="dur-controls-box">
+      <div class="dur-controls">
+     <h2 class="H2">Control All Animations</h2>
+                <div class="dur-buttons">
+          <button class="dur-reset" aria-label="Reset all animations">Reset All</button>
+          <button class="dur-pause" aria-label="Pause all animations">Pause All</button>
+          <button class="dur-play" aria-label="Play all animations">Play All</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const root = document.currentScript.parentElement;
+        const items = root.querySelectorAll('.dur-plane');
+        const flash = (btn, color) => {
+          btn.style.background = color;
+          setTimeout(() => { btn.style.background = '#5e27cd'; }, 500);
+        };
+        root.querySelector('.dur-reset').addEventListener('click', function () {
+          items.forEach(item => {
+            item.style.animation = 'none';
+            void item.offsetWidth;
+            item.style.animation = '';
+            item.style.animationPlayState = 'running';
+          });
+          flash(this, '#1dd1a1');
+        });
+        root.querySelector('.dur-pause').addEventListener('click', function () {
+          items.forEach(item => { item.style.animationPlayState = 'paused'; });
+          flash(this, '#ff5252');
+        });
+        root.querySelector('.dur-play').addEventListener('click', function () {
+          items.forEach(item => { item.style.animationPlayState = 'running'; });
+          flash(this, '#48dbfb');
+        });
+      })();
+    </script>
+  </div>
+
+  <!-- ================= TIMING FUNCTIONS ================= -->
+  <h2 id="timing">What are Timing Functions?</h2>
+  <p>
+    Timing functions (also called easing functions) specify the rate of change of an
+    animation over time. They make animations feel more natural by controlling
+    acceleration and deceleration. Instead of moving at constant speed, objects in the
+    real world speed up, slow down, and bounce — timing functions recreate these
+    natural movements.
+  </p>
+
+  <h3>Timing Function Details</h3>
+  <ul>
+    <li><strong>ease</strong> — Slow start, fast middle, slow end. <em>(default)</em></li>
+    <li><strong>ease-in</strong> — Slow start, fast end (accelerates).</li>
+    <li><strong>ease-out</strong> — Fast start, slow end (decelerates).</li>
+    <li><strong>ease-in-out</strong> — Slow start and end, faster middle (symmetrical version of <code>ease</code>).</li>
+    <li><strong>linear</strong> — Constant speed throughout, no acceleration or deceleration.</li>
+    <li><strong>steps(n)</strong> — Divides the animation into <code>n</code> discrete steps. <code>steps(5)</code> creates 5 jumps.</li>
+    <li>
+      <strong>cubic-bezier(x1, y1, x2, y2)</strong> — A custom timing function defined by a Bezier curve.
+      This lets you fine-tune exactly where the animation speeds up or slows down.
+      <br />
+      ⚠️ <em>Important:</em> <code>x1</code> and <code>x2</code> must be between <code>0</code> and <code>1</code>,
+      but <code>y1</code> and <code>y2</code> can go outside this range — this is what allows
+      <strong>bounce</strong> and <strong>overshoot</strong> effects.
+    </li>
+  </ul>
+
+  <!-- Interactive Demo: Timing Functions -->
+  <div class="tf-demo">
+    <style>
+      .tf-demo * { margin: 0; box-sizing: border-box; }
+
+      .tf-demo {
+        border: 2px solid red;
+        padding: 6px;
+        margin: 16px 0;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+        border-radius: 12px;
+        background: #ffffff;
+      }
+
+      .tf-demo h3 {
+        margin: 6px 5px;
+        color: #1e3a8a;
+        font-size: 15px;
+        letter-spacing: 0.3px;
+      }
+
+      .tf-demo .tf-track {
+        position: relative;
+        height: 42px;
+        border: 2px solid yellow;
+        margin: 3px 0;
+        background: blue;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .tf-demo .tf-plane {
+        position: absolute;
+        top: 50%;
+        left: 6px;
+        width: 24px;
+        text-align: center;
+        font-size: 15px;
+        color: white;
+        transform: translateY(-50%);
+      }
+
+      .tf-demo .tf-op {
+        display: flex;
+        justify-content: center;
+        background: blue;
+        padding: 12px 0;
+        border-radius: 10px;
+        margin-top: 8px;
+      }
+
+      .tf-demo .tf-controls { text-align: center; color: white; }
+      .tf-demo .tf-controls h2 { font-size: 17px; margin-bottom: 8px; }
+
+      .tf-demo button {
+        font-weight: 900;
+        padding: 6px 13px;
+        font-size: 15px;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        border: 2px solid white;
+        border-radius: 4px;
+        background: #5e27cd;
+        color: white;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .tf-demo button:hover { filter: brightness(1.15); }
+
+      .tf-demo .tf-ease      { animation: tfP 3s ease            infinite; }
+      .tf-demo .tf-ease-in   { animation: tfP 3s ease-in         infinite; }
+      .tf-demo .tf-ease-out  { animation: tfP 3s ease-out        infinite; }
+      .tf-demo .tf-ease-io   { animation: tfP 3s ease-in-out     infinite; }
+      .tf-demo .tf-linear    { animation: tfP 3s linear          infinite; }
+      .tf-demo .tf-steps     { animation: tfP 3s steps(8)        infinite; }
+      .tf-demo .tf-bezier    { animation: tfP 3s cubic-bezier(0.9, 0.2, 0.1, 1) infinite; }
+
+      @keyframes tfP {
+        from { left: 6px; }
+        to   { left: calc(100% - 30px); }
+      }
+    </style>
+
+    <h3>ease</h3>
+    <div class="tf-track"><div class="tf-plane tf-ease">✈</div></div>
+
+    <h3>ease-in</h3>
+    <div class="tf-track"><div class="tf-plane tf-ease-in">✈</div></div>
+
+    <h3>ease-out</h3>
+    <div class="tf-track"><div class="tf-plane tf-ease-out">✈</div></div>
+
+    <h3>ease-in-out</h3>
+    <div class="tf-track"><div class="tf-plane tf-ease-io">✈</div></div>
+
+    <h3>linear</h3>
+    <div class="tf-track"><div class="tf-plane tf-linear">✈</div></div>
+
+    <h3>steps(8)</h3>
+    <div class="tf-track"><div class="tf-plane tf-steps">✈</div></div>
+
+    <h3>cubic-bezier(0.9, 0.2, 0.1, 1)</h3>
+    <div class="tf-track"><div class="tf-plane tf-bezier">✈</div></div>
+
+    <div class="tf-op">
+      <div class="tf-controls">
+     <h2 class="H2">Control All Animations</h2>
+        <div class="tf-buttons">
+          <button class="tf-reset" aria-label="Reset all animations">Reset All</button>
+          <button class="tf-pause" aria-label="Pause all animations">Pause All</button>
+          <button class="tf-play" aria-label="Play all animations">Play All</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const root = document.currentScript.parentElement;
+        const items = root.querySelectorAll('.tf-plane');
+        const flash = (btn, color) => {
+          btn.style.background = color;
+          setTimeout(() => { btn.style.background = '#5e27cd'; }, 500);
+        };
+        root.querySelector('.tf-reset').addEventListener('click', function () {
+          items.forEach(item => {
+            item.style.animation = 'none';
+            void item.offsetWidth;
+            item.style.animation = '';
+            item.style.animationPlayState = 'running';
+          });
+          flash(this, '#1dd1a1');
+        });
+        root.querySelector('.tf-pause').addEventListener('click', function () {
+          items.forEach(item => { item.style.animationPlayState = 'paused'; });
+          flash(this, '#ff5252');
+        });
+        root.querySelector('.tf-play').addEventListener('click', function () {
+          items.forEach(item => { item.style.animationPlayState = 'running'; });
+          flash(this, '#48dbfb');
+        });
+      })();
+    </script>
+  </div>
+
+  <!-- ================= DELAY ================= -->
+  <h2 id="delay">CSS Animation Delay</h2>
+  <p>
+    The <code>animation-delay</code> property waits a specified amount of time before the
+    animation starts playing.
+  </p>
+  <pre><code>animation-delay: 2s; /* waits 2 seconds before starting */</code></pre>
+
+  <!-- Interactive Demo: Animation Delay -->
+  <div class="dl-demo">
+    <style>
+      .dl-demo * { margin: 0; box-sizing: border-box; }
+
+      .dl-demo {
+        border: 2px solid red;
+        padding: 6px;
+        margin: 16px 0;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+        border-radius: 12px;
+        background: #ffffff;
+      }
+
+      .dl-demo h3 {
+        margin: 6px 5px;
+        color: #1e3a8a;
+        font-size: 15px;
+        letter-spacing: 0.3px;
+      }
+
+      .dl-demo .dl-track {
+        position: relative;
+        height: 42px;
+        border: 2px solid yellow;
+        margin: 3px 0;
+        background: blue;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .dl-demo .dl-plane {
+        position: absolute;
+        top: 50%;
+        left: 6px;
+        width: 24px;
+        text-align: center;
+        font-size: 15px;
+        color: white;
+        transform: translateY(-50%);
+      }
+
+      .dl-demo .dl-op {
+        display: flex;
+        justify-content: center;
+        background: blue;
+        padding: 12px 0;
+        border-radius: 10px;
+        margin-top: 8px;
+      }
+
+      .dl-demo .dl-controls { text-align: center; color: white; }
+      .dl-demo .dl-controls h2 { font-size: 17px; margin-bottom: 8px; }
+
+      .dl-demo button {
+        font-weight: 900;
+        padding: 6px 13px;
+        font-size: 15px;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        border: 2px solid white;
+        border-radius: 4px;
+        background: #5e27cd;
+        color: white;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .dl-demo button:hover { filter: brightness(1.15); }
+
+      .dl-demo .dl-normal { animation: dlP 3s ease infinite; }
+      .dl-demo .dl-1s     { animation: dlP 3s ease infinite; animation-delay: 1s; }
+      .dl-demo .dl-2s     { animation: dlP 3s ease infinite; animation-delay: 2s; }
+      .dl-demo .dl-3s     { animation: dlP 3s ease infinite; animation-delay: 3s; }
+
+      @keyframes dlP {
+        from { left: 6px; }
+        to   { left: calc(100% - 30px); }
+      }
+    </style>
+
+    <h3>normal</h3>
+    <div class="dl-track"><div class="dl-plane dl-normal">✈</div></div>
+
+    <h3>animation-delay: 1s;</h3>
+    <div class="dl-track"><div class="dl-plane dl-1s">✈</div></div>
+
+    <h3>animation-delay: 2s;</h3>
+    <div class="dl-track"><div class="dl-plane dl-2s">✈</div></div>
+
+    <h3>animation-delay: 3s;</h3>
+    <div class="dl-track"><div class="dl-plane dl-3s">✈</div></div>
+
+    <div class="dl-op">
+      <div class="dl-controls">
+     <h2 class="H2">Control All Animations</h2>
+        <div class="dl-buttons">
+          <button class="dl-reset" aria-label="Reset all animations">Reset All</button>
+          <button class="dl-pause" aria-label="Pause all animations">Pause All</button>
+          <button class="dl-play" aria-label="Play all animations">Play All</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const root = document.currentScript.parentElement;
+        const items = root.querySelectorAll('.dl-plane');
+        const flash = (btn, color) => {
+          btn.style.background = color;
+          setTimeout(() => { btn.style.background = '#5e27cd'; }, 500);
+        };
+        root.querySelector('.dl-reset').addEventListener('click', function () {
+          items.forEach(item => {
+            item.style.animation = 'none';
+            void item.offsetWidth;
+            item.style.animation = '';
+            item.style.animationPlayState = 'running';
+          });
+          flash(this, '#1dd1a1');
+        });
+        root.querySelector('.dl-pause').addEventListener('click', function () {
+          items.forEach(item => { item.style.animationPlayState = 'paused'; });
+          flash(this, '#ff5252');
+        });
+        root.querySelector('.dl-play').addEventListener('click', function () {
+          items.forEach(item => { item.style.animationPlayState = 'running'; });
+          flash(this, '#48dbfb');
+        });
+      })();
+    </script>
+  </div>
+
+  <!-- ================= ITERATION COUNT ================= -->
+  <h2 id="iteration">Animation Iteration Count</h2>
+  <p>
+    The <code>animation-iteration-count</code> property controls how many times the animation
+    repeats. For example, to repeat 5 times:
+  </p>
+  <pre><code>animation-iteration-count: 5;</code></pre>
+  <p>
+    To make the animation repeat forever, use the keyword <code>infinite</code>:
+  </p>
+  <pre><code>animation-iteration-count: infinite;</code></pre>
+
+  <!-- Interactive Demo: Iteration Count -->
+  <div class="ic-demo">
+    <style>
+      .ic-demo * { margin: 0; box-sizing: border-box; }
+
+      .ic-demo {
+        border: 2px solid red;
+        padding: 6px;
+        margin: 16px 0;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+        border-radius: 12px;
+        background: #ffffff;
+      }
+
+      .ic-demo h3 {
+        margin: 6px 5px;
+        color: #1e3a8a;
+        font-size: 15px;
+        letter-spacing: 0.3px;
+      }
+
+      .ic-demo .ic-track {
+        position: relative;
+        height: 42px;
+        border: 2px solid yellow;
+        margin: 3px 0;
+        background: blue;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .ic-demo .ic-plane {
+        position: absolute;
+        top: 50%;
+        left: 6px;
+        width: 24px;
+        text-align: center;
+        font-size: 15px;
+        color: white;
+        transform: translateY(-50%);
+      }
+
+      .ic-demo .ic-op {
+        display: flex;
+        justify-content: center;
+        background: blue;
+        padding: 12px 0;
+        border-radius: 10px;
+        margin-top: 8px;
+      }
+
+      .ic-demo .ic-controls { text-align: center; color: white; }
+      .ic-demo .ic-controls h2 { font-size: 17px; margin-bottom: 8px; }
+
+      .ic-demo button {
+        font-weight: 900;
+        padding: 6px 13px;
+        font-size: 15px;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        border: 2px solid white;
+        border-radius: 4px;
+        background: #5e27cd;
+        color: white;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .ic-demo button:hover { filter: brightness(1.15); }
+
+      .ic-demo .ic-1 { animation: icP 3s ease infinite; animation-iteration-count: 1; }
+      .ic-demo .ic-2 { animation: icP 3s ease infinite; animation-iteration-count: 2; }
+      .ic-demo .ic-3 { animation: icP 3s ease infinite; animation-iteration-count: 3; }
+      .ic-demo .ic-4 { animation: icP 3s ease infinite; animation-iteration-count: 4; }
+
+      @keyframes icP {
+        from { left: 6px; }
+        to   { left: calc(100% - 30px); }
+      }
+    </style>
+
+    <h3>animation-iteration-count: 1;</h3>
+    <div class="ic-track"><div class="ic-plane ic-1">✈</div></div>
+
+    <h3>animation-iteration-count: 2;</h3>
+    <div class="ic-track"><div class="ic-plane ic-2">✈</div></div>
+
+    <h3>animation-iteration-count: 3;</h3>
+    <div class="ic-track"><div class="ic-plane ic-3">✈</div></div>
+
+    <h3>animation-iteration-count: 4;</h3>
+    <div class="ic-track"><div class="ic-plane ic-4">✈</div></div>
+
+    <div class="ic-op">
+      <div class="ic-controls">
+     <h2 class="H2">Control All Animations</h2>
+        <div class="ic-buttons">
+          <button class="ic-reset" aria-label="Reset all animations">Reset All</button>
+          <button class="ic-pause" aria-label="Pause all animations">Pause All</button>
+          <button class="ic-play" aria-label="Play all animations">Play All</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const root = document.currentScript.parentElement;
+        const items = root.querySelectorAll('.ic-plane');
+        const flash = (btn, color) => {
+          btn.style.background = color;
+          setTimeout(() => { btn.style.background = '#5e27cd'; }, 500);
+        };
+        root.querySelector('.ic-reset').addEventListener('click', function () {
+          items.forEach(item => {
+            item.style.animation = 'none';
+            void item.offsetWidth;
+            item.style.animation = '';
+            item.style.animationPlayState = 'running';
+          });
+          flash(this, '#1dd1a1');
+        });
+        root.querySelector('.ic-pause').addEventListener('click', function () {
+          items.forEach(item => { item.style.animationPlayState = 'paused'; });
+          flash(this, '#ff5252');
+        });
+        root.querySelector('.ic-play').addEventListener('click', function () {
+          items.forEach(item => { item.style.animationPlayState = 'running'; });
+          flash(this, '#48dbfb');
+        });
+      })();
+    </script>
+  </div>
+
+  <!-- ================= DIRECTION ================= -->
+  <h2 id="direction">CSS Animation Direction</h2>
+  <p>This property sets the direction in which the animation plays. Values:</p>
+  <ul>
+    <li><strong>normal</strong> <em>(default)</em> — Plays forwards, 0% → 100%.</li>
+    <li><strong>reverse</strong> — Plays backwards, 100% → 0%.</li>
+    <li><strong>alternate</strong> — Plays forward first, then backward, then forward again — repeating continuously.</li>
+    <li><strong>alternate-reverse</strong> — Plays backward first, then forward, then backward again — repeating continuously.</li>
+  </ul>
+
+  <!-- Interactive Demo: Animation Direction -->
+  <div class="dir-demo">
+    <style>
+      .dir-demo * { margin: 0; box-sizing: border-box; }
+
+      .dir-demo {
+        border: 2px solid red;
+        padding: 6px;
+        margin: 16px 0;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+        border-radius: 12px;
+        background: #ffffff;
+      }
+
+      .dir-demo h3 {
+        margin: 6px 5px;
+        color: #1e3a8a;
+        font-size: 15px;
+        letter-spacing: 0.3px;
+      }
+
+      .dir-demo .dir-track {
+        position: relative;
+        height: 42px;
+        border: 2px solid yellow;
+        margin: 3px 0;
+        background: blue;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .dir-demo .dir-plane {
+        position: absolute;
+        top: 50%;
+        left: 6px;
+        width: 24px;
+        text-align: center;
+        font-size: 15px;
+        color: white;
+        transform: translateY(-50%);
+      }
+
+      .dir-demo .dir-op {
+        display: flex;
+        justify-content: center;
+        background: blue;
+        padding: 12px 0;
+        border-radius: 10px;
+        margin-top: 8px;
+      }
+
+      .dir-demo .dir-controls { text-align: center; color: white; }
+      .dir-demo .dir-controls h2 { font-size: 17px; margin-bottom: 8px; }
+
+      .dir-demo button {
+        font-weight: 900;
+        padding: 6px 13px;
+        font-size: 15px;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        border: 2px solid white;
+        border-radius: 4px;
+        background: #5e27cd;
+        color: white;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .dir-demo button:hover { filter: brightness(1.15); }
+
+      .dir-demo .dir-normal     { animation: dirP 3s ease infinite; animation-direction: normal; }
+      .dir-demo .dir-reverse    { animation: dirP 3s ease infinite; animation-direction: reverse; }
+      .dir-demo .dir-alternate  { animation: dirP 3s ease infinite; animation-direction: alternate; }
+      .dir-demo .dir-alt-rev    { animation: dirP 3s ease infinite; animation-direction: alternate-reverse; }
+
+      @keyframes dirP {
+        from { left: 6px; }
+        to   { left: calc(100% - 30px); }
+      }
+    </style>
+
+    <h3>normal</h3>
+    <div class="dir-track"><div class="dir-plane dir-normal">✈</div></div>
+
+    <h3>reverse</h3>
+    <div class="dir-track"><div class="dir-plane dir-reverse">&#128659;</div></div>
+
+    <h3>alternate</h3>
+    <div class="dir-track"><div class="dir-plane dir-alternate">✈</div></div>
+
+    <h3>alternate-reverse</h3>
+    <div class="dir-track"><div class="dir-plane dir-alt-rev">&#128659;</div></div>
+
+    <div class="dir-op">
+      <div class="dir-controls">
+      <h2 class="H2">Control All Animations</h2>
+        <div class="dir-buttons">
+          <button class="dir-reset" aria-label="Reset all animations">Reset All</button>
+          <button class="dir-pause" aria-label="Pause all animations">Pause All</button>
+          <button class="dir-play" aria-label="Play all animations">Play All</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const root = document.currentScript.parentElement;
+        const items = root.querySelectorAll('.dir-plane');
+        const flash = (btn, color) => {
+          btn.style.background = color;
+          setTimeout(() => { btn.style.background = '#5e27cd'; }, 500);
+        };
+        root.querySelector('.dir-reset').addEventListener('click', function () {
+          items.forEach(item => {
+            item.style.animation = 'none';
+            void item.offsetWidth;
+            item.style.animation = '';
+            item.style.animationPlayState = 'running';
+          });
+          flash(this, '#1dd1a1');
+        });
+        root.querySelector('.dir-pause').addEventListener('click', function () {
+          items.forEach(item => { item.style.animationPlayState = 'paused'; });
+          flash(this, '#ff5252');
+        });
+        root.querySelector('.dir-play').addEventListener('click', function () {
+          items.forEach(item => { item.style.animationPlayState = 'running'; });
+          flash(this, '#48dbfb');
+        });
+      })();
+    </script>
+  </div>
+
+  <!-- ================= FILL MODE ================= -->
+  <h2 id="fill">CSS Animation Fill Mode</h2>
+  <p>
+    The <code>animation-fill-mode</code> property controls what styles are applied to the
+    element <em>before</em> and <em>after</em> the animation runs.
+  </p>
+  <ul>
+    <li>
+      <strong>none</strong> <em>(default)</em> — No animation styles are retained.
+      The element uses its normal styles before, during (until the animation actually starts), and after.
+    </li>
+    <li>
+      <strong>forwards</strong> — After the animation ends, the element keeps the styles
+      from the <strong>last keyframe (100%)</strong>.
+    </li>
+    <li>
+      <strong>backwards</strong> — During the <strong>delay period</strong> (before the animation starts),
+      the element uses the styles from the <strong>first keyframe (0%)</strong>.
+      After the animation ends, it reverts to its normal styles.
+    </li>
+    <li>
+      <strong>both</strong> — Combines <code>forwards</code> and <code>backwards</code>:
+      applies the first keyframe's styles during the delay, and retains the last keyframe's
+      styles after the animation ends.
+    </li>
+  </ul>
+
+  <!-- Interactive Demo: Fill Mode -->
+  <div class="fm-demo">
+    <style>
+      .fm-demo * { margin: 0; box-sizing: border-box; }
+
+      .fm-demo {
+        border: 2px solid red;
+        padding: 6px;
+        margin: 16px 0;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+        border-radius: 12px;
+        background: #ffffff;
+      }
+
+      .fm-demo h3 {
+        margin: 6px 5px;
+        color: #1e3a8a;
+        font-size: 15px;
+        letter-spacing: 0.3px;
+      }
+
+      .fm-demo .fm-track {
+        position: relative;
+        height: 42px;
+        border: 2px solid yellow;
+        margin: 3px 0;
+        background: blue;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .fm-demo .fm-plane {
+        position: absolute;
+        top: 50%;
+        left: 6px;
+        width: 24px;
+        text-align: center;
+        font-size: 15px;
+        color: white;
+        transform: translateY(-50%);
+      }
+
+      .fm-demo .fm-op {
+        display: flex;
+        justify-content: center;
+        background: blue;
+        padding: 12px 0;
+        border-radius: 10px;
+        margin-top: 8px;
+      }
+
+      .fm-demo .fm-controls { text-align: center; color: white; }
+      .fm-demo .fm-controls h2 { font-size: 17px; margin-bottom: 8px; }
+
+      .fm-demo button {
+        font-weight: 900;
+        padding: 6px 13px;
+        font-size: 15px;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        border: 2px solid white;
+        border-radius: 4px;
+        background: #5e27cd;
+        color: white;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .fm-demo button:hover { filter: brightness(1.15); }
+
+      .fm-demo .fm-normal    { animation: fmP 3s 2s 3; }
+      .fm-demo .fm-backwards { animation: fmP 3s 2s 3 backwards; }
+      .fm-demo .fm-forwards  { animation: fmP 3s 2s 3 forwards; }
+      .fm-demo .fm-both      { animation: fmP 3s 2s 3 both; }
+
+      @keyframes fmP {
+        from { left: 6px;               color: red;   }
+        to   { left: calc(100% - 30px); color: white; }
+      }
+    </style>
+
+    <h3>normal</h3>
+    <div class="fm-track"><div class="fm-plane fm-normal">✈</div></div>
+
+    <h3>backwards</h3>
+    <div class="fm-track"><div class="fm-plane fm-backwards">✈</div></div>
+
+    <h3>forwards</h3>
+    <div class="fm-track"><div class="fm-plane fm-forwards">✈</div></div>
+
+    <h3>both</h3>
+    <div class="fm-track"><div class="fm-plane fm-both">✈</div></div>
+
+    <div class="fm-op">
+      <div class="fm-controls">
+      <h2 class="H2">Control All Animations</h2>
+        <div class="fm-buttons">
+          <button class="fm-reset" aria-label="Reset all animations">Reset All</button>
+          <button class="fm-pause" aria-label="Pause all animations">Pause All</button>
+          <button class="fm-play" aria-label="Play all animations">Play All</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const root = document.currentScript.parentElement;
+        const items = root.querySelectorAll('.fm-plane');
+        const flash = (btn, color) => {
+          btn.style.background = color;
+          setTimeout(() => { btn.style.background = '#5e27cd'; }, 500);
+        };
+        root.querySelector('.fm-reset').addEventListener('click', function () {
+          items.forEach(item => {
+            item.style.animation = 'none';
+            void item.offsetWidth;
+            item.style.animation = '';
+            item.style.animationPlayState = 'running';
+          });
+          flash(this, '#1dd1a1');
+        });
+        root.querySelector('.fm-pause').addEventListener('click', function () {
+          items.forEach(item => { item.style.animationPlayState = 'paused'; });
+          flash(this, '#ff5252');
+        });
+        root.querySelector('.fm-play').addEventListener('click', function () {
+          items.forEach(item => { item.style.animationPlayState = 'running'; });
+          flash(this, '#48dbfb');
+        });
+      })();
+    </script>
+  </div>
+
+  <!-- ================= PLAY STATE ================= -->
+  <h2 id="play">Animation Play State</h2>
+  <ul>
+    <li><strong>running</strong> <em>(default)</em> — The animation plays normally.</li>
+    <li><strong>paused</strong> — The animation is paused at its current frame.</li>
+  </ul>
+  <p>
+    ⚠️ A paused animation is <strong>frozen at its current frame</strong> — it does
+    <strong>NOT</strong> reset to the start. Click any <em>Toggle</em> button below to see:
+    running planes freeze mid-flight, and paused planes resume from where they stopped.
+  </p>
+
+  <!-- Interactive Demo: Play State -->
+  <div class="ps-demo">
+    <style>
+      .ps-demo * { margin: 0; box-sizing: border-box; }
+
+      .ps-demo {
+        border: 2px solid red;
+        padding: 6px;
+        margin: 16px 0;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+        border-radius: 12px;
+        background: #ffffff;
+      }
+
+      .ps-demo h3 {
+        margin: 6px 5px;
+        color: #1e3a8a;
+        font-size: 15px;
+        letter-spacing: 0.3px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .ps-demo .ps-track {
+        position: relative;
+        height: 42px;
+        border: 2px solid yellow;
+        margin: 3px 0;
+        background: blue;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .ps-demo .ps-plane {
+        position: absolute;
+        top: 50%;
+        left: 6px;
+        width: 24px;
+        text-align: center;
+        font-size: 15px;
+        color: white;
+        transform: translateY(-50%);
+      }
+
+      .ps-demo .ps-op {
+        display: flex;
+        justify-content: center;
+        background: blue;
+        padding: 12px 0;
+        border-radius: 10px;
+        margin-top: 8px;
+      }
+
+      .ps-demo .ps-controls { text-align: center; color: white; }
+      .ps-demo .ps-controls h2 { font-size: 17px; margin-bottom: 8px; }
+
+      .ps-demo button {
+        font-weight: 900;
+        padding: 6px 13px;
+        font-size: 15px;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+        border: 2px solid white;
+        border-radius: 4px;
+        background: #5e27cd;
+        color: white;
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .ps-demo button:hover { filter: brightness(1.15); }
+
+      /* Per-plane toggle: small amber button */
+      .ps-demo .ps-toggle {
+        font-size: 11px;
+        padding: 3px 8px;
+        font-weight: 700;
+        background: #f59e0b;
+        border-color: #f59e0b;
+        /* ✅ FIX: Changed text to dark for proper contrast on orange bg */
+        color: #0f172a;
+        letter-spacing: 0.2px;
+      }
+
+      .ps-demo .ps-toggle:hover { filter: brightness(1.1); }
+
+      /* Paused planes use negative delay → frozen at intermediate positions */
+      .ps-demo .ps-running-1 { animation: psP 3s ease infinite; animation-play-state: running; }
+      .ps-demo .ps-paused-1  { animation: psP 3s ease infinite; animation-play-state: paused; animation-delay: -0.75s; }
+      .ps-demo .ps-running-2 { animation: psP 2s ease infinite; animation-play-state: running; }
+      .ps-demo .ps-paused-2  { animation: psP 3s ease infinite; animation-play-state: paused; animation-delay: -2.25s; }
+
+      @keyframes psP {
+        from { left: 6px; }
+        to   { left: calc(100% - 30px); }
+      }
+    </style>
+
+    <h3>
+      <!-- ✅ FIX: Darkened text color for better contrast -->
+      <span>running <em style="font-size:11px;color:#047857;">(3s normal speed)</em></span>
+      <button class="ps-toggle" data-target="ps-a">⏸ Toggle</button>
+    </h3>
+    <div class="ps-track"><div class="ps-plane ps-running-1" id="ps-a">✈</div></div>
+
+    <h3>
+      <!-- ✅ FIX: Darkened text color for better contrast -->
+      <span>paused <em style="font-size:11px;color:#92400e;">(frozen at 25%)</em></span>
+      <button class="ps-toggle" data-target="ps-b">▶ Toggle</button>
+    </h3>
+    <div class="ps-track"><div class="ps-plane ps-paused-1" id="ps-b">✈</div></div>
+
+    <h3>
+      <!-- ✅ FIX: Darkened text color for better contrast -->
+      <span>running <em style="font-size:11px;color:#047857;">(2s faster)</em></span>
+      <button class="ps-toggle" data-target="ps-c">⏸ Toggle</button>
+    </h3>
+    <div class="ps-track"><div class="ps-plane ps-running-2" id="ps-c">✈</div></div>
+
+    <h3>
+      <!-- ✅ FIX: Darkened text color for better contrast -->
+      <span>paused <em style="font-size:11px;color:#92400e;">(frozen at 75%)</em></span>
+      <button class="ps-toggle" data-target="ps-d">▶ Toggle</button>
+    </h3>
+    <div class="ps-track"><div class="ps-plane ps-paused-2" id="ps-d">✈</div></div>
+
+    <div class="ps-op">
+      <div class="ps-controls">
+      <h2 class="H2">Control All Animations</h2>
+        <div class="ps-buttons">
+          <button class="ps-reset" aria-label="Reset all animations">Reset All</button>
+          <button class="ps-pause" aria-label="Pause all animations">Pause All</button>
+          <button class="ps-play" aria-label="Play all animations">Play All</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const root = document.currentScript.parentElement;
+        const items = root.querySelectorAll('.ps-plane');
+        const flash = (btn, color) => {
+          btn.style.background = color;
+          setTimeout(() => { btn.style.background = '#5e27cd'; }, 500);
+        };
+
+        /* Per-plane toggle */
+        root.querySelectorAll('.ps-toggle').forEach(btn => {
+          btn.addEventListener('click', function () {
+            const target = root.querySelector('#' + this.dataset.target);
+            const isPaused = getComputedStyle(target).animationPlayState === 'paused';
+            target.style.animationPlayState = isPaused ? 'running' : 'paused';
+            // Also flash the toggle button
+            const oldBg = this.style.background;
+            this.style.background = isPaused ? '#22c55e' : '#ef4444';
+            setTimeout(() => { this.style.background = oldBg; }, 500);
+          });
+        });
+
+        root.querySelector('.ps-reset').addEventListener('click', function () {
+          items.forEach(item => {
+            item.style.animation = 'none';
+            void item.offsetWidth;
+            item.style.animation = '';
+            item.style.animationPlayState = '';
+          });
+          flash(this, '#1dd1a1');
+        });
+        root.querySelector('.ps-pause').addEventListener('click', function () {
+          items.forEach(item => { item.style.animationPlayState = 'paused'; });
+          flash(this, '#ff5252');
+        });
+        root.querySelector('.ps-play').addEventListener('click', function () {
+          items.forEach(item => { item.style.animationPlayState = 'running'; });
+          flash(this, '#48dbfb');
+        });
+      })();
+    </script>
+  </div>
+
+  <!-- ================= BONUS: ACCESSIBILITY & PERFORMANCE ================= -->
+  <h2 id="bonus">Bonus: Accessibility &amp; Performance Tips</h2>
+
+  <h3>Respect user preferences (<code>prefers-reduced-motion</code>)</h3>
+  <p>
+    Some users experience motion sickness from animations. Always honor the
+    <code>prefers-reduced-motion</code> media query:
+  </p>
+  <pre><code>@media (prefers-reduced-motion: reduce) {
+  .element {
+    animation: none;
+  }
+}</code></pre>
+
+  <h3>Optimize for performance</h3>
+  <p>
+    For smooth 60 fps animations, prefer animating <code>transform</code> and
+    <code>opacity</code> over layout-triggering properties like <code>width</code>,
+    <code>height</code>, <code>top</code>, or <code>left</code>. Use <code>will-change</code>
+    sparingly to hint the browser to optimize ahead of time:
+  </p>
+  <pre><code>.element {
+  will-change: transform;
+}</code></pre>
+
+  <h3>Run multiple animations on one element</h3>
+  <p>Separate multiple animations with commas:</p>
+  <pre><code>.element {
+  animation: slideIn 1s ease, fadeIn 2s ease;
+}</code></pre>
+<div class="related-tools">
+            <h2>Related Tools</h2>
+            <ul>
+                <li><a href="/tools/barcode-generator.html">Barcode Generator</a></li>
+                <li><a href="/tools/qr-code-generator.html">QR Code Generator Tool</a></li>
+                <li><a href="/tools/color-contrast-analyzer.html">Color Contrast Analyzer</a></li>
+                <li><a href="/tools/image-resizer.html">Image Resizer Tool</a></li>
+                <li><a href="/tools/unlock-page.html">Unlock Page Generator</a></li>
+                <li><a href="/tools/auto-code-typing.html">Auto Code Typing</a></li>
+                <li><a href="/tools/code-editor.html">Live Code Editor</a></li>
+                   <li><a href="tools/css-box-shadow-generator.html">Box Shadow Generator</a></li>
+                    <li><a href="/tools/Text-shadow-generator.html">Text Shadow Generator</a></li>
+                    
+                   
+            </ul>
+            
+        </div>
+
+<!-- CSS Animation Conclusion --> <section class="conclusion"> <h2>Conclusion</h2> <p> CSS Animation is a powerful way to make websites more attractive, interactive, and modern. It allows developers to add impressive animations to text, buttons, images, and other HTML elements without relying on JavaScript. </p> <p> By using CSS properties such as <code>@keyframes</code>, <code>animation-duration</code>, <code>animation-delay</code>, <code>animation-timing-function</code>, and <code>animation-iteration-count</code>, you can create smooth animations, loading effects, button animations, and engaging website interfaces. </p> <p> Whether you want to add a simple hover effect to a button or create advanced animations for an entire website, CSS Animation can help improve your web design and user experience. However, animations should be used carefully to maintain website performance and avoid unnecessary visual distractions. </p> <p> You should also consider users who prefer reduced motion. The CSS <code>prefers-reduced-motion</code> media query helps developers provide a more comfortable browsing experience for these users. </p> <p> <strong> Start practicing CSS Animation today and learn to create beautiful, smooth, and professional animation effects that bring your website designs to life. </strong> </p> </section>
+</main>
+<!-- ✅ FIX: Closed main landmark -->
+
+</body>
+</html>

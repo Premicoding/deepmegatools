@@ -1,0 +1,305 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>About Us - Deep Mega Tools</title> 
+  <meta name="description" content="Learn about Deep Mega Tools, our mission, online utilities, developer tools, image tools, SEO resources, and the creator behind our website."> 
+  <meta name="robots" content="index, follow"> 
+  <link rel="canonical" href="https://deepmegatools.vercel.app/about-us.html"> 
+  
+  <!-- Open Graph / Social Media Meta Tags -->
+  <meta property="og:title" content="About Us - Deep Mega Tools"> 
+  <meta property="og:description" content="Discover Deep Mega Tools and our mission to make everyday digital tasks easier with useful online tools."> 
+  <meta property="og:url" content="https://deepmegatools.vercel.app/about-us.html"> 
+  <meta property="og:type" content="website"> 
+  <meta name="theme-color" content="#2563eb"> 
+
+  <style> 
+    * { margin: 0; padding: 0; box-sizing: border-box; } 
+    :root { 
+      --primary: #2563eb; 
+      --primary-dark: #1d4ed8; 
+      --background: #f8fafc; 
+      --surface: #ffffff; 
+      --text: #0f172a; 
+      --muted: #475569; 
+      --border: #e2e8f0; 
+    } 
+    body { 
+      font-family: Arial, Helvetica, sans-serif; 
+      background: var(--background); 
+      color: var(--text); 
+      line-height: 1.8; 
+    } 
+      .hero { 
+      background: linear-gradient(135deg, #1d4ed8, #0f172a); 
+      color: #ffffff; 
+      text-align: center; 
+      padding: 65px 20px; 
+    } 
+    .hero h1 { 
+      font-size: clamp(30px, 5vw, 44px); 
+      margin-bottom: 12px; 
+      line-height: 1.3; 
+    } 
+    .hero p { 
+      max-width: 700px; 
+      margin: auto; 
+      color: #e2e8f0; 
+      font-size: 17px; 
+    } 
+    .container { 
+      max-width: 900px; 
+      margin: 35px auto; 
+      padding: 0 18px; 
+    } 
+    .card { 
+      background: var(--surface); 
+      padding: 28px; 
+      margin-bottom: 22px; 
+      border: 1px solid var(--border); 
+      border-radius: 14px; 
+      box-shadow: 0 5px 18px rgba(15, 23, 42, 0.04); 
+    } 
+    .card h2 { 
+      font-size: 25px; 
+      margin-bottom: 14px; 
+      line-height: 1.4; 
+    } 
+    .card p { 
+      color: var(--muted); 
+      margin-bottom: 12px; 
+    } 
+    .card p:last-child { 
+      margin-bottom: 0; 
+    } 
+    .tool-list { 
+      padding-left: 24px; 
+      color: var(--muted); 
+    } 
+    .tool-list li { 
+      margin-bottom: 8px; 
+    } 
+    .author-box { 
+      display: flex; 
+      align-items: flex-start; 
+      gap: 20px; 
+    } 
+    .author-icon { 
+      min-width: 72px; 
+      width: 72px; 
+      height: 72px; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      background: #dbeafe; 
+      border-radius: 50%; 
+      font-size: 32px; 
+    } 
+    .author-box h3 { 
+      font-size: 21px; 
+      margin-bottom: 8px; 
+    } 
+    .button { 
+      display: inline-block; 
+      background: var(--primary); 
+      color: #ffffff; 
+      padding: 10px 20px; 
+      border-radius: 8px; 
+      margin-top: 12px; 
+      font-weight: 700; 
+      text-align: center;
+      text-decoration: none;
+    } 
+    .button:hover { 
+      background: var(--primary-dark); 
+      text-decoration: none; 
+    } 
+    
+    /* New Styles for Email and Social Links */
+    .email-text {
+      margin-top: 15px;
+      font-size: 16px;
+    }
+    .email-text a {
+      color: var(--primary);
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .email-text a:hover {
+      text-decoration: underline;
+    }
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .social-links a {
+      display: inline-block;
+      padding: 8px 16px;
+      background: var(--background);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+    .social-links a:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .site-footer { 
+      background: #0f172a; 
+      color: #cbd5e1; 
+      padding: 28px 18px; 
+      text-align: center; 
+      margin-top: 45px; 
+    } 
+    .footer-links { 
+      display: flex; 
+      justify-content: center; 
+      flex-wrap: wrap; 
+      gap: 16px; 
+    } 
+    .footer-links a { 
+      color: #ffffff; 
+      font-size: 14px; 
+    } 
+    @media (max-width: 600px) { 
+      nav { 
+        justify-content: center; 
+        gap: 12px; 
+      } 
+      .hero { 
+        padding: 45px 18px; 
+      } 
+      .card { 
+        padding: 21px; 
+      } 
+      .card h2 { 
+        font-size: 22px; 
+      } 
+      .author-box { 
+        flex-direction: column; 
+      } 
+    } 
+  </style> 
+</head> 
+<body> 
+    
+  <section class="hero"> 
+    <h1>About Deep Mega Tools</h1> 
+    <p> Simple, useful, and accessible online tools to help developers, bloggers, students, and digital creators work smarter. </p> 
+  </section> 
+
+  <main class="container"> 
+    <section class="card"> 
+      <h2>🌐 Who We Are</h2> 
+      <p> Welcome to Deep Mega Tools, an online platform designed to make everyday digital tasks easier. We aim to provide useful web-based tools and practical technology resources in one convenient place. </p> 
+      <p> Whether you are a developer working with code, a blogger improving your website, a student learning new skills, or a creator preparing digital content, Deep Mega Tools aims to help you find convenient solutions for your needs. </p> 
+      <p> Our platform is built with a focus on simplicity, speed, and accessibility, ensuring that anyone can use our tools without requiring advanced technical knowledge. </p>
+    </section> 
+
+    <section class="card"> 
+      <h2>🎯 Our Mission</h2> 
+      <p> Our mission is to make useful digital tools accessible and easy to use. We aim to simplify common online tasks through straightforward interfaces, helpful resources, and practical web utilities. </p> 
+      <p> We believe that useful technology should be understandable and accessible to people with different levels of technical experience. </p> 
+      <p> By continuously updating our platform and adding new features, we strive to be a reliable destination for all your daily digital needs. </p>
+    </section> 
+
+    <section class="card"> 
+      <h2>🛠️ What We Offer</h2> 
+      <p> Deep Mega Tools brings together different categories of online utilities and technology resources, including: </p> 
+      <ul class="tool-list"> 
+        <li><strong>Developer Tools:</strong> JSON formatting, code-related utilities, and other programming resources.</li> 
+        <li><strong>Image and Design Tools:</strong> Image resizing, image processing, and creative utilities.</li> 
+        <li><strong>QR Code and Barcode Tools:</strong> Tools for creating QR codes and generating supported barcode formats.</li> 
+        <li><strong>SEO and Blogging Resources:</strong> Helpful utilities and information for website owners and bloggers.</li> 
+        <li><strong>Text and Writing Tools:</strong> Word counting, text formatting, and other text-related utilities.</li> 
+        <li><strong>Everyday Utilities:</strong> Convenient tools designed to simplify common digital tasks.</li> 
+      </ul> 
+      <p> Available features may vary by tool. Please review each tool's page for its specific functionality and limitations. </p> 
+    </section> 
+
+    <section class="card"> 
+      <h2>💡 Why Choose Deep Mega Tools?</h2> 
+      <p> We aim to make our website useful through a simple interface, responsive layouts, clearly presented information, and convenient access to relevant online utilities. </p> 
+      <p> Our goal is to continually improve the user experience and develop resources that help visitors complete everyday digital tasks more efficiently.
+      Using this website is completely free; you don't have to pay any money.
+You don't even have to create an account.
+This website offers many useful tools that you can use to save time.
+So, this is why you should use this website.</p> 
+    </section> 
+
+    <section class="card"> 
+      <h2>👥 Who Can Use Our Website?</h2> 
+      <p> Deep Mega Tools is intended for developers, programmers, bloggers, students, designers, content creators, website owners, and anyone looking for practical online utilities. </p> 
+      <p> You can explore the available tools and choose the ones that best suit your requirements. </p> 
+    </section> 
+
+    <section class="card"> 
+      <h2>👨‍💻 About the Author</h2> 
+      <div class="author-box"> 
+        <div class="author-icon" aria-hidden="true">👨‍💻</div> 
+        <div> 
+          <h3>Prem Babu Kashyap</h3> 
+          <p> Prem Babu Kashyap is the creator and founder of Deep Mega Tools. He is passionate about web development, programming, and creating practical digital solutions that solve everyday problems. </p> 
+          <p> With a strong interest in technology, he built this platform to make useful online tools easier to discover and use, providing visitors with helpful technology-related resources without any unnecessary complexity. </p> 
+          <p><strong>Website:</strong> Deep Mega Tools</p> 
+          <p><strong>Focus:</strong> Online Tools and Technology Resources</p> 
+        </div> 
+      </div> 
+    </section> 
+
+    <section class="card"> 
+      <h2>🔒 Privacy and Security</h2> 
+      <p> We value visitors' privacy and aim to explain clearly how information is handled on our website. Data collection and processing may vary depending on the tools, services, and technologies used. </p> 
+      <p> Please read our <a href="/privacy-policy.html">Privacy Policy</a> for information about privacy practices and applicable data handling. </p> 
+    </section> 
+
+    <section class="card"> 
+      <h2>📢 Our Commitment</h2> 
+      <p> We aim to maintain useful tools, improve usability, and provide clear information about available features. We welcome constructive feedback that can help us improve the website. </p> 
+      <p> We also encourage visitors to review individual tool instructions and verify important results when accuracy is essential. </p> 
+    </section> 
+
+    <!-- UPDATED SECTION: Get in Touch & Social Media -->
+    <section class="card"> 
+      <h2>📩 Get in Touch</h2> 
+      <p> Have a question, suggestion, or encountered a problem with one of our tools? We welcome feedback from our visitors. </p> 
+      
+      <!-- Direct Email Option -->
+      <p class="email-text">Email us directly at: <a href="mailto:pbabu6885@gmail.com">pbabu6885@gmail.com</a></p>
+      
+      <!-- Button with Mailto link -->
+      <a class="button" href="mailto:pbabu6885@gmail.com">Contact Us via Email</a> 
+
+      <!-- Social Media Links Section -->
+      <h3 style="margin-top: 30px; margin-bottom: 10px; font-size: 20px;">🌐 Follow Us on Social Media</h3>
+      <div class="social-links">
+        <!-- Yahan apne actual social media links daalein (Replace # with your URLs) -->
+        <a href="#" target="_blank" rel="noopener">Facebook</a>
+        <a href="#" target="_blank" rel="noopener">Instagram</a>
+        <a href="#" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://t.me/deepmegatools" target="_blank" rel="noopener">Telegram</a>
+      </div>
+    </section> 
+
+  </main> 
+
+  <footer class="site-footer"> 
+    <div class="footer-links"> 
+      <a href="pages/about-us.html">About Us</a> 
+      <a href="pages/contact-us.html">Contact Us</a> 
+      <a href="pages/privacy-policy.html">Privacy Policy</a> 
+      <a href="pages/terms-and-conditions.html">Terms &amp; Conditions</a> 
+    </div> 
+  </footer> 
+</body> 
+</html>

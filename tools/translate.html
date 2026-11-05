@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How OCR & Translation Tools Help Students · with Live Polyglot Vision Demo</title>
+
+<!-- SEO & Meta Tags -->
+<meta name="description" content="Learn how OCR and translation tools help school students in digital learning. Try Polyglot Vision live — extract text from images, translate across 100+ languages, and listen to speech.">
+<meta name="keywords" content="OCR, translation, text-to-speech, digital learning, students, accessibility, web tools">
+<meta name="author" content="Polyglot Vision">
+<meta name="theme-color" content="#1e3c72">
+
+<!-- Open Graph / Social Media -->
+<meta property="og:title" content="OCR & Translation Tools for Students · Live Polyglot Vision Demo">
+<meta property="og:description" content="An educational guide with a live, working OCR + translation + speech tool built right into the page.">
+<meta property="og:type" content="website">
+
+<!-- Font Awesome & Tesseract -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+        color: #1a252f; /* Darkened for better contrast */
+        line-height: 1.7;
+        padding: 20px 15px;
+    }
+
+    /* ---------- Page shell ---------- */
+    .container { max-width: 1200px; margin: 0 auto; }
+    .article-text { max-width: 900px; margin: 0 auto; }
+
+    .page-header {
+        text-align: center;
+        padding: 40px 20px 30px;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+    .page-header h1 {
+        font-size: 2.2rem;
+        color: #1e3c72;
+        line-height: 1.25;
+        margin-bottom: 12px;
+    }
+    .page-header p {
+        color: #2c3e50;
+        font-size: 1.02rem;
+        margin-bottom: 22px;
+    }
+    .cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 28px;
+        background: #1e3c72;
+        color: #ffffff;
+        border-radius: 60px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: transform .15s, box-shadow .15s;
+        box-shadow: 0 6px 20px rgba(30,60,114,.25);
+    }
+    .cta:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(30,60,114,.35); color: #ffffff; }
+
+    /* ---------- Article card ---------- */
+    .article-card {
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 10px 40px rgba(0,0,0,.08);
+        padding: 40px 50px;
+        margin-bottom: 30px;
+    }
+
+    .toc {
+        background: #f0f4f8; /* Slightly darker bg for contrast */
+        border: 1px solid #c9d6e2;
+        border-radius: 10px;
+        padding: 18px 22px;
+        margin-bottom: 30px;
+        font-size: .94rem;
+    }
+    .toc strong { display: block; margin-bottom: 8px; color: #1e3c72; }
+    .toc ol { padding-left: 22px; }
+    .toc a { color: #1e3c72; text-decoration: underline; font-weight: 500; }
+    .toc a:hover { color: #4a90e2; }
+
+    h2 {
+        font-size: 1.5rem;
+        color: #1e3c72;
+        margin: 32px 0 15px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #e0eafc;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    h2::before {
+        content: "";
+        display: inline-block;
+        width: 6px; height: 22px;
+        background: #4a90e2;
+        border-radius: 3px;
+        flex-shrink: 0;
+    }
+    h3 { font-size: 1.13rem; color: #1e3c72; margin: 20px 0 10px; }
+    p  { margin-bottom: 15px; font-size: 1rem; }
+
+    .intro {
+        background: #eaf2fc;
+        border-left: 5px solid #4a90e2;
+        padding: 20px 25px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+    }
+
+    .example-box {
+        background: #fff3cd; /* Better contrast */
+        border-left: 5px solid #d39e00;
+        color: #3b2b00;
+        padding: 14px 20px;
+        border-radius: 6px;
+        margin: 15px 0;
+        font-style: italic;
+    }
+
+    ul { list-style: none; margin: 15px 0; }
+    ul li {
+        position: relative;
+        padding: 8px 0 8px 35px;
+        border-bottom: 1px dashed #c9d6e2;
+    }
+    ul li:last-child { border-bottom: none; }
+    ul li::before {
+        content: "✓";
+        position: absolute; left: 0; top: 8px;
+        width: 22px; height: 22px;
+        background: #1e3c72; color: white;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: .75rem; font-weight: bold;
+    }
+
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+    }
+    .feature-card {
+        background: #f0f4f8;
+        border: 1px solid #c9d6e2;
+        border-radius: 10px;
+        padding: 18px;
+        transition: transform .2s, box-shadow .2s;
+    }
+    .feature-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(30,60,114,.15); }
+    .feature-card strong { color: #1e3c72; display: block; margin-bottom: 5px; }
+
+    .tips-box {
+        background: #d1e7dd;
+        border-left: 5px solid #198754;
+        color: #0f5132;
+        padding: 20px 25px;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+    .tips-box ul li::before { content: "★"; background: #198754; }
+    .tips-box ul li { border-bottom-color: #a3cfbb; }
+
+    .limits-box {
+        background: #f8d7da;
+        border-left: 5px solid #dc3545;
+        color: #842029;
+        padding: 20px 25px;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+    .limits-box ul li::before { content: "!"; background: #dc3545; }
+    .limits-box ul li { border-bottom-color: #f1aeb5; }
+
+    .privacy-box {
+        background: #fff3cd;
+        border-left: 5px solid #ffc107;
+        color: #664d03;
+        padding: 15px 20px;
+        border-radius: 8px;
+        margin: 18px 0;
+        font-size: .95rem;
+    }
+
+    .conclusion {
+        background: linear-gradient(135deg, #1e3c72, #2c5282);
+        color: #ffffff;
+        padding: 25px 30px;
+        border-radius: 12px;
+        margin: 30px 0 20px;
+    }
+    .conclusion h2 { color: #ffffff; border-bottom-color: rgba(255,255,255,.3); margin-top: 0; }
+    .conclusion h2::before { background: #ffffff; }
+    .conclusion a { color: #ffeb3b; font-weight: 600; }
+    .conclusion a:hover { color: #ffffff; }
+
+    .disclaimer {
+        background: #f8d7da;
+        border: 1px solid #f5c2c7;
+        color: #842029;
+        padding: 15px 20px;
+        border-radius: 8px;
+        font-size: .92rem;
+        margin-top: 20px;
+    }
+    .disclaimer strong { color: #58151c; }
+
+    /* ---------- Live Tool Section ---------- */
+    .tool-section {
+        background: linear-gradient(135deg, #1e3c72, #2c5282);
+        border-radius: 20px;
+        padding: 8px;
+        margin: 30px 0;
+        box-shadow: 0 20px 50px rgba(30,60,114,.28);
+        position: relative;
+        overflow: hidden;
+    }
+    .tool-badge {
+        position: absolute;
+        top: 16px; right: 20px;
+        background: #ffeb3b; /* Higher contrast yellow */
+        color: #000000;
+        padding: 5px 14px;
+        border-radius: 20px;
+        font-size: .75rem;
+        font-weight: 700;
+        letter-spacing: .5px;
+        z-index: 2;
+    }
+
+    .tool-inner {
+        background: #ffffff;
+        border-radius: 14px;
+        overflow: hidden;
+    }
+
+    .tool-topbar {
+        background: #0f2b3d;
+        color: #ffffff;
+        padding: 18px 26px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    .tool-topbar h2 {
+        color: #ffffff;
+        border: none;
+        margin: 0;
+        padding: 0;
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .tool-topbar h2::before { display: none; }
+    .tool-topbar .subtitle {
+        font-size: .85rem;
+        color: #b0c4de; /* Better contrast */
+        margin-top: 2px;
+    }
+    .tool-topbar .lang-count {
+        background: #2c5282; /* Solid background for contrast */
+        color: #ffffff;
+        padding: 6px 14px;
+        border-radius: 30px;
+        font-size: .8rem;
+        font-weight: 600;
+    }
+
+    .tool-body { padding: 22px; }
+
+    .ocr-section {
+        background: #f0f4f8;
+        border-radius: 1.2rem;
+        padding: 1rem 1.3rem;
+        margin-bottom: 1.6rem;
+        border: 1px solid #c9d6e2;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
+        justify-content: space-between;
+    }
+    .image-upload-area {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+    }
+    .custom-file-label {
+        background: #1e3c72;
+        color: #ffffff;
+        padding: 10px 20px;
+        border-radius: 60px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: .2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: .92rem;
+    }
+    .custom-file-label:hover { background: #0f2b3d; }
+    #imageInput { display: none; }
+    .image-preview {
+        width: 62px; height: 62px;
+        object-fit: cover;
+        border-radius: 14px;
+        border: 2px solid #a2b9ce;
+        display: none;
+    }
+    .ocr-btn {
+        background: #006b8f; /* Darker cyan for contrast */
+        border: none;
+        padding: 10px 22px;
+        border-radius: 60px;
+        color: #ffffff;
+        font-weight: 600;
+        cursor: pointer;
+        transition: .2s;
+        font-size: .9rem;
+    }
+    .ocr-btn:hover:not(:disabled) { background: #004f6b; }
+    .ocr-btn:disabled { opacity: .65; cursor: not-allowed; }
+    .ocr-checkbox {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: .85rem;
+        color: #1a252f; /* Darkened */
+        cursor: pointer;
+        user-select: none;
+    }
+    .ocr-checkbox input { width: 16px; height: 16px; cursor: pointer; }
+
+    .lang-panel {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: flex-end;
+        margin-bottom: 1.6rem;
+        background: #eaf2fc;
+        padding: 14px 18px;
+        border-radius: 18px;
+    }
+    .lang-selector { flex: 1; min-width: 150px; }
+    .lang-selector label {
+        font-size: .7rem;
+        font-weight: 700;
+        letter-spacing: .5px;
+        color: #1e3c72;
+        display: block;
+        margin-bottom: 5px;
+    }
+    .custom-select {
+        width: 100%;
+        padding: 10px 14px;
+        border-radius: 30px;
+        border: 1px solid #a2b9ce;
+        background: #ffffff;
+        font-weight: 500;
+        font-size: .92rem;
+        cursor: pointer;
+        color: #1a252f;
+    }
+    .swap-btn {
+        background: #c9d6e2;
+        border: none;
+        width: 44px; height: 44px;
+        border-radius: 50%;
+        font-size: 1.15rem;
+        cursor: pointer;
+        color: #1e3c72;
+        transition: .2s;
+        flex-shrink: 0;
+    }
+    .swap-btn:hover { background: #a2b9ce; transform: rotate(180deg); }
+
+    .text-panels {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-bottom: 1.4rem;
+    }
+    .panel {
+        background: #ffffff;
+        border-radius: 1.2rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,.05);
+        border: 1px solid #c9d6e2;
+        overflow: hidden;
+    }
+    .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 18px;
+        border-bottom: 1px solid #c9d6e2;
+        font-weight: 600;
+        color: #1e3c72;
+        font-size: .93rem;
+    }
+    .action-icons button {
+        background: transparent;
+        border: none;
+        margin-left: 4px;
+        font-size: .95rem;
+        cursor: pointer;
+        padding: 7px;
+        border-radius: 40px;
+        color: #006b8f;
+        transition: .15s;
+    }
+    .action-icons button:hover { background: #eaf2fc; color: #1e3c72; }
+    textarea {
+        width: 100%;
+        padding: 14px 16px;
+        border: none;
+        resize: vertical;
+        outline: none;
+        font-size: .98rem;
+        line-height: 1.55;
+        min-height: 190px;
+        font-family: inherit;
+        background: #fafbfc;
+        color: #1a252f;
+    }
+    textarea[readonly] { background: #f0f4f8; }
+
+    .action-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+    .btn {
+        padding: 11px 24px;
+        border-radius: 60px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: .92rem;
+        transition: .2s;
+    }
+    .btn:disabled { opacity: .6; cursor: wait; }
+    .btn-primary { background: #1e3c72; color: #ffffff; }
+    .btn-primary:hover:not(:disabled) { background: #0f2b3d; }
+    .btn-secondary { background: #c9d6e2; color: #1e3c72; }
+    .btn-secondary:hover { background: #a2b9ce; }
+
+    .status-msg {
+        text-align: center;
+        padding: 10px 16px;
+        background: #cff4fc;
+        border-radius: 30px;
+        font-size: .85rem;
+        color: #055160;
+        transition: background .2s;
+        font-weight: 500;
+    }
+    .status-msg[data-tone="busy"]  { background: #cff4fc; color: #055160; }
+    .status-msg[data-tone="warn"]  { background: #fff3cd; color: #664d03; }
+    .status-msg[data-tone="error"] { background: #f8d7da; color: #842029; }
+    .status-msg[data-tone="ok"]    { background: #d1e7dd; color: #0f5132; }
+
+    .tool-footer {
+        text-align: center;
+        padding: 10px 16px 0;
+        font-size: .75rem;
+        color: #4a5c68;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 760px) {
+        .page-header h1 { font-size: 1.55rem; }
+        .article-card { padding: 24px 20px; }
+        .text-panels { grid-template-columns: 1fr; }
+        .tool-topbar { flex-direction: column; align-items: flex-start; }
+        .tool-body { padding: 14px; }
+        h2 { font-size: 1.25rem; }
+        .lang-panel { padding: 12px; }
+    }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+    <h1>How OCR & Translation Tools Help School Students in Digital Learning</h1>
+    <p>An educational guide — with a live, working demo built right into the page.</p>
+    <a href="#live-tool" class="cta"><i class="fas fa-play" aria-hidden="true"></i> Try the tool below</a>
+</header>
+
+<!-- FIX #3: Replaced <div class="container"> with <main> landmark -->
+<main class="container">
+
+    <!-- ==================== ARTICLE PART 1 ==================== -->
+    <article class="article-card article-text">
+
+        <nav class="toc" aria-label="Table of contents">
+            <strong>📑 In this article</strong>
+            <ol>
+                <li><a href="#what-is-ocr">What is OCR?</a></li>
+                <li><a href="#translation">How translation helps</a></li>
+                <li><a href="#tts">Text-to-speech</a></li>
+                <li><a href="#live-tool">🎯 <strong>Try Polyglot Vision live</strong></a></li>
+                <li><a href="#uses">Practical uses for students</a></li>
+                <li><a href="#teachers">Benefits for teachers &amp; schools</a></li>
+                <li><a href="#tips">Tips for better results</a></li>
+                <li><a href="#limits">Honest limits to know</a></li>
+                <li><a href="#future">Future of digital learning</a></li>
+            </ol>
+        </nav>
+
+        <section class="intro">
+            <h2 style="margin-top:0">Introduction</h2>
+            <p>Education is changing rapidly with the growth of digital technology. Today, students use smartphones, computers, and online educational tools to improve their learning experience. One of the most useful combinations for modern education is <strong>OCR (Optical Character Recognition)</strong> together with <strong>language translation</strong> and <strong>text-to-speech</strong>.</p>
+            <p>An OCR and translation tool helps students extract text from images, translate educational content into different languages, and listen to written text. These features make learning easier, faster, and more accessible for school students.</p>
+        </section>
+
+        <section id="what-is-ocr">
+            <h2>1. What Is OCR Technology?</h2>
+            <p>OCR stands for <strong>Optical Character Recognition</strong>. It recognizes and extracts text from images, scanned documents, photographs, and screenshots — turning pixels into editable, copyable text.</p>
+            <div class="example-box">
+                Example: A student uploads a photo of a textbook page and gets the written content as editable text — no retyping.
+            </div>
+            <h3>Benefits of OCR for students</h3>
+            <ul>
+                <li>Extract text from textbook images and scanned handouts.</li>
+                <li>Convert printed notes into editable, searchable text.</li>
+                <li>Save important educational information digitally.</li>
+                <li>Copy text from image-only PDFs.</li>
+                <li>Reduce manual typing work.</li>
+            </ul>
+        </section>
+
+        <section id="translation">
+            <h2>2. How Language Translation Helps Students</h2>
+            <p>Students sometimes find it difficult to understand materials written in another language. A translation tool converts text from one language into another, making content accessible across languages.</p>
+            <div class="example-box">
+                Example: A student translates an English science article into Hindi, Marathi, or another supported language to understand it better.
+            </div>
+            <h3>Benefits of translation tools</h3>
+            <ul>
+                <li>Understand difficult English vocabulary and phrasing.</li>
+                <li>Translate study material into a familiar language.</li>
+                <li>Improve vocabulary and reading skills over time.</li>
+                <li>Understand educational articles, notes, and captions.</li>
+                <li>Support multilingual and inclusive learning.</li>
+            </ul>
+        </section>
+
+        <section id="tts">
+            <h2>3. Text-to-Speech for Better Learning</h2>
+            <p><strong>Text-to-Speech (TTS)</strong> converts written text into spoken words. Students can listen to educational content instead of reading everything manually — helpful for revision, language practice, and pronunciation.</p>
+            <h3>Advantages of text-to-speech</h3>
+            <ul>
+                <li>Listen to study notes while revising.</li>
+                <li>Practice English (or other language) pronunciation.</li>
+                <li>Improve listening comprehension.</li>
+                <li>Learn while travelling or doing light tasks.</li>
+                <li>Make learning more accessible for students with reading difficulties.</li>
+            </ul>
+        </section>
+
+    </article>
+
+    <!-- ==================== LIVE TOOL SECTION ==================== -->
+    <section id="live-tool" class="tool-section">
+        <span class="tool-badge">LIVE DEMO</span>
+        <div class="tool-inner">
+
+            <div class="tool-topbar">
+                <div>
+                    <h2><i class="fas fa-globe-asia" aria-hidden="true"></i> Polyglot Vision</h2>
+                    <div class="subtitle">OCR + Translation + Speech — right in your browser</div>
+                </div>
+                <span class="lang-count"><i class="fas fa-language" aria-hidden="true"></i> 100+ languages</span>
+            </div>
+
+            <div class="tool-body">
+
+                <!-- OCR ROW -->
+                <div class="ocr-section">
+                    <div class="image-upload-area">
+                        <label for="imageInput" class="custom-file-label">
+                            <i class="fas fa-image" aria-hidden="true"></i> Upload Image
+                        </label>
+                        <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp,image/bmp">
+                        <img id="previewImg" class="image-preview" alt="Selected image preview">
+                        <button type="button" id="ocrExtractBtn" class="ocr-btn">
+                            <i class="fas fa-robot" aria-hidden="true"></i> Extract Text (OCR)
+                        </button>
+                        <label class="ocr-checkbox">
+                            <input type="checkbox" id="ocrAppend"> Append to existing text
+                        </label>
+                    </div>
+                    <div style="font-size:.78rem;color:#1e3c72;max-width:280px;">
+                        <i class="fas fa-info-circle" aria-hidden="true"></i> Supports JPG, PNG, WebP, BMP · OCR runs locally
+                    </div>
+                </div>
+
+                <!-- LANGUAGE SELECTORS -->
+                <!-- FIX #1: Added for="id" to the labels below -->
+                <div class="lang-panel">
+                    <div class="lang-selector">
+                        <label for="sourceLang"><i class="fas fa-microphone-alt" aria-hidden="true"></i> SOURCE LANGUAGE</label>
+                        <select id="sourceLang" class="custom-select"></select>
+                    </div>
+                    <button type="button" id="swapBtn" class="swap-btn" title="Swap languages" aria-label="Swap languages">
+                        <i class="fas fa-arrows-rotate" aria-hidden="true"></i>
+                    </button>
+                    <div class="lang-selector">
+                        <label for="targetLang"><i class="fas fa-flag-checkered" aria-hidden="true"></i> TARGET LANGUAGE</label>
+                        <select id="targetLang" class="custom-select"></select>
+                    </div>
+                </div>
+
+                <!-- TEXT PANELS -->
+                <div class="text-panels">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <span><i class="fas fa-pen-fancy" aria-hidden="true"></i> Source Text</span>
+                            <div class="action-icons">
+                                <button type="button" id="speakInputBtn" title="Speak source" aria-label="Speak source text">
+                                    <i class="fas fa-volume-up" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <label for="inputText" class="sr-only" style="display:none;">Source Text</label>
+                        <textarea id="inputText" placeholder="Type text, or use OCR from an image…"></textarea>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header">
+                            <span><i class="fas fa-language" aria-hidden="true"></i> Translation</span>
+                            <div class="action-icons">
+                                <button type="button" id="copyOutputBtn" title="Copy" aria-label="Copy translation">
+                                    <i class="fas fa-copy" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" id="speakOutputBtn" title="Speak translation" aria-label="Speak translation">
+                                    <i class="fas fa-headphones" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <label for="outputText" class="sr-only" style="display:none;">Translated Text</label>
+                        <textarea id="outputText" placeholder="Translation appears here…" readonly aria-live="polite"></textarea>
+                    </div>
+                </div>
+
+                <div class="action-bar">
+                    <button type="button" id="translateBtn" class="btn btn-primary">
+                        <i class="fas fa-language" aria-hidden="true"></i> Translate Now
+                    </button>
+                    <button type="button" id="swapFullBtn" class="btn btn-secondary">
+                        <i class="fas fa-exchange-alt" aria-hidden="true"></i> Swap All
+                    </button>
+                    <button type="button" id="clearAllBtn" class="btn btn-secondary">
+                        <i class="fas fa-broom" aria-hidden="true"></i> Clear
+                    </button>
+                </div>
+
+                <div id="statusMsg" class="status-msg" data-tone="ok" role="status">
+                    <i class="fas fa-check-circle" aria-hidden="true"></i> Ready — pick a language pair, or upload an image
+                </div>
+            </div>
+
+            <div class="tool-footer">
+                <i class="fas fa-database" aria-hidden="true"></i> OCR by Tesseract.js · Translation by MyMemory · Speech by Web Speech API
+            </div>
+        </div>
+    </section>
+   <div class="related-tools">
+            <h2>Related Tools</h2>
+            <ul>
+                <li><a href="/tools/barcode-generator.html">Barcode Generator</a></li>
+                <li><a href="/tools/qr-code-generator.html">QR Code Generator Tool</a></li>
+                <li><a href="/tools/color-contrast-analyzer.html">Color Contrast Analyzer</a></li>
+                <li><a href="/tools/image-resizer.html">Image Resizer Tool</a></li>
+                <li><a href="/tools/unlock-page.html">Unlock Page Generator</a></li>
+                <li><a href="/tools/auto-code-typing.html">Auto Code Typing</a></li>
+                <li><a href="/tools/code-editor.html">Live Code Editor</a></li>
+                   <li><a href="tools/css-box-shadow-generator.html">Box Shadow Generator</a></li>
+                    <li><a href="/tools/Text-shadow-generator.html">Text Shadow Generator</a></li>
+                    
+                   
+            </ul>
+            
+        </div>
+ 
+
+    <!-- ==================== ARTICLE PART 2 ==================== -->
+    <article class="article-card article-text">
+
+        <section id="uses">
+            <h2>4. Practical Uses for School Students</h2>
+            <div class="feature-grid">
+                <div class="feature-card"><strong>Homework</strong>Extract questions from textbook photos.</div>
+                <div class="feature-card"><strong>Exam Prep</strong>Convert printed notes into digital text.</div>
+                <div class="feature-card"><strong>Language Learning</strong>Translate lessons into your preferred language.</div>
+                <div class="feature-card"><strong>Reading Practice</strong>Listen to written content via TTS.</div>
+                <div class="feature-card"><strong>Projects</strong>Pull useful info from educational images.</div>
+                <div class="feature-card"><strong>Vocabulary</strong>Look up unfamiliar words through translation.</div>
+            </div>
+        </section>
+
+        <section id="teachers">
+            <h2>5. Benefits for Teachers and Schools</h2>
+            <p>OCR and translation tools support teachers too. They can digitise printed materials, translate learning resources, and prepare accessible study content — reducing repetitive manual work.</p>
+            <p>Schools can introduce these tools to encourage technology-based education while keeping costs low: no paid subscription needed for the basic workflows.</p>
+        </section>
+
+        <section id="tips">
+            <h2>6. Tips for Better Results</h2>
+            <div class="tips-box">
+                <ul>
+                    <li>Upload clear, well-lit, high-resolution images.</li>
+                    <li>Keep text straight — avoid rotated photos.</li>
+                    <li>Avoid blurry, dark, or heavily stylised images.</li>
+                    <li>Select the correct source language whenever possible.</li>
+                    <li>Review translated text before submitting assignments.</li>
+                    <li>Never upload confidential school documents to public services.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="limits">
+            <h2>7. Honest Limits to Know</h2>
+            <div class="limits-box">
+                <ul>
+                    <li><strong>OCR isn't perfect.</strong> Printed text works best; handwriting and low-quality photos often fail.</li>
+                    <li><strong>First OCR use downloads language data.</strong> Tesseract.js may fetch 2–15 MB per language the first time — a one-time download.</li>
+                    <li><strong>Translation quality varies.</strong> Short, common phrases translate well; idioms and rare pairs may be inaccurate.</li>
+                    <li><strong>Free tier quotas exist.</strong> MyMemory has daily word limits.</li>
+                    <li><strong>Speech depends on your device.</strong> Voice quality comes from your OS, not the website.</li>
+                    <li><strong>Some features need HTTPS or localhost.</strong> Clipboard copy and speech synthesis may be blocked on plain HTTP.</li>
+                </ul>
+            </div>
+
+            <div class="privacy-box">
+                <strong>🔒 Where does your data go?</strong> OCR runs entirely <strong>inside your browser</strong> — no image leaves your device. The <strong>translation step</strong> sends text to MyMemory's public API, so avoid confidential content.
+            </div>
+        </section>
+
+        <section id="future">
+            <h2>8. The Future of Digital Learning</h2>
+            <p>AI, OCR, translation, and speech technologies are making education more interactive and accessible. In the future, digital tools may help students understand materials across languages and assist teachers in creating inclusive classrooms.</p>
+            <p>However, these tools should be used as <strong>learning assistants</strong> — not replacements for teachers, textbooks, and independent study.</p>
+        </section>
+
+        <section class="conclusion">
+            <h2>Conclusion</h2>
+            <p>OCR, translation, and text-to-speech can make digital education easier for students and teachers alike. From extracting text from images to translating content and listening to lessons, these features offer real, practical benefits.</p>
+            <p><strong>Polyglot Vision</strong> brings them together in one free, browser-based tool — <a href="#live-tool">try it at the top of this page</a>.</p>
+        </section>
+
+        <div class="disclaimer">
+            <strong>Disclaimer:</strong> Translation and OCR results may contain errors — always verify important educational information with trusted sources. OCR runs locally; translation is sent to MyMemory's public API. Never submit private or confidential content.
+        </div>
+
+    </article>
+
+</main>
+
+<script>
+/* ============================================================
+   Polyglot Vision — script
+   ============================================================ */
+
+/* ---------- 1. LANGUAGE DATA ---------- */
+const LANGUAGES = [
+  { code:'af', name:'Afrikaans' },      { code:'sq', name:'Albanian' },
+  { code:'am', name:'Amharic' },        { code:'ar', name:'Arabic' },
+  { code:'hy', name:'Armenian' },       { code:'az', name:'Azerbaijani' },
+  { code:'eu', name:'Basque' },         { code:'be', name:'Belarusian' },
+  { code:'bn', name:'Bengali' },        { code:'bs', name:'Bosnian' },
+  { code:'bg', name:'Bulgarian' },      { code:'ca', name:'Catalan' },
+  { code:'ceb', name:'Cebuano' },       { code:'zh', name:'Chinese (Simplified)' },
+  { code:'zh-TW', name:'Chinese (Traditional)' }, { code:'co', name:'Corsican' },
+  { code:'hr', name:'Croatian' },       { code:'cs', name:'Czech' },
+  { code:'da', name:'Danish' },         { code:'nl', name:'Dutch' },
+  { code:'en', name:'English' },        { code:'eo', name:'Esperanto' },
+  { code:'et', name:'Estonian' },       { code:'fi', name:'Finnish' },
+  { code:'fr', name:'French' },         { code:'gl', name:'Galician' },
+  { code:'ka', name:'Georgian' },       { code:'de', name:'German' },
+  { code:'el', name:'Greek' },          { code:'gu', name:'Gujarati' },
+  { code:'ht', name:'Haitian Creole' }, { code:'ha', name:'Hausa' },
+  { code:'haw', name:'Hawaiian' },      { code:'he', name:'Hebrew' },
+  { code:'hi', name:'Hindi' },          { code:'hmn', name:'Hmong' },
+  { code:'hu', name:'Hungarian' },      { code:'is', name:'Icelandic' },
+  { code:'ig', name:'Igbo' },           { code:'id', name:'Indonesian' },
+  { code:'ga', name:'Irish' },          { code:'it', name:'Italian' },
+  { code:'ja', name:'Japanese' },       { code:'jv', name:'Javanese' },
+  { code:'kn', name:'Kannada' },        { code:'kk', name:'Kazakh' },
+  { code:'km', name:'Khmer' },          { code:'rw', name:'Kinyarwanda' },
+  { code:'ko', name:'Korean' },         { code:'ku', name:'Kurdish' },
+  { code:'ky', name:'Kyrgyz' },         { code:'lo', name:'Lao' },
+  { code:'la', name:'Latin' },          { code:'lv', name:'Latvian' },
+  { code:'lt', name:'Lithuanian' },     { code:'lb', name:'Luxembourgish' },
+  { code:'mk', name:'Macedonian' },     { code:'mg', name:'Malagasy' },
+  { code:'ms', name:'Malay' },          { code:'ml', name:'Malayalam' },
+  { code:'mt', name:'Maltese' },        { code:'mi', name:'Maori' },
+  { code:'mr', name:'Marathi' },        { code:'mn', name:'Mongolian' },
+  { code:'my', name:'Myanmar (Burmese)' }, { code:'ne', name:'Nepali' },
+  { code:'no', name:'Norwegian' },      { code:'ny', name:'Nyanja (Chichewa)' },
+  { code:'ps', name:'Pashto' },         { code:'fa', name:'Persian' },
+  { code:'pl', name:'Polish' },         { code:'pt', name:'Portuguese' },
+  { code:'pa', name:'Punjabi' },        { code:'ro', name:'Romanian' },
+  { code:'ru', name:'Russian' },        { code:'sm', name:'Samoan' },
+  { code:'gd', name:'Scots Gaelic' },   { code:'sr', name:'Serbian' },
+  { code:'st', name:'Sesotho' },        { code:'sn', name:'Shona' },
+  { code:'sd', name:'Sindhi' },         { code:'si', name:'Sinhala' },
+  { code:'sk', name:'Slovak' },         { code:'sl', name:'Slovenian' },
+  { code:'so', name:'Somali' },         { code:'es', name:'Spanish' },
+  { code:'su', name:'Sundanese' },      { code:'sw', name:'Swahili' },
+  { code:'sv', name:'Swedish' },        { code:'tl', name:'Tagalog (Filipino)' },
+  { code:'tg', name:'Tajik' },          { code:'ta', name:'Tamil' },
+  { code:'tt', name:'Tatar' },          { code:'te', name:'Telugu' },
+  { code:'th', name:'Thai' },           { code:'tr', name:'Turkish' },
+  { code:'tk', name:'Turkmen' },        { code:'uk', name:'Ukrainian' },
+  { code:'ur', name:'Urdu' },           { code:'ug', name:'Uyghur' },
+  { code:'uz', name:'Uzbek' },          { code:'vi', name:'Vietnamese' },
+  { code:'cy', name:'Welsh' },          { code:'xh', name:'Xhosa' },
+  { code:'yi', name:'Yiddish' },        { code:'yo', name:'Yoruba' },
+  { code:'zu', name:'Zulu' }
+];
+
+const apiCode = c => (c === 'zh' ? 'zh-CN' : c);
+
+const SPEECH_LOCALE = {
+  en:'en-US', es:'es-ES', fr:'fr-FR', de:'de-DE', it:'it-IT', pt:'pt-BR',
+  ru:'ru-RU', ja:'ja-JP', ko:'ko-KR', zh:'zh-CN', 'zh-TW':'zh-TW',
+  ar:'ar-SA', hi:'hi-IN', tr:'tr-TR', nl:'nl-NL', pl:'pl-PL', sv:'sv-SE',
+  el:'el-GR', cs:'cs-CZ', he:'he-IL', th:'th-TH', vi:'vi-VN', id:'id-ID',
+  ro:'ro-RO', hu:'hu-HU', uk:'uk-UA', da:'da-DK', fi:'fi-FI', no:'nb-NO',
+  bg:'bg-BG', ms:'ms-MY', sw:'sw-KE', ta:'ta-IN', te:'te-IN', mr:'mr-IN',
+  ur:'ur-PK', fa:'fa-IR', bn:'bn-BD', pa:'pa-IN', hr:'hr-HR', sr:'sr-RS',
+  sk:'sk-SK', sl:'sl-SI', et:'et-EE', lv:'lv-LV', lt:'lt-LT', hy:'hy-AM',
+  ka:'ka-GE', az:'az-AZ', kk:'kk-KZ', af:'af-ZA', sq:'sq-AL', am:'am-ET',
+  be:'be-BY', bs:'bs-BA', ca:'ca-ES', eu:'eu-ES', gl:'gl-ES', is:'is-IS',
+  ga:'ga-IE', kn:'kn-IN', km:'km-KH', ky:'ky-KG', lo:'lo-LA', mk:'mk-MK',
+  ml:'ml-IN', mn:'mn-MN', my:'my-MM', ne:'ne-NP', ps:'ps-AF', si:'si-LK',
+  so:'so-SO', tg:'tg-TJ', uz:'uz-UZ', cy:'cy-GB', yi:'yi-IL', yo:'yo-NG',
+  zu:'zu-ZA', ceb:'ceb-PH', jv:'jv-ID', tl:'fil-PH', ha:'ha-NG', ig:'ig-NG'
+};
+
+const TESS_LANG = {
+  en:'eng', es:'spa', fr:'fra', de:'deu', it:'ita', pt:'por', ru:'rus',
+  ja:'jpn', ko:'kor', zh:'chi_sim', 'zh-TW':'chi_tra', ar:'ara', hi:'hin',
+  tr:'tur', nl:'nld', pl:'pol', sv:'swe', el:'ell', cs:'ces', he:'heb',
+  th:'tha', vi:'vie', id:'ind', ro:'ron', hu:'hun', uk:'ukr', da:'dan',
+  fi:'fin', no:'nor', bg:'bul', ms:'msa', ta:'tam', te:'tel', mr:'mar',
+  ur:'urd', fa:'fas', bn:'ben', pa:'pan', hr:'hrv', sr:'srp', sk:'slk',
+  sl:'slv', et:'est', lv:'lav', lt:'lit', hy:'hye', ka:'kat', az:'aze',
+  kk:'kaz', af:'afr', sq:'sqi', am:'amh', be:'bel', bs:'bos', ca:'cat',
+  eu:'eus', gl:'glg', is:'isl', ga:'gle', kn:'kan', km:'khm', ky:'kir',
+  lo:'lao', mk:'mkd', ml:'mal', mn:'mon', my:'mya', ne:'nep', ps:'pus',
+  si:'sin', so:'som', sw:'swa', tg:'tgk', tt:'tat', uz:'uzb', cy:'cym',
+  yi:'yid', yo:'yor', zu:'zul', ceb:'ceb', jv:'jav', tl:'tgl', ha:'hau',
+  ig:'ibo'
+};
+
+const CONTACT_EMAIL = 'you@example.com';
+
+/* ---------- 2. DOM ---------- */
+const $ = id => document.getElementById(id);
+const sourceSelect     = $('sourceLang');
+const targetSelect     = $('targetLang');
+const inputTextarea    = $('inputText');
+const outputTextarea   = $('outputText');
+const translateBtn     = $('translateBtn');
+const swapBtn          = $('swapBtn');
+const swapFullBtn      = $('swapFullBtn');
+const clearAllBtn      = $('clearAllBtn');
+const copyOutputBtn    = $('copyOutputBtn');
+const speakInputBtn    = $('speakInputBtn');
+const speakOutputBtn   = $('speakOutputBtn');
+const statusDiv        = $('statusMsg');
+const imageInput       = $('imageInput');
+const previewImg       = $('previewImg');
+const ocrExtractBtn    = $('ocrExtractBtn');
+const ocrAppendBox     = $('ocrAppend');
+
+/* ---------- 3. HELPERS ---------- */
+function setStatus(html, tone = 'ok') {
+  statusDiv.dataset.tone = tone;
+  statusDiv.innerHTML = html;
+}
+const escapeHtml = s => String(s).replace(/[&<>"']/g,
+  c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+
+function decodeEntities(s) {
+  if (!s || !s.includes('&')) return s;
+  const doc = new DOMParser().parseFromString(s, 'text/html');
+  return doc.documentElement.textContent || s;
+}
+
+const nameOf = code =>
+  code === 'auto' ? 'Auto-detect'
+  : (LANGUAGES.find(l => l.code === code)?.name || code);
+
+/* ---------- 4. POPULATE ---------- */
+function populateLanguages() {
+  const fragSrc = document.createDocumentFragment();
+  const fragTgt = document.createDocumentFragment();
+  LANGUAGES.forEach(({ code, name }) => {
+    fragSrc.appendChild(new Option(name, code));
+    fragTgt.appendChild(new Option(name, code));
+  });
+  sourceSelect.appendChild(fragSrc);
+  targetSelect.appendChild(fragTgt);
+  sourceSelect.insertBefore(new Option('🔍 Auto-detect', 'auto'), sourceSelect.firstChild);
+  sourceSelect.value = 'en';
+  targetSelect.value = 'es';
+}
+
+/* ---------- 5. PREFS ---------- */
+function savePrefs() {
+  try {
+    localStorage.setItem('pv-prefs', JSON.stringify({
+      src: sourceSelect.value, tgt: targetSelect.value
+    }));
+  } catch {}
+}
+function loadPrefs() {
+  try {
+    const p = JSON.parse(localStorage.getItem('pv-prefs') || 'null');
+    if (p?.src) sourceSelect.value = p.src;
+    if (p?.tgt) targetSelect.value = p.tgt;
+  } catch {}
+}
+
+/* ---------- 6. TRANSLATION ---------- */
+const CHUNK_SIZE = 450;
+let translating = false;
+
+function chunkText(text, max = CHUNK_SIZE) {
+  const chunks = [];
+  let rest = text.trim();
+  while (rest.length > max) {
+    let cut = rest.lastIndexOf('\n', max);
+    if (cut < max * 0.3) cut = Math.max(rest.lastIndexOf('. ', max), rest.lastIndexOf(' ', max));
+    if (cut < max * 0.3) cut = max;
+    chunks.push(rest.slice(0, cut + 1).trim());
+    rest = rest.slice(cut + 1).trim();
+  }
+  if (rest) chunks.push(rest);
+  return chunks.filter(Boolean);
+}
+
+async function fetchJSON(url) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 15000);
+  try {
+    const res = await fetch(url, { signal: ctrl.signal });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+function isOk(d) {
+  if (!d || Number(d.responseStatus) !== 200) return false;
+  const t = d.responseData?.translatedText || '';
+  return !/MYMEMORY WARNING|QUERY LENGTH LIMIT|INVALID LANGUAGE PAIR|PLEASE SELECT/i.test(t);
+}
+
+async function translateChunk(chunk, pair) {
+  const url = p =>
+    `https://api.mymemory.translated.net/get?q=${encodeURIComponent(chunk)}` +
+    `&langpair=${encodeURIComponent(p)}&de=${encodeURIComponent(CONTACT_EMAIL)}`;
+
+  let data = await fetchJSON(url(pair));
+  if (!isOk(data) && pair.startsWith('Autodetect|')) {
+    data = await fetchJSON(url('en|' + pair.split('|')[1]));
+  }
+  if (!isOk(data)) {
+    throw new Error(data?.responseData?.translatedText
+      || data?.responseDetails || 'Translation service returned an error');
+  }
+  let out = data.responseData.translatedText || '';
+  if (!out && data.matches?.length) out = data.matches[0].translation;
+  return decodeEntities(out).trim();
+}
+
+async function translateText() {
+  const text = inputTextarea.value.trim();
+  if (!text) return setStatus('<i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Please enter text or extract from an image first.', 'warn');
+  if (translating) return;
+
+  translating = true;
+  translateBtn.disabled = true;
+  outputTextarea.value = '';
+
+  const rawSrc = sourceSelect.value;
+  const tgt    = targetSelect.value;
+  const srcApi = rawSrc === 'auto' ? 'Autodetect' : apiCode(rawSrc);
+  const pair   = `${srcApi}|${apiCode(tgt)}`;
+  const chunks = chunkText(text);
+  const results = [];
+
+  try {
+    for (let i = 0; i < chunks.length; i++) {
+      const step = chunks.length > 1 ? ` (${i + 1}/${chunks.length})` : '';
+      setStatus(`<i class="fas fa-spinner fa-pulse" aria-hidden="true"></i> Translating${step}…`, 'busy');
+      results.push(await translateChunk(chunks[i], pair));
+      if (i < chunks.length - 1) await new Promise(r => setTimeout(r, 250));
+    }
+    outputTextarea.value = results.join(' ').trim();
+    setStatus(`<i class="fas fa-check-circle" aria-hidden="true"></i> Translated: ${nameOf(rawSrc)} → ${nameOf(tgt)}`, 'ok');
+  } catch (err) {
+    outputTextarea.value = '';
+    setStatus(`<i class="fas fa-times-circle" aria-hidden="true"></i> ${escapeHtml(err.message)}`, 'error');
+  } finally {
+    translating = false;
+    translateBtn.disabled = false;
+  }
+}
+
+/* ---------- 7. SPEECH ---------- */
+let voices = [];
+const refreshVoices = () => { voices = window.speechSynthesis?.getVoices() || []; };
+if ('speechSynthesis' in window) {
+  refreshVoices();
+  speechSynthesis.onvoiceschanged = refreshVoices;
+  speechSynthesis.addEventListener?.('voiceschanged', refreshVoices);
+}
+
+function pickVoice(locale) {
+  const norm = l => String(l || '').replace('_', '-').toLowerCase();
+  const want = norm(locale);
+  const base = want.split('-')[0];
+  return voices.find(v => norm(v.lang) === want)
+      || voices.find(v => norm(v.lang).startsWith(base + '-'))
+      || voices.find(v => norm(v.lang) === base)
+      || null;
+}
+
+function speak(text, langCode, label) {
+  if (!('speechSynthesis' in window)) {
+    return setStatus('<i class="fas fa-microphone-slash" aria-hidden="true"></i> Speech synthesis is not supported in this browser.', 'error');
+  }
+  const clean = (text || '').trim();
+  if (!clean) return setStatus('<i class="fas fa-volume-mute" aria-hidden="true"></i> Nothing to speak.', 'warn');
+  speechSynthesis.cancel();
+
+  const locale = SPEECH_LOCALE[langCode] || langCode || 'en-US';
+  const voice  = pickVoice(locale);
+  const parts  = clean.match(/[^.!?。！？\n]+[.!?。！？\n]*/g) || [clean];
+
+  parts.forEach((part, i) => {
+    const u = new SpeechSynthesisUtterance(part.trim());
+    u.lang = locale;
+    if (voice) u.voice = voice;
+    u.rate = 0.95; u.pitch = 1;
+    if (i === 0) u.onstart = () => setStatus(
+      `<i class="fas fa-volume-up" aria-hidden="true"></i> ${label} · ${locale}${voice ? ' · ' + escapeHtml(voice.name) : ''}`, 'ok');
+    if (i === parts.length - 1) {
+      u.onend   = () => setStatus('<i class="fas fa-check" aria-hidden="true"></i> Finished speaking.', 'ok');
+      u.onerror = e => {
+        if (e.error !== 'interrupted' && e.error !== 'canceled') {
+          setStatus(`<i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Speech error: ${escapeHtml(e.error)}`, 'error');
+        }
+      };
+    }
+    speechSynthesis.speak(u);
+  });
+}
+
+const speakSource = () => {
+  const txt = inputTextarea.value;
+  if (!txt.trim()) return setStatus('<i class="fas fa-ban" aria-hidden="true"></i> Input is empty.', 'warn');
+  speak(txt, sourceSelect.value === 'auto' ? 'en' : sourceSelect.value, 'Speaking source');
+};
+const speakOutput = () => {
+  const txt = outputTextarea.value.trim();
+  if (!txt) return setStatus('<i class="fas fa-volume-off" aria-hidden="true"></i> No translation yet — press “Translate Now”.', 'warn');
+  speak(txt, targetSelect.value, 'Speaking translation');
+};
+
+/* ---------- 8. SWAP ---------- */
+function swappedPair() {
+  const src = sourceSelect.value;
+  const tgt = targetSelect.value;
+  let newSrc = tgt;
+  let newTgt = src === 'auto' ? 'en' : src;
+  if (newTgt === newSrc) newTgt = newSrc === 'en' ? 'es' : 'en';
+  return [newSrc, newTgt];
+}
+
+function swapLanguagesOnly() {
+  const [s, t] = swappedPair();
+  sourceSelect.value = s;
+  targetSelect.value = t;
+  savePrefs();
+  setStatus(`<i class="fas fa-arrows-rotate" aria-hidden="true"></i> Swapped: ${nameOf(s)} → ${nameOf(t)}`, 'ok');
+}
+
+function swapEverything() {
+  const [s, t] = swappedPair();
+  sourceSelect.value = s;
+  targetSelect.value = t;
+  const oldIn  = inputTextarea.value;
+  const oldOut = outputTextarea.value;
+  const hasTranslation = oldOut.trim() && !/^[⏳❌]/.test(oldOut.trim());
+  if (hasTranslation) {
+    inputTextarea.value = oldOut;
+    outputTextarea.value = oldIn;
+  }
+  savePrefs();
+  setStatus(`<i class="fas fa-exchange-alt" aria-hidden="true"></i> Now ${nameOf(s)} → ${nameOf(t)}${hasTranslation ? ' (text swapped)' : ''}`, 'ok');
+}
+
+/* ---------- 9. CLEAR ---------- */
+function clearAll() {
+  inputTextarea.value = '';
+  outputTextarea.value = '';
+  imageInput.value = '';
+  previewImg.src = '';
+  previewImg.style.display = 'none';
+  setStatus('<i class="fas fa-broom" aria-hidden="true"></i> Cleared.', 'ok');
+}
+
+/* ---------- 10. COPY ---------- */
+async function copyTranslation() {
+  const text = outputTextarea.value.trim();
+  if (!text) return setStatus('<i class="fas fa-copy" aria-hidden="true"></i> Nothing to copy yet.', 'warn');
+  try {
+    if (!navigator.clipboard) throw new Error('no clipboard');
+    await navigator.clipboard.writeText(text);
+    setStatus('<i class="fas fa-check-circle" aria-hidden="true"></i> Copied to clipboard.', 'ok');
+  } catch {
+    try {
+      outputTextarea.removeAttribute('readonly');
+      outputTextarea.select();
+      document.execCommand('copy');
+      outputTextarea.setAttribute('readonly', '');
+      window.getSelection()?.removeAllRanges();
+      setStatus('<i class="fas fa-check-circle" aria-hidden="true"></i> Copied (fallback).', 'ok');
+    } catch {
+      setStatus('<i class="fas fa-times-circle" aria-hidden="true"></i> Copy failed — select manually.', 'error');
+    }
+  }
+}
+
+/* ---------- 11. OCR ---------- */
+imageInput.addEventListener('change', e => {
+  const file = e.target.files?.[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    previewImg.src = ev.target.result;
+    previewImg.style.display = 'block';
+    setStatus('<i class="fas fa-image" aria-hidden="true"></i> Image loaded — press “Extract Text (OCR)”.', 'ok');
+  };
+  reader.readAsDataURL(file);
+});
+
+async function runOCR() {
+  const file = imageInput.files?.[0];
+  if (!file) return setStatus('<i class="fas fa-times" aria-hidden="true"></i> Please select an image first.', 'warn');
+  if (typeof Tesseract === 'undefined') {
+    return setStatus('<i class="fas fa-plug" aria-hidden="true"></i> OCR engine did not load — check your connection.', 'error');
+  }
+  const srcCode  = sourceSelect.value === 'auto' ? 'en' : sourceSelect.value;
+  const tessLang = TESS_LANG[srcCode] || 'eng';
+
+  ocrExtractBtn.disabled = true;
+  setStatus(`<i class="fas fa-spinner fa-pulse" aria-hidden="true"></i> OCR (${tessLang}) — starting…`, 'busy');
+
+  try {
+    const { data: { text } } = await Tesseract.recognize(file, tessLang, {
+      logger: m => {
+        if (m.status === 'recognizing text') {
+          setStatus(`<i class="fas fa-spinner fa-pulse" aria-hidden="true"></i> OCR (${tessLang}) — ${Math.round(m.progress * 100)}%`, 'busy');
+        }
+      }
+    });
+    const clean = text.replace(/\n{3,}/g, '\n\n').trim();
+    if (!clean) {
+      return setStatus('<i class="fas fa-exclamation-circle" aria-hidden="true"></i> No readable text — try a sharper image.', 'warn');
+    }
+    const append = ocrAppendBox?.checked && inputTextarea.value.trim();
+    inputTextarea.value = append
+      ? inputTextarea.value.trimEnd() + '\n\n' + clean
+      : clean;
+    setStatus(`<i class="fas fa-check-circle" aria-hidden="true"></i> OCR complete — ${clean.length} characters (${tessLang}).`, 'ok');
+  } catch (err) {
+    console.error(err);
+    setStatus('<i class="fas fa-bug" aria-hidden="true"></i> OCR failed — try a clearer image.', 'error');
+  } finally {
+    ocrExtractBtn.disabled = false;
+  }
+}
+
+/* ---------- 12. EVENTS ---------- */
+translateBtn.addEventListener('click', translateText);
+swapBtn.addEventListener('click', swapLanguagesOnly);
+swapFullBtn.addEventListener('click', swapEverything);
+clearAllBtn.addEventListener('click', clearAll);
+copyOutputBtn.addEventListener('click', copyTranslation);
+speakInputBtn.addEventListener('click', speakSource);
+speakOutputBtn.addEventListener('click', speakOutput);
+ocrExtractBtn.addEventListener('click', runOCR);
+[sourceSelect, targetSelect].forEach(el => el.addEventListener('change', savePrefs));
+
+inputTextarea.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+    e.preventDefault();
+    translateText();
+  }
+});
+
+/* ---------- 13. INIT ---------- */
+populateLanguages();
+loadPrefs();
+setStatus('<i class="fas fa-check-circle" aria-hidden="true"></i> Ready — pick a language pair, or upload an image', 'ok');
+</script>
+</body>
+</html>

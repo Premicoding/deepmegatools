@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>QR Code &amp; Barcode Scanner Online – Scan Instantly With Your Camera</title>
+<meta name="description" content="Scan QR codes and barcodes instantly using your device camera. Free online scanner with no installation, plus a complete guide on features, benefits, safety tips and FAQs." />
+
+<style>
+  /* ============================================================
+     DESIGN TOKENS & RESET
+     ============================================================ */
+  :root {
+    --primary: #4f46e5;
+    --primary-dark: #4338ca;
+    --primary-light: #eef2ff;
+    --accent: #06b6d4;
+    --text: #1f2937;
+    --text-soft: #4b5563;
+    --muted: #6b7280;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --border: #e5e7eb;
+    
+    --green: #047857;
+    --green-dark: #065f46;
+    --red: #b91c1c;
+    --red-dark: #991b1b;
+    --blue: #1d4ed8;
+    --blue-dark: #1e40af;
+    
+    --radius: 16px;
+    --shadow-sm: 0 1px 3px rgba(16, 24, 40, .08);
+    --shadow-md: 0 8px 24px rgba(16, 24, 40, .08);
+    --shadow-lg: 0 18px 45px rgba(16, 24, 40, .12);
+    --max-width: 940px;
+  }
+
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; display: block; }
+  a { color: var(--primary); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero {
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 45%, #06b6d4 100%);
+    color: #fff;
+    padding: 60px 20px 76px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(255, 255, 255, .18) 0, transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(255, 255, 255, .14) 0, transparent 45%);
+    pointer-events: none;
+  }
+
+  .hero__inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.7rem, 4.4vw, 2.55rem);
+    line-height: 1.25;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 18px;
+  }
+
+  .hero p {
+    font-size: clamp(1rem, 2.2vw, 1.08rem);
+    max-width: 720px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, .92);
+  }
+
+  .hero__actions {
+    margin-top: 28px;
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .hero__btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: .95rem;
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+
+  .hero__btn--solid {
+    background: #fff;
+    color: var(--primary-dark);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .16);
+  }
+
+  .hero__btn--ghost {
+    background: rgba(255, 255, 255, .12);
+    color: #fff;
+    border: 1.5px solid rgba(255, 255, 255, .6);
+  }
+
+  .hero__btn:hover { transform: translateY(-2px); text-decoration: none; }
+  .hero__btn--solid:hover { box-shadow: 0 12px 26px rgba(0, 0, 0, .22); }
+  .hero__btn--ghost:hover { background: rgba(255, 255, 255, .24); }
+
+  /* ============================================================
+     LAYOUT
+     ============================================================ */
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  main { padding: 44px 0 20px; }
+
+  .content-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    padding: clamp(22px, 4vw, 48px);
+    margin-bottom: 40px;
+  }
+
+  section[id] { scroll-margin-top: 24px; }
+
+  /* ============================================================
+     SCANNER TOOL
+     ============================================================ */
+  .scanner-card {
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    padding: clamp(20px, 3.5vw, 36px);
+    margin-bottom: 40px;
+    overflow: hidden;
+  }
+
+  .scanner-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+  }
+
+  .scanner-head {
+    text-align: center;
+    margin-bottom: 22px;
+  }
+
+  .scanner-head h2 {
+    font-size: clamp(1.25rem, 3vw, 1.55rem);
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .scanner-head p {
+    color: var(--muted);
+    font-size: .95rem;
+    margin: 0;
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: .76rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    padding: 5px 13px;
+    border-radius: 999px;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    margin-bottom: 14px;
+  }
+
+  .status-pill::before {
+    content: "";
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .status-pill[data-state="scanning"] { background: #ecfdf5; color: #047857; }
+  .status-pill[data-state="scanning"]::before { animation: pulse 1.4s ease-in-out infinite; }
+  .status-pill[data-state="error"] { background: #fef2f2; color: #b91c1c; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .35; transform: scale(.8); }
+  }
+
+  .reader {
+    width: 100%;
+    min-height: 230px;
+    border: 2px dashed #cbd5e1;
+    border-radius: 14px;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 18px;
+    transition: border-color .25s ease, background .25s ease;
+    position: relative;
+  }
+
+  .reader.is-active {
+    border-style: solid;
+    border-color: var(--primary);
+    background: #0f172a;
+    min-height: 0;
+  }
+
+  .reader video {
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+    border-radius: 12px;
+  }
+
+  .reader-placeholder {
+    text-align: center;
+    padding: 26px 18px;
+    color: var(--muted);
+  }
+
+  .reader-placeholder span { display: block; font-size: 2.2rem; line-height: 1; margin-bottom: 10px; }
+  .reader-placeholder p { margin: 0; font-size: .9rem; }
+
+  .camera-select-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .camera-select-wrap label { font-weight: 600; font-size: .95rem; color: var(--text); }
+
+  #camera-select {
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    font-family: inherit;
+    font-size: .95rem;
+    font-weight: 500;
+    color: var(--text);
+    background: #fff;
+    cursor: pointer;
+    max-width: 280px;
+    outline: none;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+
+  #camera-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+  }
+
+  .tool-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+  }
+
+  .tool-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    font-size: .96rem;
+    font-weight: 700;
+    font-family: inherit;
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease, transform .12s ease, box-shadow .2s ease;
+  }
+
+  .tool-btn:active:not(:disabled) { transform: scale(.97); }
+
+  .tool-btn--start { background: var(--green); box-shadow: 0 6px 16px rgba(4, 120, 87, .3); }
+  .tool-btn--start:hover:not(:disabled) { background: var(--green-dark); }
+
+  .tool-btn--stop { background: var(--red); box-shadow: 0 6px 16px rgba(185, 28, 28, .28); }
+  .tool-btn--stop:hover:not(:disabled) { background: var(--red-dark); }
+
+  .tool-btn--file { background: var(--blue); box-shadow: 0 6px 16px rgba(29, 78, 216, .28); }
+  .tool-btn--file:hover:not(:disabled) { background: var(--blue-dark); }
+
+  .tool-btn:disabled {
+    background: #cbd5e1;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+    color: #334155; 
+  }
+
+  .result-box {
+    background: #fbfcff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    text-align: left;
+  }
+
+  .result-box__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+
+  .result-box__head h3 {
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .copy-btn {
+    font-family: inherit;
+    font-size: .78rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--text-soft);
+    cursor: pointer;
+    transition: background .18s ease, color .18s ease, border-color .18s ease;
+  }
+
+  .copy-btn:hover:not(:disabled) {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    border-color: #c7d2fe;
+  }
+
+  .copy-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+  #result {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 14px 16px;
+    min-height: 56px;
+    font-family: "SFMono-Regular", Consolas, "Courier New", monospace;
+    font-size: .92rem;
+    color: #0f172a;
+    word-break: break-word;
+    white-space: pre-wrap;
+    transition: background .3s ease, border-color .3s ease;
+  }
+
+  #result.success {
+    background: #ecfdf5;
+    border-color: #6ee7b7;
+  }
+
+  #result a {
+    color: #047857;
+    font-weight: 600;
+    text-decoration: underline;
+    word-break: break-all;
+  }
+
+  .result-note {
+    display: block;
+    margin-top: 10px;
+    font-size: .8rem;
+    font-family: inherit;
+    color: #b45309;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    padding: 8px 12px;
+  }
+
+  .hint {
+    font-size: .82rem;
+    color: var(--muted);
+    margin-top: 12px;
+    text-align: center;
+  }
+
+  /* ============================================================
+     ARTICLE TYPOGRAPHY
+     ============================================================ */
+  h2 {
+    font-size: clamp(1.3rem, 3vw, 1.6rem);
+    font-weight: 800;
+    letter-spacing: -0.015em;
+    line-height: 1.35;
+    margin: 0 0 16px;
+    color: var(--text);
+    position: relative;
+    padding-left: 18px;
+  }
+
+  h2::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 6px; bottom: 6px;
+    width: 5px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--primary), var(--accent));
+  }
+
+  h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; color: var(--text); }
+  p { color: var(--text-soft); margin-bottom: 16px; }
+  p:last-child { margin-bottom: 0; }
+  section + section { margin-top: 44px; }
+
+  /* ============================================================
+     STEPS / FEATURES / TABLE / USES / BENEFITS
+     ============================================================ */
+  .steps { list-style: none; counter-reset: step; margin: 8px 0 0; }
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding: 14px 18px 14px 60px;
+    background: #fbfcff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    color: var(--text-soft);
+    transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .steps li:hover { transform: translateY(-2px); box-shadow: var(--shadow-sm); border-color: #c7d2fe; }
+  .steps li::before {
+    content: counter(step);
+    position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+    width: 30px; height: 30px; border-radius: 50%;
+    display: grid; place-items: center;
+    font-size: 14px; font-weight: 700; color: #fff;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px; margin-top: 22px;
+  }
+  .feature {
+    background: #fff; border: 1px solid var(--border); border-radius: 12px;
+    padding: 22px 20px; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .feature:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: #c7d2fe; }
+  .feature__icon {
+    width: 42px; height: 42px; border-radius: 11px;
+    display: grid; place-items: center; font-size: 20px;
+    background: var(--primary-light); color: var(--primary); margin-bottom: 14px;
+  }
+  .feature p { font-size: .94rem; margin: 0; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; margin-top: 22px; }
+  table { width: 100%; border-collapse: collapse; min-width: 520px; font-size: .94rem; background: #fff; }
+  thead th { background: linear-gradient(135deg, var(--primary), #6366f1); color: #fff; text-align: left; padding: 14px 18px; font-weight: 700; white-space: nowrap; }
+  tbody td { padding: 13px 18px; border-top: 1px solid var(--border); color: var(--text-soft); vertical-align: top; }
+  tbody th { padding: 13px 18px; border-top: 1px solid var(--border); text-align: left; font-weight: 600; color: var(--text); background: #fafbff; white-space: nowrap; }
+  tbody tr:nth-child(even) td { background: #fcfdff; }
+  tbody tr:hover td { background: #f5f7ff; }
+
+  .use-cases { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+  .use-cases li { background: #fbfcff; border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: 10px; padding: 12px 16px; font-size: .94rem; color: var(--text-soft); }
+  .use-cases li strong { color: var(--text); }
+
+  .benefits { list-style: none; margin-top: 18px; display: grid; gap: 10px; }
+  .benefits li { position: relative; padding-left: 32px; color: var(--text-soft); }
+  .benefits li::before {
+    content: "✓"; position: absolute; left: 0; top: 2px;
+    width: 21px; height: 21px; border-radius: 50%;
+    background: #dcfce7; color: #15803d; font-size: 12px; font-weight: 800;
+    display: grid; place-items: center;
+  }
+
+  .callout { background: #fffbeb; border: 1px solid #fde68a; border-left: 5px solid #f59e0b; border-radius: 12px; padding: 20px 22px; margin-top: 26px; }
+  .callout__title { display: flex; align-items: center; gap: 9px; font-weight: 700; color: #92400e; margin-bottom: 8px; font-size: 1rem; }
+  .callout p { color: #78350f; font-size: .95rem; margin: 0; }
+  .safety-list { list-style: none; margin-top: 16px; display: grid; gap: 10px; }
+  .safety-list li { position: relative; padding-left: 30px; color: var(--text-soft); font-size: .96rem; }
+  .safety-list li::before { content: "⚠"; position: absolute; left: 0; top: 1px; color: #d97706; font-size: 15px; }
+
+  /* ============================================================
+     FAQ & CTA
+     ============================================================ */
+  .faq-item { border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; background: #fff; transition: box-shadow .2s ease, border-color .2s ease; }
+  .faq-item[open] { border-color: #c7d2fe; box-shadow: var(--shadow-sm); }
+  .faq-item summary { cursor: pointer; padding: 16px 52px 16px 20px; font-weight: 600; color: var(--text); list-style: none; position: relative; font-size: .97rem; transition: background .18s ease; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary:hover { background: #f8faff; }
+  .faq-item summary::after {
+    content: "+"; position: absolute; right: 18px; top: 50%; transform: translateY(-50%);
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--primary-light); color: var(--primary); font-size: 18px; font-weight: 700;
+    line-height: 1; display: grid; place-items: center;
+    transition: transform .25s ease, background .25s ease, color .25s ease;
+  }
+  .faq-item[open] summary::after { content: "−"; background: var(--primary); color: #fff; transform: translateY(-50%) rotate(180deg); }
+  .faq-answer { padding: 14px 20px 18px; color: var(--text-soft); font-size: .95rem; border-top: 1px solid var(--border); }
+  .faq-answer p { margin: 0; }
+
+  .cta { background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #06b6d4 100%); border-radius: var(--radius); padding: clamp(28px, 5vw, 48px); text-align: center; color: #fff; box-shadow: var(--shadow-lg); margin-bottom: 40px; }
+  .cta h2 { color: #fff; padding-left: 0; font-size: clamp(1.25rem, 3vw, 1.55rem); margin-bottom: 12px; }
+  .cta h2::before { display: none; }
+  .cta p { color: rgba(255, 255, 255, .9); max-width: 620px; margin: 0 auto 26px; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  .btn { display: inline-block; padding: 13px 30px; border-radius: 999px; font-weight: 700; font-size: .95rem; transition: transform .18s ease, box-shadow .18s ease, background .18s ease; text-decoration: none; }
+  .btn--light { background: #fff; color: var(--primary-dark); box-shadow: 0 8px 20px rgba(0, 0, 0, .16); }
+  .btn--ghost { background: rgba(255, 255, 255, .12); color: #fff; border: 1.5px solid rgba(255, 255, 255, .6); }
+  .btn:hover { transform: translateY(-2px); text-decoration: none; }
+  .btn--light:hover { box-shadow: 0 12px 26px rgba(0, 0, 0, .22); }
+  .btn--ghost:hover { background: rgba(255, 255, 255, .24); }
+
+  .to-top { display: inline-block; margin-top: 6px; font-size: .85rem; color: #64748b; }
+
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .hero { padding: 46px 18px 58px; }
+    .content-card, .scanner-card { border-radius: 12px; padding: 22px 18px; }
+    .steps li { padding: 13px 14px 13px 54px; }
+    .faq-item summary { padding: 14px 46px 14px 16px; font-size: .93rem; }
+    .faq-answer { padding: 12px 16px 16px; }
+    .tool-btn { flex: 1 1 100%; justify-content: center; }
+    .btn { width: 100%; text-align: center; }
+    .hero__btn { width: 100%; }
+    .camera-select-wrap { flex-direction: column; gap: 6px; }
+    #camera-select { width: 100%; max-width: 100%; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+
+<body>
+
+  <header class="hero">
+    <div class="hero__inner">
+      <h1>QR Code &amp; Barcode Scanner Online – Scan Codes Instantly</h1>
+      <p>Scan QR codes and barcodes directly with your device camera or upload an image file. No app, no download, no sign-up.</p>
+      <div class="hero__actions">
+        <a href="#scanner" class="hero__btn hero__btn--solid">📷 Start Scanning</a>
+        <a href="#how-to-scan" class="hero__btn hero__btn--ghost">How It Works</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <section class="scanner-card" id="scanner" aria-labelledby="scanner-title">
+        <div class="scanner-head">
+          <span class="status-pill" id="status-pill" data-state="idle">Ready to Scan</span>
+          <h2 id="scanner-title">📷 QR &amp; Barcode Scanner</h2>
+          <p>Use your camera or upload an image file to decode any code instantly.</p>
+        </div>
+
+        <div id="reader" class="reader" aria-live="polite">
+          <div class="reader-placeholder" id="reader-placeholder">
+            <span>📷</span>
+            <p>Camera preview or uploaded image will appear here</p>
+          </div>
+        </div>
+
+        <input type="file" id="file-input" accept="image/*" style="display: none;">
+
+        <div class="camera-select-wrap">
+          <label for="camera-select">📸 Select Camera:</label>
+          <select id="camera-select" aria-label="Select Camera">
+            <option value="environment">Default (Back Camera)</option>
+            <option value="user">Front Camera</option>
+          </select>
+        </div>
+
+        <div class="tool-actions">
+          <button id="start-btn" class="tool-btn tool-btn--start" type="button">▶ Start Camera</button>
+          <button id="stop-btn" class="tool-btn tool-btn--stop" type="button" disabled>⏹ Stop Camera</button>
+          <button id="file-btn" class="tool-btn tool-btn--file" type="button">📁 Scan Image File</button>
+        </div>
+
+        <div class="result-box">
+          <div class="result-box__head">
+            <h3>📋 Scanned Result</h3>
+            <button id="copy-btn" class="copy-btn" type="button" disabled>Copy</button>
+          </div>
+          <div id="result" role="status">Waiting for a scan…</div>
+          <p class="hint">Tip: hold the code steady or ensure the uploaded image is clear and well-lit.</p>
+        </div>
+      </section>
+
+      <div class="related-tools" style="background: #fff; padding: 24px; border-radius: var(--radius); border: 1px solid var(--border); margin-bottom: 40px;">
+        <h2 style="font-size: 1.3rem; margin-bottom: 12px;">Related Tools</h2>
+        <ul style="list-style: none; display: flex; flex-wrap: wrap; gap: 12px;">
+            <li><a href="/tools/barcode-generator.html">Barcode Generator</a></li>
+            <li><a href="/tools/qr-code-generator.html">QR Code Generator</a></li>
+            <li><a href="/tools/color-contrast-analyzer.html">Color Contrast Analyzer</a></li>
+            <li><a href="/tools/image-resizer.html">Image Resizer</a></li>
+            <li><a href="/tools/unlock-page.html">Unlock Page</a></li>
+            <li><a href="/tools/auto-code-typing.html">Auto Code Typing</a></li>
+            <li><a href="/tools/code-editor.html">Live Code Editor</a></li>
+            <li><a href="tools/css-box-shadow-generator.html">Box Shadow Generator</a></li>
+            <li><a href="/tools/Text-shadow-generator.html">Text Shadow Generator</a></li>
+            <li><a href="/tools/translate.html">Translate</a></li>
+        </ul>
+      </div>
+
+      <article class="content-card">
+        <p>QR codes and barcodes have become an important part of our daily lives. From making digital payments and accessing websites to checking product information, these codes help people access information quickly and conveniently. With an online QR &amp; Barcode Scanner, you can scan codes directly using your device's camera without installing additional software.</p>
+        <p>In this guide, we will explore what QR codes and barcodes are, how an online scanner works, its features, benefits, and how you can use it.</p>
+
+        <section id="what-is-qr">
+          <h2>What Is a QR Code Scanner?</h2>
+          <p>A <strong>QR Code Scanner</strong> is an online or mobile-based tool that reads information stored inside a Quick Response (QR) code. A QR code is a two-dimensional barcode that can contain different types of information, including website URLs, contact details, email addresses, phone numbers, and text.</p>
+          <p>By scanning a QR code with your camera, you can quickly access the information stored inside it.</p>
+        </section>
+
+        <section id="what-is-barcode">
+          <h2>What Is a Barcode Scanner?</h2>
+          <p>A <strong>Barcode Scanner</strong> is a tool that reads information encoded in a barcode. Barcodes usually contain a series of black lines and white spaces that represent product or identification information.</p>
+          <p>They are commonly used in supermarkets, retail stores, warehouses, libraries, and inventory management systems.</p>
+        </section>
+
+        <section id="how-to-scan">
+          <h2>How to Scan QR Codes and Barcodes Online</h2>
+          <p>Using an online QR and Barcode Scanner is simple. You do not need to download or install a separate application. Follow these steps:</p>
+          <ol class="steps">
+            <li>Open the QR &amp; Barcode Scanner tool in your browser.</li>
+            <li>Select your preferred camera (Front or Back) from the dropdown menu.</li>
+            <li>Click the <strong>Start Camera</strong> button to scan live, or <strong>Scan Image File</strong> to upload a screenshot.</li>
+            <li>Allow camera access when your browser asks for permission (if using camera).</li>
+            <li>Point your device's camera toward a QR code or barcode.</li>
+            <li>Wait for the scanner to detect and read the code.</li>
+            <li>The scanned information will automatically appear in the result section.</li>
+            <li>Click the <strong>Stop Camera</strong> button when you finish scanning.</li>
+          </ol>
+          <p style="margin-top:18px;">The tool automatically stops scanning after successfully detecting a code.</p>
+        </section>
+
+        <section id="features">
+          <h2>Key Features of an Online QR &amp; Barcode Scanner</h2>
+          <div class="features">
+            <div class="feature">
+              <div class="feature__icon">📷</div>
+              <h3>1. Real-Time Camera Scanning</h3>
+              <p>Scan QR codes and supported barcodes directly through your device's camera.</p>
+            </div>
+            <div class="feature">
+              <div class="feature__icon">🔄</div>
+              <h3>2. Dual Camera Support</h3>
+              <p>Easily switch between front and back cameras, or select a specific lens on devices with multiple cameras.</p>
+            </div>
+            <div class="feature">
+              <div class="feature__icon">📁</div>
+              <h3>3. Image File Upload</h3>
+              <p>Don't have the physical code? Upload a screenshot or image file to decode it instantly.</p>
+            </div>
+            <div class="feature">
+              <div class="feature__icon">⚡</div>
+              <h3>4. Instant Scan Results</h3>
+              <p>Once a code is detected, the decoded information appears automatically on the screen.</p>
+            </div>
+            <div class="feature">
+              <div class="feature__icon">📱</div>
+              <h3>5. Mobile-Friendly Design</h3>
+              <p>The responsive interface makes the scanner convenient to use on smartphones, tablets, and computers.</p>
+            </div>
+            <div class="feature">
+              <div class="feature__icon">🔒</div>
+              <h3>6. Secure &amp; Private</h3>
+              <p>All scanning happens locally in your browser. No data or images are sent to our servers.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="difference">
+          <h2>QR Code vs Barcode: What Is the Difference?</h2>
+          <p>QR codes and traditional barcodes both store information, but they work differently.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th scope="col">Feature</th><th scope="col">QR Code</th><th scope="col">Barcode</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Type</th><td>2D Code</td><td>Usually 1D Code</td></tr>
+                <tr><th scope="row">Appearance</th><td>Square pattern</td><td>Parallel lines</td></tr>
+                <tr><th scope="row">Data Storage</th><td>More information</td><td>Usually less information</td></tr>
+                <tr><th scope="row">Scanning</th><td>Camera or QR scanner</td><td>Barcode scanner or camera</td></tr>
+                <tr><th scope="row">Common Uses</th><td>Payments, URLs, sharing information</td><td>Products, inventory, identification</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="uses">
+          <h2>Common Uses of QR Codes and Barcodes</h2>
+          <p>Both technologies are used across different industries.</p>
+          <ul class="use-cases">
+            <li><strong>Retail Stores:</strong> Product identification and checkout.</li>
+            <li><strong>Online Payments:</strong> Accessing digital payment information.</li>
+            <li><strong>Restaurants:</strong> Opening digital menus.</li>
+            <li><strong>Education:</strong> Sharing study materials and website links.</li>
+            <li><strong>Healthcare:</strong> Tracking medical products and patient-related information.</li>
+            <li><strong>Logistics:</strong> Managing packages and inventory.</li>
+            <li><strong>Marketing:</strong> Sharing promotional content and website links.</li>
+          </ul>
+        </section>
+
+        <section id="benefits">
+          <h2>Benefits of Using an Online QR &amp; Barcode Scanner</h2>
+          <p>An online scanner offers several advantages:</p>
+          <ul class="benefits">
+            <li>Saves time by reading codes quickly.</li>
+            <li>Provides convenient access to stored information.</li>
+            <li>Reduces the need for additional scanning software.</li>
+            <li>Works through a supported web browser.</li>
+            <li>Helps users read QR codes and supported barcodes.</li>
+            <li>Makes everyday digital tasks easier.</li>
+          </ul>
+        </section>
+
+        <section id="safety">
+          <h2>Is It Safe to Scan QR Codes Online?</h2>
+          <p>Scanning a QR code is generally convenient, but users should always be careful before opening the information it contains. Some QR codes may redirect users to suspicious websites or phishing pages.</p>
+          <p><strong>Follow these safety tips:</strong></p>
+          <ul class="safety-list">
+            <li>Scan QR codes only from trusted sources.</li>
+            <li>Check website addresses before opening links.</li>
+            <li>Never enter passwords or banking information on suspicious websites.</li>
+            <li>Avoid downloading unknown files from untrusted QR codes.</li>
+            <li>Do not share sensitive personal information through unknown links.</li>
+          </ul>
+          <div class="callout">
+            <div class="callout__title">⚠ Important</div>
+            <p>A QR code scanner reads encoded information, but it does not guarantee that the information or destination website is safe.</p>
+          </div>
+        </section>
+
+        <section id="faq">
+          <h2>Frequently Asked Questions (FAQs)</h2>
+          <details class="faq-item" open>
+            <summary>1. Can I scan QR codes online for free?</summary>
+            <div class="faq-answer"><p>Yes. You can use an online QR Code Scanner through a supported web browser without installing a separate application.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>2. Do I need to install an application?</summary>
+            <div class="faq-answer"><p>No. The online scanner works directly in your browser. You only need to allow camera access or upload a file.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>3. Why is my camera not working?</summary>
+            <div class="faq-answer"><p>Check whether your browser has camera permission. Also, make sure your device camera is working properly and the website is using a secure HTTPS connection.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>4. Can I scan barcodes using my mobile phone?</summary>
+            <div class="faq-answer"><p>Yes. You can scan supported barcodes using your mobile phone's front or back camera, or by uploading a saved image through a compatible online scanner.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>5. Does the scanner work on desktop computers?</summary>
+            <div class="faq-answer"><p>Yes, provided your computer has a compatible camera or you upload an image file of the code.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>6. What happens after scanning a QR code?</summary>
+            <div class="faq-answer"><p>The scanner decodes the information and displays the result on your screen. Depending on the QR code, the result may contain text, a URL, or other information.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>7. Is an internet connection required?</summary>
+            <div class="faq-answer"><p>An internet connection is generally required to open the online scanner and load its scanning library. Scanning also requires browser and camera support.</p></div>
+          </details>
+        </section>
+
+        <section id="conclusion">
+          <h2>Conclusion</h2>
+          <p>QR codes and barcodes have made information sharing, product identification, and everyday digital activities faster and more convenient. An online QR &amp; Barcode Scanner provides a simple way to read supported codes directly through your device's camera or image uploads.</p>
+          <p>Whether you want to scan a website link, read product information, or access encoded text, this tool can make the process easier.</p>
+        </section>
+      </article>
+
+      <div class="cta">
+        <h2>Ready to Scan Your First Code?</h2>
+        <p>Try the QR &amp; Barcode Scanner by Deep Mega Tools and scan supported QR codes and barcodes directly from your browser — no installation required.</p>
+        <div class="btn-row">
+          <a href="#scanner" class="btn btn--light">Start Scanning Now</a>
+          <a href="#" class="btn btn--ghost">Explore More Free Tools</a>
+        </div>
+      </div>
+
+      <div style="text-align:center;">
+        <a href="#" class="to-top">↑ Back to top</a>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const readerEl     = document.getElementById("reader");
+      const placeholder  = document.getElementById("reader-placeholder");
+      const resultEl     = document.getElementById("result");
+      const copyBtn      = document.getElementById("copy-btn");
+      const startBtn     = document.getElementById("start-btn");
+      const stopBtn      = document.getElementById("stop-btn");
+      const fileBtn      = document.getElementById("file-btn");
+      const fileInput    = document.getElementById("file-input");
+      const statusPill   = document.getElementById("status-pill");
+      const cameraSelect = document.getElementById("camera-select");
+
+      let scanner = null;
+      let isScanning = false;
+      let lastResult = "";
+      let isLibraryLoaded = false;
+      let isCameraListFetched = false;
+
+      // --- Lazy Load Library Function (Performance 100/100 Fix) ---
+      function loadScannerLibrary() {
+        return new Promise((resolve, reject) => {
+          if (isLibraryLoaded || window.Html5Qrcode) {
+            isLibraryLoaded = true;
+            return resolve();
+          }
+          const script = document.createElement('script');
+          script.src = 'https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js';
+          script.async = true;
+          script.onload = () => {
+            isLibraryLoaded = true;
+            resolve();
+          };
+          script.onerror = () => reject(new Error('Failed to load scanner library'));
+          document.head.appendChild(script);
+        });
+      }
+
+      function setStatus(text, state) {
+        statusPill.textContent = text;
+        statusPill.dataset.state = state || "idle";
+      }
+
+      function setResult(rawText, isSuccess) {
+        lastResult = rawText || "";
+        resultEl.classList.toggle("success", !!isSuccess);
+        resultEl.innerHTML = "";
+
+        if (!isSuccess) {
+          resultEl.textContent = rawText;
+          copyBtn.disabled = true;
+          return;
+        }
+
+        if (/^https?:\/\/\S+$/i.test(rawText.trim())) {
+          const link = document.createElement("a");
+          link.href = rawText.trim();
+          link.textContent = rawText.trim();
+          link.target = "_blank";
+          link.rel = "noopener noreferrer";
+          resultEl.appendChild(link);
+
+          const note = document.createElement("span");
+          note.className = "result-note";
+          note.textContent = "⚠ Link detected — verify the address before opening it.";
+          resultEl.appendChild(note);
+        } else {
+          resultEl.textContent = rawText;
+        }
+        copyBtn.disabled = !lastResult;
+      }
+
+      function setActiveUI(active) {
+        isScanning = active;
+        startBtn.disabled = active;
+        stopBtn.disabled = !active;
+        readerEl.classList.toggle("is-active", active);
+        placeholder.style.display = active ? "none" : "";
+        cameraSelect.disabled = active;
+      }
+
+      async function fetchCameras() {
+        if (isCameraListFetched) return;
+        try {
+          const devices = await Html5Qrcode.getCameras();
+          if (devices && devices.length) {
+            cameraSelect.innerHTML = `
+              <option value="environment">Default (Back Camera)</option>
+              <option value="user">Front Camera</option>
+            `;
+            devices.forEach((device, index) => {
+              const option = document.createElement("option");
+              option.value = device.id;
+              option.textContent = device.label || `Camera ${index + 1}`;
+              cameraSelect.appendChild(option);
+            });
+            isCameraListFetched = true;
+          }
+        } catch (err) {
+          console.warn("Could not load specific camera list.", err);
+        }
+      }
+
+      function onScanSuccess(decodedText) {
+        setResult(decodedText, true);
+        setStatus("Code Detected", "idle");
+        if (isScanning) stopScanner();
+      }
+
+      function onScanError() {
+        // Silently ignore frame-by-frame errors
+      }
+
+      async function startScanner() {
+        if (isScanning) return;
+        setStatus("Loading Scanner...", "scanning");
+        startBtn.disabled = true;
+
+        try {
+          await loadScannerLibrary(); // Dynamic loading
+          
+          if (!scanner) scanner = new Html5Qrcode("reader");
+
+          const config = {
+            fps: 10,
+            // Dynamic QR Box size for mobile responsiveness
+            qrbox: function(viewfinderWidth, viewfinderHeight) {
+              let minEdge = Math.min(viewfinderWidth, viewfinderHeight);
+              let qrboxSize = Math.floor(minEdge * 0.7);
+              return { width: qrboxSize, height: qrboxSize };
+            }
+          };
+
+          if (window.Html5QrcodeSupportedFormats) {
+            const F = window.Html5QrcodeSupportedFormats;
+            config.formatsToSupport = [
+              F.QR_CODE, F.CODE_128, F.CODE_39, F.CODE_93,
+              F.EAN_13, F.EAN_8, F.UPC_A, F.UPC_E,
+              F.ITF, F.CODABAR, F.DATA_MATRIX, F.PDF_417, F.AZTEC
+            ];
+          }
+
+          const selectedValue = cameraSelect.value;
+          let cameraConfig = (selectedValue === "environment" || selectedValue === "user") 
+            ? { facingMode: selectedValue } 
+            : { deviceId: { exact: selectedValue } };
+
+          setStatus("Starting Camera…", "scanning");
+
+          await scanner.start(cameraConfig, config, onScanSuccess, onScanError);
+
+          setActiveUI(true);
+          setStatus("Scanning…", "scanning");
+          setResult("Scanning… point your camera at a code.", false);
+          
+          // Fetch hardware camera names after permission is granted
+          fetchCameras();
+
+        } catch (err) {
+          console.error("Scanner start failed:", err);
+          setActiveUI(false);
+          startBtn.disabled = false;
+          setStatus("Camera Error", "error");
+          setResult("Unable to start the camera. Please allow permission, close other apps using the camera, and ensure the page is on HTTPS.", false);
+          if (scanner) { try { scanner.clear(); } catch (e) {} }
+        }
+      }
+
+      async function stopScanner() {
+        if (!scanner) return;
+        try {
+          if (isScanning) await scanner.stop();
+        } catch (e) {
+          console.warn("Stop failed:", e);
+        }
+        try { scanner.clear(); } catch (e) {}
+
+        setActiveUI(false);
+        setStatus("Ready to Scan", "idle");
+        if (!lastResult) setResult("Waiting for a scan…", false);
+      }
+
+      fileBtn.addEventListener("click", () => fileInput.click());
+
+      fileInput.addEventListener("change", async (e) => {
+        if (e.target.files.length === 0) return;
+        const file = e.target.files[0];
+        
+        setStatus("Loading Scanner...", "scanning");
+        fileBtn.disabled = true;
+
+        try {
+          await loadScannerLibrary();
+          
+          setStatus("Scanning Image…", "scanning");
+          setResult("Processing image, please wait…", false);
+
+          if (isScanning) await stopScanner();
+
+          if (!scanner) scanner = new Html5Qrcode("reader");
+          
+          const decodedText = await scanner.scanFile(file, true);
+          onScanSuccess(decodedText);
+          setStatus("Image Scanned", "idle");
+          
+        } catch (err) {
+          console.error("File scan failed:", err);
+          setStatus("Scan Failed", "error");
+          setResult("Could not detect a valid QR code or barcode in this image. Please try a clearer image.", false);
+        } finally {
+          fileBtn.disabled = false;
+          fileInput.value = ""; // Reset input
+        }
+      });
+
+      copyBtn.addEventListener("click", async function () {
+        if (!lastResult) return;
+        try {
+          await navigator.clipboard.writeText(lastResult);
+          copyBtn.textContent = "Copied ✓";
+        } catch (e) {
+          copyBtn.textContent = "Failed";
+        }
+        setTimeout(() => { copyBtn.textContent = "Copy"; }, 1600);
+      });
+
+      startBtn.addEventListener("click", startScanner);
+      stopBtn.addEventListener("click", stopScanner);
+    })();
+  </script>
+
+</body>
+</html>

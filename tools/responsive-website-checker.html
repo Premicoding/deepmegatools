@@ -1,0 +1,2570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Responsive Website Checker – Test Your Website on Mobile, Tablet &amp; Desktop</title>
+<meta name="description" content="Free Responsive Website Checker: test how your website looks on mobile, tablet, laptop and desktop. Device presets, custom screen sizes, compare mode and live HTML/CSS preview.">
+<meta name="robots" content="index, follow">
+
+<style>
+/* ============================================================
+   1. DESIGN TOKENS
+   ============================================================ */
+:root{
+  --bg:            #f6f8fc;
+  --surface:       #ffffff;
+  --surface-alt:   #eef3fb;
+  --text:          #16202b;
+  --text-muted:    #55677a;
+  --border:        #e1e8f2;
+  --brand:         #2563eb;
+  --brand-dark:    #1d4ed8;
+  --brand-soft:    #e8f0ff;
+  --accent:        #7c3aed;
+  --code-bg:       #0f172a;
+  --code-text:     #e2e8f0;
+  --radius-sm:     10px;
+  --radius:        16px;
+  --radius-lg:     24px;
+  --shadow:        0 4px 24px rgba(16, 32, 52, .07);
+  --shadow-lg:     0 18px 48px rgba(16, 32, 52, .12);
+  --maxw:          1100px;
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:          #0b1220;
+    --surface:     #121b2b;
+    --surface-alt: #172235;
+    --text:        #e6edf7;
+    --text-muted:  #a3b2c7;
+    --border:      #22304a;
+    --brand:       #5b8dff;
+    --brand-dark:  #7aa4ff;
+    --brand-soft:  #16233d;
+    --accent:      #a78bfa;
+    --code-bg:     #060c16;
+    --shadow:      0 4px 24px rgba(0, 0, 0, .45);
+    --shadow-lg:   0 18px 48px rgba(0, 0, 0, .6);
+  }
+}
+
+/* ============================================================
+   2. RESET & BASE
+   ============================================================ */
+*,
+*::before,
+*::after{ box-sizing: border-box; }
+
+html{
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body{
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--text);
+  background: var(--bg);
+}
+
+img, svg, iframe{ max-width: 100%; }
+
+h1, h2, h3, h4{
+  line-height: 1.25;
+  margin: 0 0 .5em;
+  font-weight: 750;
+  letter-spacing: -.015em;
+}
+
+h1{ font-size: clamp(1.85rem, 1.2rem + 3vw, 3rem); }
+h2{ font-size: clamp(1.45rem, 1.1rem + 1.6vw, 2.1rem); }
+h3{ font-size: clamp(1.1rem, 1rem + .5vw, 1.3rem); }
+
+p{ margin: 0 0 1.1em; }
+
+a{
+  color: var(--brand);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
+}
+a:hover{ color: var(--brand-dark); }
+
+strong{ font-weight: 700; }
+
+ul, ol{ margin: 0 0 1.2em; padding-left: 1.4em; }
+li{ margin-bottom: .5em; }
+
+code{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: .9em;
+  background: var(--brand-soft);
+  color: var(--brand-dark);
+  padding: .15em .45em;
+  border-radius: 6px;
+}
+
+:focus-visible{
+  outline: 3px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link{
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 999;
+  background: var(--brand);
+  color: #fff;
+  padding: .75rem 1.25rem;
+  border-radius: 0 0 var(--radius-sm) 0;
+  font-weight: 600;
+}
+.skip-link:focus{ left: 0; color: #fff; }
+
+/* ============================================================
+   3. LAYOUT HELPERS
+   ============================================================ */
+.container{
+  width: min(var(--maxw), 100% - 2.5rem);
+  margin-inline: auto;
+}
+
+.section{ padding: 3.25rem 0; }
+.section + .section{ border-top: 1px solid var(--border); }
+
+.section-intro{
+  max-width: 68ch;
+  color: var(--text-muted);
+}
+
+.eyebrow{
+  display: inline-block;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--brand);
+  background: var(--brand-soft);
+  padding: .3rem .75rem;
+  border-radius: 999px;
+  margin-bottom: .9rem;
+}
+
+/* ============================================================
+   4. HEADER / HERO
+   ============================================================ */
+.site-header{
+  background: linear-gradient(160deg, var(--brand-soft), var(--surface) 65%);
+  border-bottom: 1px solid var(--border);
+  padding: 3rem 0 3.5rem;
+}
+
+.btn{
+  display: inline-block;
+  font-weight: 650;
+  font-size: .95rem;
+  padding: .7rem 1.4rem;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.btn-primary{
+  background: var(--brand);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, .28);
+}
+.btn-primary:hover{
+  background: var(--brand-dark);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.btn-ghost{
+  border-color: var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+.btn-ghost:hover{ color: var(--brand); }
+
+.hero{ max-width: 74ch; }
+.hero .lead{
+  font-size: clamp(1.02rem, 1rem + .35vw, 1.18rem);
+  color: var(--text-muted);
+  margin-bottom: 1.75rem;
+}
+
+.hero-actions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem;
+  margin-bottom: 1.75rem;
+}
+
+.chip-row{
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.chip{
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: .4rem .9rem;
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+}
+.chip::before{
+  content: "✓";
+  color: var(--brand);
+  font-weight: 800;
+  margin-right: .4rem;
+}
+
+/* ============================================================
+   5. TABLE OF CONTENTS
+   ============================================================ */
+.toc{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.35rem 1.5rem;
+  box-shadow: var(--shadow);
+  margin-top: -2.25rem;
+  position: relative;
+  z-index: 2;
+}
+.toc h2{
+  font-size: .82rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: .8rem;
+}
+.toc ol{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: .35rem 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: toc;
+}
+.toc li{ margin: 0; counter-increment: toc; }
+.toc a{
+  display: block;
+  padding: .25rem 0;
+  font-size: .95rem;
+  text-decoration: none;
+  color: var(--text);
+}
+.toc a::before{
+  content: counter(toc) ". ";
+  color: var(--brand);
+  font-weight: 700;
+}
+.toc a:hover{ color: var(--brand); text-decoration: underline; }
+
+/* ============================================================
+   6. CARD GRIDS
+   ============================================================ */
+.card-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+  gap: 1.15rem;
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0;
+  counter-reset: card;
+}
+
+.card{
+  counter-increment: card;
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.4rem 1.35rem;
+  box-shadow: var(--shadow);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.card:hover{
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: color-mix(in srgb, var(--brand) 35%, var(--border));
+}
+
+.card-grid--numbered .card::before{
+  content: counter(card);
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--brand-soft);
+  color: var(--brand);
+  font-weight: 800;
+  font-size: .95rem;
+  margin-bottom: .85rem;
+}
+
+.card h3{ font-size: 1.05rem; margin-bottom: .45rem; }
+.card p{ margin: 0; font-size: .95rem; color: var(--text-muted); line-height: 1.65; }
+
+/* ============================================================
+   7. CALLOUT
+   ============================================================ */
+.callout{
+  display: flex;
+  gap: .9rem;
+  align-items: flex-start;
+  background: var(--brand-soft);
+  border: 1px solid color-mix(in srgb, var(--brand) 30%, var(--border));
+  border-left: 4px solid var(--brand);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.15rem;
+  margin: 1.5rem 0;
+}
+.callout p{ margin: 0; font-size: .95rem; }
+.callout-icon{ flex: 0 0 auto; font-size: 1.1rem; line-height: 1.5; }
+
+/* ============================================================
+   8. TABLE
+   ============================================================ */
+.table-wrap{
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  background: var(--surface);
+  margin: 1.75rem 0;
+  -webkit-overflow-scrolling: touch;
+}
+table{ width: 100%; min-width: 420px; border-collapse: collapse; font-size: .96rem; }
+caption{
+  caption-side: bottom; text-align: left; font-size: .85rem;
+  color: var(--text-muted); padding: .85rem 1.1rem;
+}
+thead th{
+  background: var(--surface-alt); text-align: left; font-weight: 700;
+  font-size: .88rem; letter-spacing: .03em; text-transform: uppercase;
+  color: var(--text-muted); padding: .85rem 1.1rem;
+  border-bottom: 1px solid var(--border); white-space: nowrap;
+}
+tbody td{ padding: .8rem 1.1rem; border-bottom: 1px solid var(--border); }
+tbody tr:last-child td{ border-bottom: 0; }
+tbody tr:hover{ background: var(--surface-alt); }
+tbody td:last-child{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .9rem; white-space: nowrap;
+}
+
+/* ============================================================
+   9. CODE BLOCK
+   ============================================================ */
+.code-block{
+  position: relative;
+  margin: 1.5rem 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--code-bg);
+}
+.code-block::before{
+  content: attr(data-lang);
+  position: absolute;
+  top: .65rem; right: .9rem;
+  font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: #7c8ba1;
+}
+.code-block pre{
+  margin: 0; padding: 1.35rem 1.25rem;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: .875rem; line-height: 1.7;
+  color: var(--code-text);
+  -webkit-overflow-scrolling: touch;
+}
+.code-block code{ background: none; color: inherit; padding: 0; font-size: inherit; }
+
+/* ============================================================
+   10. LISTS
+   ============================================================ */
+.check-list{
+  list-style: none; padding: 0; margin: 1.5rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: .55rem 1.75rem;
+}
+.check-list li{ position: relative; padding-left: 1.9rem; margin: 0; font-size: .97rem; }
+.check-list li::before{
+  content: "✓";
+  position: absolute; left: 0; top: .1em;
+  display: grid; place-items: center;
+  width: 1.35rem; height: 1.35rem; border-radius: 50%;
+  background: var(--brand-soft); color: var(--brand);
+  font-size: .78rem; font-weight: 800;
+}
+
+.steps{
+  counter-reset: step; list-style: none; padding: 0; margin: 1.75rem 0;
+  display: grid; gap: .8rem;
+}
+.steps li{
+  counter-increment: step; position: relative; margin: 0;
+  padding: .95rem 1.15rem .95rem 3.5rem;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); font-size: .97rem;
+}
+.steps li::before{
+  content: counter(step);
+  position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+  display: grid; place-items: center;
+  width: 1.75rem; height: 1.75rem; border-radius: 50%;
+  background: var(--brand); color: #fff;
+  font-size: .82rem; font-weight: 800;
+}
+
+/* ============================================================
+   11. FAQ
+   ============================================================ */
+.faq{ margin-top: 2rem; display: grid; gap: .75rem; }
+.faq details{
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); box-shadow: var(--shadow);
+  overflow: hidden; transition: border-color .18s ease;
+}
+.faq details[open]{ border-color: color-mix(in srgb, var(--brand) 40%, var(--border)); }
+.faq summary{
+  cursor: pointer; list-style: none;
+  padding: 1.05rem 3rem 1.05rem 1.25rem;
+  font-weight: 650; font-size: 1rem; position: relative; color: var(--text);
+}
+.faq summary::-webkit-details-marker{ display: none; }
+.faq summary::after{
+  content: "+"; position: absolute; right: 1.15rem; top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.4rem; font-weight: 400; line-height: 1;
+  color: var(--brand); transition: transform .2s ease;
+}
+.faq details[open] summary::after{ content: "−"; transform: translateY(-50%) rotate(180deg); }
+.faq summary:hover{ background: var(--surface-alt); }
+.faq .answer{ padding: 0 1.25rem 1.15rem; color: var(--text-muted); font-size: .96rem; }
+.faq .answer p{ margin: 0; }
+
+/* ============================================================
+   12. CTA BANNER
+   ============================================================ */
+.cta{
+  background: linear-gradient(135deg, var(--brand), var(--accent));
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: clamp(1.75rem, 1rem + 3vw, 3rem);
+  text-align: center; box-shadow: var(--shadow-lg); margin: 3.5rem 0 0;
+}
+.cta h2{ color: #fff; margin-bottom: .5rem; }
+.cta p{ color: rgba(255, 255, 255, .9); max-width: 60ch; margin-inline: auto; margin-bottom: 1.6rem; }
+.cta .btn-primary{
+  background: #fff; color: var(--brand-dark);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, .22);
+}
+.cta .btn-primary:hover{ background: #fff; color: var(--brand-dark); transform: translateY(-2px); }
+
+/* ============================================================
+   13. FOOTER
+   ============================================================ */
+.site-footer{
+  margin-top: 3.5rem; padding: 2.25rem 0;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted); font-size: .9rem;
+}
+.site-footer .container{
+  display: flex; flex-wrap: wrap; gap: 1rem;
+  align-items: center; justify-content: space-between;
+}
+.site-footer p{ margin: 0; }
+.site-footer a{ font-weight: 600; }
+
+/* ============================================================
+   14. RESPONSIVE TUNING (article)
+   ============================================================ */
+@media (max-width: 640px){
+  body{ font-size: 1rem; }
+  .section{ padding: 2.5rem 0; }
+  .site-header{ padding: 2.5rem 0; }
+  .toc{ margin-top: -1.75rem; padding: 1.15rem 1.2rem; }
+  .card{ padding: 1.25rem 1.15rem; }
+  .steps li{ padding-left: 3.25rem; }
+}
+
+/* ============================================================
+   15. RESPONSIVE CHECKER TOOL (scoped under .rc-app)
+   ============================================================ */
+.rc-app{
+  /* dark tokens by default */
+  --rc-bg:#0f1115; --rc-panel:#161a21; --rc-panel-2:#1c212a; --rc-border:#2a303b;
+  --rc-text:#f3f4f6; --rc-muted:#9ca3af; --rc-accent:#818cf8; --rc-accent-soft:rgba(129,140,248,.16);
+  --rc-stage:#0b0d11; --rc-checker-a:#14171d; --rc-checker-b:#0f1218; --rc-danger:#ef4444;
+  --rc-warn:#f59e0b; --rc-ok:#22c55e;
+
+  position: relative;
+  display: flex; flex-direction: column;
+  height: 95vh; min-height: 850px;
+  overflow: hidden;
+  background: var(--rc-bg);
+  color: var(--rc-text);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  outline: none;
+  margin-top: 1.5rem;
+  isolation: isolate;
+}
+.rc-app[data-theme="light"]{
+  --rc-bg:#f4f6fa; --rc-panel:#ffffff; --rc-panel-2:#eef1f7; --rc-border:#dce2ec;
+  --rc-text:#111827; --rc-muted:#6b7280; --rc-accent:#4f46e5; --rc-accent-soft:rgba(79,70,229,.1);
+  --rc-stage:#e9edf4; --rc-checker-a:#e3e8f0; --rc-checker-b:#eff2f7; --rc-danger:#dc2626;
+  --rc-warn:#d97706; --rc-ok:#16a34a;
+}
+.rc-app *[hidden]{ display: none !important; }
+.rc-app button, .rc-app input, .rc-app select, .rc-app textarea{ font-family: inherit; }
+.rc-app button{ cursor: pointer; }
+.rc-app :focus-visible{ outline: 2px solid var(--rc-accent); outline-offset: 2px; border-radius: 4px; }
+.rc-app code{ background: none; padding: 0; color: inherit; font-size: .92em; }
+
+/* top bar */
+.rc-app .topbar{ display:flex; align-items:center; gap:14px; padding:10px 16px; flex:0 0 auto; background:var(--rc-panel); border-bottom:1px solid var(--rc-border); }
+.rc-app .rc-brand{ display:flex; align-items:center; gap:9px; font-weight:700; font-size:14px; white-space:nowrap; }
+.rc-app .rc-brand-mark{ width:20px; height:20px; border-radius:6px; background:linear-gradient(135deg,#6366f1,#a855f7); box-shadow:0 4px 12px -3px #6366f1; }
+.rc-app .rc-brand-text span{ color: var(--rc-muted); font-weight:600; }
+.rc-app .source{ display:flex; align-items:center; gap:10px; flex:1; min-width:0; }
+.rc-app .seg{ display:flex; gap:2px; padding:2px; border-radius:9px; background:var(--rc-panel-2); border:1px solid var(--rc-border); flex:0 0 auto; }
+.rc-app .seg-btn{ border:0; background:none; color:#cbd5e1; font-size:12.5px; font-weight:600; padding:6px 12px; border-radius:7px; transition:.15s; }
+.rc-app[data-theme="light"] .seg-btn{ color:#4b5563; }
+.rc-app .seg-btn.active{ background:var(--rc-bg); color:var(--rc-text); }
+.rc-app[data-theme="light"] .seg-btn.active{ background:#fff; color:#0f172a; box-shadow:0 1px 3px rgba(15,23,42,.12); }
+.rc-app .url-field{ display:flex; gap:8px; flex:1; min-width:0; }
+.rc-app .url-field input{ flex:1; min-width:0; padding:8px 12px; font-size:13px; border-radius:9px; outline:none; background:var(--rc-panel-2); border:1px solid var(--rc-border); color:var(--rc-text); transition:.15s; }
+.rc-app .url-field input::placeholder{ color: var(--rc-muted); opacity: 1; }
+.rc-app .url-field input:focus{ border-color:var(--rc-accent); box-shadow:0 0 0 3px var(--rc-accent-soft); }
+.rc-app .code-field{ display:flex; align-items:center; gap:10px; flex:1; min-width:0; }
+.rc-app .btn{ border:1px solid transparent; border-radius:9px; padding:8px 15px; font-size:13px; font-weight:600; white-space:nowrap; transition:.15s; }
+.rc-app .btn.primary{ background:var(--rc-accent); color:#0f1115; }
+.rc-app[data-theme="light"] .btn.primary{ background:var(--rc-accent); color:#fff; }
+.rc-app .btn.primary:hover{ filter:brightness(1.12); }
+.rc-app .btn.ghost{ background:transparent; border-color:var(--rc-border); color:var(--rc-text); }
+.rc-app .btn.ghost:hover{ background:var(--rc-panel-2); }
+.rc-app .btn.tiny{ padding:5px 10px; font-size:12px; border-radius:7px; }
+.rc-app .icon-btn{ width:34px; height:34px; display:grid; place-items:center; flex:0 0 auto; background:var(--rc-panel-2); border:1px solid var(--rc-border); border-radius:9px; color:var(--rc-muted); font-size:15px; line-height:1; transition:.15s; position:relative; }
+.rc-app .icon-btn:hover{ color:var(--rc-text); border-color:var(--rc-accent); }
+.rc-app .icon-btn.active{ background:var(--rc-accent-soft); border-color:var(--rc-accent); color:var(--rc-accent); }
+.rc-app .icon-btn .badge-dot{ position:absolute; top:-3px; right:-3px; min-width:14px; height:14px; padding:0 4px; border-radius:8px; background:var(--rc-danger); color:#fff; font-size:9px; font-weight:700; display:grid; place-items:center; }
+
+/* dev bar */
+.rc-app .devbar{ display:flex; align-items:center; gap:12px; padding:8px 16px; flex:0 0 auto; background:var(--rc-panel); border-bottom:1px solid var(--rc-border); }
+.rc-app .chips{ display:flex; gap:6px; flex:1; min-width:0; overflow-x:auto; scrollbar-width:thin; padding-bottom:2px; }
+.rc-app .chips::-webkit-scrollbar{ height:5px; }
+.rc-app .chips::-webkit-scrollbar-thumb{ background: var(--rc-border); border-radius:4px; }
+.rc-app .chip-dev{ display:flex; align-items:center; gap:7px; padding:6px 10px; border-radius:9px; border:1px solid var(--rc-border); background:transparent; color:var(--rc-muted); font-size:12.5px; font-weight:500; white-space:nowrap; transition:.15s; position:relative; }
+.rc-app .chip-dev svg{ width:15px; height:15px; flex:0 0 auto; opacity:.85; }
+.rc-app .chip-dev:hover{ color:var(--rc-text); background:var(--rc-panel-2); }
+.rc-app .chip-dev.active{ background:var(--rc-accent-soft); border-color:var(--rc-accent); color:var(--rc-text); }
+.rc-app .chip-dev.custom{ border-style:dashed; }
+.rc-app .chip-dim{ font-size:11px; font-variant-numeric:tabular-nums; opacity:1; }
+.rc-app .chip-del{ margin-left:2px; font-size:13px; line-height:1; opacity:.6; padding:0 2px; }
+.rc-app .chip-del:hover{ opacity:1; color:var(--rc-danger); }
+.rc-app .chip-add{ font-size:16px; font-weight:700; padding:4px 11px; color:var(--rc-muted); }
+.rc-app .devbar-right{ display:flex; align-items:center; gap:8px; flex:0 0 auto; }
+.rc-app .dim{ display:flex; align-items:center; gap:6px; height:34px; padding:0 9px; background:var(--rc-panel-2); border:1px solid var(--rc-border); border-radius:9px; }
+.rc-app .dim span{ font-size:10.5px; font-weight:700; color:var(--rc-muted); }
+.rc-app .dim input{ width:48px; border:0; outline:none; background:none; color:var(--rc-text); font-size:13px; font-variant-numeric:tabular-nums; -moz-appearance:textfield; appearance:textfield; }
+.rc-app .dim input::-webkit-outer-spin-button, .rc-app .dim input::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+.rc-app .zoom{ height:34px; padding:0 8px; border-radius:9px; outline:none; background:var(--rc-panel-2); border:1px solid var(--rc-border); color:var(--rc-text); font-size:13px; }
+
+/* dropdown */
+.rc-app .dropdown{ position:relative; }
+.rc-app .dropdown-menu{ position:absolute; top:100%; right:0; margin-top:6px; width:300px; padding:12px; background:var(--rc-panel); border:1px solid var(--rc-border); border-radius:10px; box-shadow:0 12px 40px -12px rgba(0,0,0,.5); z-index:40; display:flex; flex-direction:column; gap:10px; }
+.rc-app .dropdown-menu label{ font-size:12px; display:flex; flex-direction:column; gap:4px; color:var(--rc-muted); font-weight:600; }
+.rc-app .dropdown-menu label.check{ flex-direction:row; align-items:center; gap:8px; color:var(--rc-text); font-weight:500; font-size:12.5px; cursor:pointer; }
+.rc-app .dropdown-menu input[type=text]{ padding:6px 8px; font-size:12px; border-radius:6px; border:1px solid var(--rc-border); background:var(--rc-panel-2); color:var(--rc-text); outline:none; }
+.rc-app .dropdown-menu input[type=text]:focus{ border-color:var(--rc-accent); }
+.rc-app .dropdown-note{ font-size:11px; color:var(--rc-muted); padding-top:8px; border-top:1px solid var(--rc-border); line-height:1.4; }
+
+/* stage */
+.rc-app .stage-wrap{ position:relative; flex:1; min-height:0; display:flex; flex-direction:column; }
+.rc-app .stage{ position:relative; flex:1; min-height:0; overflow:auto; display:flex; padding:32px; background-color:var(--rc-stage); background-image: linear-gradient(45deg,var(--rc-checker-a) 25%,transparent 25%,transparent 75%,var(--rc-checker-a) 75%), linear-gradient(45deg,var(--rc-checker-a) 25%,transparent 25%,transparent 75%,var(--rc-checker-a) 75%); background-size:20px 20px; background-position:0 0,10px 10px; }
+.rc-app .single-view{ display:flex; flex:1; min-height:0; }
+.rc-app .device-box{ position:relative; margin:auto; flex:0 0 auto; }
+.rc-app .device-frame{ position:absolute; top:0; left:0; transform-origin:0 0; overflow:hidden; background:#fff; border-radius:14px; box-shadow:0 0 0 1px rgba(127,127,127,.28),0 26px 60px -22px rgba(0,0,0,.75); }
+.rc-app .device-frame iframe{ display:block; width:100%; height:100%; border:0; background:#fff; }
+.rc-app .overlay{ position:absolute; inset:0; pointer-events:none; z-index:3; }
+.rc-app .overlay.grid{ background-image: linear-gradient(to right,rgba(99,102,241,.28) 1px,transparent 1px), linear-gradient(to bottom,rgba(99,102,241,.28) 1px,transparent 1px); background-size:8px 8px; }
+.rc-app .ruler-line{ position:absolute; top:0; bottom:0; width:1px; background:rgba(236,72,153,.55); }
+.rc-app .ruler-line::before{ content:attr(data-bp); position:absolute; top:2px; left:3px; font-size:9px; line-height:1; color:#fff; font-weight:700; background:#ec4899; padding:2px 4px; border-radius:3px; }
+
+.rc-app .handle{ position:absolute; z-index:5; touch-action:none; }
+.rc-app .h-right{ right:-7px; top:14px; bottom:14px; width:14px; cursor:ew-resize; }
+.rc-app .h-bottom{ left:14px; right:14px; bottom:-7px; height:14px; cursor:ns-resize; }
+.rc-app .h-corner{ right:-9px; bottom:-9px; width:22px; height:22px; cursor:nwse-resize; display:grid; place-items:center; }
+.rc-app .h-corner::after{ content:""; width:11px; height:11px; opacity:.85; border-right:2px solid var(--rc-accent); border-bottom:2px solid var(--rc-accent); border-radius:0 0 4px 0; }
+.rc-app.dragging{ user-select:none; }
+
+.rc-app .notice-bar{ position:absolute; top:8px; left:50%; transform:translateX(-50%); max-width:92%; background:var(--rc-panel); border:1px solid var(--rc-warn); border-radius:10px; padding:8px 14px; font-size:12.5px; color:var(--rc-text); display:flex; align-items:center; gap:10px; box-shadow:0 8px 24px -8px rgba(0,0,0,.5); z-index:30; }
+.rc-app .notice-bar strong{ color: var(--rc-warn); }
+.rc-app .notice-bar button{ background:none; border:0; color:var(--rc-accent); font-weight:600; font-size:12.5px; padding:2px 6px; }
+
+/* compare view */
+.rc-app .compare-view{ display:flex; gap:16px; width:100%; height:100%; padding:16px; align-items:stretch; justify-content:center; }
+.rc-app .cmp-col{ display:flex; flex-direction:column; align-items:center; gap:8px; flex:1; min-width:0; justify-content:center; }
+.rc-app .cmp-head{ display:flex; gap:6px; align-items:center; }
+.rc-app .cmp-select{ font-size:11px; padding:4px 6px; border-radius:6px; background:var(--rc-panel); border:1px solid var(--rc-border); color:var(--rc-text); outline:none; max-width:100%; }
+.rc-app .cmp-stage{ position:relative; margin:auto; }
+.rc-app .cmp-frame{ position:absolute; top:0; left:0; transform-origin:0 0; background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 0 0 1px rgba(127,127,127,.28),0 20px 40px -20px rgba(0,0,0,.6); }
+.rc-app .cmp-frame iframe{ display:block; width:100%; height:100%; border:0; background:#fff; }
+
+/* console drawer */
+.rc-app .console-drawer{ flex:0 0 auto; max-height:220px; display:flex; flex-direction:column; background:var(--rc-panel); border-top:1px solid var(--rc-border); }
+.rc-app .console-head{ display:flex; justify-content:space-between; align-items:center; padding:6px 12px; border-bottom:1px solid var(--rc-border); font-size:12px; font-weight:600; flex:0 0 auto; }
+.rc-app .console-head > div{ display:flex; gap:6px; }
+.rc-app .console-head button{ background:none; border:1px solid var(--rc-border); color:var(--rc-muted); border-radius:6px; padding:3px 8px; font-size:11px; font-weight:600; }
+.rc-app .console-head button:hover{ color:var(--rc-text); }
+.rc-app .console-body{ flex:1; overflow:auto; font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12px; }
+.rc-app .console-empty{ padding:14px; color:var(--rc-muted); text-align:center; font-size:12px; }
+.rc-app .console-entry{ padding:4px 12px; display:flex; gap:8px; border-bottom:1px solid var(--rc-border); }
+.rc-app .console-entry.error{ color:var(--rc-danger); }
+.rc-app .console-entry.warn{ color:var(--rc-warn); }
+.rc-app .console-entry.log{ color:var(--rc-text); }
+.rc-app .console-time{ color:var(--rc-muted); flex:0 0 auto; font-size:10.5px; }
+.rc-app .console-msg{ flex:1; word-break:break-word; white-space:pre-wrap; }
+
+/* status bar */
+.rc-app .statusbar{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex:0 0 auto; padding:7px 16px; background:var(--rc-panel); border-top:1px solid var(--rc-border); font-size:12.5px; color:var(--rc-muted); }
+.rc-app .status-left, .rc-app .status-right{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.rc-app .sep{ width:1px; height:14px; background:var(--rc-border); }
+.rc-app #dimLabel{ color:var(--rc-text); font-weight:600; font-variant-numeric:tabular-nums; }
+.rc-app .badge{ padding:3px 10px; border-radius:999px; background:var(--rc-accent-soft); color:var(--rc-accent); font-weight:700; font-size:11.5px; }
+.rc-app #mqLabel{ font-variant-numeric:tabular-nums; }
+.rc-app .status-right button{ background:none; border:1px solid var(--rc-border); color:var(--rc-muted); border-radius:7px; padding:4px 9px; font-size:12px; font-weight:600; }
+.rc-app .status-right button:hover{ color:var(--rc-text); border-color:var(--rc-accent); }
+.rc-app #openNew{ color:var(--rc-muted); text-decoration:none; transition:.15s; }
+.rc-app #openNew:hover{ color:var(--rc-accent); }
+
+/* modal + editor */
+.rc-app .modal{ position:absolute; inset:0; z-index:50; display:grid; place-items:center; padding:24px; background:rgba(0,0,0,.55); backdrop-filter:blur(3px); }
+.rc-app .modal-card{ width:min(920px,100%); height:min(82%,760px); display:flex; flex-direction:column; overflow:hidden; background:var(--rc-panel); border:1px solid var(--rc-border); border-radius:16px; box-shadow:0 30px 80px -20px rgba(0,0,0,.7); }
+.rc-app .modal-head{ display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid var(--rc-border); }
+.rc-app .modal-head h2{ margin:0; font-size:14px; font-weight:700; color:var(--rc-text); }
+.rc-app .editor-wrap{ display:flex; flex:1; min-height:0; background:var(--rc-panel-2); overflow:hidden; }
+.rc-app .line-numbers{ padding:16px 8px 16px 12px; text-align:right; color:var(--rc-muted); font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12.5px; line-height:1.65; user-select:none; overflow:hidden; flex:0 0 auto; border-right:1px solid var(--rc-border); white-space:pre; min-width:44px; }
+.rc-app .editor-body{ position:relative; flex:1; min-width:0; overflow:hidden; }
+.rc-app .highlight-layer, .rc-app #codeArea{ position:absolute; inset:0; margin:0; padding:16px; border:0; outline:none; font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12.5px; line-height:1.65; letter-spacing:normal; tab-size:2; -moz-tab-size:2; white-space:pre; overflow:auto; scrollbar-width:none; }
+.rc-app .highlight-layer::-webkit-scrollbar, .rc-app #codeArea::-webkit-scrollbar{ display:none; }
+.rc-app .highlight-layer{ color:var(--rc-text); pointer-events:none; }
+.rc-app #codeArea{ color:transparent; caret-color:var(--rc-text); background:transparent; resize:none; -webkit-text-fill-color:transparent; }
+.rc-app #codeArea::selection{ background:rgba(99,102,241,.32); }
+.rc-app #codeArea::-moz-selection{ background:rgba(99,102,241,.32); }
+.rc-app .highlight-layer .tag{ color:#f472b6; }
+.rc-app .highlight-layer .str{ color:#a3e635; }
+.rc-app .highlight-layer .cmt{ color:#9ca3af; font-style:italic; }
+.rc-app[data-theme="light"] .highlight-layer .tag{ color:#be185d; }
+.rc-app[data-theme="light"] .highlight-layer .str{ color:#15803d; }
+.rc-app[data-theme="light"] .highlight-layer .cmt{ color:#6b7280; }
+.rc-app .modal-foot{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; border-top:1px solid var(--rc-border); }
+.rc-app .modal-foot > div{ display:flex; gap:8px; }
+.rc-app .hint{ font-size:12px; color:var(--rc-muted); }
+
+/* toast */
+.rc-app .toast{ position:absolute; bottom:52px; left:50%; transform:translateX(-50%) translateY(20px); padding:10px 16px; background:var(--rc-panel); border:1px solid var(--rc-border); border-radius:10px; font-size:13px; font-weight:600; box-shadow:0 20px 40px -20px rgba(0,0,0,.6); opacity:0; pointer-events:none; transition:.25s; z-index:100; }
+.rc-app .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+/* responsive chrome */
+@media (max-width:1180px){ .rc-app .chip-name{ display:none; } }
+@media (max-width:880px){
+  .rc-app .topbar{ flex-wrap:wrap; }
+  .rc-app .source{ order:3; flex-basis:100%; }
+  .rc-app .rc-brand{ margin-right:auto; }
+  .rc-app .devbar{ flex-wrap:wrap; }
+  .rc-app .chips{ flex-basis:100%; order:2; }
+  .rc-app .devbar-right{ margin-left:auto; }
+  .rc-app .status-right #openNew{ display:none; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<!-- ================= HEADER / HERO ================= -->
+<header class="site-header">
+  <div class="container">
+    <div class="hero" id="top">
+      <h1>Free Responsive Website Checker – Test Your Website on Mobile, Tablet &amp; Desktop</h1>
+      <p class="lead">
+        In today&rsquo;s digital world, having a responsive website is essential for every website owner,
+        developer, blogger, and designer. People access websites using different devices, including
+        smartphones, tablets, laptops, and desktop computers. If your website does not display properly
+        on different screen sizes, you may lose visitors and potential customers.
+      </p>
+      <p class="lead">
+        A <strong>Responsive Website Checker</strong> helps you test how your website looks on different
+        screen sizes without needing multiple physical devices. With our free Responsive Checker, you can
+        preview your website on various device dimensions, test custom screen sizes, and identify
+        responsive design issues quickly.
+      </p>
+      <p class="lead">
+        Whether you are a beginner, web developer, UI/UX designer, or blogger, this tool makes responsive
+        website testing easier and faster.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#tool">Start Testing Free</a>
+        <a class="btn btn-ghost" href="#features">See All Features</a>
+      </div>
+
+      <ul class="chip-row">
+        <li class="chip">No sign-up</li>
+        <li class="chip">URL &amp; Code modes</li>
+        <li class="chip">Custom viewports</li>
+        <li class="chip">Compare mode</li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- ================= TABLE OF CONTENTS ================= -->
+<nav class="container toc" aria-labelledby="toc-title">
+  <h2 id="toc-title">On this page</h2>
+  <ol>
+    <li><a href="#what-is">What Is a Responsive Website Checker?</a></li>
+    <li><a href="#why-important">Why Responsive Testing Is Important</a></li>
+    <li><a href="#features">Key Features</a></li>
+    <li><a href="#how-to-use">How to Use the Tool</a></li>
+    <li><a href="#breakpoints">Responsive Design Breakpoints</a></li>
+    <li><a href="#tips">Testing Tips for Developers</a></li>
+    <li><a href="#who-for">Who Can Use This Tool?</a></li>
+    <li><a href="#free">Is It Free?</a></li>
+    <li><a href="#faq">Frequently Asked Questions</a></li>
+  </ol>
+</nav>
+
+<main id="main">
+
+  <!-- ================= WHAT IS ================= -->
+  <section class="section" id="what-is" aria-labelledby="what-is-title">
+    <div class="container">
+      <span class="eyebrow">Overview</span>
+      <h2 id="what-is-title">What Is a Responsive Website Checker?</h2>
+      <p class="section-intro">
+        A Responsive Website Checker is an online tool that allows you to preview and test a website at
+        different screen resolutions. It helps developers understand how website layouts, images,
+        navigation menus, text, and other elements behave when the viewport size changes.
+      </p>
+      <p class="section-intro">
+        Instead of purchasing multiple smartphones, tablets, and computers for testing, you can use a
+        responsive design testing tool to simulate different screen dimensions.
+      </p>
+      <p class="section-intro">
+        It is especially useful for testing CSS media queries, responsive layouts, mobile-friendly
+        designs, and website breakpoints.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= INTERACTIVE TOOL ================= -->
+  <section class="section" id="tool" aria-labelledby="tool-title">
+    <div class="container">
+      <span class="eyebrow">Interactive Tool</span>
+      <h2 id="tool-title">Try the Free Responsive Checker</h2>
+      <p class="section-intro" style="margin-bottom:1.25rem;">
+        Load any public URL, or paste your own HTML/CSS in Code mode. Pick a device preset, drag the
+        resize handles, compare three viewports side by side, toggle the pixel grid or breakpoint ruler,
+        and watch JavaScript errors in the built-in console — all in your browser.
+      </p>
+
+      <!-- The tool — scoped under .rc-app, self-contained -->
+      <div class="rc-app" id="rcApp" tabindex="0" data-theme="dark">
+        <script>
+        /* Theme bootstrap — runs before the tool markup parses to avoid FOUC */
+        (function(){
+          var saved;
+          try { saved = JSON.parse(localStorage.getItem('rc-theme') || 'null'); } catch(e){ saved = null; }
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = (saved === 'light' || saved === 'dark') ? saved : (prefersDark ? 'dark' : 'light');
+          var root = document.currentScript && document.currentScript.parentElement;
+          if (root) root.setAttribute('data-theme', theme);
+        })();
+        </script>
+
+        <header class="topbar">
+          <div class="rc-brand">
+            <span class="rc-brand-mark"></span>
+            <span class="rc-brand-text">Responsive<span>Checker</span></span>
+          </div>
+          <div class="source">
+            <div class="seg">
+              <button class="seg-btn active" data-mode="url">URL</button>
+              <button class="seg-btn" data-mode="code">Code</button>
+            </div>
+            <div class="url-field" id="urlField">
+              <input id="urlInput" type="text" list="recentUrls" placeholder="https://example.com" spellcheck="false" autocomplete="off">
+              <datalist id="recentUrls"></datalist>
+              <button class="btn primary" id="loadBtn">Load</button>
+            </div>
+            <div class="code-field" id="codeField" hidden>
+              <button class="btn primary" id="codeBtn">Edit HTML</button>
+              <span class="hint">Paste your markup &amp; CSS, then render it live.</span>
+            </div>
+          </div>
+          <button class="icon-btn" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">☀</button>
+        </header>
+
+        <div class="devbar">
+          <div class="chips" id="chips"></div>
+          <div class="devbar-right">
+            <label class="dim"><span>W</span><input id="wInput" type="number" min="200" max="4000" value="375"></label>
+            <label class="dim"><span>H</span><input id="hInput" type="number" min="200" max="4000" value="812"></label>
+            <button class="icon-btn" id="rotateBtn" title="Rotate (swap W/H)">⟳</button>
+            <select class="zoom" id="zoomSel" aria-label="Zoom">
+              <option value="fit">Fit</option>
+              <option value="0.5">50%</option>
+              <option value="0.75">75%</option>
+              <option value="1">100%</option>
+            </select>
+            <button class="icon-btn" id="gridBtn" title="Pixel grid (G)">⊞</button>
+            <button class="icon-btn" id="rulerBtn" title="Breakpoint ruler (R)">⊢</button>
+            <button class="icon-btn" id="compareBtn" title="Compare mode (C)">◫</button>
+            <button class="icon-btn" id="consoleBtn" title="Console (L)">⌘<span class="badge-dot" id="consoleBadge" hidden>0</span></button>
+            <button class="icon-btn" id="fullBtn" title="Fullscreen (F)">⛶</button>
+            <div class="dropdown">
+              <button class="icon-btn" id="optsBtn" title="Options">⚙</button>
+              <div class="dropdown-menu" id="optsMenu" hidden>
+                <label>User Agent (code‑mode only)
+                  <input id="uaInput" type="text" placeholder="Mozilla/5.0 ...">
+                </label>
+                <label class="check"><input id="touchToggle" type="checkbox"> Touch simulation (CSS hint)</label>
+                <label class="check"><input id="liveToggle" type="checkbox" checked> Live re-render while editing</label>
+                <div class="dropdown-note">UA overrides <code>navigator.userAgent</code> inside code‑mode previews. URL previews can't be spoofed (cross‑origin). Touch is a CSS hint only.</div>
+              </div>
+            </div>
+            <button class="icon-btn" id="resetBtn" title="Reset all">⌂</button>
+          </div>
+        </div>
+
+        <div class="stage-wrap">
+          <div class="stage" id="stage">
+            <div class="notice-bar" id="noticeBar" hidden>
+              <span><strong>Note:</strong> This page may block embedding (X‑Frame‑Options / CSP).</span>
+              <button id="noticeOpen">Open ↗</button>
+              <button id="noticeDismiss" title="Dismiss">✕</button>
+            </div>
+            <div class="single-view" id="singleView">
+              <div class="device-box" id="box">
+                <div class="device-frame" id="frame">
+                  <iframe id="view" title="Responsive preview"></iframe>
+                  <div class="overlay" id="gridOverlay" hidden></div>
+                  <div class="overlay" id="rulerOverlay" hidden></div>
+                </div>
+                <div class="handle h-right"  data-axis="x"  title="Drag to resize width"></div>
+                <div class="handle h-bottom" data-axis="y"  title="Drag to resize height"></div>
+                <div class="handle h-corner" data-axis="xy" title="Drag to resize"></div>
+              </div>
+            </div>
+            <div class="compare-view" id="compareView" hidden></div>
+          </div>
+
+          <div class="console-drawer" id="consoleDrawer" hidden>
+            <div class="console-head">
+              <span>Console · <span id="consoleCount">0</span></span>
+              <div>
+                <button id="consoleClear">Clear</button>
+                <button id="consoleClose">✕</button>
+              </div>
+            </div>
+            <div class="console-body" id="consoleBody"><div class="console-empty">No messages yet.</div></div>
+          </div>
+        </div>
+
+        <footer class="statusbar">
+          <div class="status-left">
+            <span id="dimLabel">375 × 812</span>
+            <span class="sep"></span>
+            <span class="badge" id="bpLabel">Mobile</span>
+            <span id="orientLabel">portrait</span>
+            <span class="sep"></span>
+            <span id="mqLabel" title="Active media queries in preview">—</span>
+          </div>
+          <div class="status-right">
+            <span id="scaleLabel">100%</span>
+            <span class="sep"></span>
+            <button id="shareBtn">Copy link</button>
+            <button id="exportBtn">Export</button>
+            <button id="importBtn">Import</button>
+            <input type="file" id="importFile" accept=".json,application/json" hidden>
+            <a href="#" id="openNew">Open ↗</a>
+          </div>
+        </footer>
+
+        <div class="modal" id="modal" hidden>
+          <div class="modal-card">
+            <div class="modal-head">
+              <h2>Custom HTML</h2>
+              <button class="icon-btn" id="modalClose" aria-label="Close">✕</button>
+            </div>
+            <div class="editor-wrap">
+              <div class="line-numbers" id="lineNumbers">1</div>
+              <div class="editor-body">
+                <pre class="highlight-layer" id="highlightLayer" aria-hidden="true"></pre>
+                <textarea id="codeArea" spellcheck="false" wrap="off"></textarea>
+              </div>
+            </div>
+            <div class="modal-foot">
+              <span class="hint">Rendered in a sandboxed iframe. Ctrl+Enter to render.</span>
+              <div>
+                <button class="btn ghost tiny" id="modalStarter">Starter</button>
+                <button class="btn ghost tiny" id="modalDownload">Download</button>
+                <button class="btn primary tiny" id="modalRender">Render →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="toast" id="toast"></div>
+      </div>
+      <!-- /tool -->
+
+      <aside class="callout" role="note" style="margin-top:1.75rem;">
+        <span class="callout-icon" aria-hidden="true">ℹ️</span>
+        <p><strong>Note:</strong> Some websites prevent iframe embedding through security policies such as
+          <code>X-Frame-Options</code> or <code>Content-Security-Policy</code>. Such websites may not load
+          inside the preview. Use <strong>Code mode</strong> or open the site in a new tab for those.</p>
+      </aside>
+    </div>
+  </section>
+<div class="related-tools">
+            <h2>Related Tools</h2>
+            <ul>
+                <li><a href="/tools/barcode-generator.html">Barcode Generator</a></li>
+                <li><a href="/tools/qr-code-generator.html">QR Code Generator Tool</a></li>
+                <li><a href="/tools/color-contrast-analyzer.html">Color Contrast Analyzer</a></li>
+                <li><a href="/tools/image-resizer.html">Image Resizer Tool</a></li>
+                <li><a href="/tools/unlock-page.html">Unlock Page Generator</a></li>
+                <li><a href="/tools/auto-code-typing.html">Auto Code Typing</a></li>
+                <li><a href="/tools/code-editor.html">Live Code Editor</a></li>
+                   <li><a href="tools/css-box-shadow-generator.html">Box Shadow Generator</a></li>
+                    <li><a href="/tools/Text-shadow-generator.html">Text Shadow Generator</a></li>
+  <li><a href="/tools/translate.html">Translate</a></li>                    
+ <li><a href="tools/qr-code-barcode-scanner.html">QR,Barcode Scanner</a></li>
+               
+                    
+                    
+                   
+            </ul>
+            
+        </div>
+  <!-- ================= WHY IMPORTANT ================= -->
+  <section class="section" id="why-important" aria-labelledby="why-title">
+    <div class="container">
+      <span class="eyebrow">The Basics</span>
+      <h2 id="why-title">Why Is Responsive Website Testing Important?</h2>
+      <p class="section-intro">
+        Responsive website testing is an important part of modern web development. A website should
+        provide a smooth browsing experience regardless of the device being used. Here are some important
+        reasons to test your website responsiveness:
+      </p>
+
+      <ol class="card-grid card-grid--numbered">
+        <li class="card">
+          <h3>Better Mobile User Experience</h3>
+          <p>A responsive website automatically adjusts its layout according to the available screen width.
+             Testing helps you identify elements that appear too large, too small, or incorrectly positioned
+             on mobile devices.</p>
+        </li>
+        <li class="card">
+          <h3>Improved Website Layout</h3>
+          <p>Different screen sizes can affect columns, images, buttons, navigation bars, and content
+             sections. Responsive testing helps you identify layout problems before publishing your website.</p>
+        </li>
+        <li class="card">
+          <h3>Easier CSS Debugging</h3>
+          <p>Developers can test CSS media queries and breakpoints to understand how a website responds to
+             different viewport dimensions.</p>
+        </li>
+        <li class="card">
+          <h3>Better Cross-Device Compatibility</h3>
+          <p>Your website may look perfect on a desktop but have problems on a tablet or smartphone. Testing
+             different screen sizes helps improve consistency across devices.</p>
+        </li>
+        <li class="card">
+          <h3>Supports Mobile-Friendly Design</h3>
+          <p>A properly designed responsive website can make navigation easier, improve readability, and
+             provide a better overall user experience.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= FEATURES ================= -->
+  <section class="section" id="features" aria-labelledby="features-title">
+    <div class="container">
+      <span class="eyebrow">Feature Tour</span>
+      <h2 id="features-title">Key Features of Our Free Responsive Checker</h2>
+      <p class="section-intro">
+        Our Responsive Checker includes several useful features for developers and website owners.
+      </p>
+
+      <ol class="card-grid card-grid--numbered">
+        <li class="card">
+          <h3>Test Multiple Device Screen Sizes</h3>
+          <p>Preview your website using predefined device dimensions, including iPhone SE, iPhone 15,
+             iPhone Max, Google Pixel 8, iPad Mini, iPad Pro, Laptop, Desktop, and Large Desktop. These
+             presets help you quickly check how your website appears at different viewport dimensions.</p>
+        </li>
+        <li class="card">
+          <h3>Test Any Website Using a URL</h3>
+          <p>Enter your website URL into the URL field and click the Load button to preview it inside the
+             responsive testing interface. You can test your own website, blog, landing page, or other
+             publicly accessible web pages.</p>
+        </li>
+        <li class="card">
+          <h3>Custom Screen Width and Height</h3>
+          <p>Not every device has the same screen dimensions. You can manually enter custom width and
+             height values to test specific viewport sizes — useful for unusual resolutions and custom CSS
+             breakpoints.</p>
+        </li>
+        <li class="card">
+          <h3>Live HTML and CSS Preview</h3>
+          <p>The Code Mode feature allows you to paste your own HTML and CSS code into the built-in editor
+             and render it inside a sandboxed preview window. The live re-render option helps you preview
+             changes while editing.</p>
+        </li>
+        <li class="card">
+          <h3>Compare Multiple Screen Sizes</h3>
+          <p>Compare Mode lets you view three different device sizes side by side, making it easier to
+             compare mobile, tablet, and desktop layouts without repeatedly switching between presets.</p>
+        </li>
+        <li class="card">
+          <h3>Resize Preview with Drag and Drop</h3>
+          <p>Drag the resize handles around the preview window to adjust its width and height. This makes
+             it easier to test how your website behaves between common device breakpoints.</p>
+        </li>
+        <li class="card">
+          <h3>Light and Dark Themes</h3>
+          <p>Switch between light and dark themes according to your preference for a more comfortable
+             working environment while testing your website.</p>
+        </li>
+        <li class="card">
+          <h3>Pixel Grid and Breakpoint Ruler</h3>
+          <p>The Pixel Grid helps you inspect alignment and layout spacing, while the Breakpoint Ruler
+             displays useful width markers at common responsive breakpoints: 480px, 768px, 1024px, and
+             1280px.</p>
+        </li>
+        <li class="card">
+          <h3>JavaScript Console Monitoring</h3>
+          <p>The built-in console helps you monitor JavaScript errors, warnings, and log messages generated
+             by code-mode previews, making basic debugging more convenient.</p>
+        </li>
+        <li class="card">
+          <h3>Export and Import Custom Presets</h3>
+          <p>Save your custom screen dimensions as presets and export or import preset configurations using
+             JSON files — handy if you frequently test websites using specific screen sizes.</p>
+        </li>
+      </ol>
+
+      <aside class="callout" role="note">
+        <span class="callout-icon" aria-hidden="true">⌨️</span>
+        <p><strong>Shortcuts inside the tool:</strong> <code>G</code> grid, <code>R</code> ruler,
+          <code>C</code> compare, <code>L</code> console, <code>F</code> fullscreen, arrow keys resize
+          (hold <code>Shift</code> for 10px steps). Click the tool first so shortcuts don&rsquo;t fire while
+          you read the article.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ================= HOW TO USE ================= -->
+  <section class="section" id="how-to-use" aria-labelledby="how-title">
+    <div class="container">
+      <span class="eyebrow">Step by Step</span>
+      <h2 id="how-title">How to Use the Responsive Website Checker</h2>
+      <p class="section-intro">Follow these simple steps to test your website:</p>
+
+      <ol class="steps">
+        <li>Open the Responsive Checker tool (it&rsquo;s embedded above — the live preview section).</li>
+        <li>Select <strong>URL Mode</strong> to test an existing website.</li>
+        <li>Enter your website address.</li>
+        <li>Click the <strong>Load</strong> button.</li>
+        <li>Select a device preset such as iPhone, iPad, Laptop, or Desktop.</li>
+        <li>Adjust the width and height to test custom dimensions.</li>
+        <li>Use <strong>Compare Mode</strong> to view multiple screen sizes together.</li>
+        <li>Check your website layout and identify possible display issues.</li>
+      </ol>
+
+      <p>You can also select <strong>Code Mode</strong> to paste your HTML and CSS code and preview your
+        design instantly.</p>
+    </div>
+  </section>
+
+  <!-- ================= BREAKPOINTS ================= -->
+  <section class="section" id="breakpoints" aria-labelledby="bp-title">
+    <div class="container">
+      <span class="eyebrow">Reference</span>
+      <h2 id="bp-title">What Are Responsive Design Breakpoints?</h2>
+      <p class="section-intro">
+        Responsive design breakpoints are specific viewport widths where a website layout changes to
+        provide a better experience on different devices. Developers commonly use CSS media queries to
+        adjust layouts according to screen width.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <caption>These are example testing ranges, not universal device standards. Always choose
+            breakpoints based on how your website content behaves.</caption>
+          <thead>
+            <tr>
+              <th scope="col">Device Category</th>
+              <th scope="col">Example Width</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Mobile</td><td>320px &ndash; 479px</td></tr>
+            <tr><td>Phablet</td><td>480px &ndash; 767px</td></tr>
+            <tr><td>Tablet</td><td>768px &ndash; 1023px</td></tr>
+            <tr><td>Laptop</td><td>1024px &ndash; 1279px</td></tr>
+            <tr><td>Desktop</td><td>1280px &ndash; 1535px</td></tr>
+            <tr><td>Large Desktop</td><td>1536px and above</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TIPS ================= -->
+  <section class="section" id="tips" aria-labelledby="tips-title">
+    <div class="container">
+      <span class="eyebrow">Best Practices</span>
+      <h2 id="tips-title">Responsive Website Testing Tips for Developers</h2>
+      <p class="section-intro">
+        If you want to build a mobile-friendly website, consider these useful development practices:
+      </p>
+
+      <ul class="check-list">
+        <li>Always include the viewport meta tag in your HTML document.</li>
+        <li>Use CSS Flexbox and CSS Grid for flexible layouts.</li>
+        <li>Avoid fixed-width layouts that cause horizontal scrolling.</li>
+        <li>Use responsive images with <code>max-width: 100%</code>.</li>
+        <li>Test navigation menus on smaller screens.</li>
+        <li>Use CSS media queries where necessary.</li>
+        <li>Check text readability and button sizes.</li>
+        <li>Test both portrait and landscape orientations.</li>
+        <li>Check website performance on real devices.</li>
+        <li>Test keyboard navigation and accessibility.</li>
+      </ul>
+
+      <h3>Example of a Simple Responsive CSS Media Query</h3>
+
+      <div class="code-block" data-lang="CSS">
+<pre><code>.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+      </div>
+
+      <p>
+        This example changes a three-column layout into two columns on smaller screens and one column on
+        narrow mobile screens.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= WHO FOR ================= -->
+  <section class="section" id="who-for" aria-labelledby="who-title">
+    <div class="container">
+      <span class="eyebrow">Audience</span>
+      <h2 id="who-title">Who Can Use This Responsive Testing Tool?</h2>
+      <p class="section-intro">
+        Our free Responsive Checker is useful for different types of users:
+      </p>
+
+      <ul class="card-grid">
+        <li class="card">
+          <h3>Web Developers</h3>
+          <p>Test website layouts and CSS media queries.</p>
+        </li>
+        <li class="card">
+          <h3>Web Designers</h3>
+          <p>Preview responsive UI and website designs.</p>
+        </li>
+        <li class="card">
+          <h3>Bloggers</h3>
+          <p>Check how blog posts and pages appear on mobile devices.</p>
+        </li>
+        <li class="card">
+          <h3>Students</h3>
+          <p>Learn responsive web design and practice HTML and CSS.</p>
+        </li>
+        <li class="card">
+          <h3>Freelancers</h3>
+          <p>Test client websites before delivering projects.</p>
+        </li>
+        <li class="card">
+          <h3>Website Owners</h3>
+          <p>Check whether their websites display correctly on different screen sizes.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= FREE ================= -->
+  <section class="section" id="free" aria-labelledby="free-title">
+    <div class="container">
+      <span class="eyebrow">Pricing</span>
+      <h2 id="free-title">Is the Responsive Website Checker Free?</h2>
+      <p class="section-intro">
+        <strong>Yes!</strong> Our Responsive Website Checker is designed as a free online utility. You can
+        use its available features without installing additional desktop software.
+      </p>
+      <p class="section-intro">
+        Open the tool in your browser, enter a website URL or paste your HTML code, and start testing
+        different viewport sizes.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="section" id="faq" aria-labelledby="faq-title">
+    <div class="container">
+      <span class="eyebrow">Questions</span>
+      <h2 id="faq-title">Frequently Asked Questions (FAQs)</h2>
+
+      <div class="faq">
+        <details open>
+          <summary>1. What is the best free responsive website checker?</summary>
+          <div class="answer">
+            <p>A responsive website checker that supports multiple device presets, custom screen
+               dimensions, and live previews can make website testing easier. Our Responsive Checker
+               provides these features in one interface.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>2. Can I test my website on mobile and desktop?</summary>
+          <div class="answer">
+            <p>Yes. You can select mobile, tablet, laptop, and desktop presets to preview your website at
+               different viewport dimensions.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>3. Can I test a website without installing software?</summary>
+          <div class="answer">
+            <p>Yes. This is a browser-based tool, so you can access it without installing a separate
+               desktop application.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>4. Can I check custom screen resolutions?</summary>
+          <div class="answer">
+            <p>Yes. You can manually enter custom width and height values to test different viewport
+               dimensions.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>5. Why is my website not loading in the preview?</summary>
+          <div class="answer">
+            <p>Some websites block iframe embedding using security settings such as
+               <code>X-Frame-Options</code> or <code>Content-Security-Policy</code>. In such cases, open the
+               website directly in a new browser tab or use another testing method.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>6. Can I test my HTML and CSS code?</summary>
+          <div class="answer">
+            <p>Yes. Select Code Mode, open the HTML editor, paste your markup and CSS, and render your code
+               in the preview window.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>7. What is the difference between responsive and adaptive design?</summary>
+          <div class="answer">
+            <p>Responsive design uses flexible layouts that adjust to different viewport sizes. Adaptive
+               design generally uses predefined layouts designed for specific screen sizes or device
+               categories.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>8. Does responsive design help SEO?</summary>
+          <div class="answer">
+            <p>Responsive design supports a better mobile user experience. Google uses the mobile version of
+               website content for indexing and ranking, so maintaining accessible and equivalent mobile
+               content is important.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONCLUSION ================= -->
+  <section class="section" id="conclusion" aria-labelledby="conclusion-title">
+    <div class="container">
+      <span class="eyebrow">Conclusion</span>
+      <h2 id="conclusion-title">Start Testing Your Website Today</h2>
+      <p class="section-intro">
+        Responsive website testing is an important step in creating modern, mobile-friendly websites. A
+        website should look professional and work smoothly on smartphones, tablets, laptops, and desktop
+        computers.
+      </p>
+      <p class="section-intro">
+        Our Free Responsive Website Checker makes it easier to preview different screen sizes, test custom
+        dimensions, compare device layouts, and experiment with HTML and CSS code.
+      </p>
+      <p class="section-intro">
+        Whether you are a developer, designer, blogger, student, or website owner, use this tool to make
+        your website more responsive and improve the overall browsing experience.
+      </p>
+
+      <div class="cta">
+        <h2>Ready to test your website?</h2>
+        <p>Preview your site on iPhone, iPad, laptop, and desktop viewports in seconds — free, in your
+          browser, with no installation.</p>
+        <a class="btn btn-primary" href="#tool">Start Testing with the Responsive Checker</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="container">
+    <p>Free Responsive Website Checker.</p>
+    <p><a href="#top">Back to top ↑</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* =========================================================
+     Constants
+     ========================================================= */
+  var DEVICES = [
+    { name:'iPhone SE',  w:375,  h:667,  type:'phone'   },
+    { name:'iPhone 15',  w:393,  h:852,  type:'phone'   },
+    { name:'iPhone Max', w:430,  h:932,  type:'phone'   },
+    { name:'Pixel 8',    w:412,  h:915,  type:'phone'   },
+    { name:'iPad mini',  w:768,  h:1024, type:'tablet'  },
+    { name:'iPad Pro',   w:1024, h:1366, type:'tablet'  },
+    { name:'Laptop',     w:1280, h:800,  type:'desktop' },
+    { name:'Desktop',    w:1440, h:900,  type:'desktop' },
+    { name:'Wide',       w:1920, h:1080, type:'desktop' }
+  ];
+
+  var BREAKPOINTS = [480, 768, 1024, 1280];
+  var B64_HASH_LIMIT = 1800;
+
+  var STARTER =
+'<!DOCTYPE html>\n' +
+'<html>\n' +
+'<head>\n' +
+'  <meta charset="utf-8">\n' +
+'  <meta name="viewport" content="width=device-width, initial-scale=1">\n' +
+'  <style>\n' +
+'    body { margin:0; padding:28px; font-family:system-ui,sans-serif; transition:background .2s; }\n' +
+'    h1 { font-size: clamp(1.5rem, 6vw, 3rem); margin:0 0 12px; letter-spacing:-.02em; }\n' +
+'    p  { color:#475569; margin:0; }\n' +
+'    @media (max-width: 600px) {\n' +
+'      body { background: #fef3c7; }\n' +
+'      h1   { color: #b45309; }\n' +
+'    }\n' +
+'    @media (min-width: 1000px) {\n' +
+'      body { background: #ecfeff; }\n' +
+'    }\n' +
+'  </style>\n' +
+'</head>\n' +
+'<body>\n' +
+'  <h1>Hello, responsive world</h1>\n' +
+'  <p>Drag the handle below to resize. Watch the colours change.</p>\n' +
+'</body>\n' +
+'</html>';
+
+  var DEMO =
+'<!DOCTYPE html>\n' +
+'<html lang="en">\n' +
+'<head>\n' +
+'<meta charset="utf-8">\n' +
+'<meta name="viewport" content="width=device-width,initial-scale=1">\n' +
+'<title>Nimbus — Demo</title>\n' +
+'<style>\n' +
+'*{box-sizing:border-box}\n' +
+'body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#0f172a;background:#fff;line-height:1.55;-webkit-font-smoothing:antialiased}\n' +
+'h1,h2,h3{margin:0}\n' +
+'.wrap{max-width:1120px;margin:0 auto;padding:0 22px}\n' +
+'nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-bottom:1px solid #e9edf3}\n' +
+'.nav-inner{display:flex;align-items:center;justify-content:space-between;height:62px}\n' +
+'.logo{display:flex;align-items:center;gap:9px;font-weight:800;font-size:17px;letter-spacing:-.02em}\n' +
+'.dot{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,#6366f1,#a855f7)}\n' +
+'.links{display:flex;gap:26px;font-size:14px;font-weight:500;color:#475569}\n' +
+'.links a{color:inherit;text-decoration:none}\n' +
+'.burger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:4px;width:38px;height:34px;border:1px solid #e2e8f0;border-radius:9px;background:#fff;cursor:pointer}\n' +
+'.burger i{display:block;width:16px;height:2px;background:#0f172a;border-radius:2px}\n' +
+'.hero{padding:74px 0 58px;text-align:center;background:radial-gradient(70% 100% at 50% 0%,#eef2ff 0%,#fff 72%)}\n' +
+'.badge{display:inline-block;padding:5px 12px;border-radius:999px;background:#eef2ff;color:#4f46e5;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}\n' +
+'.hero h1{font-size:46px;line-height:1.08;letter-spacing:-.035em;margin:16px auto 14px;max-width:720px}\n' +
+'.lead{font-size:17px;color:#64748b;max-width:540px;margin:0 auto 30px}\n' +
+'.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}\n' +
+'.btn{padding:12px 22px;border-radius:11px;font-weight:600;font-size:14.5px;border:1px solid transparent;cursor:pointer;font-family:inherit}\n' +
+'.btn-primary{background:#4f46e5;color:#fff;box-shadow:0 10px 24px -10px #4f46e5}\n' +
+'.btn-ghost{background:#fff;border-color:#e2e8f0;color:#0f172a}\n' +
+'.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:34px 0;border-bottom:1px solid #eef1f6}\n' +
+'.stat b{display:block;font-size:26px;letter-spacing:-.02em}\n' +
+'.stat span{font-size:13px;color:#64748b}\n' +
+'.cards{padding:56px 0 64px}\n' +
+'.cards h2{font-size:28px;letter-spacing:-.02em;margin:12px 0 0}\n' +
+'.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:26px}\n' +
+'.card{border:1px solid #e8ecf3;border-radius:16px;padding:22px;background:#fff}\n' +
+'.icon{width:38px;height:38px;border-radius:11px;background:#eef2ff;color:#4f46e5;display:grid;place-items:center;font-weight:800;font-size:14px;margin-bottom:14px}\n' +
+'.card h3{font-size:16px;margin-bottom:6px}\n' +
+'.card p{margin:0;font-size:14px;color:#64748b}\n' +
+'footer{padding:34px 0;border-top:1px solid #eef1f6;color:#94a3b8;font-size:13px;text-align:center}\n' +
+'@media(max-width:1023px){.grid{grid-template-columns:repeat(2,1fr)}.hero h1{font-size:38px}}\n' +
+'@media(max-width:767px){.links{display:none}.burger{display:flex}.hero{padding:52px 0 44px}.hero h1{font-size:30px}.lead{font-size:15.5px}.stats{grid-template-columns:1fr;gap:18px}.cards{padding:42px 0 48px}.cards h2{font-size:23px}}\n' +
+'@media(max-width:639px){.grid{grid-template-columns:1fr}.hero{padding:40px 0 36px}}\n' +
+'@media(min-width:1280px){.hero h1{font-size:52px}}\n' +
+'</style>\n' +
+'</head>\n' +
+'<body>\n' +
+'<nav><div class="wrap nav-inner">\n' +
+'  <div class="logo"><span class="dot"></span>Nimbus</div>\n' +
+'  <div class="links"><a href="#">Product</a><a href="#">Features</a><a href="#">Pricing</a><a href="#">Docs</a></div>\n' +
+'  <button class="burger"><i></i><i></i><i></i></button>\n' +
+'</div></nav>\n' +
+'<header class="hero"><div class="wrap">\n' +
+'  <span class="badge">v2.0 is live</span>\n' +
+'  <h1>Ship interfaces that fit every screen</h1>\n' +
+'  <p class="lead">Resize this preview and watch the layout adapt. The nav collapses, the grid reflows, and type scales down.</p>\n' +
+'  <div class="cta"><button class="btn btn-primary">Get started</button><button class="btn btn-ghost">Live demo</button></div>\n' +
+'</div></header>\n' +
+'<div class="wrap"><div class="stats">\n' +
+'  <div class="stat"><b>99.9%</b><span>Uptime SLA</span></div>\n' +
+'  <div class="stat"><b>12 ms</b><span>Median latency</span></div>\n' +
+'  <div class="stat"><b>40k+</b><span>Developers</span></div>\n' +
+'</div></div>\n' +
+'<section class="cards"><div class="wrap">\n' +
+'  <span class="badge">Features</span>\n' +
+'  <h2>Everything adapts</h2>\n' +
+'  <div class="grid">\n' +
+'    <div class="card"><div class="icon">1</div><h3>Fluid grid</h3><p>One, two or three columns depending on the space available.</p></div>\n' +
+'    <div class="card"><div class="icon">2</div><h3>Collapsing nav</h3><p>Links fold into a menu button below 768px.</p></div>\n' +
+'    <div class="card"><div class="icon">3</div><h3>Scaled type</h3><p>Headings shrink so they never overflow.</p></div>\n' +
+'    <div class="card"><div class="icon">4</div><h3>Touch targets</h3><p>Buttons stay comfortable at thumb size.</p></div>\n' +
+'    <div class="card"><div class="icon">5</div><h3>Stacked stats</h3><p>The metrics row becomes a list on phones.</p></div>\n' +
+'    <div class="card"><div class="icon">6</div><h3>No overflow</h3><p>Content is clamped with max-width wrappers.</p></div>\n' +
+'  </div>\n' +
+'</div></section>\n' +
+'<footer>Nimbus demo page — built to show breakpoints.</footer>\n' +
+'</body>\n' +
+'</html>';
+
+  /* =========================================================
+     State
+     ========================================================= */
+  var state = {
+    w: 375, h: 812, scale: 1, zoom: 'fit',
+    mode: 'url', source: 'demo',
+    url: '', html: STARTER,
+    grid: false, ruler: false, compare: false,
+    touch: false, live: true,
+    ua: '',
+    compareSlots: [0, 1, 2]
+  };
+  var customPresets = [];
+  var recentUrls = [];
+  var consoleEntries = [];
+  var drag = null;
+  var liveTimer = null;
+  var uaTimer = null;
+
+  function $(id){ return document.getElementById(id); }
+  function clamp(v,a,b){ return Math.min(b, Math.max(a,v)); }
+  function escapeAttr(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function escapeHtml(s){ return String(s).replace(/[&<>]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]; }); }
+
+  var el = {
+    rcApp:        document.querySelector('.rc-app'),
+    stage:        $('stage'),
+    singleView:   $('singleView'),
+    compareView:  $('compareView'),
+    box:          $('box'),
+    frame:        $('frame'),
+    view:         $('view'),
+    gridOverlay:  $('gridOverlay'),
+    rulerOverlay: $('rulerOverlay'),
+    noticeBar:    $('noticeBar'),
+    chips:        $('chips'),
+    wInput:       $('wInput'),
+    hInput:       $('hInput'),
+    dimLabel:     $('dimLabel'),
+    bpLabel:      $('bpLabel'),
+    orientLabel:  $('orientLabel'),
+    mqLabel:      $('mqLabel'),
+    scaleLabel:   $('scaleLabel'),
+    zoomSel:      $('zoomSel'),
+    urlField:     $('urlField'),
+    codeField:    $('codeField'),
+    urlInput:     $('urlInput'),
+    recentList:   $('recentUrls'),
+    modal:        $('modal'),
+    codeArea:     $('codeArea'),
+    lineNumbers:  $('lineNumbers'),
+    highlightLayer:$('highlightLayer'),
+    toast:        $('toast'),
+    gridBtn:      $('gridBtn'),
+    rulerBtn:     $('rulerBtn'),
+    compareBtn:   $('compareBtn'),
+    consoleBtn:   $('consoleBtn'),
+    consoleBadge: $('consoleBadge'),
+    fullBtn:      $('fullBtn'),
+    themeBtn:     $('themeBtn'),
+    consoleDrawer:$('consoleDrawer'),
+    consoleBody:  $('consoleBody'),
+    consoleCount: $('consoleCount'),
+    optsMenu:     $('optsMenu'),
+    uaInput:      $('uaInput'),
+    touchToggle:  $('touchToggle'),
+    liveToggle:   $('liveToggle')
+  };
+
+  var toastTimer;
+  function toast(msg){
+    el.toast.textContent = msg;
+    el.toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ el.toast.classList.remove('show'); }, 1800);
+  }
+
+  function loadJSON(key, def){
+    try { var v = localStorage.getItem(key); return v ? JSON.parse(v) : def; } catch(e){ return def; }
+  }
+  function saveJSON(key, val){
+    try { localStorage.setItem(key, JSON.stringify(val)); } catch(e){}
+  }
+
+  function icon(type){
+    var o = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">';
+    if (type === 'phone')  return o + '<rect x="7" y="2.5" width="10" height="19" rx="2.6"/><line x1="10.5" y1="18.5" x2="13.5" y2="18.5"/></svg>';
+    if (type === 'tablet') return o + '<rect x="4.5" y="2.5" width="15" height="19" rx="2.6"/><line x1="10.5" y1="18.5" x2="13.5" y2="18.5"/></svg>';
+    return o + '<rect x="2.5" y="4.5" width="19" height="12.5" rx="2"/><line x1="8" y1="20" x2="16" y2="20"/></svg>';
+  }
+
+  function bpName(w){
+    if (w < 480)  return 'Mobile';
+    if (w < 768)  return 'Phablet';
+    if (w < 1024) return 'Tablet';
+    if (w < 1280) return 'Laptop';
+    if (w < 1536) return 'Desktop';
+    return 'Large desktop';
+  }
+
+  function allPresets(){ return DEVICES.concat(customPresets); }
+
+  function normalizeUrl(u){
+    try { var a = document.createElement('a'); a.href = u; return a.href; } catch(e){ return u; }
+  }
+
+  /* =========================================================
+     Chips
+     ========================================================= */
+  function chipHTML(d, isCustom, idx){
+    return '<button class="chip-dev' + (isCustom ? ' custom' : '') + '" data-w="' + d.w + '" data-h="' + d.h + '"' +
+      (isCustom ? ' data-custom="' + idx + '"' : '') +
+      ' title="' + escapeAttr(d.name) + ' — ' + d.w + '×' + d.h + '">' +
+      icon(d.type || 'desktop') +
+      '<span class="chip-name">' + escapeAttr(d.name) + '</span>' +
+      '<span class="chip-dim">' + d.w + '</span>' +
+      (isCustom ? '<span class="chip-del" title="Delete preset">×</span>' : '') +
+      '</button>';
+  }
+
+  function renderChips(){
+    var html = '';
+    for (var i = 0; i < DEVICES.length; i++) html += chipHTML(DEVICES[i], false);
+    for (var j = 0; j < customPresets.length; j++) html += chipHTML(customPresets[j], true, j);
+    html += '<button class="chip-dev chip-add" id="addPresetBtn" title="Save current size as preset">＋</button>';
+    el.chips.innerHTML = html;
+  }
+
+  function syncChips(){
+    var kids = el.chips.children;
+    for (var i = 0; i < kids.length; i++){
+      var c = kids[i];
+      if (!c.dataset.w) continue;
+      c.classList.toggle('active', +c.dataset.w === state.w && +c.dataset.h === state.h);
+    }
+  }
+
+  el.chips.addEventListener('click', function(e){
+    var del = e.target.closest('.chip-del');
+    if (del){
+      e.stopPropagation();
+      customPresets.splice(+del.closest('.chip-dev').dataset.custom, 1);
+      saveJSON('rc-presets', customPresets);
+      renderChips(); syncChips();
+      toast('Preset removed');
+      return;
+    }
+    if (e.target.closest('#addPresetBtn')){
+      var name = prompt('Preset name:', state.w + '×' + state.h);
+      if (name){
+        customPresets.push({ name: name, w: state.w, h: state.h, type: 'desktop' });
+        saveJSON('rc-presets', customPresets);
+        renderChips(); syncChips();
+        toast('Preset saved');
+      }
+      return;
+    }
+    var chip = e.target.closest('.chip-dev');
+    if (!chip || !chip.dataset.w) return;
+    setDims(+chip.dataset.w, +chip.dataset.h);
+  });
+
+  /* =========================================================
+     Recents
+     ========================================================= */
+  function addRecent(u){
+    recentUrls = recentUrls.filter(function(x){ return x !== u; });
+    recentUrls.unshift(u);
+    recentUrls = recentUrls.slice(0, 10);
+    saveJSON('rc-recents', recentUrls);
+    renderRecents();
+  }
+  function renderRecents(){
+    el.recentList.innerHTML = recentUrls.map(function(u){ return '<option value="' + escapeAttr(u) + '">'; }).join('');
+  }
+
+  /* =========================================================
+     Layout
+     ========================================================= */
+  function layout(){
+    if (state.compare){ layoutCompare(); return; }
+    var pad = 64;
+    var availW = Math.max(120, el.stage.clientWidth  - pad);
+    var availH = Math.max(120, el.stage.clientHeight - pad);
+    var s;
+    if (state.zoom === 'fit'){
+      s = drag ? state.scale : Math.min(availW / state.w, availH / state.h, 1);
+    } else {
+      s = parseFloat(state.zoom) || 1;
+    }
+    s = Math.max(0.05, s);
+    state.scale = s;
+    el.frame.style.width  = state.w + 'px';
+    el.frame.style.height = state.h + 'px';
+    el.frame.style.transform = 'scale(' + s + ')';
+    el.box.style.width  = (state.w * s) + 'px';
+    el.box.style.height = (state.h * s) + 'px';
+    el.scaleLabel.textContent = Math.round(s * 100) + '%';
+  }
+
+  function layoutCompare(){
+    var cols = el.compareView.querySelectorAll('.cmp-col');
+    var viewW = el.compareView.clientWidth;
+    var viewH = el.compareView.clientHeight;
+    var gap = 16, pad = 32;
+    var availW = Math.max(80, (viewW - pad - gap * 2) / 3);
+    var availH = Math.max(80, viewH - pad - 46);
+    for (var i = 0; i < cols.length; i++){
+      var d = allPresets()[state.compareSlots[i]];
+      if (!d) continue;
+      var s = Math.max(0.05, Math.min(availW / d.w, availH / d.h, 1));
+      var stage = cols[i].querySelector('.cmp-stage');
+      var frame = cols[i].querySelector('.cmp-frame');
+      stage.style.width  = (d.w * s) + 'px';
+      stage.style.height = (d.h * s) + 'px';
+      frame.style.width  = d.w + 'px';
+      frame.style.height = d.h + 'px';
+      frame.style.transform = 'scale(' + s + ')';
+    }
+    el.scaleLabel.textContent = 'fit';
+  }
+
+  function buildRuler(){
+    var html = '';
+    for (var i = 0; i < BREAKPOINTS.length; i++){
+      var bp = BREAKPOINTS[i];
+      if (bp > state.w) continue;
+      html += '<div class="ruler-line" style="left:' + bp + 'px" data-bp="' + bp + '"></div>';
+    }
+    el.rulerOverlay.innerHTML = html;
+  }
+
+  function setDims(w, h){
+    if (state.compare) exitCompare();
+    state.w = clamp(Math.round(w), 200, 4000);
+    state.h = clamp(Math.round(h), 200, 4000);
+    el.wInput.value = state.w;
+    el.hInput.value = state.h;
+    el.dimLabel.textContent = state.w + ' \u00D7 ' + state.h;
+    el.bpLabel.textContent = bpName(state.w);
+    el.orientLabel.textContent = state.w > state.h ? 'landscape' : state.w < state.h ? 'portrait' : 'square';
+    syncChips();
+    layout();
+    if (state.ruler) buildRuler();
+    persist();
+  }
+
+  /* =========================================================
+     Persist + hash
+     ========================================================= */
+  var persistTimer;
+  function persist(){
+    clearTimeout(persistTimer);
+    persistTimer = setTimeout(function(){
+      saveJSON('rc-state', {
+        w: state.w, h: state.h, zoom: state.zoom, mode: state.mode,
+        source: state.source, url: state.url, html: state.html,
+        grid: state.grid, ruler: state.ruler, touch: state.touch,
+        ua: state.ua, live: state.live,
+        compareSlots: state.compareSlots
+      });
+      updateHash();
+    }, 300);
+  }
+
+  function b64encode(s){ try { return btoa(unescape(encodeURIComponent(s))); } catch(e){ return ''; } }
+  function b64decode(s){ try { return decodeURIComponent(escape(atob(s))); } catch(e){ return ''; } }
+
+  function updateHash(){
+    try {
+      var p = new URLSearchParams();
+      p.set('w', state.w);
+      p.set('h', state.h);
+      if (state.mode === 'code'){
+        p.set('m', 'code');
+        if (state.html && state.html !== STARTER){
+          var enc = b64encode(state.html);
+          if (enc && enc.length <= B64_HASH_LIMIT) p.set('c', enc);
+        }
+      } else if (state.url){
+        p.set('u', state.url);
+      }
+      if (state.zoom !== 'fit') p.set('z', state.zoom);
+      if (state.grid) p.set('g', '1');
+      if (state.ruler) p.set('r', '1');
+      var h = p.toString();
+      history.replaceState(null, '', location.pathname + location.search + (h ? '#' + h : ''));
+    } catch(e){}
+  }
+
+  function parseHash(){
+    if (!location.hash || location.hash.length < 2) return null;
+    try {
+      var p = new URLSearchParams(location.hash.slice(1));
+      var out = {};
+      if (p.has('w')) out.w = +p.get('w');
+      if (p.has('h')) out.h = +p.get('h');
+      if (p.has('m')) out.mode = p.get('m');
+      if (p.has('u')) out.url = p.get('u');
+      if (p.has('c')) out.html = b64decode(p.get('c'));
+      if (p.has('z')) out.zoom = p.get('z');
+      if (p.has('g')) out.grid = p.get('g') === '1';
+      if (p.has('r')) out.ruler = p.get('r') === '1';
+      return out;
+    } catch(e){ return null; }
+  }
+
+  /* =========================================================
+     Injected scripts
+     ========================================================= */
+  function uaScript(ua){
+    if (!ua) return '';
+    return '<' + 'script>(function(){try{' +
+      'var __ua=' + JSON.stringify(ua) + ';' +
+      'try{Object.defineProperty(navigator,"userAgent",{get:function(){return __ua;},configurable:true});}catch(e){}' +
+      'try{Object.defineProperty(navigator,"appVersion",{get:function(){return __ua.replace(/^Mozilla\\//,"");},configurable:true});}catch(e){}' +
+      '}catch(e){}})();<' + '/script>';
+  }
+
+  var MQ_SCRIPT =
+    '<' + 'script>(function(){' +
+    'function report(){' +
+    'var qs=[];' +
+    'try{for(var i=0;i<document.styleSheets.length;i++){' +
+    'var sh=document.styleSheets[i],rules;' +
+    'try{rules=sh.cssRules||sh.rules;}catch(e){continue;}' +
+    'if(!rules)continue;' +
+    'for(var j=0;j<rules.length;j++){' +
+    'var r=rules[j];' +
+    'if(r.media&&r.media.mediaText&&r.media.mediaText!=="all"){' +
+    'try{if(window.matchMedia(r.media.mediaText).matches)qs.push(r.media.mediaText);}catch(e){}' +
+    '}}}' +
+    '}catch(e){}' +
+    'try{parent.postMessage({__rc:"mq",queries:qs},"*");}catch(e){}' +
+    '}' +
+    'window.addEventListener("load",function(){setTimeout(report,60);});' +
+    'window.addEventListener("resize",function(){clearTimeout(window.__rcT);window.__rcT=setTimeout(report,180);});' +
+    'setInterval(report,1500);' +
+    '})();<' + '/script>';
+
+  var CONSOLE_SCRIPT =
+    '<' + 'script>(function(){' +
+    'function send(level,args){' +
+    '  var msg;' +
+    '  try{msg=Array.prototype.map.call(args,function(a){' +
+    '    if(a instanceof Error)return a.message;' +
+    '    if(typeof a==="object"){try{return JSON.stringify(a);}catch(e){return String(a);}}' +
+    '    return String(a);' +
+    '  }).join(" ");}catch(e){msg="(unserializable)";}' +
+    '  try{parent.postMessage({__rc:"console",level:level,msg:msg},"*");}catch(e){}' +
+    '}' +
+    'window.addEventListener("error",function(e){send("error",[e.message+(e.filename?" @ "+e.filename+":"+e.lineno:"")])});' +
+    'window.addEventListener("unhandledrejection",function(e){send("error",["Unhandled rejection: "+(e.reason&&e.reason.message||e.reason)])});' +
+    'var oL=console.log,oW=console.warn,oE=console.error;' +
+    'console.log=function(){send("log",arguments);oL.apply(console,arguments);};' +
+    'console.warn=function(){send("warn",arguments);oW.apply(console,arguments);};' +
+    'console.error=function(){send("error",arguments);oE.apply(console,arguments);};' +
+    '})();<' + '/script>';
+
+  var TOUCH_CSS = '<style>*{cursor:default !important;-webkit-tap-highlight-color:transparent}</style>';
+
+  function injectInto(html){
+    var pre = uaScript(state.ua);
+    if (state.touch) pre += TOUCH_CSS;
+    var post = MQ_SCRIPT + CONSOLE_SCRIPT;
+    var out = html;
+
+    if (/<head[^>]*>/i.test(out)){
+      out = out.replace(/(<head[^>]*>)/i, '$1' + pre);
+    } else if (/<html[^>]*>/i.test(out)){
+      out = out.replace(/(<html[^>]*>)/i, '$1' + pre);
+    } else {
+      out = pre + out;
+    }
+
+    if (/<\/body>/i.test(out)) out = out.replace(/<\/body>/i, post + '</body>');
+    else if (/<\/html>/i.test(out)) out = out.replace(/<\/html>/i, post + '</html>');
+    else out = out + post;
+
+    return out;
+  }
+
+  window.addEventListener('message', function(e){
+    if (!e.data) return;
+    if (e.data.__rc === 'mq'){
+      if (e.source !== el.view.contentWindow) return;
+      var qs = e.data.queries || [];
+      el.mqLabel.textContent = qs.length ? (qs.length + ' active') : 'no match';
+      el.mqLabel.title = qs.length ? qs.join('\n') : 'No media queries currently match';
+    } else if (e.data.__rc === 'console'){
+      addConsoleEntry(e.data.level, e.data.msg);
+    }
+  });
+
+  /* =========================================================
+     Source loading
+     ========================================================= */
+  function applySourceToIframe(iframe, withScripts){
+    if (!iframe) return;
+    if (state.source === 'url' && state.url){
+      iframe.removeAttribute('sandbox');
+      iframe.removeAttribute('srcdoc');
+      iframe.src = state.url;
+    } else if (state.source === 'code'){
+      iframe.removeAttribute('src');
+      iframe.removeAttribute('srcdoc');
+      iframe.setAttribute('sandbox', 'allow-scripts allow-forms allow-modals allow-popups');
+      iframe.srcdoc = withScripts ? injectInto(state.html) : state.html;
+    } else {
+      iframe.removeAttribute('sandbox');
+      iframe.removeAttribute('src');
+      iframe.removeAttribute('srcdoc');
+      iframe.srcdoc = withScripts ? injectInto(DEMO) : DEMO;
+    }
+  }
+
+  function refreshAllFrames(){
+    applySourceToIframe(el.view, true);
+    if (state.compare){
+      var frames = el.compareView.querySelectorAll('iframe');
+      for (var i = 0; i < frames.length; i++) applySourceToIframe(frames[i], false);
+    }
+  }
+
+  var urlLoadTimer = null;
+  var urlLoadGen = 0;
+  var currentLoadHandler = null;
+
+  function watchUrlLoad(){
+    var myGen = ++urlLoadGen;
+    if (urlLoadTimer) clearTimeout(urlLoadTimer);
+    if (currentLoadHandler){
+      el.view.removeEventListener('load', currentLoadHandler);
+      currentLoadHandler = null;
+    }
+    el.noticeBar.hidden = true;
+    var loaded = false;
+    currentLoadHandler = function(){
+      if (myGen !== urlLoadGen) return;
+      var cur = normalizeUrl(el.view.getAttribute('src') || '');
+      var target = normalizeUrl(state.url || '');
+      if (cur !== target) return;
+      loaded = true;
+      el.view.removeEventListener('load', currentLoadHandler);
+      currentLoadHandler = null;
+      clearTimeout(urlLoadTimer);
+    };
+    el.view.addEventListener('load', currentLoadHandler);
+    urlLoadTimer = setTimeout(function(){
+      if (myGen !== urlLoadGen) return;
+      if (!loaded && state.source === 'url') el.noticeBar.hidden = false;
+    }, 4000);
+  }
+
+  function loadDemo(){
+    state.source = 'demo';
+    state.url = '';
+    el.noticeBar.hidden = true;
+    el.mqLabel.textContent = '—';
+    el.mqLabel.title = 'Media query detection unavailable for cross-origin URLs';
+    refreshAllFrames();
+    persist();
+  }
+
+  function loadURL(raw){
+    var u = String(raw || '').trim();
+    if (!u) return;
+    if (!/^https?:\/\//i.test(u)) u = 'https://' + u;
+
+    var same = (state.source === 'url' && normalizeUrl(state.url) === normalizeUrl(u) &&
+                normalizeUrl(el.view.getAttribute('src') || '') === normalizeUrl(u));
+
+    state.source = 'url';
+    state.url = u;
+    el.urlInput.value = u;
+    addRecent(u);
+    el.mqLabel.textContent = 'n/a';
+    el.mqLabel.title = 'Media query detection unavailable for cross-origin URLs';
+
+    if (same){
+      urlLoadGen++;
+      if (urlLoadTimer) clearTimeout(urlLoadTimer);
+      if (currentLoadHandler){ el.view.removeEventListener('load', currentLoadHandler); currentLoadHandler = null; }
+      el.noticeBar.hidden = true;
+      el.view.removeAttribute('srcdoc');
+      el.view.setAttribute('src', 'about:blank');
+      setTimeout(function(){
+        if (state.source === 'url' && state.url === u){
+          watchUrlLoad();
+          applySourceToIframe(el.view, false);
+        }
+      }, 50);
+    } else {
+      watchUrlLoad();
+      refreshAllFrames();
+    }
+    persist();
+  }
+
+  function loadCode(html){
+    state.source = 'code';
+    state.html = html;
+    el.noticeBar.hidden = true;
+    refreshAllFrames();
+    persist();
+  }
+
+  /* =========================================================
+     Console viewer
+     ========================================================= */
+  function addConsoleEntry(level, msg){
+    consoleEntries.push({ level: level, msg: msg, time: new Date().toLocaleTimeString() });
+    if (consoleEntries.length > 300) consoleEntries.shift();
+    renderConsole();
+    if (el.consoleDrawer.hidden && level === 'error'){
+      el.consoleDrawer.hidden = false;
+      el.consoleBtn.classList.add('active');
+    }
+    if (el.consoleDrawer.hidden){
+      var errors = consoleEntries.filter(function(e){ return e.level === 'error'; }).length;
+      if (errors > 0){
+        el.consoleBadge.hidden = false;
+        el.consoleBadge.textContent = errors > 99 ? '99+' : String(errors);
+      }
+    }
+  }
+
+  function renderConsole(){
+    el.consoleCount.textContent = String(consoleEntries.length);
+    if (consoleEntries.length === 0){
+      el.consoleBody.innerHTML = '<div class="console-empty">No messages yet.</div>';
+      el.consoleBadge.hidden = true;
+      return;
+    }
+    el.consoleBody.innerHTML = consoleEntries.map(function(e){
+      return '<div class="console-entry ' + e.level + '">' +
+        '<span class="console-time">' + escapeHtml(e.time) + '</span>' +
+        '<span class="console-msg">' + escapeHtml(e.msg) + '</span>' +
+      '</div>';
+    }).join('');
+    el.consoleBody.scrollTop = el.consoleBody.scrollHeight;
+  }
+
+  function toggleConsole(){
+    el.consoleDrawer.hidden = !el.consoleDrawer.hidden;
+    el.consoleBtn.classList.toggle('active', !el.consoleDrawer.hidden);
+    if (!el.consoleDrawer.hidden){
+      el.consoleBadge.hidden = true;
+      renderConsole();
+    }
+  }
+
+  el.consoleBtn.addEventListener('click', toggleConsole);
+  $('consoleClose').addEventListener('click', toggleConsole);
+  $('consoleClear').addEventListener('click', function(){ consoleEntries = []; renderConsole(); });
+
+  /* =========================================================
+     Compare mode
+     ========================================================= */
+  function buildCompare(){
+    var html = '';
+    var presets = allPresets();
+    for (var i = 0; i < 3; i++){
+      var d = presets[state.compareSlots[i]] || presets[0];
+      var opts = '';
+      for (var k = 0; k < presets.length; k++){
+        opts += '<option value="' + k + '"' + (k === state.compareSlots[i] ? ' selected' : '') + '>' +
+                escapeHtml(presets[k].name) + ' · ' + presets[k].w + '×' + presets[k].h + '</option>';
+      }
+      html += '<div class="cmp-col">' +
+        '<div class="cmp-head"><select class="cmp-select" data-slot="' + i + '">' + opts + '</select></div>' +
+        '<div class="cmp-stage"><div class="cmp-frame"><iframe title="' + escapeAttr(d.name) + ' preview"></iframe></div></div>' +
+      '</div>';
+    }
+    el.compareView.innerHTML = html;
+    var selects = el.compareView.querySelectorAll('.cmp-select');
+    for (var s = 0; s < selects.length; s++){
+      selects[s].addEventListener('change', function(){
+        var idx = +this.dataset.slot;
+        state.compareSlots[idx] = +this.value;
+        var stage = this.closest('.cmp-col').querySelector('.cmp-stage');
+        applySourceToIframe(stage.querySelector('iframe'), false);
+        layoutCompare();
+        persist();
+      });
+    }
+  }
+
+  function enterCompare(){
+    if (state.compare) return;
+    state.compare = true;
+    el.singleView.hidden = true;
+    el.compareView.hidden = false;
+    el.compareBtn.classList.add('active');
+    buildCompare();
+    refreshAllFrames();
+    layoutCompare();
+  }
+
+  function exitCompare(){
+    if (!state.compare) return;
+    state.compare = false;
+    el.singleView.hidden = false;
+    el.compareView.hidden = true;
+    el.compareBtn.classList.remove('active');
+    layout();
+  }
+
+  /* =========================================================
+     Drag
+     ========================================================= */
+  function onPointerDown(e){
+    if (e.button !== 0 || state.compare) return;
+    e.preventDefault();
+    var h = e.currentTarget;
+    drag = { axis: h.dataset.axis, x: e.clientX, y: e.clientY, w: state.w, h: state.h };
+    el.rcApp.classList.add('dragging');
+    try { h.setPointerCapture(e.pointerId); } catch(err){}
+    h.addEventListener('pointermove', onPointerMove);
+    h.addEventListener('pointerup', onPointerUp);
+    h.addEventListener('pointercancel', onPointerUp);
+  }
+  function onPointerMove(e){
+    if (!drag) return;
+    var s = state.scale || 1;
+    var dx = (e.clientX - drag.x) / s;
+    var dy = (e.clientY - drag.y) / s;
+    var w = drag.w, h = drag.h;
+    if (drag.axis.indexOf('x') > -1) w = clamp(drag.w + dx, 200, 4000);
+    if (drag.axis.indexOf('y') > -1) h = clamp(drag.h + dy, 200, 4000);
+    setDims(w, h);
+  }
+  function onPointerUp(e){
+    var h = e.currentTarget;
+    h.removeEventListener('pointermove', onPointerMove);
+    h.removeEventListener('pointerup', onPointerUp);
+    h.removeEventListener('pointercancel', onPointerUp);
+    el.rcApp.classList.remove('dragging');
+    drag = null;
+    if (state.zoom === 'fit'){
+      var availW = el.stage.clientWidth - 64;
+      var availH = el.stage.clientHeight - 64;
+      if (state.w * state.scale > availW || state.h * state.scale > availH) layout();
+    }
+  }
+  var handles = document.querySelectorAll('.handle');
+  for (var hi = 0; hi < handles.length; hi++) handles[hi].addEventListener('pointerdown', onPointerDown);
+
+  /* =========================================================
+     Mode
+     ========================================================= */
+  var segBtns = document.querySelectorAll('.seg-btn');
+  function setModeUI(mode){
+    state.mode = mode;
+    for (var i = 0; i < segBtns.length; i++)
+      segBtns[i].classList.toggle('active', segBtns[i].dataset.mode === mode);
+    el.urlField.hidden  = mode !== 'url';
+    el.codeField.hidden = mode !== 'code';
+    persist();
+  }
+  for (var si = 0; si < segBtns.length; si++)
+    segBtns[si].addEventListener('click', function(){ setModeUI(this.dataset.mode); });
+
+  /* =========================================================
+     Editor
+     ========================================================= */
+  function highlightHTML(src){
+    var tokens = [];
+    function T(cls, content){
+      tokens.push('<span class="' + cls + '">' + content + '</span>');
+      return '\uE000' + (tokens.length - 1) + '\uE001';
+    }
+    var esc = src.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    esc = esc.replace(/(&lt;!--[\s\S]*?--&gt;)/g, function(m){ return T('cmt', m); });
+    esc = esc.replace(/("[^"]*"|'[^']*')/g, function(m){ return T('str', m); });
+    esc = esc.replace(/(&lt;\/?)([a-zA-Z][\w-]*)/g, function(m, p1, p2){ return p1 + T('tag', p2); });
+    esc = esc.replace(/\uE000(\d+)\uE001/g, function(m, i){ return tokens[+i] || ''; });
+    return esc;
+  }
+
+  function updateLineNumbers(){
+    var lines = el.codeArea.value.split('\n');
+    var out = [];
+    for (var i = 1; i <= lines.length; i++) out.push(i);
+    el.lineNumbers.textContent = out.join('\n');
+  }
+
+  function updateHighlight(){
+    el.highlightLayer.innerHTML = highlightHTML(el.codeArea.value);
+    updateLineNumbers();
+  }
+
+  function syncEditorScroll(){
+    el.highlightLayer.scrollTop = el.codeArea.scrollTop;
+    el.highlightLayer.scrollLeft = el.codeArea.scrollLeft;
+    el.lineNumbers.scrollTop = el.codeArea.scrollTop;
+  }
+
+  function openModal(){
+    el.codeArea.value = state.html || STARTER;
+    updateHighlight();
+    syncEditorScroll();
+    el.modal.hidden = false;
+    el.codeArea.focus();
+  }
+  function closeModal(){ el.modal.hidden = true; }
+
+  $('codeBtn').addEventListener('click', openModal);
+  $('modalClose').addEventListener('click', closeModal);
+  $('modalStarter').addEventListener('click', function(){
+    el.codeArea.value = STARTER; updateHighlight(); syncEditorScroll(); el.codeArea.focus();
+  });
+  $('modalRender').addEventListener('click', function(){
+    loadCode(el.codeArea.value);
+    closeModal();
+  });
+  $('modalDownload').addEventListener('click', function(){
+    var blob = new Blob([el.codeArea.value], { type:'text/html' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'responsive-preview.html';
+    a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 3000);
+    toast('HTML downloaded');
+  });
+  el.modal.addEventListener('click', function(e){ if (e.target === el.modal) closeModal(); });
+
+  el.codeArea.addEventListener('input', function(){
+    updateHighlight();
+    syncEditorScroll();
+    if (state.live){
+      clearTimeout(liveTimer);
+      liveTimer = setTimeout(function(){
+        state.html = el.codeArea.value;
+        state.source = 'code';
+        refreshAllFrames();
+        persist();
+      }, 500);
+    }
+  });
+  el.codeArea.addEventListener('scroll', syncEditorScroll);
+
+  el.codeArea.addEventListener('keydown', function(e){
+    if (e.key === 'Tab'){
+      e.preventDefault();
+      var s = this.selectionStart, t = this.selectionEnd;
+      this.value = this.value.slice(0, s) + '  ' + this.value.slice(t);
+      this.selectionStart = this.selectionEnd = s + 2;
+      updateHighlight();
+      syncEditorScroll();
+    }
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)){
+      e.preventDefault();
+      loadCode(this.value);
+      closeModal();
+    }
+  });
+
+  /* =========================================================
+     Controls
+     ========================================================= */
+  el.wInput.addEventListener('input', function(){
+    var v = parseInt(this.value, 10);
+    if (!isNaN(v) && v >= 200 && v <= 4000) setDims(v, state.h);
+  });
+  el.hInput.addEventListener('input', function(){
+    var v = parseInt(this.value, 10);
+    if (!isNaN(v) && v >= 200 && v <= 4000) setDims(state.w, v);
+  });
+  $('rotateBtn').addEventListener('click', function(){ setDims(state.h, state.w); });
+
+  $('resetBtn').addEventListener('click', function(){
+    state.w = 375; state.h = 812; state.zoom = 'fit';
+    state.grid = false; state.ruler = false;
+    state.source = 'demo'; state.url = ''; state.html = STARTER;
+    state.compare = false; state.touch = false; state.ua = '';
+    state.live = true;
+    el.zoomSel.value = 'fit';
+    el.gridOverlay.hidden = true; el.rulerOverlay.hidden = true;
+    el.gridBtn.classList.remove('active'); el.rulerBtn.classList.remove('active');
+    el.compareBtn.classList.remove('active');
+    el.singleView.hidden = false; el.compareView.hidden = true;
+    el.urlInput.value = '';
+    el.uaInput.value = ''; el.touchToggle.checked = false; el.liveToggle.checked = true;
+    renderChips(); syncChips();
+    setDims(375, 812);
+    loadDemo();
+    toast('Reset to defaults');
+  });
+
+  el.zoomSel.addEventListener('change', function(){
+    state.zoom = this.value; layout(); persist();
+  });
+
+  $('loadBtn').addEventListener('click', function(){ loadURL(el.urlInput.value); });
+  el.urlInput.addEventListener('keydown', function(e){ if (e.key === 'Enter') loadURL(this.value); });
+
+  el.gridBtn.addEventListener('click', function(){
+    state.grid = !state.grid;
+    el.gridOverlay.hidden = !state.grid;
+    el.gridBtn.classList.toggle('active', state.grid);
+    persist();
+  });
+  el.rulerBtn.addEventListener('click', function(){
+    state.ruler = !state.ruler;
+    el.rulerOverlay.hidden = !state.ruler;
+    el.rulerBtn.classList.toggle('active', state.ruler);
+    if (state.ruler) buildRuler();
+    persist();
+  });
+  el.compareBtn.addEventListener('click', function(){ state.compare ? exitCompare() : enterCompare(); });
+  el.fullBtn.addEventListener('click', function(){
+    if (!document.fullscreenElement){
+      var target = el.stage.parentElement;
+      var req = target.requestFullscreen || target.webkitRequestFullscreen;
+      if (req) req.call(target);
+    } else document.exitFullscreen();
+  });
+  document.addEventListener('fullscreenchange', function(){
+    el.fullBtn.classList.toggle('active', !!document.fullscreenElement);
+    setTimeout(layout, 60);
+  });
+
+  /* options menu */
+  $('optsBtn').addEventListener('click', function(e){
+    e.stopPropagation();
+    el.optsMenu.hidden = !el.optsMenu.hidden;
+  });
+  document.addEventListener('click', function(e){
+    if (!el.optsMenu.hidden && !el.optsMenu.contains(e.target) && e.target.id !== 'optsBtn')
+      el.optsMenu.hidden = true;
+  });
+
+  el.uaInput.addEventListener('input', function(){
+    state.ua = this.value;
+    persist();
+    if (state.source === 'code'){
+      clearTimeout(uaTimer);
+      uaTimer = setTimeout(function(){ refreshAllFrames(); }, 600);
+    }
+  });
+  el.uaInput.addEventListener('change', function(){
+    toast(state.ua ? 'UA applied (code mode only)' : 'UA cleared');
+  });
+
+  el.touchToggle.addEventListener('change', function(){
+    state.touch = this.checked;
+    if (state.source === 'code') refreshAllFrames();
+    persist();
+    toast(state.touch ? 'Touch CSS applied (code mode only)' : 'Touch CSS removed');
+  });
+  el.liveToggle.addEventListener('change', function(){
+    state.live = this.checked;
+    persist();
+  });
+
+  /* =========================================================
+     Share / export / import
+     ========================================================= */
+  $('shareBtn').addEventListener('click', function(){
+    if (state.mode === 'code' && state.html && state.html !== STARTER){
+      var enc = b64encode(state.html);
+      if (!enc || enc.length > B64_HASH_LIMIT){
+        toast('HTML too large for a shareable link — use Export instead');
+        return;
+      }
+    }
+    updateHash();
+    var url = location.href;
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(function(){ toast('Link copied'); }).catch(function(){ toast('Copy failed'); });
+    } else {
+      var t = document.createElement('textarea');
+      t.value = url; document.body.appendChild(t); t.select();
+      try { document.execCommand('copy'); toast('Link copied'); } catch(e){ toast('Copy failed'); }
+      document.body.removeChild(t);
+    }
+  });
+
+  $('exportBtn').addEventListener('click', function(){
+    var data = { presets: customPresets, state: { w: state.w, h: state.h } };
+    var blob = new Blob([JSON.stringify(data, null, 2)], { type:'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'responsive-checker-presets.json';
+    a.click();
+    setTimeout(function(){ URL.revokeObjectURL(a.href); }, 3000);
+    toast('Exported');
+  });
+
+  $('importBtn').addEventListener('click', function(){ $('importFile').click(); });
+  $('importFile').addEventListener('change', function(e){
+    var f = e.target.files && e.target.files[0];
+    if (!f) return;
+    var r = new FileReader();
+    r.onload = function(){
+      try {
+        var data = JSON.parse(r.result);
+        if (data.presets && Array.isArray(data.presets)){
+          customPresets = data.presets.map(function(p){
+            return { name: String(p.name || 'Custom'), w: +p.w || 375, h: +p.h || 812, type: p.type || 'desktop' };
+          });
+          saveJSON('rc-presets', customPresets);
+          renderChips(); syncChips();
+          toast('Imported ' + customPresets.length + ' presets');
+        } else toast('No presets found');
+      } catch(err){ toast('Invalid JSON'); }
+      e.target.value = '';
+    };
+    r.readAsText(f);
+  });
+
+  /* =========================================================
+     Open in new tab
+     ========================================================= */
+  function openCurrentInNewTab(){
+    var url;
+    if (state.source === 'url' && state.url) url = state.url;
+    else {
+      var html = state.source === 'code' ? state.html : DEMO;
+      url = URL.createObjectURL(new Blob([html], { type:'text/html' }));
+      setTimeout(function(){ URL.revokeObjectURL(url); }, 15000);
+    }
+    window.open(url, '_blank', 'noopener');
+  }
+  $('openNew').addEventListener('click', function(e){ e.preventDefault(); openCurrentInNewTab(); });
+  $('noticeOpen').addEventListener('click', openCurrentInNewTab);
+  $('noticeDismiss').addEventListener('click', function(){ el.noticeBar.hidden = true; });
+
+  /* =========================================================
+     Keyboard — scoped to .rc-app so shortcuts don't fire while reading the article
+     ========================================================= */
+  el.rcApp.addEventListener('keydown', function(e){
+    var t = e.target;
+    var tag = (t.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || tag === 'select' || t.isContentEditable){
+      if (e.key === 'Escape' && !el.modal.hidden) closeModal();
+      return;
+    }
+    var step = e.shiftKey ? 10 : 1;
+    switch (e.key){
+      case 'ArrowLeft':  e.preventDefault(); setDims(state.w - step, state.h); break;
+      case 'ArrowRight': e.preventDefault(); setDims(state.w + step, state.h); break;
+      case 'ArrowUp':    e.preventDefault(); setDims(state.w, state.h - step); break;
+      case 'ArrowDown':  e.preventDefault(); setDims(state.w, state.h + step); break;
+      case 'f': case 'F': el.fullBtn.click(); break;
+      case 'g': case 'G': el.gridBtn.click(); break;
+      case 'r': case 'R': el.rulerBtn.click(); break;
+      case 'c': case 'C': el.compareBtn.click(); break;
+      case 'l': case 'L': toggleConsole(); break;
+      case 'Escape':
+        if (!el.modal.hidden) closeModal();
+        else if (state.compare) exitCompare();
+        break;
+    }
+  });
+
+  /* =========================================================
+     Theme
+     ========================================================= */
+  function applyTheme(t){
+    if (el.rcApp) el.rcApp.dataset.theme = t;
+    el.themeBtn.textContent = t === 'dark' ? '\u2600' : '\u263E';
+  }
+  el.themeBtn.addEventListener('click', function(){
+    var next = el.rcApp.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(next); saveJSON('rc-theme', next);
+  });
+
+  /* =========================================================
+     Resize observation
+     ========================================================= */
+  if (window.ResizeObserver){
+    new ResizeObserver(function(){ layout(); }).observe(el.stage);
+  } else {
+    window.addEventListener('resize', layout);
+  }
+
+  /* =========================================================
+     Boot
+     ========================================================= */
+  (function boot(){
+    var savedTheme = loadJSON('rc-theme', null);
+    if (savedTheme === 'light' || savedTheme === 'dark') applyTheme(savedTheme);
+    else applyTheme(el.rcApp.dataset.theme === 'light' ? 'light' : 'dark');
+
+    customPresets = loadJSON('rc-presets', []);
+    recentUrls = loadJSON('rc-recents', []);
+
+    var stored = loadJSON('rc-state', null);
+    if (stored){
+      if (stored.w) state.w = +stored.w;
+      if (stored.h) state.h = +stored.h;
+      if (stored.zoom) state.zoom = stored.zoom;
+      if (stored.mode === 'code' || stored.mode === 'url') state.mode = stored.mode;
+      if (stored.source) state.source = stored.source;
+      if (typeof stored.url === 'string') state.url = stored.url;
+      if (typeof stored.html === 'string') state.html = stored.html;
+      if (typeof stored.grid === 'boolean') state.grid = stored.grid;
+      if (typeof stored.ruler === 'boolean') state.ruler = stored.ruler;
+      if (typeof stored.touch === 'boolean') state.touch = stored.touch;
+      if (typeof stored.live === 'boolean') state.live = stored.live;
+      if (typeof stored.ua === 'string') state.ua = stored.ua;
+      if (Array.isArray(stored.compareSlots) && stored.compareSlots.length === 3) state.compareSlots = stored.compareSlots;
+    }
+
+    var fromHash = parseHash();
+    if (fromHash){
+      if (fromHash.w) state.w = fromHash.w;
+      if (fromHash.h) state.h = fromHash.h;
+      if (fromHash.zoom) state.zoom = fromHash.zoom;
+      if (typeof fromHash.grid === 'boolean') state.grid = fromHash.grid;
+      if (typeof fromHash.ruler === 'boolean') state.ruler = fromHash.ruler;
+      if (fromHash.mode === 'code'){
+        state.mode = 'code';
+        state.source = 'code';
+        if (fromHash.html) state.html = fromHash.html;
+        else if (!state.html) state.html = STARTER;
+      } else if (fromHash.mode === 'url'){
+        state.mode = 'url';
+        if (fromHash.url){ state.source = 'url'; state.url = fromHash.url; }
+      }
+    }
+
+    if (state.mode === 'url' && state.source === 'code'){
+      state.source = state.url ? 'url' : 'demo';
+    }
+    if (state.mode === 'code' && state.source !== 'code'){
+      state.source = 'code';
+      if (!state.html) state.html = STARTER;
+    }
+    if (state.source === 'url' && !state.url) state.source = 'demo';
+    if (state.source === 'code' && !state.html) state.html = STARTER;
+
+    renderChips(); renderRecents();
+    setModeUI(state.mode);
+    el.zoomSel.value = state.zoom;
+    el.gridOverlay.hidden = !state.grid;
+    el.gridBtn.classList.toggle('active', state.grid);
+    el.rulerOverlay.hidden = !state.ruler;
+    el.rulerBtn.classList.toggle('active', state.ruler);
+    el.uaInput.value = state.ua || '';
+    el.touchToggle.checked = !!state.touch;
+    el.liveToggle.checked = state.live;
+    if (state.mode === 'url' && state.url) el.urlInput.value = state.url;
+
+    setDims(state.w, state.h);
+    if (state.ruler) buildRuler();
+
+    if (state.source === 'url' && state.url){
+      watchUrlLoad();
+      el.mqLabel.textContent = 'n/a';
+      el.mqLabel.title = 'Media query detection unavailable for cross-origin URLs';
+      applySourceToIframe(el.view, false);
+    } else {
+      applySourceToIframe(el.view, true);
+    }
+
+    updateHash();
+    requestAnimationFrame(layout);
+  })();
+
+  /* Auto-set footer year */
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+})();
+</script>
+</body>
+</html>

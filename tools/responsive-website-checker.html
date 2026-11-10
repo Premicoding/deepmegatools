@@ -509,10 +509,41 @@ tbody td:last-child{
 }
 
 /* ============================================================
+   FIX 7: RELATED TOOLS (previously unstyled)
+   ============================================================ */
+.related-tools{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.75rem 1.75rem 1.5rem;
+  margin: 2.5rem 0;
+}
+.related-tools h2{
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+  letter-spacing: -.01em;
+}
+.related-tools ul{
+  columns: 2;
+  column-gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.related-tools li{ margin-bottom: .55rem; break-inside: avoid; }
+.related-tools a{
+  text-decoration: none;
+  font-size: .95rem;
+  font-weight: 500;
+}
+.related-tools a:hover{ text-decoration: underline; }
+@media (max-width: 640px){ .related-tools ul{ columns: 1; } }
+
+/* ============================================================
    15. RESPONSIVE CHECKER TOOL (scoped under .rc-app)
    ============================================================ */
 .rc-app{
-  /* dark tokens by default */
   --rc-bg:#0f1115; --rc-panel:#161a21; --rc-panel-2:#1c212a; --rc-border:#2a303b;
   --rc-text:#f3f4f6; --rc-muted:#9ca3af; --rc-accent:#818cf8; --rc-accent-soft:rgba(129,140,248,.16);
   --rc-stage:#0b0d11; --rc-checker-a:#14171d; --rc-checker-b:#0f1218; --rc-danger:#ef4444;
@@ -838,20 +869,21 @@ tbody td:last-child{
           <div class="devbar-right">
             <label class="dim"><span>W</span><input id="wInput" type="number" min="200" max="4000" value="375"></label>
             <label class="dim"><span>H</span><input id="hInput" type="number" min="200" max="4000" value="812"></label>
-            <button class="icon-btn" id="rotateBtn" title="Rotate (swap W/H)">⟳</button>
+            <!-- FIX 9: aria-label added on icon-only buttons -->
+            <button class="icon-btn" id="rotateBtn" title="Rotate (swap W/H)" aria-label="Rotate dimensions">⟳</button>
             <select class="zoom" id="zoomSel" aria-label="Zoom">
               <option value="fit">Fit</option>
               <option value="0.5">50%</option>
               <option value="0.75">75%</option>
               <option value="1">100%</option>
             </select>
-            <button class="icon-btn" id="gridBtn" title="Pixel grid (G)">⊞</button>
-            <button class="icon-btn" id="rulerBtn" title="Breakpoint ruler (R)">⊢</button>
-            <button class="icon-btn" id="compareBtn" title="Compare mode (C)">◫</button>
-            <button class="icon-btn" id="consoleBtn" title="Console (L)">⌘<span class="badge-dot" id="consoleBadge" hidden>0</span></button>
-            <button class="icon-btn" id="fullBtn" title="Fullscreen (F)">⛶</button>
+            <button class="icon-btn" id="gridBtn" title="Pixel grid (G)" aria-label="Toggle pixel grid">⊞</button>
+            <button class="icon-btn" id="rulerBtn" title="Breakpoint ruler (R)" aria-label="Toggle breakpoint ruler">⊢</button>
+            <button class="icon-btn" id="compareBtn" title="Compare mode (C)" aria-label="Toggle compare mode">◫</button>
+            <button class="icon-btn" id="consoleBtn" title="Console (L)" aria-label="Toggle console">⌘<span class="badge-dot" id="consoleBadge" hidden>0</span></button>
+            <button class="icon-btn" id="fullBtn" title="Fullscreen (F)" aria-label="Toggle fullscreen">⛶</button>
             <div class="dropdown">
-              <button class="icon-btn" id="optsBtn" title="Options">⚙</button>
+              <button class="icon-btn" id="optsBtn" title="Options" aria-label="Open options">⚙</button>
               <div class="dropdown-menu" id="optsMenu" hidden>
                 <label>User Agent (code‑mode only)
                   <input id="uaInput" type="text" placeholder="Mozilla/5.0 ...">
@@ -861,7 +893,7 @@ tbody td:last-child{
                 <div class="dropdown-note">UA overrides <code>navigator.userAgent</code> inside code‑mode previews. URL previews can't be spoofed (cross‑origin). Touch is a CSS hint only.</div>
               </div>
             </div>
-            <button class="icon-btn" id="resetBtn" title="Reset all">⌂</button>
+            <button class="icon-btn" id="resetBtn" title="Reset all" aria-label="Reset all settings">⌂</button>
           </div>
         </div>
 
@@ -953,29 +985,27 @@ tbody td:last-child{
           <code>X-Frame-Options</code> or <code>Content-Security-Policy</code>. Such websites may not load
           inside the preview. Use <strong>Code mode</strong> or open the site in a new tab for those.</p>
       </aside>
+
+      <!-- FIX 7 + FIX 8: Related tools wrapped in .container, leading slashes on links -->
+      <div class="related-tools">
+        <h2>Related Tools</h2>
+        <ul>
+          <li><a href="/tools/barcode-generator.html">Barcode Generator</a></li>
+          <li><a href="/tools/qr-code-generator.html">QR Code Generator Tool</a></li>
+          <li><a href="/tools/color-contrast-analyzer.html">Color Contrast Analyzer</a></li>
+          <li><a href="/tools/image-resizer.html">Image Resizer Tool</a></li>
+          <li><a href="/tools/unlock-page.html">Unlock Page Generator</a></li>
+          <li><a href="/tools/auto-code-typing.html">Auto Code Typing</a></li>
+          <li><a href="/tools/code-editor.html">Live Code Editor</a></li>
+          <li><a href="/tools/css-box-shadow-generator.html">Box Shadow Generator</a></li>
+          <li><a href="/tools/Text-shadow-generator.html">Text Shadow Generator</a></li>
+          <li><a href="/tools/translate.html">Translate</a></li>
+          <li><a href="/tools/qr-code-barcode-scanner.html">QR, Barcode Scanner</a></li>
+        </ul>
+      </div>
     </div>
   </section>
-<div class="related-tools">
-            <h2>Related Tools</h2>
-            <ul>
-                <li><a href="/tools/barcode-generator.html">Barcode Generator</a></li>
-                <li><a href="/tools/qr-code-generator.html">QR Code Generator Tool</a></li>
-                <li><a href="/tools/color-contrast-analyzer.html">Color Contrast Analyzer</a></li>
-                <li><a href="/tools/image-resizer.html">Image Resizer Tool</a></li>
-                <li><a href="/tools/unlock-page.html">Unlock Page Generator</a></li>
-                <li><a href="/tools/auto-code-typing.html">Auto Code Typing</a></li>
-                <li><a href="/tools/code-editor.html">Live Code Editor</a></li>
-                   <li><a href="tools/css-box-shadow-generator.html">Box Shadow Generator</a></li>
-                    <li><a href="/tools/Text-shadow-generator.html">Text Shadow Generator</a></li>
-  <li><a href="/tools/translate.html">Translate</a></li>                    
- <li><a href="tools/qr-code-barcode-scanner.html">QR,Barcode Scanner</a></li>
-               
-                    
-                    
-                   
-            </ul>
-            
-        </div>
+
   <!-- ================= WHY IMPORTANT ================= -->
   <section class="section" id="why-important" aria-labelledby="why-title">
     <div class="container">
@@ -1368,7 +1398,8 @@ tbody td:last-child{
 <!-- ================= FOOTER ================= -->
 <footer class="site-footer">
   <div class="container">
-    <p>Free Responsive Website Checker.</p>
+    <!-- FIX 4: #year span added -->
+    <p>Free Responsive Website Checker · <span id="year"></span></p>
     <p><a href="#top">Back to top ↑</a></p>
   </div>
 </footer>
@@ -1642,6 +1673,8 @@ tbody td:last-child{
       customPresets.splice(+del.closest('.chip-dev').dataset.custom, 1);
       saveJSON('rc-presets', customPresets);
       renderChips(); syncChips();
+      // FIX 3: keep compare view in sync after deleting a preset
+      if (state.compare){ buildCompare(); refreshAllFrames(); layoutCompare(); }
       toast('Preset removed');
       return;
     }
@@ -1651,6 +1684,8 @@ tbody td:last-child{
         customPresets.push({ name: name, w: state.w, h: state.h, type: 'desktop' });
         saveJSON('rc-presets', customPresets);
         renderChips(); syncChips();
+        // FIX 3: keep compare view in sync after adding a preset
+        if (state.compare){ buildCompare(); refreshAllFrames(); layoutCompare(); }
         toast('Preset saved');
       }
       return;
@@ -1763,8 +1798,23 @@ tbody td:last-child{
     }, 300);
   }
 
-  function b64encode(s){ try { return btoa(unescape(encodeURIComponent(s))); } catch(e){ return ''; } }
-  function b64decode(s){ try { return decodeURIComponent(escape(atob(s))); } catch(e){ return ''; } }
+  /* FIX 10: modern base64 encode/decode (avoids deprecated unescape/escape) */
+  function b64encode(s){
+    try {
+      var bytes = new TextEncoder().encode(s);
+      var bin = '';
+      for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+      return btoa(bin);
+    } catch(e){ return ''; }
+  }
+  function b64decode(s){
+    try {
+      var bin = atob(s);
+      var bytes = new Uint8Array(bin.length);
+      for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      return new TextDecoder().decode(bytes);
+    } catch(e){ return ''; }
+  }
 
   function updateHash(){
     try {
@@ -1880,14 +1930,17 @@ tbody td:last-child{
     return out;
   }
 
+  /* FIX 1: verify message source is our preview iframe */
   window.addEventListener('message', function(e){
     if (!e.data) return;
+    var fromPreview = (el.view && e.source === el.view.contentWindow);
     if (e.data.__rc === 'mq'){
-      if (e.source !== el.view.contentWindow) return;
+      if (!fromPreview) return;
       var qs = e.data.queries || [];
       el.mqLabel.textContent = qs.length ? (qs.length + ' active') : 'no match';
       el.mqLabel.title = qs.length ? qs.join('\n') : 'No media queries currently match';
     } else if (e.data.__rc === 'console'){
+      if (!fromPreview) return;
       addConsoleEntry(e.data.level, e.data.msg);
     }
   });
@@ -2248,6 +2301,13 @@ tbody td:last-child{
       this.selectionStart = this.selectionEnd = s + 2;
       updateHighlight();
       syncEditorScroll();
+      // FIX 5: sync live preview after Tab insertion
+      if (state.live){
+        state.html = this.value;
+        state.source = 'code';
+        clearTimeout(liveTimer);
+        liveTimer = setTimeout(function(){ refreshAllFrames(); persist(); }, 500);
+      }
     }
     if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)){
       e.preventDefault();
@@ -2267,6 +2327,10 @@ tbody td:last-child{
     var v = parseInt(this.value, 10);
     if (!isNaN(v) && v >= 200 && v <= 4000) setDims(state.w, v);
   });
+  /* FIX 6: reset invalid input to last known good value on blur */
+  el.wInput.addEventListener('blur', function(){ this.value = state.w; });
+  el.hInput.addEventListener('blur', function(){ this.value = state.h; });
+
   $('rotateBtn').addEventListener('click', function(){ setDims(state.h, state.w); });
 
   $('resetBtn').addEventListener('click', function(){
@@ -2402,6 +2466,7 @@ tbody td:last-child{
           });
           saveJSON('rc-presets', customPresets);
           renderChips(); syncChips();
+          if (state.compare){ buildCompare(); refreshAllFrames(); layoutCompare(); }
           toast('Imported ' + customPresets.length + ' presets');
         } else toast('No presets found');
       } catch(err){ toast('Invalid JSON'); }
@@ -2428,7 +2493,7 @@ tbody td:last-child{
   $('noticeDismiss').addEventListener('click', function(){ el.noticeBar.hidden = true; });
 
   /* =========================================================
-     Keyboard — scoped to .rc-app so shortcuts don't fire while reading the article
+     Keyboard — scoped to .rc-app
      ========================================================= */
   el.rcApp.addEventListener('keydown', function(e){
     var t = e.target;
@@ -2437,6 +2502,8 @@ tbody td:last-child{
       if (e.key === 'Escape' && !el.modal.hidden) closeModal();
       return;
     }
+    /* FIX 2: don't hijack browser/OS shortcuts like Ctrl+R, Ctrl+F, Alt+… */
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
     var step = e.shiftKey ? 10 : 1;
     switch (e.key){
       case 'ArrowLeft':  e.preventDefault(); setDims(state.w - step, state.h); break;
@@ -2558,11 +2625,11 @@ tbody td:last-child{
 
     updateHash();
     requestAnimationFrame(layout);
-  })();
 
-  /* Auto-set footer year */
-  var yearEl = document.getElementById('year');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+    /* FIX 4: auto-set footer year (element now exists) */
+    var yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  })();
 
 })();
 </script>

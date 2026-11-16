@@ -1,644 +1,1796 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZM922M07E4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-ZM922M07E4');
-</script>
     <meta charset="UTF-8">
-    <meta name="title" content="Deep Mega Tools">
-    <meta name="description" content="Deep Mega Tools provides modern online developer tools including CSS generators, image compressors, code editors, responsive checkers, password generators, minifiers, and many powerful web development utilities.">
-    <meta name="keywords" content="developer tools, online tools, CSS generator, image compressor, code editor, JavaScript tools, HTML tools, web development tools, responsive checker, password generator, DevTools Hub, webtools">
-    <meta name="author" content="PremBabu Kashyap">
-    <meta name="robots" content="index, follow">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5">
-    <meta name="google-site-verification" content="6Ib5P3GfFX8Wcj3aSKfPs7QFsSQoTj6aKGZxp9HkMCk" />
-
-    <!-- ====== GOOGLE ANALYTICS (gtag.js) – ADDED HERE ====== -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-J13EVKDED3D"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){ dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-J13EVKDED3D');
-    </script>
-    <!-- ====================================================== -->
-
-    <!-- Preconnect to CDN for faster resource loading -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Mega Tools - Free Online Tools for Everyone</title>
+    <meta name="description" content="Discover free online tools for developers, SEO, images, PDFs, and AI at Deep Mega Tools. Fast, secure, and browser-native utilities to boost your productivity.">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Load CSS with media="print" for non-critical CSS, then upgrade -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-
-    <!-- Inline critical CSS to avoid render-blocking -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
     <style>
-        /* CRITICAL CSS - Above the fold styles */
+        :root {
+            --primary-blue: #1a56db;
+            --primary-blue-hover: #1e429f;
+            --text-dark: #111827;
+            --text-gray: #4b5563;
+            --bg-light: #f9fafb;
+            --white: #ffffff;
+            --border-color: #e5e7eb;
+            --card-bg: #ffffff;
+            --red-color: #dc2626;
+        }
+        body.dark-mode {
+            --text-dark: #f9fafb;
+            --text-gray: #9ca3af;
+            --bg-light: #111827;
+            --white: #1f2937;
+            --border-color: #374151;
+            --card-bg: #1f2937;
+        }
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
-
-        :root {
-            --bg-primary: #0f172a;
-            --bg-secondary: #111827;
-            --bg-card: rgba(255,255,255,0.05);
-            --border-color: rgba(255,255,255,0.08);
-            --text-primary: #ffffff;
-            --text-secondary: #cbd5e1;
-            --accent: #38bdf8;
-            --search-bg: #1e293b;
-            --shadow-light: 0 10px 25px -5px rgba(0,0,0,0.2);
-            --card-radius: 28px;
-        }
-
-        body.light-mode {
-            --bg-primary: #f1f5f9;
-            --bg-secondary: #ffffff;
-            --bg-card: #ffffff;
-            --border-color: #e2e8f0;
-            --text-primary: #0f172a;
-            --text-secondary: #334155;
-            --accent: #0284c7;
-            --search-bg: #f8fafc;
-            --shadow-light: 0 10px 15px -3px rgba(0,0,0,0.1);
-        }
-
         body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            transition: background 0.2s ease, color 0.2s ease;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
         }
-
-        #Deep header {
-            width:100%;
-            padding:10px 5%;
-            background: var(--bg-secondary);
-            position:sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-            transition: background 0.2s ease;
-            box-shadow: var(--shadow-light);
-
-        }
-
-        #Deep header .navbar {
-            display:flex;
-            align-items:center;
-            justify-content: space-between;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        #Deep header .navbar .logo {
-            font-size: 28px;
-            font-weight: bold;
-            background: linear-gradient(135deg, var(--accent), #8b5cf6);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-
-        #Deep header .navbar .search-box {
-            flex: 1;
-            max-width: 500px;
-        }
-
-        #Deep header .navbar .search-box input {
+        .container {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 0 20px;
             width: 100%;
-            padding: 10px 18px;
-            border: none;
-            outline: none;
-            border-radius: 40px;
-            background: var(--search-bg);
-            color: var(--text-primary);
-            font-size: 16px;
-            border: 1px solid var(--border-color);
         }
-
-        .theme-toggle {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 50%;
-            width: 46px;
-            height: 46px;
+        a { text-decoration: none; color: inherit; }
+        
+        /* =========================================
+           UPDATED HEADER NAVBAR (As per 2nd Image)
+           ========================================= */
+        .top-navbar {
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: background-color 0.3s;
+        }
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+        .nav-left { 
+            display: flex; 
+            align-items: center; 
+            gap: 35px; 
+        }
+        .logo {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 1.35rem; font-weight: 800;
+            color: var(--text-dark); letter-spacing: -0.5px;
+        }
+        .logo-icon {
+            background-color: var(--primary-blue); color: #ffffff;
+            width: 32px; height: 32px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+        }
+        .logo .mega-text { color: var(--primary-blue); }
+        .logo .tools-text { color: var(--red-color); }
+        
+        .nav-links { 
+            display: flex; 
+            gap: 28px; 
+            align-items: center; 
+        }
+        .nav-links a {
+            font-size: 0.95rem; 
+            font-weight: 500;
+            color: var(--text-gray); 
+            transition: color 0.2s; 
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
+            white-space: nowrap;
         }
-
-        .theme-toggle i {
-            font-size: 1.5rem;
-            color: var(--accent);
+        .nav-links a:hover, 
+        .nav-links a.active { 
+            color: var(--primary-blue); 
+            font-weight: 600; 
         }
-
-        .category-section {
-            padding: 20px 5% 0 5%;
+        
+        .nav-right { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
         }
-
-        .category-section .category-title {
-            font-size: 28px;
-            margin: 40px 0 24px 0;
-            color: var(--accent);
-            font-weight: 700;
-            border-left: 4px solid var(--accent);
-            padding-left: 20px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .btn-start {
+            background-color: var(--primary-blue); color: #ffffff;
+            padding: 8px 22px; border-radius: 50px;
+            font-size: 0.85rem; font-weight: 700;
+            border: none; cursor: pointer; transition: background 0.2s;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
         }
-
-        .category-section .category-title:first-of-type {
-            margin-top: 0;
+        .btn-start:hover { background-color: var(--primary-blue-hover); }
+        .icon-btn {
+            background-color: transparent; color: var(--text-dark);
+            width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            border: none; cursor: pointer; transition: all 0.2s; font-size: 1.1rem;
         }
+        .icon-btn:hover { background-color: var(--bg-light); color: var(--text-dark); }
+        
+        /* ========================================= */
 
+        .hamburger {
+            display: none; background: transparent; border: none;
+            font-size: 1.5rem; color: var(--text-dark); cursor: pointer;
+        }
+        .mobile-drawer {
+            position: fixed; top: 0; right: -100%;
+            width: 85%; max-width: 350px; height: 100vh;
+            background-color: var(--white); z-index: 1000;
+            transition: right 0.3s ease; padding: 20px;
+            overflow-y: auto; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        }
+        .mobile-drawer.active { right: 0; }
+        .drawer-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.5); z-index: 999;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s;
+        }
+        .drawer-overlay.active { opacity: 1; visibility: visible; }
+        .drawer-header {
+            display: flex; justify-content: space-between;
+            align-items: center; margin-bottom: 25px;
+        }
+        .close-drawer {
+            background: transparent; border: none;
+            font-size: 1.5rem; color: var(--text-dark); cursor: pointer;
+        }
+        .drawer-search-row {
+            display: flex; align-items: center; gap: 10px; margin-bottom: 25px;
+        }
+        .drawer-search { flex: 1; position: relative; }
+        .drawer-search input {
+            width: 100%; padding: 10px 15px 10px 40px;
+            border-radius: 8px; border: 1px solid var(--border-color);
+            background-color: var(--bg-light); color: var(--text-dark); outline: none;
+        }
+        .drawer-search input::placeholder { color: #6b7280; }
+        .drawer-search i {
+            position: absolute; left: 15px; top: 50%;
+            transform: translateY(-50%); color: var(--text-gray);
+        }
+        .drawer-menu { list-style: none; padding: 0; }
+        .drawer-menu-item { border-bottom: 1px solid var(--border-color); }
+        .drawer-menu-btn {
+            width: 100%; display: flex; justify-content: space-between;
+            align-items: center; padding: 15px 0; font-weight: 600;
+            color: var(--text-dark); font-size: 1rem;
+            background: transparent; border: none; cursor: pointer;
+            text-align: left; transition: color 0.2s;
+        }
+        .drawer-menu-btn:hover, .drawer-menu-btn.active { color: var(--primary-blue); }
+        .hero-section {
+            text-align: center; padding: 50px 0 30px;
+            background-color: var(--white); transition: background-color 0.3s;
+        }
+        .hero-section h1 {
+            font-size: 2.8rem; font-weight: 800;
+            color: var(--text-dark); margin-bottom: 15px; letter-spacing: -1px;
+        }
+        .hero-section p {
+            font-size: 1.1rem; color: var(--text-gray); margin-bottom: 30px;
+        }
+        .hero-action-buttons {
+            display: flex; justify-content: center; align-items: center;
+            gap: 15px; margin-bottom: 30px;
+        }
+        .btn-explore {
+            background-color: var(--primary-blue); color: #ffffff;
+            padding: 12px 24px; border-radius: 8px; font-size: 1rem;
+            font-weight: 500; border: 1px solid var(--primary-blue);
+            transition: all 0.2s ease; display: inline-flex;
+            align-items: center; gap: 8px; justify-content: center;
+        }
+        .btn-explore:hover {
+            background-color: var(--primary-blue-hover);
+            border-color: var(--primary-blue-hover);
+        }
+        .btn-view-categories {
+            background-color: transparent; color: var(--text-dark);
+            padding: 12px 24px; border-radius: 8px; font-size: 1rem;
+            font-weight: 500; border: 1px solid var(--border-color);
+            transition: all 0.2s ease; display: inline-flex;
+            align-items: center; justify-content: center; cursor: pointer;
+        }
+        .btn-view-categories:hover {
+            background-color: var(--bg-light); border-color: var(--text-gray);
+        }
+        .search-wrapper {
+            max-width: 600px; margin: 0 auto 40px; position: relative;
+        }
+        .search-wrapper input {
+            width: 100%; padding: 15px 20px 15px 50px;
+            border-radius: 50px; border: 1px solid var(--border-color);
+            font-size: 1rem; outline: none;
+            background-color: var(--bg-light); color: var(--text-dark);
+        }
+        .search-wrapper input::placeholder { color: #6b7280; }
+        .search-wrapper .fa-search {
+            position: absolute; left: 20px; top: 50%;
+            transform: translateY(-50%); color: var(--text-gray); font-size: 1.1rem;
+        }
+        .search-btn {
+            position: absolute; right: 6px; top: 50%;
+            transform: translateY(-50%); background-color: var(--primary-blue);
+            color: #ffffff; border: none; padding: 10px 25px;
+            border-radius: 50px; font-weight: 600; cursor: pointer;
+        }
+        main { flex: 1; padding-bottom: 60px; }
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 28px;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 20px;
         }
-
         .tool-card {
-            background: var(--bg-card);
-            border-radius: var(--card-radius);
-            padding: 28px 24px;
-            border: 1px solid var(--border-color);
-            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            position: relative;
-            overflow: hidden;
+            background: var(--card-bg); border-radius: 12px; padding: 25px;
+            border: 1px solid var(--border-color); transition: all 0.3s ease;
+            display: flex; flex-direction: column; height: 100%;
         }
-        .tool-card:hover{ border-color:#38bdf8; }
-
-        .tool-card .tool-image {
-            width: 70px;
-            height: 70px;
-            border-radius: 20px;
-            margin-bottom: 22px;
-            background: var(--bg-primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow:hidden;
-            filter: drop-shadow(2px 2px 4px white);
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border-color: transparent;
         }
-
-        .tool-card .tool-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+        .icon-box {
+            width: 45px; height: 45px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; margin-bottom: 18px;
         }
-
+        .icon-box.red { background-color: #fee2e2; color: #ef4444; }
+        .icon-box.green { background-color: #d1fae5; color: #10b981; }
+        .icon-box.blue { background-color: #dbeafe; color: #3b82f6; }
+        .icon-box.orange { background-color: #fef3c7; color: #f59e0b; }
+        .icon-box.purple { background-color: #ede9fe; color: #8b5cf6; }
+        .icon-box.indigo { background-color: #e0e7ff; color: #6366f1; }
+        .icon-box.pink { background-color: #fce7f3; color: #ec4899; }
+        .icon-box.teal { background-color: #ccfbf1; color: #14b8a6; }
+        .icon-box.cyan { background-color: #cffafe; color: #06b6d4; }
+        .icon-box.yellow { background-color: #fef9c3; color: #eab308; }
         .tool-card h3 {
-            font-size: 22px;
-            margin-bottom: 12px;
-            color: var(--text-primary);
-            font-weight: 700;
+            font-size: 1.15rem; font-weight: 700;
+            margin-bottom: 8px; color: var(--text-dark);
         }
-
         .tool-card p {
-            color: var(--text-secondary);
-            line-height: 1.5;
-            font-size: 14px;
+            font-size: 0.85rem; color: var(--text-gray); line-height: 1.5;
         }
-
-        footer {
-            padding: 20px 5%;
-            text-align: center;
-            color: var(--text-secondary);
-            background: var(--bg-secondary);
-            margin-top: 60px;
-            border-top: 1px solid var(--border-color);
-            font-size: 14px;
+        .card-category-badge { display: none; }
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6); z-index: 1050;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s ease;
         }
-
-        @media (max-width: 768px) {
-            #Deep header .navbar {
-                flex-direction: row;
-                flex-wrap: nowrap;
-                gap: 8px;
-                align-items: center;
-                justify-content: space-between;
-            }
-            #Deep header .navbar .logo {
-                font-size: 16px;
-                white-space: nowrap;
-                flex-shrink: 0;
-            }
-            #Deep header .navbar .search-box {
-                flex: 1;
-                min-width: 0;
-                max-width: 100%;
-            }
-            #Deep header .navbar .search-box input {
-                font-size: 14px;
-                padding: 7px 12px;
-                width: 100%;
-            }
-            #Deep header .navbar .theme-toggle {
-                align-self: center;
-                margin-top: 0;
-                width: 36px;
-                height: 36px;
-                flex-shrink: 0;
-            }
-            #Deep header .navbar .theme-toggle i {
-                font-size: 1.2rem;
-            }
-            .category-section .category-title {
-                font-size: 24px;
-                margin: 30px 0 20px 0;
-            }
-            .tool-card h3 {
-                font-size: 20px;
-            }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .category-modal {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(0.95);
+            background-color: var(--white); padding: 30px;
+            border-radius: 16px; z-index: 1051;
+            width: 90%; max-width: 750px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            opacity: 0; visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-height: 90vh; overflow-y: auto;
         }
-
-        ::-webkit-scrollbar {
-            width: 8px;
+        .category-modal.active {
+            opacity: 1; visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
         }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
+        .modal-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 25px;
         }
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent);
-            border-radius: 10px;
+        .modal-header h2 { font-size: 1.5rem; color: var(--text-dark); font-weight: 800; }
+        .close-modal {
+            background: var(--bg-light); border: none; width: 35px; height: 35px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; color: var(--text-dark); cursor: pointer; transition: 0.2s;
         }
-
-        .skip-to-content {
-            position: absolute;
-            left: -9999px;
-            top: auto;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
+        .close-modal:hover { background: var(--border-color); color: var(--red-color); }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
         }
-
-        .skip-to-content:focus {
-            left: 50%;
-            transform: translateX(-50%);
-            width: auto;
-            height: auto;
-            padding: 12px 24px;
-            background: var(--accent);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            top: 10px;
-            z-index: 9999;
+        .category-card-btn {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 12px; padding: 25px 15px; border-radius: 12px;
+            background-color: var(--bg-light); border: 1px solid var(--border-color);
+            color: var(--text-dark); font-weight: 600; font-size: 1rem;
+            cursor: pointer; transition: all 0.2s ease;
         }
-        #mainContent a{text-decoration:none;}
-        #SDS{font-family: Blippo, fantasy;padding:0 4px;}
+        .category-card-btn:hover {
+            background-color: var(--primary-blue); color: #fff;
+            border-color: var(--primary-blue); transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(26, 86, 219, 0.2);
+        }
+        .category-card-btn i { font-size: 1.8rem; color: var(--primary-blue); transition: 0.2s; }
+        .category-card-btn:hover i { color: #fff; }
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .btn-start { display: none; }
+            .hamburger { display: block; }
+            .hero-section { padding: 30px 0 20px; text-align: left; }
+            .hero-section h1 { font-size: 2rem; margin-bottom: 10px; }
+            .hero-section p { font-size: 0.95rem; margin-bottom: 20px; }
+            .hero-action-buttons {
+                flex-direction: row; width: 100%; gap: 10px; margin-bottom: 20px;
+            }
+            .btn-explore, .btn-view-categories {
+                flex: 1; padding: 10px 10px; font-size: 0.85rem;
+                text-align: center; justify-content: center; white-space: nowrap;
+            }
+            .search-wrapper { margin-bottom: 20px; }
+            .search-wrapper input {
+                border-radius: 50px; padding: 12px 100px 12px 45px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            }
+            .search-wrapper .fa-search { left: 18px; font-size: 1rem; }
+            .search-btn { padding: 8px 20px; right: 5px; }
+            .tools-grid { display: flex; flex-direction: column; gap: 15px; }
+            .tool-card {
+                flex-direction: row; padding: 15px; border-radius: 12px;
+                align-items: flex-start; gap: 15px;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            }
+            .tool-card:hover { transform: none; }
+            .tool-card .icon-box { margin-bottom: 0; min-width: 45px; height: 45px; }
+            .tool-content { display: flex; flex-direction: column; }
+            .card-category-badge {
+                display: block; font-size: 0.7rem; color: var(--red-color);
+                font-weight: 700; text-transform: uppercase; margin-bottom: 4px;
+            }
+            .tool-card h3 { font-size: 1.05rem; margin-bottom: 5px; line-height: 1.3; }
+            .tool-card p { font-size: 0.8rem; }
+            .footer-container { grid-template-columns: 1fr; text-align: center; }
+            .footer-col h3::after { display: none; }
+            .footer-logo { justify-content: center; }
+            .category-modal { padding: 20px; width: 95%; }
+            .category-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .category-card-btn { padding: 15px 10px; font-size: 0.9rem; }
+            .category-card-btn i { font-size: 1.4rem; }
+        }
+        .site-footer { background-color: #111827; color: #d1d5db; padding-top: 60px; margin-top: auto; }
+        .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; padding-bottom: 40px; }
+        .footer-col h3 { color: #ffffff; font-size: 1.1rem; margin-bottom: 20px; font-weight: 600; position: relative; }
+        .footer-col h3::after { content: ''; position: absolute; left: 0; bottom: -8px; width: 40px; height: 2px; background-color: var(--primary-blue); }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a { color: #d1d5db; text-decoration: none; transition: color 0.2s ease; font-size: 0.95rem; }
+        .footer-col ul li a:hover { color: #ffffff; padding-left: 5px; }
+        .footer-bottom { background-color: #0f172a; padding: 20px 0; text-align: center; border-top: 1px solid #1f2937; }
+        .footer-bottom p { font-size: 0.9rem; color: #d1d5db; }
+        .hide-card { display: none !important; }
     </style>
-    <!-- Non-critical CSS loaded asynchronously -->
-    <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'">
-    <!-- Font display optimization -->
-    <style>
-        /* System font stack with font-display optimization */
-        @font-face {
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 400 700;
-            font-display: swap;
-            src: local('Inter'), local('Inter-Regular');
-        }
-        /* Fallback font loading with font-display: optional for performance */
-    </style>
-    <title>Deep Mega Tools | Modern Dev Hub</title>
 </head>
-<body id="Deepmega">
-    <a href="#mainContent" class="skip-to-content">Skip to main content</a>
-    <main id="Deep">
-        <header>
-            <div class="navbar">
-                <div class="logo">
-                    ⚡ Deep Mega Tools
-                </div>
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="🔍 Search tools..." aria-label="Search tools">
-                </div>
-                <button class="theme-toggle" id="themeToggleBtn" aria-label="Switch between light and dark mode" title="Switch theme">
-                    <i class="fa-solid fa-sun" id="themeIcon" aria-hidden="true"></i>
-                </button>
-            </div>
-        </header>
-        <div id="SDS">
-            <div class="DSS">
-                <h1>Deep Mega Tools – Free Online Tools for Developers, Creators & Bloggers.</h1>
-            </div>
-            <div class="PTS">
-                <p>Deep Mega Tools offers a powerful collection of free online tools, including QR Code Generator, SEO & Blogger Tools, AI-Powered Tools, Image & Design Tools, Developer Tools, Social Media Tools, PDF Tools, JSON Formatter, Password Generator, Background Remover, Image Compressor, and more.</p>
+<body>
+
+    <!-- MOBILE DRAWER -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <a href="#" class="logo">
+                <div class="logo-icon"><i class="fa-solid fa-layer-group"></i></div>
+                <span style="color: var(--text-dark);">Deep</span> <span class="mega-text">Mega</span> <span class="tools-text">Tools</span>
+            </a>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button class="icon-btn" id="mobile-theme-toggle" aria-label="Toggle Theme"><i class="fa-regular fa-moon"></i></button>
+                <button class="icon-btn drawer-share-btn" aria-label="Share Website"><i class="fa-solid fa-share-nodes"></i></button>
+                <button class="close-drawer" id="closeDrawer" aria-label="Close Menu"><i class="fa-solid fa-xmark"></i></button>
             </div>
         </div>
-        <div class="category-section" id="mainContent">
-            <!-- Category 1: Image & Design Tools -->
-            <h2 class="category-title" id="image-design-category"><i class="fa-solid fa-palette" aria-hidden="true"></i> Image & Design Tools</h2>
-
-            <div class="tools-grid" data-category="image-design" aria-labelledby="image-design-category">
-                <!--Tool No.1-->
-                <a href="tools/barcode-generator.html"><div class="tool-card" data-name="Barcode Generator">
-                        <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/image_processed_593x612.webp" alt="Barcode Generator" loading="lazy"></div>
-                        <h3>Barcode Generator</h3>
-                        <p>Free Barcode Generator Online - Create Barcode Images Instantly.</p>
-                    </div></a>
-                <!--Tool No.2-->
-                <a href="tools/qr-code-generator.html">       
-                    <div class="tool-card" data-name="QRcode Generator">
-                        <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/final_75x75.webp" alt="Free Online QR Code Generator Tool" loading="lazy"></div>
-                        <h3>QR Code Generator</h3>
-                        <p>Free QR Code Generator Online - Create Custom QR Codes Instantly</p>
-                    </div></a>
-                <!--Tool No.3-->
-                <a href="https://deepmegatools.vercel.app/tools/merge-image-online.html">
-                    <div class="tool-card" data-name="Merge Image Online">
-                        <div class="tool-image"><img src="https://deepmegatools.vercel.app/icons/final_75x75%20(11).webp" alt="Merge Image Online" loading="lazy" data-original-src="https://deepmegatools.vercel.app/icons/final_75x75%20(7).webp"></div>
-                        <h3>Merge Image Online</h3>
-                        <p>Merge Image Online
-Combine multiple images into one instantly—free, fast, and secure.</p></div></a>  
-                <!--Tool No.4-->
-                <a href="/tools/image-resizer.html">
-                    <div class="tool-card" data-name="Image Compressor">
-                        <div class="tool-image"><img src="https://deepmegatools.vercel.app/icons/final_75x75%20(7).webp" alt="Image Compressor Tool" loading="lazy" data-original-src="https://deepmegatools.vercel.app/icons/final_75x75%20(7).webp"></div>
-                        <h3>Image Resizer</h3>
-                        <p>Resize JPG, PNG & WEBP images online for free without losing quality.</p>
-                    </div></a>
-                <!--Tool No.4-->
-                <a href="tools/whatsapp-direct-chat.html">
-                    <div class="tool-card" data-name="WhatsApp direct chat">
-                        <div class="tool-image"><img src="https://deepmegatools.vercel.app/icons/final_75x75%20(9).webp alt="Free Online QR Code Generator Tool" loading="lazy"></div>
-                        <h3>WhatsApp Direct Chat</h3>
-                        <p>Chat on WhatsApp without saving the phone number. Fast, free, and easy to use.</p>
-                    </div></a>
-            </div>
-
-            <!-- Category 2: Social Media Tools -->
-            <h2 class="category-title" id="social-media-category"><i class="fa-solid fa-share-alt" aria-hidden="true"></i> Social Media Tools</h2>
-            <div class="tools-grid" data-category="social-media" aria-labelledby="social-media-category">
-                <div class="tool-card" data-name="QR Code Generator">
-                    <div class="tool-image"><img src="images/qr-generator.png" alt="QR Generator" loading="lazy"></div>
-                    <h3>Coming Soon</h3>
-                    <p></p>
-                </div>
-                <div class="tool-card" data-name="Poster Generator">
-                    <div class="tool-image"><img src="images/poster-generator.png" alt="Poster Generator" loading="lazy"></div>
-                    <h3>Coming Soon</h3>
-                    <p></p>
-                </div>
-            </div>
-
-            <!-- Category 3: Utility Tools -->
-            <h2 class="category-title" id="utility-category"><i class="fa-solid fa-toolbox" aria-hidden="true"></i> Utility Tools</h2>
-            <div class="tools-grid" data-category="utility" aria-labelledby="utility-category">
-      <a href="tools/age-calculator.html">       
-                    <div class="tool-card" data-name="Age Calculator">
-                        <div class="tool-image"><img src="https://deepmegatools.vercel.app/icons/final_100x100.webp" alt="Free Online QR Code Generator Tool" loading="lazy"></div>
-                        <h3>Age Calculator</h3>
-                        <p>Free QR Code Generator Online - Create Custom QR Codes Instantly</p>
-                    </div></a>
-                
-<a href="/tools/text-to-speech-voice.html">
-  <div class="tool-card" data-name="Text To Speech">
-    <div class="tool-image">
-      <img
-        src="https://deepmegatools.vercel.app/icons/final_100x100.webp"
-        alt="Text To Speech Voice Tool"
-        loading="lazy"
-        width="100"
-        height="100">
+        <ul class="drawer-menu">
+            <li class="drawer-menu-item"><button class="drawer-menu-btn active" data-filter="all">All Tools</button></li>
+            <li class="drawer-menu-item"><button class="drawer-menu-btn" data-filter="image">Images</button></li>
+            <li class="drawer-menu-item"><button class="drawer-menu-btn" data-filter="dev">Dev Tools</button></li>
+            <li class="drawer-menu-item"><button class="drawer-menu-btn" data-filter="ai">AI Tools</button></li>
+            <li class="drawer-menu-item"><button class="drawer-menu-btn" data-filter="seo">SEO & Blogger</button></li>
+            <li class="drawer-menu-item"><button class="drawer-menu-btn" data-filter="pdf">File & PDFs</button></li>
+            <li class="drawer-menu-item"><button class="drawer-menu-btn" data-filter="social">Social Media</button></li>
+            <li class="drawer-menu-item"><button class="drawer-menu-btn" data-filter="text">Text & Writing</button></li>
+            <li class="drawer-menu-item"><button class="drawer-menu-btn" data-filter="security">Security & Privacy</button></li>
+            <li class="drawer-menu-item"><button class="drawer-menu-btn" data-filter="calc">Calculators</button></li>
+            <li class="drawer-menu-item"><button class="drawer-menu-btn" data-filter="video">Video & Audio</button></li>
+        </ul>
     </div>
-    <h3>Text To Speech</h3>
-    <p>Convert text into natural speech instantly with our free Text-to-Speech Voice Tool.</p>
-  </div>
-</a>
+
+    <!-- HEADER -->
+    <header class="top-navbar">
+        <div class="container nav-container">
+            <div class="nav-left">
+                <a href="#" class="logo">
+                    <div class="logo-icon"><i class="fa-solid fa-layer-group"></i></div>
+                    <span style="color: var(--text-dark);">Deep</span> <span class="mega-text">Mega</span> <span class="tools-text">Tools</span>
+                </a>
+                <nav class="nav-links" id="top-navigation">
+                    <a href="#" class="active" data-filter="all">All Tools <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; margin-left: 3px;"></i></a>
+                    <a href="#" data-filter="image">Images</a>
+                    <a href="#" data-filter="dev">Dev Tools</a>
+                    <a href="#" data-filter="ai">AI Tools</a>
+                    <a href="#" data-filter="seo">SEO & Blogger</a>
+                </nav>
             </div>
-            <!-- Category 4: SEO & Blogger Tools -->
-            <h2 class="category-title" id="seo-category"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> SEO & Blogger Tools</h2>
-            <div class="tools-grid" data-category="seo-blogger" aria-labelledby="seo-category">
-                <div class="tool-card" data-name="Text To Slug">
-                    <div class="tool-image"><img src="images/text-slug.png" alt="Text to Slug" loading="lazy"></div>
-                    <h3>Coming Soon</h3>
-                    <p></p>
-                </div>
-                <div class="tool-card" data-name="Meta Tag Generator">
-                    <div class="tool-image"><img src="images/meta-tag.png" alt="Meta Tags" loading="lazy"></div>
-                    <h3>Coming Soon</h3>
-                    <p></p>
-                </div>
-            </div>
-
-            <!-- Category 5: Developer Tools -->
-            <h2 class="category-title" id="developer-category"><i class="fa-solid fa-code" aria-hidden="true"></i> Developer Tools</h2>
-            <div class="tools-grid" data-category="developer" aria-labelledby="developer-category">
-                <a href="tools/unlock-page.html">
-                    <div class="tool-card" data-name="Unlock Page Generator">
-                        <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/unlock page.webp" alt="Unlock Page Generator" loading="lazy" data-original-src="images/images/unlock page.webp"></div>
-                        <h3>Unlock Page Generator</h3>
-                        <p>Generate unlock pages instantly,Generate unlock links with ease.</p>
-                    </div></a>
-
-                <a href="tools/color-contrast-analyzer.html"><div class="tool-card" data-name="Color Contrast Analyzer Dev">
-                        <div class="tool-image"><img src="https://deepmegatools.vercel.app/images//final_1091x1038.webp" alt="Color Contrast Analyzer" loading="lazy" data-original-src="https://deepmegatools.vercel.app/images//final_1091x1038.webp"></div>
-                        <h3>Color Contrast Analyzer</h3>
-                        <p>Checks contrast ratio between text & background following WCAG.</p>
-                    </div></a>
-                <a href="tools/auto-code-typing.html">  
-                    <div class="tool-card" data-name="Automatic Code Typing">
-                        <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/final_731x757.webp" alt="Automatic Code Typing" loading="lazy" data-original-src="https://deepmegatools.vercel.app/images/final_731x757.webp"></div>
-                        <h3>Automatic Code Typing</h3>
-                        <p>Paste HTML/CSS/JS code and watch automatic typing effect.</p>
-                    </div></a>
-                <a href="tools/code-editor.html"><div class="tool-card" data-name="Live Code Editor">
-                        <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/image_processed_1254x1254.webp" alt="Live Code Editor" loading="lazy" data-original-src="https://deepmegatools.vercel.app/images/image_processed_1254x1254.webp"></div>
-                        <h3>Live Code Editor</h3>
-                        <p>HTML/CSS/JS Editor with live preview and console.</p>
-                    </div></a>
-                <a href="tools/border-radius.html">       
-                    <div class="tool-card" data-name="Border Radius">
-                        <div class="tool-image"><img src="https://deepmegatools.vercel.app/icons/final_92x92.webp" alt="Border Radius" loading="lazy"></div>
-                        <h3>Border Radius</h3>
-                        <p>Live Border Radius Fancy Border Radius</p>
-                    </div></a> 
-                <a href="tools/css-border-Image.html">
-                    <div class="tool-card" data-name="CSS Border Image">
-                        <div class="tool-image"><img src="https://deepmegatools.vercel.app/images/final_932x847.webp" alt="CSS Border Image" loading="lazy" data-original-src="https://deepmegatools.vercel.app/images/final_932x847.webp"></div>
-                        <h3>CSS Border Image</h3>
-                        <p>Generate border images live using images and gradients.</p>
-                    </div></a>
-
-                <div class="tool-card" data-name="Responsive Checker">
-                    <div class="tool-image"><img src="images/responsive-checker.png" alt="Responsive Checker" loading="lazy" data-original-src="images/responsive-checker.png"></div>
-                    <h3><!--Responsive Checker-->Coming Soon</h3>
-                    <p>Test website responsiveness across multiple device sizes.</p>
-                </div>
+            <div class="nav-right">
+                <button class="btn-start">START FREE</button>
+                <button class="icon-btn" id="theme-toggle" title="Toggle Dark Mode" aria-label="Toggle Dark Mode"><i class="fa-regular fa-moon"></i></button>
+                <button class="icon-btn" id="share-btn" title="Share Website" aria-label="Share Website"><i class="fa-solid fa-share-nodes"></i></button>
+                <button class="hamburger" id="openDrawer" aria-label="Open Menu"><i class="fa-solid fa-bars"></i></button>
             </div>
         </div>
+    </header>
 
-        <footer>
-            <i class="fa-regular fa-copyright" aria-hidden="true"></i> 2026 Deep Mega Tools • All Rights Reserved •
-            <span id="currentYear"></span> ✨ 5 categories | 24 powerful tools
-        </footer>
+    <!-- HERO -->
+    <section class="hero-section">
+        <div class="container">
+            <p>Browser-native file tools, converters, and markdown utilities.</p>
+            <div class="hero-action-buttons">
+                <a href="#" class="btn-explore">Explore All Tools <i class="fa-solid fa-arrow-right"></i></a>
+                <button class="btn-view-categories" id="openCategoryModal">View Categories</button>
+            </div>
+            <div class="search-wrapper">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" id="search-input" placeholder="Search tools...">
+                <button class="search-btn" id="search-btn" aria-label="Search">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN TOOLS GRID -->
+    <main class="container">
+        <div class="tools-grid" id="tools-container">
+
+            <!-- ================= IMAGE TOOLS ================= -->
+            <a href="#" class="tool-card" data-category="image">
+                <div class="icon-box orange"><i class="fa-solid fa-images"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Image Tools</span>
+                    <h3>Merge Image Online</h3>
+                    <p>Merge Image Online Combine multiple images into one instantly—free, fast, and secure.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="image">
+                <div class="icon-box blue"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Image Tools</span>
+                    <h3>Image Resizer</h3>
+                    <p>Resize JPG, PNG & WEBP images online for free without losing quality.</p>
+                </div>
+            </a>
+
+            <!-- 
+            <a href="#" class="tool-card" data-category="image">
+                <div class="icon-box cyan"><i class="fa-solid fa-eraser"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Image & Design</span>
+                    <h3>Background Remover</h3>
+                    <p>Remove backgrounds from images automatically and instantly.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="image">
+                <div class="icon-box green"><i class="fa-solid fa-minimize"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Image & Design</span>
+                    <h3>Image Compressor</h3>
+                    <p>Compress images (JPG, PNG) without losing quality to speed up your site.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="image">
+                <div class="icon-box blue"><i class="fa-solid fa-crop-simple"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Image Tools</span>
+                    <h3>Image Cropper</h3>
+                    <p>Crop images online to any aspect ratio for social media, profile pictures, and more.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="image">
+                <div class="icon-box purple"><i class="fa-solid fa-right-left"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Image Tools</span>
+                    <h3>Image Converter</h3>
+                    <p>Convert images between JPG, PNG, WEBP, and GIF formats instantly online.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="image">
+                <div class="icon-box indigo"><i class="fa-solid fa-star"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Image Tools</span>
+                    <h3>Favicon Generator</h3>
+                    <p>Generate favicons in all required sizes from any image for your website.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="image">
+                <div class="icon-box teal"><i class="fa-solid fa-eye"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Image Tools</span>
+                    <h3>Image to Text (OCR)</h3>
+                    <p>Extract readable text from any image using advanced OCR technology.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="image">
+                <div class="icon-box yellow"><i class="fa-solid fa-code"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Image Tools</span>
+                    <h3>Image to Base64</h3>
+                    <p>Convert any image to Base64 string for embedding in HTML, CSS, or JSON.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="image">
+                <div class="icon-box pink"><i class="fa-solid fa-water"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Image Tools</span>
+                    <h3>Image Watermark</h3>
+                    <p>Add text or logo watermarks to your images to protect your creative work.</p>
+                </div>
+            </a>
+            -->
+
+            <!-- ================= AI TOOLS ================= -->
+            <a href="#" class="tool-card" data-category="ai">
+                <div class="icon-box blue"><i class="fa-solid fa-microphone-lines"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">AI Tools</span>
+                    <h3>Text To Speech</h3>
+                    <p>Convert text into natural speech instantly with our free Text-to-Speech Voice Tool.</p>
+                </div>
+            </a>
+
+            <!-- 
+            <a href="#" class="tool-card" data-category="ai">
+                <div class="icon-box indigo"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">AI Tools</span>
+                    <h3>AI Content Writer</h3>
+                    <p>Generate high-quality articles, blogs, and paragraphs using AI.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="ai">
+                <div class="icon-box pink"><i class="fa-solid fa-image-portrait"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">AI Tools</span>
+                    <h3>AI Image Generator</h3>
+                    <p>Create stunning images from text prompts using advanced AI.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="ai">
+                <div class="icon-box teal"><i class="fa-solid fa-align-left"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">AI Tools</span>
+                    <h3>AI Text Summarizer</h3>
+                    <p>Summarize long articles, essays, and documents into concise key points with AI.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="ai">
+                <div class="icon-box orange"><i class="fa-solid fa-pen-to-square"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">AI Tools</span>
+                    <h3>AI Paraphraser</h3>
+                    <p>Rewrite and paraphrase any text in multiple styles to avoid plagiarism.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="ai">
+                <div class="icon-box green"><i class="fa-solid fa-spell-check"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">AI Tools</span>
+                    <h3>AI Grammar Checker</h3>
+                    <p>Fix grammar, spelling, and punctuation errors automatically with AI.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="ai">
+                <div class="icon-box cyan"><i class="fa-solid fa-language"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">AI Tools</span>
+                    <h3>AI Translator</h3>
+                    <p>Translate text into 100+ languages with natural, context-aware AI translations.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="ai">
+                <div class="icon-box purple"><i class="fa-solid fa-bullhorn"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">AI Tools</span>
+                    <h3>AI Social Caption Writer</h3>
+                    <p>Create scroll-stopping captions for Instagram, Facebook, and LinkedIn with AI.</p>
+                </div>
+            </a>
+            -->
+
+            <!-- ================= PDF TOOLS ================= -->
+            <!-- 
+            <a href="#" class="tool-card" data-category="pdf">
+                <div class="icon-box red"><i class="fa-regular fa-file-lines"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">File & PDFs</span>
+                    <h3>CSV to Markdown Table Converter</h3>
+                    <p>Convert raw CSV data into styled GitHub Flavored Markdown (GFM) tables.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="pdf">
+                <div class="icon-box red"><i class="fa-regular fa-file-code"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">File & PDFs</span>
+                    <h3>SVG to Inline CSS Encoder</h3>
+                    <p>Encode vector SVG drawings to base64 inline CSS background-image format.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="pdf">
+                <div class="icon-box red"><i class="fa-solid fa-object-group"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">PDF Tools</span>
+                    <h3>Merge PDF</h3>
+                    <p>Combine PDFs in the order you want with the easiest PDF merger available.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="pdf">
+                <div class="icon-box red"><i class="fa-solid fa-scissors"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">PDF Tools</span>
+                    <h3>Split PDF</h3>
+                    <p>Separate one page or a whole set for easy conversion into independent PDF files.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="pdf">
+                <div class="icon-box green"><i class="fa-solid fa-compress"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">PDF Tools</span>
+                    <h3>Compress PDF</h3>
+                    <p>Reduce file size while optimizing for maximal PDF quality.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="pdf">
+                <div class="icon-box blue"><i class="fa-solid fa-file-word"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">PDF Tools</span>
+                    <h3>PDF to Word</h3>
+                    <p>Easily convert your PDF files into easy to edit DOC and DOCX documents.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="pdf">
+                <div class="icon-box purple"><i class="fa-regular fa-image"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">PDF Tools</span>
+                    <h3>PDF to JPG</h3>
+                    <p>Convert each PDF page into a high-quality JPG image or extract all images.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="pdf">
+                <div class="icon-box orange"><i class="fa-regular fa-images"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">PDF Tools</span>
+                    <h3>JPG to PDF</h3>
+                    <p>Convert JPG images to PDF in seconds, with custom page orientation and margins.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="pdf">
+                <div class="icon-box teal"><i class="fa-solid fa-rotate"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">PDF Tools</span>
+                    <h3>Rotate PDF</h3>
+                    <p>Rotate PDF pages individually or all at once and save the final document.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="pdf">
+                <div class="icon-box indigo"><i class="fa-solid fa-droplet"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">PDF Tools</span>
+                    <h3>Watermark PDF</h3>
+                    <p>Add text or image watermarks to your PDF documents to protect your content.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="pdf">
+                <div class="icon-box pink"><i class="fa-solid fa-lock"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">PDF Tools</span>
+                    <h3>Protect PDF</h3>
+                    <p>Add password protection and encryption to your PDF files to secure them.</p>
+                </div>
+            </a>
+            -->
+
+            <!-- ================= SEO TOOLS ================= -->
+            <a href="#" class="tool-card" data-category="seo">
+                <div class="icon-box orange"><i class="fa-solid fa-qrcode"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">SEO & Blogger</span>
+                    <h3>QR Code Generator</h3>
+                    <p>Create custom QR codes for links, text, Wi-Fi, and more instantly.</p>
+                </div>
+            </a>
+
+            <!-- 
+            <a href="#" class="tool-card" data-category="seo">
+                <div class="icon-box blue"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">SEO & Blogger</span>
+                    <h3>SEO Meta Tag Generator</h3>
+                    <p>Generate perfect meta tags (title, description, keywords) for your website.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="seo">
+                <div class="icon-box teal"><i class="fa-solid fa-robot"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">SEO & Blogger</span>
+                    <h3>Robots.txt Generator</h3>
+                    <p>Create a robots.txt file to tell search engines which pages to crawl.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="seo">
+                <div class="icon-box purple"><i class="fa-solid fa-sitemap"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">SEO & Blogger</span>
+                    <h3>XML Sitemap Generator</h3>
+                    <p>Generate XML sitemaps to help search engines index your website better.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="seo">
+                <div class="icon-box pink"><i class="fa-solid fa-hashtag"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Social Media</span>
+                    <h3>Hashtag Generator</h3>
+                    <p>Find the best trending hashtags for Instagram, Twitter, and TikTok.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="seo">
+                <div class="icon-box green"><i class="fa-solid fa-percent"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">SEO & Blogger</span>
+                    <h3>Keyword Density Checker</h3>
+                    <p>Analyze keyword density and find the most frequent terms in your content.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="seo">
+                <div class="icon-box indigo"><i class="fa-solid fa-share-nodes"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">SEO & Blogger</span>
+                    <h3>Open Graph Generator</h3>
+                    <p>Generate Open Graph meta tags for perfect link previews on social media.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="seo">
+                <div class="icon-box red"><i class="fa-solid fa-gauge-high"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">SEO & Blogger</span>
+                    <h3>Website Speed Test</h3>
+                    <p>Test and analyze your website's load speed with detailed performance metrics.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="seo">
+                <div class="icon-box yellow"><i class="fa-solid fa-globe"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">SEO & Blogger</span>
+                    <h3>Google Index Checker</h3>
+                    <p>Check if your website pages are indexed by Google search engine.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="seo">
+                <div class="icon-box cyan"><i class="fa-solid fa-link"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">SEO & Blogger</span>
+                    <h3>Backlink Checker</h3>
+                    <p>Analyze the backlinks pointing to your website to improve your SEO strategy.</p>
+                </div>
+            </a>
+            -->
+
+            <!-- ================= DEV TOOLS ================= -->
+            <a href="tools/unlock-page.html" class="tool-card" data-category="dev">
+                <div class="icon-box blue"><i class="fa-solid fa-unlock"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>Unlock Page Generator</h3>
+                    <p>Generate unlock pages instantly, generate unlock links with ease.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box yellow"><i class="fa-solid fa-clone"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>Text Shadow Generator</h3>
+                    <p>Create beautiful CSS text shadows visually and copy the code instantly.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box teal"><i class="fa-solid fa-cube"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>Box Shadow Generator</h3>
+                    <p>Design custom CSS box shadows with live preview and instant code copy.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box cyan"><i class="fa-solid fa-circle-half-stroke"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>Color Contrast Checker</h3>
+                    <p>Check WCAG color contrast between text and background for accessibility.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box indigo"><i class="fa-solid fa-language"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>OCR Translate</h3>
+                    <p>Extract text from images using OCR and translate it into multiple languages instantly.</p>
+                </div>
+            </a>
+            <a href="tools/auto-code-typing.html" class="tool-card" data-category="dev">
+                <div class="icon-box indigo"><i class="fa-solid fa-keyboard"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>Automatic Code Typing</h3>
+                    <p>Paste HTML/CSS/JS code and watch automatic typing effect.</p>
+                </div>
+            </a>
+            <a href="tools/code-editor.html" class="tool-card" data-category="dev">
+                <div class="icon-box green"><i class="fa-solid fa-laptop-code"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>Live Code Editor</h3>
+                    <p>HTML/CSS/JS Editor with live preview and console.</p>
+                </div>
+            </a>
+            <a href="tools/css-border-Image.html" class="tool-card" data-category="dev">
+                <div class="icon-box orange"><i class="fa-solid fa-border-all"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>CSS Border Image</h3>
+                    <p>Generate border images live using images and gradients.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box indigo"><i class="fa-solid fa-bolt"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>CSS Animation</h3>
+                    <p>Generate and customize CSS animations visually for your web projects.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box teal"><i class="fa-solid fa-paint-roller"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>CSS Background</h3>
+                    <p>Create and preview custom CSS backgrounds with various properties.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box pink"><i class="fa-solid fa-fill-drip"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>CSS Gradient</h3>
+                    <p>Design beautiful and complex CSS gradients and copy the code instantly.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box teal"><i class="fa-solid fa-mobile-screen"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>Responsive Checker</h3>
+                    <p>Check how your website looks on different screen sizes.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box green"><i class="fa-solid fa-align-left"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>JSON Formatter</h3>
+                    <p>Clean up, format, and validate your JSON code to make it readable.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box blue"><i class="fa-solid fa-code"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>HTML to PDF</h3>
+                    <p>Convert webpages in HTML to PDF. Copy and paste the URL you want.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box purple"><i class="fa-solid fa-barcode"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>Barcode Generator</h3>
+                    <p>Generate standard barcodes for products, inventory, and tracking quickly.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box purple"><i class="fa-solid fa-qrcode"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>QR & Barcode Scanner</h3>
+                    <p>Scan QR codes and barcodes instantly using your camera or by uploading an image.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box purple"><i class="fa-solid fa-lock"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>Base64 Encoder/Decoder</h3>
+                    <p>Encode or decode Base64 strings quickly and securely for dev use.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box green"><i class="fa-solid fa-filter"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>Regex Tester</h3>
+                    <p>Test and debug regular expressions with live matching and highlighting.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box blue"><i class="fa-solid fa-code-compare"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>Diff Checker</h3>
+                    <p>Compare two texts or code blocks side by side to spot differences instantly.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box purple"><i class="fa-solid fa-clock"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>Cron Expression Generator</h3>
+                    <p>Generate and understand cron schedule expressions for any task easily.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box red"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>MD5 Generator</h3>
+                    <p>Generate MD5 hashes from any text or data for checksum verification.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box orange"><i class="fa-solid fa-minimize"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>HTML Minifier</h3>
+                    <p>Minify HTML code to reduce file size and improve website load speed.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box yellow"><i class="fa-solid fa-minimize"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>CSS Minifier</h3>
+                    <p>Compress and minify CSS files to boost your site's performance.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box indigo"><i class="fa-solid fa-code-branch"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>SQL Formatter</h3>
+                    <p>Format and beautify SQL queries for better readability and debugging.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="dev">
+                <div class="icon-box cyan"><i class="fa-solid fa-file-code"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Developer Tools</span>
+                    <h3>XML Formatter</h3>
+                    <p>Format, beautify, and validate XML code to make it readable and clean.</p>
+                </div>
+            </a>
+
+            <!-- ================= SOCIAL MEDIA TOOLS ================= -->
+            <a href="#" class="tool-card" data-category="social">
+                <div class="icon-box green"><i class="fa-brands fa-whatsapp"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Social Media</span>
+                    <h3>WhatsApp Direct Chat Generator</h3>
+                    <p>Chat on WhatsApp directly without saving the phone number to contacts.</p>
+                </div>
+            </a>
+
+            <!-- 
+            <a href="#" class="tool-card" data-category="social">
+                <div class="icon-box green"><i class="fa-solid fa-link"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Social Media</span>
+                    <h3>WhatsApp Link Generator</h3>
+                    <p>Create shareable wa.me links for your business, group, or personal chat.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="social">
+                <div class="icon-box pink"><i class="fa-brands fa-instagram"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Social Media</span>
+                    <h3>Instagram Bio Generator</h3>
+                    <p>Generate catchy and aesthetic Instagram bios with emojis and fonts.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="social">
+                <div class="icon-box pink"><i class="fa-solid fa-comment-dots"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Social Media</span>
+                    <h3>Instagram Caption Generator</h3>
+                    <p>Create engaging, trending Instagram captions for reels and posts.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="social">
+                <div class="icon-box pink"><i class="fa-solid fa-hashtag"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Social Media</span>
+                    <h3>Instagram Hashtag Generator</h3>
+                    <p>Find the best high-reach hashtags for Instagram growth instantly.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="social">
+                <div class="icon-box red"><i class="fa-brands fa-youtube"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Social Media</span>
+                    <h3>YouTube Title Generator</h3>
+                    <p>Generate clickable, SEO-friendly YouTube video titles that boost views.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="social">
+                <div class="icon-box red"><i class="fa-solid fa-align-left"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Social Media</span>
+                    <h3>YouTube Description Generator</h3>
+                    <p>Craft optimized YouTube descriptions with keywords and hashtags.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="social">
+                <div class="icon-box red"><i class="fa-solid fa-tags"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Social Media</span>
+                    <h3>YouTube Tag Generator</h3>
+                    <p>Generate relevant tags to rank your YouTube videos higher in search.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="social">
+                <div class="icon-box blue"><i class="fa-solid fa-font"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Social Media</span>
+                    <h3>Fancy Text Generator</h3>
+                    <p>Convert normal text into cool, fancy fonts for your social media bios.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="social">
+                <div class="icon-box blue"><i class="fa-brands fa-x-twitter"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Social Media</span>
+                    <h3>Twitter/X Post Generator</h3>
+                    <p>Generate engaging tweet ideas and viral content for Twitter/X instantly.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="social">
+                <div class="icon-box cyan"><i class="fa-brands fa-linkedin"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Social Media</span>
+                    <h3>LinkedIn Post Generator</h3>
+                    <p>Create professional LinkedIn posts and captions that boost engagement.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="social">
+                <div class="icon-box red"><i class="fa-solid fa-download"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Social Media</span>
+                    <h3>YouTube Thumbnail Downloader</h3>
+                    <p>Download high-quality thumbnails from any YouTube video in HD resolution.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="social">
+                <div class="icon-box purple"><i class="fa-solid fa-user-tag"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Social Media</span>
+                    <h3>Username Generator</h3>
+                    <p>Generate unique and catchy usernames for any social media platform.</p>
+                </div>
+            </a>
+            -->
+
+            <!-- ================= TEXT & WRITING TOOLS ================= -->
+            <!-- 
+            <a href="#" class="tool-card" data-category="text">
+                <div class="icon-box blue"><i class="fa-solid fa-file-word"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Text & Writing</span>
+                    <h3>Word Counter</h3>
+                    <p>Count words, characters, sentences, and paragraphs in your text instantly.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="text">
+                <div class="icon-box teal"><i class="fa-solid fa-text-width"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Text & Writing</span>
+                    <h3>Character Counter</h3>
+                    <p>Count characters with and without spaces for social media and SEO limits.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="text">
+                <div class="icon-box purple"><i class="fa-solid fa-font"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Text & Writing</span>
+                    <h3>Case Converter</h3>
+                    <p>Convert text to UPPERCASE, lowercase, Title Case, or Sentence case easily.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="text">
+                <div class="icon-box indigo"><i class="fa-solid fa-repeat"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Text & Writing</span>
+                    <h3>Text Repeater</h3>
+                    <p>Repeat any text multiple times with custom separators for testing or fun.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="text">
+                <div class="icon-box cyan"><i class="fa-solid fa-eraser"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Text & Writing</span>
+                    <h3>Remove Extra Spaces</h3>
+                    <p>Clean up your text by removing double spaces, tabs, and leading spaces.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="text">
+                <div class="icon-box orange"><i class="fa-solid fa-list"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Text & Writing</span>
+                    <h3>Remove Duplicate Lines</h3>
+                    <p>Instantly remove duplicate lines from any text or list while preserving order.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="text">
+                <div class="icon-box green"><i class="fa-solid fa-link"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Text & Writing</span>
+                    <h3>Text to Slug Converter</h3>
+                    <p>Convert any text into SEO-friendly URL slugs with hyphens automatically.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="text">
+                <div class="icon-box yellow"><i class="fa-solid fa-paragraph"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Text & Writing</span>
+                    <h3>Lorem Ipsum Generator</h3>
+                    <p>Generate dummy Lorem Ipsum text for your design and development projects.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="text">
+                <div class="icon-box pink"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Text & Writing</span>
+                    <h3>Reverse Text</h3>
+                    <p>Reverse any text, words, or sentences instantly with one click.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="text">
+                <div class="icon-box indigo"><i class="fa-solid fa-microchip"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Text & Writing</span>
+                    <h3>Text to Binary</h3>
+                    <p>Convert normal text into binary code and binary back to readable text.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="text">
+                <div class="icon-box orange"><i class="fa-solid fa-tower-broadcast"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Text & Writing</span>
+                    <h3>Morse Code Translator</h3>
+                    <p>Translate text to Morse code and decode Morse signals back to text.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="text">
+                <div class="icon-box green"><i class="fa-solid fa-arrows-rotate"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Text & Writing</span>
+                    <h3>Palindrome Checker</h3>
+                    <p>Check if a word, phrase, or sentence reads the same forwards and backwards.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="text">
+                <div class="icon-box teal"><i class="fa-solid fa-code-compare"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Text & Writing</span>
+                    <h3>Text Compare</h3>
+                    <p>Compare two texts and highlight the differences between them quickly.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="text">
+                <div class="icon-box purple"><i class="fa-solid fa-sort"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Text & Writing</span>
+                    <h3>Text Sorter</h3>
+                    <p>Sort lines of text alphabetically, numerically, or in reverse order instantly.</p>
+                </div>
+            </a>
+            -->
+
+            <!-- ================= SECURITY & PRIVACY TOOLS ================= -->
+            <a href="#" class="tool-card" data-category="security">
+                <div class="icon-box indigo"><i class="fa-solid fa-key"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Security & Privacy</span>
+                    <h3>Password Generator</h3>
+                    <p>Create strong, random, and secure passwords to protect your accounts.</p>
+                </div>
+            </a>
+
+            <!-- 
+            <a href="#" class="tool-card" data-category="security">
+                <div class="icon-box green"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Security & Privacy</span>
+                    <h3>Password Strength Checker</h3>
+                    <p>Test your password strength and get tips to make it more secure.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="security">
+                <div class="icon-box purple"><i class="fa-solid fa-fingerprint"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Security & Privacy</span>
+                    <h3>UUID Generator</h3>
+                    <p>Generate unique UUID v4 identifiers for your applications and databases.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="security">
+                <div class="icon-box red"><i class="fa-solid fa-hashtag"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Security & Privacy</span>
+                    <h3>SHA-256 Hash Generator</h3>
+                    <p>Generate secure SHA-256 hashes from any text or data instantly.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="security">
+                <div class="icon-box purple"><i class="fa-solid fa-lock"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Security & Privacy</span>
+                    <h3>Base64 Encoder</h3>
+                    <p>Encode any text or data to Base64 format quickly and securely.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="security">
+                <div class="icon-box purple"><i class="fa-solid fa-lock-open"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Security & Privacy</span>
+                    <h3>Base64 Decoder</h3>
+                    <p>Decode Base64 strings back into readable text or files instantly.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="security">
+                <div class="icon-box blue"><i class="fa-solid fa-link"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Security & Privacy</span>
+                    <h3>URL Encoder</h3>
+                    <p>Encode URLs and query strings for safe transmission over the web.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="security">
+                <div class="icon-box blue"><i class="fa-solid fa-link-slash"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Security & Privacy</span>
+                    <h3>URL Decoder</h3>
+                    <p>Decode percent-encoded URLs into readable text format quickly.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="security">
+                <div class="icon-box orange"><i class="fa-solid fa-ticket"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Security & Privacy</span>
+                    <h3>JWT Decoder</h3>
+                    <p>Decode JSON Web Tokens (JWT) to inspect header, payload, and signature.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="security">
+                <div class="icon-box red"><i class="fa-solid fa-shield"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Security & Privacy</span>
+                    <h3>MD5 Hash Generator</h3>
+                    <p>Generate MD5 hash values from text, strings, or passwords instantly.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="security">
+                <div class="icon-box orange"><i class="fa-solid fa-shield-virus"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Security & Privacy</span>
+                    <h3>SHA-1 Hash Generator</h3>
+                    <p>Create secure SHA-1 hashes from any string or file for verification.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="security">
+                <div class="icon-box teal"><i class="fa-solid fa-dice"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Security & Privacy</span>
+                    <h3>Random Number Generator</h3>
+                    <p>Generate random numbers within any range for secure or testing purposes.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="security">
+                <div class="icon-box indigo"><i class="fa-solid fa-user-secret"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Security & Privacy</span>
+                    <h3>Caesar Cipher</h3>
+                    <p>Encrypt or decrypt text using the classic Caesar cipher shift technique.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="security">
+                <div class="icon-box cyan"><i class="fa-solid fa-id-card"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Security & Privacy</span>
+                    <h3>Fake Data Generator</h3>
+                    <p>Generate fake names, emails, addresses, and phone numbers for testing.</p>
+                </div>
+            </a>
+            -->
+
+            <!-- ================= CALCULATOR TOOLS ================= -->
+            <a href="#" class="tool-card" data-category="calc">
+                <div class="icon-box blue"><i class="fa-solid fa-cake-candles"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Calculators</span>
+                    <h3>Age Calculator</h3>
+                    <p>Free Age Calculator Online - Calculate your exact age instantly.</p>
+                </div>
+            </a>
+
+            <!-- 
+            <a href="#" class="tool-card" data-category="calc">
+                <div class="icon-box green"><i class="fa-solid fa-building-columns"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Calculators</span>
+                    <h3>EMI Calculator</h3>
+                    <p>Calculate your monthly EMI for home, car, and personal loans instantly.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="calc">
+                <div class="icon-box orange"><i class="fa-solid fa-percent"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Calculators</span>
+                    <h3>GST Calculator</h3>
+                    <p>Calculate GST amounts (CGST, SGST, IGST) with inclusive and exclusive modes.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="calc">
+                <div class="icon-box teal"><i class="fa-solid fa-percent"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Calculators</span>
+                    <h3>Percentage Calculator</h3>
+                    <p>Solve all percentage problems—increase, decrease, and of value.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="calc">
+                <div class="icon-box pink"><i class="fa-solid fa-weight-scale"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Calculators</span>
+                    <h3>BMI Calculator</h3>
+                    <p>Check your Body Mass Index (BMI) and get health category results.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="calc">
+                <div class="icon-box indigo"><i class="fa-solid fa-calculator"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Calculators</span>
+                    <h3>Scientific Calculator</h3>
+                    <p>Advanced scientific calculator with trigonometric and log functions.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="calc">
+                <div class="icon-box green"><i class="fa-solid fa-money-bill"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Calculators</span>
+                    <h3>Simple Interest Calculator</h3>
+                    <p>Calculate simple interest on loans and investments quickly and easily.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="calc">
+                <div class="icon-box blue"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Calculators</span>
+                    <h3>Compound Interest Calculator</h3>
+                    <p>Find compound interest and maturity amount for any period and rate.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="calc">
+                <div class="icon-box red"><i class="fa-solid fa-tags"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Calculators</span>
+                    <h3>Discount Calculator</h3>
+                    <p>Calculate final price and savings after discount on any product.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="calc">
+                <div class="icon-box purple"><i class="fa-solid fa-chart-pie"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Calculators</span>
+                    <h3>SIP Calculator</h3>
+                    <p>Calculate returns on your Systematic Investment Plan (SIP) investments.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="calc">
+                <div class="icon-box blue"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Calculators</span>
+                    <h3>Loan Calculator</h3>
+                    <p>Calculate monthly payments, total interest, and amortization for any loan.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="calc">
+                <div class="icon-box green"><i class="fa-solid fa-utensils"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Calculators</span>
+                    <h3>Tip Calculator</h3>
+                    <p>Calculate tip amounts and split bills among friends easily and quickly.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="calc">
+                <div class="icon-box orange"><i class="fa-solid fa-calendar-days"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Calculators</span>
+                    <h3>Date Difference Calculator</h3>
+                    <p>Calculate the exact difference between two dates in days, months, and years.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="calc">
+                <div class="icon-box teal"><i class="fa-solid fa-ruler-combined"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Calculators</span>
+                    <h3>Unit Converter</h3>
+                    <p>Convert between length, weight, temperature, area, and other units.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="calc">
+                <div class="icon-box pink"><i class="fa-solid fa-fire"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Calculators</span>
+                    <h3>BMR Calculator</h3>
+                    <p>Calculate your Basal Metabolic Rate (BMR) and daily calorie needs.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="calc">
+                <div class="icon-box indigo"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Calculators</span>
+                    <h3>Currency Converter</h3>
+                    <p>Convert currencies using live exchange rates for accurate financial planning.</p>
+                </div>
+            </a>
+            -->
+
+            <!-- ================= VIDEO & AUDIO TOOLS ================= -->
+            <!-- 
+            <a href="#" class="tool-card" data-category="video">
+                <div class="icon-box red"><i class="fa-solid fa-video"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Video & Audio</span>
+                    <h3>Video Compressor</h3>
+                    <p>Compress large video files without losing quality for easy sharing.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="video">
+                <div class="icon-box red"><i class="fa-solid fa-scissors"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Video & Audio</span>
+                    <h3>Video Trimmer</h3>
+                    <p>Trim and cut videos to your desired length quickly and easily.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="video">
+                <div class="icon-box purple"><i class="fa-solid fa-film"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Video & Audio</span>
+                    <h3>Video to GIF Converter</h3>
+                    <p>Convert video clips to high-quality animated GIFs in seconds.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="video">
+                <div class="icon-box pink"><i class="fa-solid fa-music"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Video & Audio</span>
+                    <h3>Video to MP3 Converter</h3>
+                    <p>Extract audio from any video file and save it as an MP3 instantly.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="video">
+                <div class="icon-box indigo"><i class="fa-solid fa-headphones"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Video & Audio</span>
+                    <h3>Audio Converter</h3>
+                    <p>Convert audio files between MP3, WAV, AAC, OGG, and more formats.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="video">
+                <div class="icon-box blue"><i class="fa-solid fa-volume-low"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Video & Audio</span>
+                    <h3>Audio Compressor</h3>
+                    <p>Reduce audio file size while keeping high quality for podcasts and music.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="video">
+                <div class="icon-box teal"><i class="fa-solid fa-scissors"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Video & Audio</span>
+                    <h3>Audio Trimmer</h3>
+                    <p>Trim MP3, WAV and other audio files to create ringtones or clips.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="video">
+                <div class="icon-box orange"><i class="fa-solid fa-layer-group"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Video & Audio</span>
+                    <h3>Audio Merger</h3>
+                    <p>Merge multiple audio tracks into one single file for podcasts or music.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="video">
+                <div class="icon-box green"><i class="fa-solid fa-image"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Video & Audio</span>
+                    <h3>Video Thumbnail Extractor</h3>
+                    <p>Extract high-quality thumbnails from any video at any timestamp.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="video">
+                <div class="icon-box blue"><i class="fa-solid fa-forward"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Video & Audio</span>
+                    <h3>Video Speed Changer</h3>
+                    <p>Speed up or slow down video playback and save the result easily.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="video">
+                <div class="icon-box green"><i class="fa-solid fa-forward-fast"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Video & Audio</span>
+                    <h3>Audio Speed Changer</h3>
+                    <p>Adjust audio playback speed without affecting pitch for any clip.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="video">
+                <div class="icon-box orange"><i class="fa-solid fa-clapperboard"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Video & Audio</span>
+                    <h3>GIF to MP4 Converter</h3>
+                    <p>Convert animated GIFs to MP4 videos with smaller size and better quality.</p>
+                </div>
+            </a>
+            <a href="#" class="tool-card" data-category="video">
+                <div class="icon-box purple"><i class="fa-solid fa-volume-high"></i></div>
+                <div class="tool-content">
+                    <span class="card-category-badge">Video & Audio</span>
+                    <h3>Audio Volume Booster</h3>
+                    <p>Increase the volume of any audio file without losing quality instantly.</p>
+                </div>
+            </a>
+            -->
+
+        </div>
     </main>
 
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-col brand-col">
+                <h2 class="footer-logo">
+                    <div class="logo-icon"><i class="fa-solid fa-layer-group"></i></div>
+                    Deep Mega Tools
+                </h2>
+                <p>Your go-to platform for all PDF, SEO, and utility solutions.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="pages/about-us.html">About Us</a></li>
+                    <li><a href="pages/contact-us.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="pages/privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="pages/terms-and-conditions.html">Terms & Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Deep Mega Tools. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CATEGORY MODAL -->
+    <div class="modal-overlay" id="categoryModalOverlay"></div>
+    <div class="category-modal" id="categoryModal">
+        <div class="modal-header">
+            <h2>All Categories</h2>
+            <button class="close-modal" id="closeCategoryModal" aria-label="Close Modal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="category-grid">
+            <button class="category-card-btn" data-filter="all"><i class="fa-solid fa-layer-group"></i> All Tools</button>
+            <button class="category-card-btn" data-filter="image"><i class="fa-solid fa-image"></i> Images</button>
+            <button class="category-card-btn" data-filter="dev"><i class="fa-solid fa-code"></i> Dev Tools</button>
+            <button class="category-card-btn" data-filter="ai"><i class="fa-solid fa-robot"></i> AI Tools</button>
+            <button class="category-card-btn" data-filter="seo"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO & Blogger</button>
+            <button class="category-card-btn" data-filter="pdf"><i class="fa-solid fa-file-pdf"></i> File & PDFs</button>
+            <button class="category-card-btn" data-filter="social"><i class="fa-solid fa-share-nodes"></i> Social Media</button>
+            <button class="category-card-btn" data-filter="text"><i class="fa-solid fa-file-lines"></i> Text & Writing</button>
+            <button class="category-card-btn" data-filter="security"><i class="fa-solid fa-shield-halved"></i> Security & Privacy</button>
+            <button class="category-card-btn" data-filter="calc"><i class="fa-solid fa-calculator"></i> Calculators</button>
+            <button class="category-card-btn" data-filter="video"><i class="fa-solid fa-video"></i> Video & Audio</button>
+        </div>
+    </div>
+
     <script>
-        // Optimized JavaScript with deferred execution
-        (function() {
-            // Safe storage handler
-            const safeStorage = {
-                getItem: function(key) {
-                    try {
-                        return localStorage.getItem(key);
-                    } catch (e) {
-                        return null;
-                    }
-                },
-                setItem: function(key, value) {
-                    try {
-                        localStorage.setItem(key, value);
-                    } catch (e) {}
-                }
-            };
+        document.addEventListener('DOMContentLoaded', () => {
+            const openDrawerBtn = document.getElementById('openDrawer');
+            const closeDrawerBtn = document.getElementById('closeDrawer');
+            const mobileDrawer = document.getElementById('mobileDrawer');
+            const drawerOverlay = document.getElementById('drawerOverlay');
 
-            // Theme toggle
-            const themeToggleBtn = document.getElementById('themeToggleBtn');
-            const themeIcon = document.getElementById('themeIcon');
-            const bodyElement = document.body;
+            function openMenu() {
+                mobileDrawer.classList.add('active');
+                drawerOverlay.classList.add('active');
+            }
+            function closeMenu() {
+                mobileDrawer.classList.remove('active');
+                drawerOverlay.classList.remove('active');
+            }
+            openDrawerBtn.addEventListener('click', openMenu);
+            closeDrawerBtn.addEventListener('click', closeMenu);
+            drawerOverlay.addEventListener('click', closeMenu);
 
-            const getInitialTheme = () => {
-                const savedTheme = safeStorage.getItem('deepMegaTheme');
-                if (savedTheme === 'light') return 'light';
-                if (savedTheme === 'dark') return 'dark';
-                return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-            };
+            const navFilters = document.querySelectorAll('.nav-links a[data-filter]');
+            const drawerFilters = document.querySelectorAll('.drawer-menu-btn[data-filter]');
+            const toolCards = document.querySelectorAll('.tool-card');
+            const searchInput = document.getElementById('search-input');
 
-            const applyTheme = (theme) => {
-                if (theme === 'light') {
-                    bodyElement.classList.add('light-mode');
-                    themeIcon.className = 'fa-solid fa-moon';
-                    safeStorage.setItem('deepMegaTheme', 'light');
-                } else {
-                    bodyElement.classList.remove('light-mode');
-                    themeIcon.className = 'fa-solid fa-sun';
-                    safeStorage.setItem('deepMegaTheme', 'dark');
-                }
-            };
+            const openCatModalBtn = document.getElementById('openCategoryModal');
+            const categoryModal = document.getElementById('categoryModal');
+            const categoryModalOverlay = document.getElementById('categoryModalOverlay');
+            const closeCatModalBtn = document.getElementById('closeCategoryModal');
+            const catFilterBtns = document.querySelectorAll('.category-card-btn');
 
-            applyTheme(getInitialTheme());
-
-            if (themeToggleBtn) {
-                themeToggleBtn.addEventListener('click', () => {
-                    applyTheme(bodyElement.classList.contains('light-mode') ? 'dark' : 'light');
+            function applyFilter(filterValue) {
+                navFilters.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('data-filter') === filterValue);
                 });
-
-                themeToggleBtn.addEventListener('keydown', (e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        applyTheme(bodyElement.classList.contains('light-mode') ? 'dark' : 'light');
+                drawerFilters.forEach(btn => {
+                    btn.classList.toggle('active', btn.getAttribute('data-filter') === filterValue);
+                });
+                toolCards.forEach(card => {
+                    const cardCategory = card.getAttribute('data-category');
+                    if (filterValue === 'all' || cardCategory === filterValue) {
+                        card.classList.remove('hide-card');
+                    } else {
+                        card.classList.add('hide-card');
                     }
                 });
+                searchInput.value = '';
             }
 
-            // Search functionality with debounce for better performance
-            const searchInput = document.getElementById('searchInput');
-            const allCards = document.querySelectorAll('.tool-card');
-            const categoryTitles = document.querySelectorAll('.category-title');
-            const categoryGrids = document.querySelectorAll('.tools-grid');
-
-            let searchTimeout;
-
-            const filterTools = () => {
-                const searchTerm = searchInput.value.toLowerCase().trim();
-                let anyVisible = false;
-                const categoryHasVisible = new Map();
-
-                allCards.forEach(card => {
-                    const name = (card.getAttribute('data-name') || '').toLowerCase();
-                    const title = card.querySelector('h3')?.innerText.toLowerCase() || '';
-                    const desc = card.querySelector('p')?.innerText.toLowerCase() || '';
-                    const match = searchTerm === '' || name.includes(searchTerm) || title.includes(
-                        searchTerm) || desc.includes(searchTerm);
-
-                    card.style.display = match ? 'block' : 'none';
-                    if (match) {
-                        anyVisible = true;
-                        const parentGrid = card.closest('.tools-grid');
-                        if (parentGrid) categoryHasVisible.set(parentGrid, true);
-                    }
-                });
-
-                categoryGrids.forEach(grid => {
-                    const hasVisible = categoryHasVisible.get(grid) === true;
-                    const title = grid.parentElement?.querySelector('.category-title');
-                    if (searchTerm !== '' && !hasVisible) {
-                        grid.style.display = 'none';
-                        if (title) title.style.display = 'none';
-                    } else {
-                        grid.style.display = '';
-                        if (title) title.style.display = '';
-                    }
-                });
-
-                let noResultMsg = document.getElementById('noResultMsg');
-                if (!anyVisible && searchTerm !== '') {
-                    if (!noResultMsg) {
-                        noResultMsg = document.createElement('div');
-                        noResultMsg.id = 'noResultMsg';
-                        noResultMsg.setAttribute('role', 'status');
-                        noResultMsg.style.cssText =
-                            'text-align:center;padding:60px 20px;color:var(--text-secondary);font-size:1.2rem;grid-column:1/-1';
-                        noResultMsg.innerHTML =
-                            `<i class="fa-regular fa-compass fa-2x" style="display:block;margin-bottom:16px" aria-hidden="true"></i> No tools match "<strong>${escapeHtml(searchTerm)}</strong>". Try another keyword!`;
-                        document.getElementById('mainContent')?.appendChild(noResultMsg);
-                    } else {
-                        noResultMsg.style.display = 'block';
-                    }
-                } else if (noResultMsg) {
-                    noResultMsg.style.display = 'none';
-                }
-            };
-
-            const escapeHtml = (str) => str.replace(/[&<>]/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[
-                m
-            ] || m));
-
-            if (searchInput) {
-                searchInput.addEventListener('input', () => {
-                    clearTimeout(searchTimeout);
-                    searchTimeout = setTimeout(filterTools, 150);
-                });
-            }
-
-            // Set current year
-            const yearSpan = document.getElementById('currentYear');
-            if (yearSpan) yearSpan.innerText = new Date().getFullYear();
-
-            // Lazy load image fallback
-            document.querySelectorAll('.tool-image img').forEach(img => {
-                img.addEventListener('error', function() {
-                    this.onerror = null;
-                    this.src =
-                        'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="%2338bdf8" stroke-width="1.2"%3E%3Crect x="2" y="2" width="20" height="20" rx="2.18"%3E%3C/rect%3E%3Ccircle cx="8.5" cy="8.5" r="1.5"%3E%3C/circle%3E%3Cpolyline points="21 15 16 10 5 21"%3E%3C/polyline%3E%3C/svg%3E';
-                    this.style.cssText =
-                        'background:var(--bg-primary);padding:8px;object-fit:contain;width:70px;height:70px';
+            navFilters.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    applyFilter(link.getAttribute('data-filter'));
                 });
             });
 
-            // Set cache-friendly cache headers via meta tags for static assets
-            const cacheMeta = document.createElement('meta');
-            cacheMeta.httpEquiv = 'Cache-Control';
-            cacheMeta.content = 'public, max-age=604800, immutable';
-            document.head.appendChild(cacheMeta);
-        })();
+            drawerFilters.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    applyFilter(btn.getAttribute('data-filter'));
+                    closeMenu();
+                    document.getElementById('tools-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
+
+            function openCategoryModal() {
+                categoryModal.classList.add('active');
+                categoryModalOverlay.classList.add('active');
+            }
+            function closeCategoryModal() {
+                categoryModal.classList.remove('active');
+                categoryModalOverlay.classList.remove('active');
+            }
+
+            openCatModalBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openCategoryModal();
+            });
+            closeCatModalBtn.addEventListener('click', closeCategoryModal);
+            categoryModalOverlay.addEventListener('click', closeCategoryModal);
+
+            catFilterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    applyFilter(btn.getAttribute('data-filter'));
+                    closeCategoryModal();
+                    document.getElementById('tools-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
+
+            searchInput.addEventListener('keyup', () => {
+                const searchTerm = searchInput.value.toLowerCase();
+                toolCards.forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    const description = card.querySelector('p').textContent.toLowerCase();
+                    if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                        card.classList.remove('hide-card');
+                    } else {
+                        card.classList.add('hide-card');
+                    }
+                });
+            });
+
+            // --- 4. Dark Mode Toggle ---
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const mobileThemeToggleBtn = document.getElementById('mobile-theme-toggle');
+            const themeIcons = [themeToggleBtn.querySelector('i'), mobileThemeToggleBtn.querySelector('i')];
+
+            function getTheme() { try { return localStorage.getItem('theme'); } catch (e) { return null; } }
+            function setTheme(t) { try { localStorage.setItem('theme', t); } catch (e) {} }
+
+            if (getTheme() === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeIcons.forEach(icon => icon.classList.replace('fa-moon', 'fa-sun'));
+            }
+
+            function toggleTheme() {
+                document.body.classList.toggle('dark-mode');
+                if (document.body.classList.contains('dark-mode')) {
+                    themeIcons.forEach(icon => icon.classList.replace('fa-moon', 'fa-sun'));
+                    setTheme('dark');
+                } else {
+                    themeIcons.forEach(icon => icon.classList.replace('fa-sun', 'fa-moon'));
+                    setTheme('light');
+                }
+            }
+            themeToggleBtn.addEventListener('click', toggleTheme);
+            mobileThemeToggleBtn.addEventListener('click', toggleTheme);
+
+            // --- 5. Share Button Functionality ---
+            const shareBtn = document.getElementById('share-btn');
+            const drawerShareBtn = document.querySelector('.drawer-share-btn');
+
+            function shareWebsite() {
+                const shareData = {
+                    title: document.title,
+                    text: 'Discover free online tools for developers, SEO, images, PDFs, and AI at Deep Mega Tools.',
+                    url: window.location.href
+                };
+
+                if (navigator.share) {
+                    navigator.share(shareData).catch((err) => {
+                        console.log('Error sharing:', err);
+                    });
+                } else {
+                    navigator.clipboard.writeText(window.location.href).then(() => {
+                        alert('Website link copied to clipboard!');
+                    }).catch((err) => {
+                        console.error('Could not copy text: ', err);
+                    });
+                }
+            }
+
+            if (shareBtn) shareBtn.addEventListener('click', shareWebsite);
+            if (drawerShareBtn) drawerShareBtn.addEventListener('click', shareWebsite);
+        });
     </script>
 </body>
 </html>

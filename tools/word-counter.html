@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Online SEO Word Counter – Count Words, Characters &amp; Keywords</title>
+    <meta name="description" content="Free Online SEO Word Counter. Count words, characters, keyword density, reading time, speaking time, sentences, paragraphs &amp; reading level instantly. No signup required.">
+    
+    <!-- Asynchronous Font Loading to fix Render-blocking -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+    </noscript>
+
+    <!-- Minified CSS with Contrast Fixes -->
+    <style>
+        :root{--primary:#6366f1;--primary-dark:#4f46e5;--primary-soft:#eef2ff;--primary-border:#c7d2fe;--accent:#10b981;--accent-soft:#ecfdf5;--warning:#f59e0b;--danger:#ef4444;--bg:#f9fafb;--card:#ffffff;--border:#e5e7eb;--text:#1f2937;--text-soft:#374151;--muted:#4b5563;--btn-bg:#f3f4f6;--btn-hover:#e5e7eb;--radius-sm:8px;--radius:12px;--radius-lg:16px;--shadow-sm:0 1px 3px rgba(0,0,0,0.06);--shadow:0 4px 16px rgba(0,0,0,0.06);--shadow-lg:0 12px 32px rgba(79,70,229,0.12);--font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        html{scroll-behavior:smooth}
+        body{font-family:var(--font);background:var(--bg);color:var(--text);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+        img,svg{display:block;max-width:100%}
+        a{color:var(--primary);text-decoration:none}
+        .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+        *:focus-visible{outline:3px solid var(--primary);outline-offset:2px}
+        .site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+        .header-inner{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+        .logo{display:flex;align-items:center;gap:9px;font-size:1.15rem;font-weight:800;color:var(--primary-dark);letter-spacing:-0.3px;white-space:nowrap}
+        .logo svg{color:var(--primary)}
+        .main-nav{display:flex;align-items:center;gap:28px}
+        .main-nav a{color:var(--muted);font-size:0.9rem;font-weight:500;transition:color 0.2s ease;white-space:nowrap}
+        .main-nav a:hover{color:var(--primary-dark)}
+        
+        /* Contrast Fix: Changed background to #4338ca */
+        .header-cta{background:#4338ca;color:#fff;border:none;padding:9px 20px;border-radius:var(--radius-sm);font-family:var(--font);font-size:0.88rem;font-weight:600;cursor:pointer;transition:background 0.2s ease,transform 0.2s ease;white-space:nowrap}
+        .header-cta:hover{background:#3730a3;transform:translateY(-1px)}
+        
+        .hero{background:linear-gradient(135deg,#eef2ff 0%,#f5f3ff 60%,#ecfeff 100%);border-bottom:1px solid var(--border);padding:54px 24px 46px;text-align:center}
+        .hero-badge{display:inline-block;background:var(--primary-soft);color:var(--primary-dark);border:1px solid var(--primary-border);font-size:0.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 14px;border-radius:999px;margin-bottom:18px}
+        .hero h1{font-size:clamp(1.6rem,3.5vw,2.35rem);line-height:1.25;font-weight:800;letter-spacing:-0.8px;color:var(--text);max-width:780px;margin:0 auto 14px}
+        .hero h1 .accent{color:var(--primary)}
+        .hero p{max-width:620px;margin:0 auto;color:var(--text-soft);font-size:1rem}
+        .container{width:100%;max-width:980px;margin:0 auto;padding:0 24px}
+        .tool-section{scroll-margin-top:90px;margin-top:-28px;position:relative;z-index:2}
+        .tool-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:26px}
+        .toolbar{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:16px}
+        .tool-btn{display:inline-flex;align-items:center;gap:6px;background:var(--btn-bg);color:var(--text);border:1px solid var(--border);padding:7px 14px;border-radius:var(--radius-sm);font-family:var(--font);font-size:0.83rem;font-weight:600;cursor:pointer;transition:background 0.18s ease,border-color 0.18s ease,transform 0.12s ease}
+        .tool-btn:hover{background:var(--btn-hover)}
+        .tool-btn:active{transform:scale(0.97)}
+        
+        /* Contrast Fix: Changed background to #4338ca */
+        .tool-btn.primary{background:#4338ca;border-color:#4338ca;color:#fff}
+        .tool-btn.primary:hover{background:#3730a3}
+        
+        .tool-btn.danger{color:#b91c1c;border-color:#fecaca;background:#fef2f2}
+        .tool-btn.danger:hover{background:#fee2e2}
+        .textarea-wrap{margin-bottom:22px}
+        #text-input{width:100%;min-height:240px;padding:18px 20px;border:1.5px solid #cbd5e1;border-radius:var(--radius);font-family:var(--font);font-size:1rem;line-height:1.65;color:var(--text);background:#fcfcfd;resize:vertical;outline:none;transition:border-color 0.2s ease,box-shadow 0.2s ease}
+        #text-input::placeholder{color:#64748b}
+        #text-input:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(99,102,241,0.12);background:#fff}
+        .stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+        .stat-card{background:#fbfbfe;border:1px solid var(--border);border-radius:var(--radius);padding:16px 12px;text-align:center;transition:border-color 0.2s ease,box-shadow 0.2s ease}
+        .stat-card:hover{border-color:var(--primary-border);box-shadow:var(--shadow-sm)}
+        .stat-value{font-size:1.35rem;font-weight:800;color:var(--primary-dark);line-height:1.2;margin-bottom:4px;letter-spacing:-0.4px;word-break:break-word}
+        .stat-value.small{font-size:0.98rem}
+        .stat-label{font-size:0.71rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.4px}
+        .keyword-section{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
+        .keyword-title{display:flex;align-items:center;gap:9px;font-size:0.92rem;font-weight:700;color:var(--text);margin-bottom:14px}
+        .keyword-title svg{color:var(--primary);flex-shrink:0}
+        .keyword-list{display:flex;flex-wrap:wrap;gap:10px}
+        .keyword-empty{color:var(--muted);font-size:0.85rem;font-style:italic}
+        .keyword-pill{display:inline-flex;align-items:center;gap:8px;background:var(--primary-soft);color:var(--primary-dark);border:1px solid var(--primary-border);padding:6px 13px;border-radius:999px;font-size:0.84rem;font-weight:600;max-width:100%;animation:pillIn 0.25s ease}
+        .keyword-pill span{background:#fff;color:var(--muted);padding:2px 8px;border-radius:999px;font-size:0.72rem;font-weight:600;white-space:nowrap}
+        @keyframes pillIn{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
+        .article{padding:56px 0 20px;scroll-margin-top:90px}
+        .article h2{font-size:1.5rem;font-weight:700;color:var(--text);letter-spacing:-0.4px;margin:44px 0 16px;padding-bottom:12px;border-bottom:2px solid var(--border);scroll-margin-top:90px}
+        .article h2:first-child{margin-top:0}
+        .article h3{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:8px}
+        .article p{color:var(--text-soft);margin-bottom:15px}
+        .article p:last-child{margin-bottom:0}
+        .article strong{color:var(--text);font-weight:700}
+        .lead-box{background:linear-gradient(135deg,#eef2ff 0%,#f5f3ff 100%);border:1px solid var(--primary-border);border-left:4px solid var(--primary);border-radius:var(--radius);padding:20px 24px;margin-bottom:24px;font-size:1.02rem;color:var(--text-soft);line-height:1.7}
+        .article ul{list-style:none;margin:0 0 20px;padding:0}
+        .article ul li{position:relative;padding-left:28px;margin-bottom:9px;color:var(--text-soft)}
+        .article ul li::before{content:"";position:absolute;left:7px;top:11px;width:7px;height:7px;background:var(--primary);border-radius:50%}
+        .article ol{list-style:none;counter-reset:step;margin:0 0 20px;padding:0}
+        .article ol li{position:relative;padding-left:46px;margin-bottom:13px;counter-increment:step;color:var(--text-soft);min-height:30px;display:flex;align-items:center}
+        .article ol li::before{content:counter(step);position:absolute;left:0;top:50%;transform:translateY(-50%);width:30px;height:30px;background:var(--primary);color:#fff;border-radius:50%;font-size:0.82rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:24px 0 8px}
+        .feature-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;transition:transform 0.22s ease,box-shadow 0.22s ease,border-color 0.22s ease}
+        .feature-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--primary-border)}
+        .feature-card h3{display:flex;align-items:center;gap:10px;font-size:1rem;margin-bottom:9px;color:var(--primary-dark)}
+        .num-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:var(--primary-soft);color:var(--primary-dark);border-radius:8px;font-size:0.8rem;font-weight:800;flex-shrink:0}
+        .feature-card p{font-size:0.92rem;color:var(--muted);line-height:1.65;margin-bottom:8px}
+        .feature-card p:last-child{margin-bottom:0}
+        .feature-card ul{margin:8px 0 0}
+        .feature-card ul li{font-size:0.9rem;padding-left:22px;margin-bottom:5px;color:var(--muted)}
+        .feature-card ul li::before{width:5px;height:5px;top:10px;background:var(--accent)}
+        .callout{background:#fffbeb;border:1px solid #fde68a;border-left:4px solid var(--warning);border-radius:var(--radius);padding:16px 22px;margin:22px 0;font-size:0.95rem;color:#78350f}
+        .callout strong{color:#92400e}
+        .audience-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:22px 0 8px}
+        .audience-card{background:var(--card);border:1px solid var(--border);border-left:4px solid var(--primary);border-radius:var(--radius);padding:16px 20px;transition:box-shadow 0.2s ease,transform 0.2s ease}
+        .audience-card:hover{box-shadow:var(--shadow);transform:translateX(3px)}
+        .audience-card h3{font-size:0.95rem;color:var(--primary-dark);margin-bottom:4px}
+        .audience-card p{font-size:0.89rem;color:var(--muted);line-height:1.6;margin:0}
+        .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius);margin:22px 0 8px;-webkit-overflow-scrolling:touch}
+        table{width:100%;border-collapse:collapse;min-width:400px;font-size:0.93rem}
+        thead th{background:var(--primary-dark);color:#fff;text-align:left;padding:12px 18px;font-weight:600;font-size:0.86rem;letter-spacing:0.3px;white-space:nowrap}
+        tbody td{padding:11px 18px;border-bottom:1px solid var(--border);color:var(--text-soft)}
+        tbody tr:last-child td{border-bottom:none}
+        tbody tr:nth-child(even){background:#fbfbfe}
+        tbody td strong{color:var(--text)}
+        .faq-item{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:11px;overflow:hidden;transition:border-color 0.2s ease,box-shadow 0.2s ease}
+        .faq-item[open]{border-color:var(--primary-border);box-shadow:var(--shadow-sm)}
+        .faq-item summary{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 22px;cursor:pointer;font-weight:600;font-size:0.96rem;color:var(--text);list-style:none;transition:color 0.2s ease}
+        .faq-item summary:hover{color:var(--primary-dark)}
+        .faq-item summary::-webkit-details-marker{display:none}
+        .faq-item summary::after{content:"+";font-size:1.35rem;font-weight:700;color:var(--primary);line-height:1;flex-shrink:0;transition:transform 0.25s ease}
+        .faq-item[open] summary::after{content:"−";transform:rotate(180deg)}
+        .faq-answer{padding:0 22px 16px;color:var(--text-soft);font-size:0.93rem;line-height:1.7;border-top:1px dashed var(--border);padding-top:13px;animation:fadeIn 0.25s ease}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+        .conclusion{background:linear-gradient(135deg,#eef2ff 0%,#ecfeff 100%);border:1px solid var(--primary-border);border-radius:var(--radius-lg);padding:32px;margin:40px 0 20px}
+        .conclusion h2{border-bottom:none;padding-bottom:0;margin-top:0}
+        .conclusion p{margin-bottom:14px}
+        .cta-wrap{text-align:center;margin-top:24px}
+        
+        /* Bottom CTA button contrast is already fine, but ensuring consistency */
+        .cta-btn{display:inline-block;background:#4338ca;color:#fff;font-family:var(--font);font-weight:700;font-size:0.98rem;padding:14px 40px;border-radius:999px;border:none;cursor:pointer;box-shadow:0 6px 20px rgba(99,102,241,0.35);transition:background 0.2s ease,transform 0.2s ease,box-shadow 0.2s ease;text-decoration:none}
+        .cta-btn:hover{background:#3730a3;transform:translateY(-2px);box-shadow:0 10px 28px rgba(99,102,241,0.45)}
+        
+        .site-footer{margin-top:auto;background:#fff;border-top:1px solid var(--border);text-align:center;padding:26px 20px;color:var(--muted);font-size:0.86rem}
+        .site-footer a{color:var(--primary-dark);font-weight:500;text-decoration:underline}
+        .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:#fff;padding:11px 24px;border-radius:999px;font-size:0.86rem;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,0.2);opacity:0;pointer-events:none;transition:opacity 0.3s ease,transform 0.3s ease;z-index:999}
+        .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+        @media (max-width:820px){.header-inner{padding:12px 18px}.main-nav{gap:16px}.main-nav a{font-size:0.84rem}.tool-card{padding:20px}.stats-grid{grid-template-columns:repeat(2,1fr)}.article h2{font-size:1.32rem}.conclusion{padding:24px}}
+        @media (max-width:640px){.main-nav{display:none}.hero{padding:38px 18px 42px}.hero p{font-size:0.94rem}.container{padding:0 16px}.tool-section{margin-top:-22px}.tool-card{padding:16px}.toolbar{gap:7px}.tool-btn{font-size:0.78rem;padding:6px 11px}#text-input{min-height:200px;font-size:0.95rem;padding:14px 16px}.stat-value{font-size:1.15rem}.stat-label{font-size:0.64rem}.features-grid,.audience-grid{grid-template-columns:1fr}.article ol li{padding-left:40px;min-height:28px}.article ol li::before{width:26px;height:26px;font-size:0.76rem}.cta-btn{width:100%;text-align:center}}
+        @media (max-width:380px){.stats-grid{grid-template-columns:1fr}}
+        @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a href="#top" class="logo" aria-label="SEO Word Counter home">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+                </svg>
+                SEOWordCounter
+            </a>
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="#tool">Tool</a>
+                <a href="#features">Features</a>
+                <a href="#how-to-use">How to Use</a>
+                <a href="#faq">FAQ</a>
+            </nav>
+            <button class="header-cta" id="scrollToTool" type="button">Check Now</button>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="hero" id="top">
+            <span class="hero-badge">100% Free • No Signup</span>
+            <h1>Free Online <span class="accent">SEO Word Counter</span><br>Count Words, Characters &amp; Keywords Instantly</h1>
+            <p>Analyze your content in real time — word count, character count, keyword density, reading time, speaking time, sentence count, paragraph count, and reading level. No installation required.</p>
+        </section>
+
+        <section class="container tool-section" id="tool">
+            <div class="tool-card">
+                <div class="toolbar" role="toolbar" aria-label="Text editing tools">
+                    <button class="tool-btn primary" id="btn-copy" type="button">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        Copy Text
+                    </button>
+                    <button class="tool-btn" id="btn-upper" type="button">UPPERCASE</button>
+                    <button class="tool-btn" id="btn-lower" type="button">lowercase</button>
+                    <button class="tool-btn" id="btn-title" type="button">Title Case</button>
+                    <button class="tool-btn danger" id="btn-clear" type="button">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                        Clear
+                    </button>
+                </div>
+
+                <div class="textarea-wrap">
+                    <label for="text-input" class="sr-only">Content to analyze</label>
+                    <textarea id="text-input" placeholder="Type or paste your text here to instantly count words, characters, sentences, paragraphs, reading time, speaking time, keyword density &amp; reading level..."></textarea>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="words">0</div>
+                        <div class="stat-label">Words</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="chars-spaces">0</div>
+                        <div class="stat-label">Chars (with spaces)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="chars-no-spaces">0</div>
+                        <div class="stat-label">Chars (no spaces)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="reading-time">0 min</div>
+                        <div class="stat-label">Reading Time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="speaking-time">0 min</div>
+                        <div class="stat-label">Speaking Time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="sentences">0</div>
+                        <div class="stat-label">Sentences</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="paragraphs">0</div>
+                        <div class="stat-label">Paragraphs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="avg-word-length">0</div>
+                        <div class="stat-label">Avg Word Length</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value small" id="reading-level">N/A</div>
+                        <div class="stat-label">Reading Level</div>
+                    </div>
+                </div>
+
+                <div class="keyword-section">
+                    <div class="keyword-title">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                        Top Keywords (Keyword Density)
+                    </div>
+                    <div class="keyword-list" id="keyword-list">
+                        <span class="keyword-empty">Start typing to see keywords...</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <article class="container article" id="article">
+            <p class="lead-box">
+                Writing high-quality content is important for bloggers, students, content creators, SEO professionals, and website owners. Whether you are writing a blog post, an article, an assignment, or website content, keeping track of your word count and readability can make your work more effective. The <strong>Free Online SEO Word Counter</strong> helps you analyze your text instantly — no software, no registration.
+            </p>
+
+            <h2 id="what-is">What Is an SEO Word Counter?</h2>
+            <p>An <strong>SEO Word Counter</strong> is an online writing tool that analyzes text and provides useful statistics about its structure and content.</p>
+            <p>It helps you count words, characters, sentences, and paragraphs while also identifying frequently used keywords. These features are especially helpful when creating SEO-friendly blog posts, product descriptions, website content, social media captions, and academic assignments.</p>
+            <p>Instead of manually counting words, you can simply paste your content into the tool and get instant results.</p>
+
+            <h2 id="features">Key Features of Our Free Online Word Counter</h2>
+            <p>The Advanced SEO Word Counter includes several useful features designed to make content writing easier and more efficient.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3><span class="num-badge" aria-hidden="true">1</span> Accurate Word Counter</h3>
+                    <p>Count the total number of words in your text instantly. Helpful for bloggers, students, writers, and professionals who need to follow specific word limits.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><span class="num-badge" aria-hidden="true">2</span> Character Counter</h3>
+                    <p>Check total characters in two ways:</p>
+                    <ul>
+                        <li>Characters including spaces</li>
+                        <li>Characters excluding spaces</li>
+                    </ul>
+                    <p>Useful for meta descriptions, social posts, ads, and short-form content.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><span class="num-badge" aria-hidden="true">3</span> Reading Time Calculator</h3>
+                    <p>Estimate how long someone may take to read your content, based on an average reading speed of approximately <strong>200 words per minute</strong>.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><span class="num-badge" aria-hidden="true">4</span> Speaking Time Calculator</h3>
+                    <p>Find out how long your text may take to speak during a presentation, speech, or video recording, using an estimated speaking speed of <strong>130 words per minute</strong>.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><span class="num-badge" aria-hidden="true">5</span> Sentence Counter</h3>
+                    <p>Check how many sentences your text contains. This helps you understand the structure of your writing and organize content more effectively.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><span class="num-badge" aria-hidden="true">6</span> Paragraph Counter</h3>
+                    <p>Instantly count paragraphs in your text. Useful for maintaining proper formatting and improving content readability.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><span class="num-badge" aria-hidden="true">7</span> Average Word Length</h3>
+                    <p>Analyze the average number of characters per word. This helps you understand your writing style and identify unusually long or complex words.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><span class="num-badge" aria-hidden="true">8</span> Reading Level Checker</h3>
+                    <p>Uses the <strong>Flesch Reading Ease</strong> formula to estimate how easy or difficult English content may be to read, helping writers create clearer articles.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><span class="num-badge" aria-hidden="true">9</span> Keyword Density Checker</h3>
+                    <p>Identifies the most frequently used words in your content. The tool displays the <strong>top five keywords</strong> with their occurrence count and estimated density percentage — helping you avoid unnecessary keyword repetition.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><span class="num-badge" aria-hidden="true">10</span> Text Editing &amp; Formatting</h3>
+                    <p>Modify your text using built-in options:</p>
+                    <ul>
+                        <li><strong>Copy Text:</strong> Copy your full content to the clipboard.</li>
+                        <li><strong>UPPERCASE:</strong> Convert all text to uppercase.</li>
+                        <li><strong>lowercase:</strong> Convert all text to lowercase.</li>
+                        <li><strong>Title Case:</strong> Capitalize the beginning of each word.</li>
+                        <li><strong>Clear Text:</strong> Remove all content and start again.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2 id="why-seo">Why Is Word Counting Important for SEO?</h2>
+            <p>Word count is an important part of content planning, but having more words does not automatically improve search engine rankings.</p>
+            <p>Google focuses on <strong>helpful, relevant, original, and people-first content</strong> rather than a fixed ideal word count.</p>
+            <p>However, tracking word count can help you:</p>
+            <ul>
+                <li>Cover important topics in sufficient detail.</li>
+                <li>Maintain consistent article lengths.</li>
+                <li>Organize headings and paragraphs.</li>
+                <li>Avoid unnecessary repetition.</li>
+                <li>Create content that satisfies search intent.</li>
+                <li>Review your writing before publishing.</li>
+            </ul>
+
+            <div class="callout">
+                <strong>Note:</strong> Use a word counter as a writing assistant, not as a guarantee of higher Google rankings.
+            </div>
+
+            <h2 id="how-to-use">How to Use the Advanced SEO Word Counter</h2>
+            <p>Using this free online tool is simple. Follow these steps:</p>
+            <ol>
+                <li>Open the Advanced SEO Word Counter on Deep Mega Tools.</li>
+                <li>Type your content or paste existing text into the text box.</li>
+                <li>View your total word count and character count instantly.</li>
+                <li>Check the estimated reading and speaking time.</li>
+                <li>Review the sentence and paragraph statistics.</li>
+                <li>Analyze your top keywords and their density.</li>
+                <li>Check the estimated reading level.</li>
+                <li>Use the available text editing buttons if necessary.</li>
+                <li>Copy your final content and use it wherever you need.</li>
+            </ol>
+            <p>No complicated installation or registration is required to use the tool.</p>
+
+            <h2 id="who-can-use">Who Can Use This Online Word Counter?</h2>
+            <p>This tool is useful for different types of users.</p>
+
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <h3>Bloggers</h3>
+                    <p>Analyze blog posts, improve article structure, and monitor content length.</p>
+                </div>
+                <div class="audience-card">
+                    <h3>SEO Professionals</h3>
+                    <p>Review keyword frequency and analyze website content before publishing.</p>
+                </div>
+                <div class="audience-card">
+                    <h3>Students</h3>
+                    <p>Count words in essays, assignments, reports, and other academic documents.</p>
+                </div>
+                <div class="audience-card">
+                    <h3>Content Writers</h3>
+                    <p>Check writing length, readability, sentence structure, and character limits.</p>
+                </div>
+                <div class="audience-card">
+                    <h3>YouTubers</h3>
+                    <p>Estimate speaking time for video scripts and presentations.</p>
+                </div>
+                <div class="audience-card">
+                    <h3>Social Media Creators</h3>
+                    <p>Prepare captions and analyze text before publishing posts.</p>
+                </div>
+            </div>
+
+            <h2 id="benefits">Benefits of Using a Free Online SEO Word Counter</h2>
+            <p>Here are some important benefits of using an online word counting tool:</p>
+            <ul>
+                <li>Saves time compared with manual counting.</li>
+                <li>Provides instant text analysis.</li>
+                <li>Helps maintain writing consistency.</li>
+                <li>Identifies frequently repeated keywords.</li>
+                <li>Estimates reading and speaking duration.</li>
+                <li>Makes content editing easier.</li>
+                <li>Works directly in a web browser.</li>
+                <li>Helps writers review content before publishing.</li>
+            </ul>
+
+            <h2 id="quick-reference">Quick Reference: What the Tool Measures</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>What It Shows</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Word Count</strong></td><td>Total number of words in your text</td></tr>
+                        <tr><td><strong>Character Count</strong></td><td>Characters with and without spaces</td></tr>
+                        <tr><td><strong>Reading Time</strong></td><td>Estimated at 200 words per minute</td></tr>
+                        <tr><td><strong>Speaking Time</strong></td><td>Estimated at 130 words per minute</td></tr>
+                        <tr><td><strong>Sentences &amp; Paragraphs</strong></td><td>Structural breakdown of your content</td></tr>
+                        <tr><td><strong>Average Word Length</strong></td><td>Average characters per word</td></tr>
+                        <tr><td><strong>Reading Level</strong></td><td>Flesch Reading Ease score</td></tr>
+                        <tr><td><strong>Keyword Density</strong></td><td>Top 5 keywords with counts and percentages</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 id="faq">Frequently Asked Questions (FAQs)</h2>
+
+            <details class="faq-item" open>
+                <summary>What is the best free online word counter?</summary>
+                <div class="faq-answer">A good online word counter should provide word count, character count, sentence count, paragraph count, and other useful writing statistics. Deep Mega Tools offers these features in one convenient tool.</div>
+            </details>
+
+            <details class="faq-item">
+                <summary>How can I count words online?</summary>
+                <div class="faq-answer">Open an online word counter, paste or type your text into the input box, and the tool will automatically calculate the total number of words.</div>
+            </details>
+
+            <details class="faq-item">
+                <summary>What is keyword density in SEO?</summary>
+                <div class="faq-answer">Keyword density refers to how frequently a particular keyword appears in a piece of content compared with its total word count. It can help identify repeated terms, but there is no universally recommended keyword density percentage for Google rankings.</div>
+            </details>
+
+            <details class="faq-item">
+                <summary>How do I count characters without spaces?</summary>
+                <div class="faq-answer">Use a character counter that provides separate statistics for characters with spaces and characters without spaces.</div>
+            </details>
+
+            <details class="faq-item">
+                <summary>What is the ideal word count for an SEO blog post?</summary>
+                <div class="faq-answer">There is no fixed ideal word count for every blog post. The appropriate length depends on the topic, competition, and search intent. Focus on providing complete and helpful information.</div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Can I calculate reading time using a word counter?</summary>
+                <div class="faq-answer">Yes. A reading time calculator estimates how long it may take to read your content based on an average reading speed.</div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Is this SEO Word Counter free?</summary>
+                <div class="faq-answer">Yes, the Advanced SEO Word Counter on Deep Mega Tools is designed as a free online writing and text analysis tool.</div>
+            </details>
+
+            <details class="faq-item">
+                <summary>Does keyword density guarantee better Google rankings?</summary>
+                <div class="faq-answer">No. Keyword density alone does not guarantee higher rankings. Focus on helpful content, natural keyword usage, search intent, and a good user experience.</div>
+            </details>
+
+            <div class="conclusion">
+                <h2>Conclusion</h2>
+                <p>The <strong>Advanced SEO Word Counter by Deep Mega Tools</strong> is a convenient solution for anyone who wants to analyze and improve their written content. From counting words and characters to checking keyword density, reading time, and readability, it provides several useful features in one place.</p>
+                <p>Whether you are a blogger, student, SEO professional, or content creator, this free online word counter can help you work more efficiently and prepare well-structured content.</p>
+                <p>Start analyzing your text today with Deep Mega Tools and make your writing process easier!</p>
+                <div class="cta-wrap">
+                    <a href="#tool" class="cta-btn">Try the Free SEO Word Counter</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="year"></span> Deep Mega Tools — Free Online SEO Word Counter. All rights reserved.</p>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">Copied to clipboard!</div>
+
+    <script>
+    (function () {
+        'use strict';
+
+        var textInput      = document.getElementById('text-input');
+        var elWords        = document.getElementById('words');
+        var elCharsSpaces  = document.getElementById('chars-spaces');
+        var elCharsNoSpace = document.getElementById('chars-no-spaces');
+        var elReadingTime  = document.getElementById('reading-time');
+        var elSpeakingTime = document.getElementById('speaking-time');
+        var elSentences    = document.getElementById('sentences');
+        var elParagraphs   = document.getElementById('paragraphs');
+        var elAvgWordLen   = document.getElementById('avg-word-length');
+        var elReadingLevel = document.getElementById('reading-level');
+        var elKeywordList  = document.getElementById('keyword-list');
+        var toast          = document.getElementById('toast');
+        var toastTimer     = null;
+
+        var STORAGE_KEY = 'seoWordCounterText';
+        var READING_WPM = 200;
+        var SPEAKING_WPM = 130;
+
+        var STOP_WORDS = [
+            'the','and','is','in','it','to','of','a','for','on','with','as','this','that',
+            'are','be','at','by','from','or','an','but','not','we','you','i','they','he','she',
+            'was','were','will','can','has','have','its','their','our','your','my','me','us',
+            'them','his','her','what','which','who','whom','when','where','why','how','all',
+            'any','both','each','few','more','most','other','some','such','no','nor','only',
+            'own','same','so','than','too','very','just','don','should','now','if','do','does',
+            'did','doing','been','being','had','having','would','could','should','may','might',
+            'must','shall','about','into','through','during','before','after','above','below',
+            'between','out','off','over','under','again','further','then','once','here','there'
+        ];
+
+        function countSyllables(word) {
+            word = word.toLowerCase().replace(/[^a-z]/g, '');
+            if (word.length <= 3) return 1;
+            word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');
+            word = word.replace(/^y/, '');
+            var syllables = word.match(/[aeiouy]{1,2}/g);
+            return syllables ? syllables.length : 1;
+        }
+
+        function calculateReadingLevel(text, wordCount, sentenceCount) {
+            if (wordCount === 0 || sentenceCount === 0) return 'N/A';
+            var words = text.toLowerCase().match(/\b[a-z]+\b/g) || [];
+            if (!words.length) return 'N/A';
+            var totalSyllables = 0;
+            for (var i = 0; i < words.length; i++) {
+                totalSyllables += countSyllables(words[i]);
+            }
+            var score = 206.835 - (1.015 * (wordCount / sentenceCount)) - (84.6 * (totalSyllables / wordCount));
+            score = Math.max(0, Math.min(100, Math.round(score)));
+            var label;
+            if (score >= 90)      label = 'Very Easy';
+            else if (score >= 80) label = 'Easy';
+            else if (score >= 70) label = 'Fairly Easy';
+            else if (score >= 60) label = 'Standard';
+            else if (score >= 50) label = 'Fairly Hard';
+            else if (score >= 30) label = 'Difficult';
+            else                  label = 'Very Confusing';
+            return score + ' (' + label + ')';
+        }
+
+        function getTopKeywords(text, totalWords) {
+            if (totalWords === 0) return [];
+            var words = text.toLowerCase().match(/\b[a-z]+\b/g) || [];
+            var counts = {};
+            for (var i = 0; i < words.length; i++) {
+                var w = words[i];
+                if (w.length > 2 && STOP_WORDS.indexOf(w) === -1) {
+                    counts[w] = (counts[w] || 0) + 1;
+                }
+            }
+            var sorted = Object.keys(counts).sort(function (a, b) {
+                return counts[b] - counts[a];
+            });
+            var top = [];
+            var limit = Math.min(5, sorted.length);
+            for (var j = 0; j < limit; j++) {
+                var word = sorted[j];
+                var count = counts[word];
+                var density = ((count / totalWords) * 100).toFixed(1);
+                top.push({ word: word, count: count, density: density });
+            }
+            return top;
+        }
+
+        function updateStats() {
+            var text = textInput.value;
+            try {
+                if (text) localStorage.setItem(STORAGE_KEY, text);
+                else localStorage.removeItem(STORAGE_KEY);
+            } catch (e) {}
+
+            var wordsArray = text.trim() === '' ? [] : text.trim().split(/\s+/);
+            var wordCount = wordsArray.length;
+            var charsWithSpaces = text.length;
+            var charsNoSpaces = text.replace(/\s/g, '').length;
+            var readingTime = wordCount > 0 ? Math.ceil(wordCount / READING_WPM) : 0;
+            var speakingTime = wordCount > 0 ? Math.ceil(wordCount / SPEAKING_WPM) : 0;
+            var sentencesArray = text.split(/[.!?]+/).filter(function (s) { return s.trim().length > 0; });
+            var sentenceCount = (wordCount > 0 && sentencesArray.length === 0) ? 1 : sentencesArray.length;
+            var paragraphCount = text.split(/\n+/).filter(function (p) { return p.trim().length > 0; }).length;
+            var avgWordLength = wordCount === 0 ? '0' : (charsNoSpaces / wordCount).toFixed(1);
+            var readingLevel = calculateReadingLevel(text, wordCount, sentenceCount);
+            var topKeywords = getTopKeywords(text, wordCount);
+
+            elWords.textContent        = wordCount;
+            elCharsSpaces.textContent  = charsWithSpaces;
+            elCharsNoSpace.textContent = charsNoSpaces;
+            elReadingTime.textContent  = readingTime + ' min';
+            elSpeakingTime.textContent = speakingTime + ' min';
+            elSentences.textContent    = sentenceCount;
+            elParagraphs.textContent   = paragraphCount;
+            elAvgWordLen.textContent   = avgWordLength;
+            elReadingLevel.textContent = readingLevel;
+
+            elKeywordList.innerHTML = '';
+            if (topKeywords.length === 0) {
+                var empty = document.createElement('span');
+                empty.className = 'keyword-empty';
+                empty.textContent = 'Start typing to see keywords...';
+                elKeywordList.appendChild(empty);
+            } else {
+                topKeywords.forEach(function (kw) {
+                    var pill = document.createElement('div');
+                    pill.className = 'keyword-pill';
+                    pill.textContent = kw.word + ' ';
+                    var countSpan = document.createElement('span');
+                    countSpan.textContent = kw.count + 'x (' + kw.density + '%)';
+                    pill.appendChild(countSpan);
+                    elKeywordList.appendChild(pill);
+                });
+            }
+        }
+
+        function showToast(message) {
+            toast.textContent = message;
+            toast.classList.add('show');
+            if (toastTimer) clearTimeout(toastTimer);
+            toastTimer = setTimeout(function () {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        function copyText() {
+            if (!textInput.value) {
+                showToast('Nothing to copy — text is empty.');
+                return;
+            }
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(textInput.value).then(function () {
+                    showToast('Copied to clipboard!');
+                }, function () {
+                    fallbackCopy();
+                });
+            } else {
+                fallbackCopy();
+            }
+        }
+
+        function fallbackCopy() {
+            textInput.select();
+            try {
+                document.execCommand('copy');
+                showToast('Copied to clipboard!');
+            } catch (e) {
+                showToast('Copy failed. Please copy manually.');
+            }
+            textInput.setSelectionRange(0, 0);
+        }
+
+        textInput.addEventListener('input', updateStats);
+        document.getElementById('btn-copy').addEventListener('click', copyText);
+        document.getElementById('btn-upper').addEventListener('click', function () {
+            textInput.value = textInput.value.toUpperCase();
+            updateStats();
+        });
+        document.getElementById('btn-lower').addEventListener('click', function () {
+            textInput.value = textInput.value.toLowerCase();
+            updateStats();
+        });
+        document.getElementById('btn-title').addEventListener('click', function () {
+            textInput.value = textInput.value.replace(/\w\S*/g, function (txt) {
+                return txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase();
+            });
+            updateStats();
+        });
+        document.getElementById('btn-clear').addEventListener('click', function () {
+            textInput.value = '';
+            try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+            updateStats();
+            textInput.focus();
+            showToast('Text cleared.');
+        });
+
+        document.getElementById('scrollToTool').addEventListener('click', function () {
+            document.getElementById('tool').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            setTimeout(function () { textInput.focus(); }, 400);
+        });
+
+        window.addEventListener('DOMContentLoaded', function () {
+            var yearEl = document.getElementById('year');
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
+            try {
+                var saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) textInput.value = saved;
+            } catch (e) {}
+            updateStats();
+        });
+    })();
+    </script>
+</body>
+</html>
